@@ -15,6 +15,7 @@ require 'json'
 require 'logger'
 require 'tempfile'
 require 'time'
+require 'uri'
 require 'typhoeus'
 
 module KlaviyoAPI
@@ -31,7 +32,7 @@ module KlaviyoAPI
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "klaviyo-api-ruby/1.0.0"
+      @user_agent = "klaviyo-api-ruby/1.0.1"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
@@ -96,6 +97,7 @@ module KlaviyoAPI
       follow_location = opts[:follow_location] || true
 
       update_params_for_auth! header_params, query_params, opts[:auth_names]
+      update_page_cursor! header_params, query_params
 
       # set ssl_verifyhosts option based on @config.verify_ssl_host (true/false)
       _verify_ssl_host = @config.verify_ssl_host ? 2 : 0
@@ -310,6 +312,25 @@ module KlaviyoAPI
         when 'query'  then query_params[auth_setting[:key]] = auth_setting[:value]
         else fail ArgumentError, 'Authentication token must be in `query` or `header`'
         end
+      end
+    end
+
+    # Sets page[cursor] in query_params from parsed URI
+    #
+    # @param [Hash] header_params Header parameters
+    # @param [Hash] query_params Query parameters
+    def update_page_cursor!(header_params, query_params)
+      page_cursor_key = "page[cursor]"
+      page_cursor = query_params[page_cursor_key.to_sym]
+
+      return if page_cursor.nil? || page_cursor.empty?
+
+      if page_cursor.is_a?(String) && page_cursor.include?('https://')
+        query = CGI::parse(URI(page_cursor).query)
+
+        return if !query.keys.include?(page_cursor_key)
+
+        query_params[page_cursor_key.to_sym] = query[page_cursor_key].first
       end
     end
 
