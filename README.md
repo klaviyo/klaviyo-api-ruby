@@ -936,7 +936,7 @@ KlaviyoAPI::Client.create_client_subscription(company_id, body)
 #### [Request Profile Deletion](https://developers.klaviyo.com/en/v2023-02-22/reference/request_profile_deletion)
 
 ```ruby
-KlaviyoAPI::Data Privacy.request_profile_deletion(body)
+KlaviyoAPI::DataPrivacy.request_profile_deletion(body)
 ```
 
 
