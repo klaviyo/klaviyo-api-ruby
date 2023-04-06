@@ -32,7 +32,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'data' => :'TagCreateQueryAsSubResource'
+        :'data' => :'TagCreateQueryResourceObject'
       }
     end
 

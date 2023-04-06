@@ -159,48 +159,265 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Create Tag Relationships
-    # Associate a tag with other resources. Any given resource cannot be associated with more than **100** tags. The `related_resource` can be one of `campaigns`, `flows`, `lists`, or `segments`. Use the request body to pass in the ID(s) of the related resource(s) that will be associated with the tag. The scopes listed below are conditionally required depending on the specified related resource.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Flows Write` `Lists Write` `Segments Write` `Tags Write`
+    # Create Tag Relationships Campaigns
+    # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Campaigns Write` `Tags Write`
     # @param id [String] 
-    # @param related_resource [String] 
-    # @param tag_segment_op [TagSegmentOp] 
+    # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def create_tag_relationships(id, related_resource, tag_segment_op, opts = {})
-      create_tag_relationships_with_http_info(id, related_resource, tag_segment_op, opts)
+    def create_tag_relationships_campaigns(id, tag_campaign_op, opts = {})
+      create_tag_relationships_campaigns_with_http_info(id, tag_campaign_op, opts)
       nil
     end
 
-    # Create Tag Relationships
-    # Associate a tag with other resources. Any given resource cannot be associated with more than **100** tags. The &#x60;related_resource&#x60; can be one of &#x60;campaigns&#x60;, &#x60;flows&#x60;, &#x60;lists&#x60;, or &#x60;segments&#x60;. Use the request body to pass in the ID(s) of the related resource(s) that will be associated with the tag. The scopes listed below are conditionally required depending on the specified related resource.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60; &#x60;Lists Write&#x60; &#x60;Segments Write&#x60; &#x60;Tags Write&#x60;
+    # Create Tag Relationships Campaigns
+    # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Campaigns Write&#x60; &#x60;Tags Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
-    # @param tag_segment_op [TagSegmentOp] 
+    # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def create_tag_relationships_with_http_info(id, related_resource, tag_segment_op, opts = {})
+    def create_tag_relationships_campaigns_with_http_info(id, tag_campaign_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TagsApi.create_tag_relationships ...'
+        @api_client.config.logger.debug 'Calling API: TagsApi.create_tag_relationships_campaigns ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.create_tag_relationships"
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.create_tag_relationships_campaigns"
       end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling TagsApi.create_tag_relationships"
+      # verify the required parameter 'tag_campaign_op' is set
+      if @api_client.config.client_side_validation && tag_campaign_op.nil?
+        fail ArgumentError, "Missing the required parameter 'tag_campaign_op' when calling TagsApi.create_tag_relationships_campaigns"
       end
-      # verify enum value
-      allowable_values = ["flows", "lists", "segments", "tag-groups"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/campaigns/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(tag_campaign_op)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.create_tag_relationships_campaigns",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#create_tag_relationships_campaigns\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create Tag Relationships Flows
+    # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Flows Write` `Tags Write`
+    # @param id [String] 
+    # @param tag_flow_op [TagFlowOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def create_tag_relationships_flows(id, tag_flow_op, opts = {})
+      create_tag_relationships_flows_with_http_info(id, tag_flow_op, opts)
+      nil
+    end
+
+    # Create Tag Relationships Flows
+    # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60; &#x60;Tags Write&#x60;
+    # @param id [String] 
+    # @param tag_flow_op [TagFlowOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def create_tag_relationships_flows_with_http_info(id, tag_flow_op, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.create_tag_relationships_flows ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.create_tag_relationships_flows"
+      end
+      # verify the required parameter 'tag_flow_op' is set
+      if @api_client.config.client_side_validation && tag_flow_op.nil?
+        fail ArgumentError, "Missing the required parameter 'tag_flow_op' when calling TagsApi.create_tag_relationships_flows"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/flows/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(tag_flow_op)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.create_tag_relationships_flows",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#create_tag_relationships_flows\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create Tag Relationships Lists
+    # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `List Write` `Tags Write`
+    # @param id [String] 
+    # @param tag_list_op [TagListOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def create_tag_relationships_lists(id, tag_list_op, opts = {})
+      create_tag_relationships_lists_with_http_info(id, tag_list_op, opts)
+      nil
+    end
+
+    # Create Tag Relationships Lists
+    # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Tags Write&#x60;
+    # @param id [String] 
+    # @param tag_list_op [TagListOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def create_tag_relationships_lists_with_http_info(id, tag_list_op, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.create_tag_relationships_lists ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.create_tag_relationships_lists"
+      end
+      # verify the required parameter 'tag_list_op' is set
+      if @api_client.config.client_side_validation && tag_list_op.nil?
+        fail ArgumentError, "Missing the required parameter 'tag_list_op' when calling TagsApi.create_tag_relationships_lists"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/lists/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(tag_list_op)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.create_tag_relationships_lists",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#create_tag_relationships_lists\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create Tag Relationships Segments
+    # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Segments Write` `Tags Write`
+    # @param id [String] 
+    # @param tag_segment_op [TagSegmentOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def create_tag_relationships_segments(id, tag_segment_op, opts = {})
+      create_tag_relationships_segments_with_http_info(id, tag_segment_op, opts)
+      nil
+    end
+
+    # Create Tag Relationships Segments
+    # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.  Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Segments Write&#x60; &#x60;Tags Write&#x60;
+    # @param id [String] 
+    # @param tag_segment_op [TagSegmentOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def create_tag_relationships_segments_with_http_info(id, tag_segment_op, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.create_tag_relationships_segments ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.create_tag_relationships_segments"
       end
       # verify the required parameter 'tag_segment_op' is set
       if @api_client.config.client_side_validation && tag_segment_op.nil?
-        fail ArgumentError, "Missing the required parameter 'tag_segment_op' when calling TagsApi.create_tag_relationships"
+        fail ArgumentError, "Missing the required parameter 'tag_segment_op' when calling TagsApi.create_tag_relationships_segments"
       end
       # resource path
-      local_var_path = '/api/tags/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/tags/{id}/relationships/segments/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -230,7 +447,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"TagsApi.create_tag_relationships",
+        :operation => :"TagsApi.create_tag_relationships_segments",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -241,7 +458,7 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TagsApi#create_tag_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: TagsApi#create_tag_relationships_segments\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -376,48 +593,265 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Delete Tag Relationships
-    # Remove a tag's association with other resources. The `related_resource` can be one of `campaigns`, `flows`, `lists`, or `segments`. Use the request body to pass in the ID(s) of the related resource(s) whose association with the tag will be removed. The scopes listed below are conditionally required depending on the specified related resource.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Flows Write` `Lists Write` `Segments Write` `Tags Write`
+    # Delete Tag Relationships Campaigns
+    # Remove a tag's association with one or more campaigns.  Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Campaigns Write` `Tags Write`
     # @param id [String] 
-    # @param related_resource [String] 
-    # @param tag_segment_op [TagSegmentOp] 
+    # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def delete_tag_relationships(id, related_resource, tag_segment_op, opts = {})
-      delete_tag_relationships_with_http_info(id, related_resource, tag_segment_op, opts)
+    def delete_tag_relationships_campaigns(id, tag_campaign_op, opts = {})
+      delete_tag_relationships_campaigns_with_http_info(id, tag_campaign_op, opts)
       nil
     end
 
-    # Delete Tag Relationships
-    # Remove a tag&#39;s association with other resources. The &#x60;related_resource&#x60; can be one of &#x60;campaigns&#x60;, &#x60;flows&#x60;, &#x60;lists&#x60;, or &#x60;segments&#x60;. Use the request body to pass in the ID(s) of the related resource(s) whose association with the tag will be removed. The scopes listed below are conditionally required depending on the specified related resource.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60; &#x60;Lists Write&#x60; &#x60;Segments Write&#x60; &#x60;Tags Write&#x60;
+    # Delete Tag Relationships Campaigns
+    # Remove a tag&#39;s association with one or more campaigns.  Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Campaigns Write&#x60; &#x60;Tags Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
-    # @param tag_segment_op [TagSegmentOp] 
+    # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def delete_tag_relationships_with_http_info(id, related_resource, tag_segment_op, opts = {})
+    def delete_tag_relationships_campaigns_with_http_info(id, tag_campaign_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TagsApi.delete_tag_relationships ...'
+        @api_client.config.logger.debug 'Calling API: TagsApi.delete_tag_relationships_campaigns ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.delete_tag_relationships"
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.delete_tag_relationships_campaigns"
       end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling TagsApi.delete_tag_relationships"
+      # verify the required parameter 'tag_campaign_op' is set
+      if @api_client.config.client_side_validation && tag_campaign_op.nil?
+        fail ArgumentError, "Missing the required parameter 'tag_campaign_op' when calling TagsApi.delete_tag_relationships_campaigns"
       end
-      # verify enum value
-      allowable_values = ["flows", "lists", "segments", "tag-groups"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/campaigns/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(tag_campaign_op)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.delete_tag_relationships_campaigns",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#delete_tag_relationships_campaigns\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete Tag Relationships Flows
+    # Remove a tag's association with one or more flows.  Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Flows Write` `Tags Write`
+    # @param id [String] 
+    # @param tag_flow_op [TagFlowOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_tag_relationships_flows(id, tag_flow_op, opts = {})
+      delete_tag_relationships_flows_with_http_info(id, tag_flow_op, opts)
+      nil
+    end
+
+    # Delete Tag Relationships Flows
+    # Remove a tag&#39;s association with one or more flows.  Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Write&#x60; &#x60;Tags Write&#x60;
+    # @param id [String] 
+    # @param tag_flow_op [TagFlowOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_tag_relationships_flows_with_http_info(id, tag_flow_op, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.delete_tag_relationships_flows ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.delete_tag_relationships_flows"
+      end
+      # verify the required parameter 'tag_flow_op' is set
+      if @api_client.config.client_side_validation && tag_flow_op.nil?
+        fail ArgumentError, "Missing the required parameter 'tag_flow_op' when calling TagsApi.delete_tag_relationships_flows"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/flows/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(tag_flow_op)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.delete_tag_relationships_flows",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#delete_tag_relationships_flows\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete Tag Relationships Lists
+    # Remove a tag's association with one or more lists.  Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `List Write` `Tags Write`
+    # @param id [String] 
+    # @param tag_list_op [TagListOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_tag_relationships_lists(id, tag_list_op, opts = {})
+      delete_tag_relationships_lists_with_http_info(id, tag_list_op, opts)
+      nil
+    end
+
+    # Delete Tag Relationships Lists
+    # Remove a tag&#39;s association with one or more lists.  Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Tags Write&#x60;
+    # @param id [String] 
+    # @param tag_list_op [TagListOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_tag_relationships_lists_with_http_info(id, tag_list_op, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.delete_tag_relationships_lists ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.delete_tag_relationships_lists"
+      end
+      # verify the required parameter 'tag_list_op' is set
+      if @api_client.config.client_side_validation && tag_list_op.nil?
+        fail ArgumentError, "Missing the required parameter 'tag_list_op' when calling TagsApi.delete_tag_relationships_lists"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/lists/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(tag_list_op)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.delete_tag_relationships_lists",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#delete_tag_relationships_lists\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete Tag Relationships Segments
+    # Remove a tag's association with one or more segments.  Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Segments Write` `Tags Write`
+    # @param id [String] 
+    # @param tag_segment_op [TagSegmentOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_tag_relationships_segments(id, tag_segment_op, opts = {})
+      delete_tag_relationships_segments_with_http_info(id, tag_segment_op, opts)
+      nil
+    end
+
+    # Delete Tag Relationships Segments
+    # Remove a tag&#39;s association with one or more segments.  Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Segments Write&#x60; &#x60;Tags Write&#x60;
+    # @param id [String] 
+    # @param tag_segment_op [TagSegmentOp] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_tag_relationships_segments_with_http_info(id, tag_segment_op, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.delete_tag_relationships_segments ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.delete_tag_relationships_segments"
       end
       # verify the required parameter 'tag_segment_op' is set
       if @api_client.config.client_side_validation && tag_segment_op.nil?
-        fail ArgumentError, "Missing the required parameter 'tag_segment_op' when calling TagsApi.delete_tag_relationships"
+        fail ArgumentError, "Missing the required parameter 'tag_segment_op' when calling TagsApi.delete_tag_relationships_segments"
       end
       # resource path
-      local_var_path = '/api/tags/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/tags/{id}/relationships/segments/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -447,7 +881,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"TagsApi.delete_tag_relationships",
+        :operation => :"TagsApi.delete_tag_relationships_segments",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -458,7 +892,7 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TagsApi#delete_tag_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: TagsApi#delete_tag_relationships_segments\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -607,42 +1041,31 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Tag Group Relationships
-    # When `related_resource` is `tags`, returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Tags Read`
+    # Get Tag Group Relationships Tags
+    # Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Tags Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
-    def get_tag_group_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_tag_group_relationships_with_http_info(id, related_resource, opts)
+    def get_tag_group_relationships_tags(id, opts = {})
+      data, _status_code, _headers = get_tag_group_relationships_tags_with_http_info(id, opts)
       data
     end
 
-    # Get Tag Group Relationships
-    # When &#x60;related_resource&#x60; is &#x60;tags&#x60;, returns the tag IDs of all tags inside the given tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+    # Get Tag Group Relationships Tags
+    # Returns the tag IDs of all tags inside the given tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_tag_group_relationships_with_http_info(id, related_resource, opts = {})
+    def get_tag_group_relationships_tags_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_group_relationships ...'
+        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_group_relationships_tags ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_group_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling TagsApi.get_tag_group_relationships"
-      end
-      # verify enum value
-      allowable_values = ["tags"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_group_relationships_tags"
       end
       # resource path
-      local_var_path = '/api/tag-groups/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/tag-groups/{id}/relationships/tags/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -667,7 +1090,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"TagsApi.get_tag_group_relationships",
+        :operation => :"TagsApi.get_tag_group_relationships_tags",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -678,7 +1101,7 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TagsApi#get_tag_group_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: TagsApi#get_tag_group_relationships_tags\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -834,42 +1257,31 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Tag Relationships
-    # Get the relationships for a tag. If `related_resource` is `tag-group`, the request will return the `tag_group_id` of the tag group to which the tag belongs. If `related_resource` is set to `campaigns`, `flows`, `lists`, or `segments`, the request will return the IDs of all associated resources of that type. The scopes listed below are conditionally required depending on the specified related resource.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Flows Read` `Lists Read` `Segments Read` `Tags Read`
+    # Get Tag Relationships Campaigns
+    # Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Campaigns Read` `Tags Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
-    def get_tag_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_tag_relationships_with_http_info(id, related_resource, opts)
+    def get_tag_relationships_campaigns(id, opts = {})
+      data, _status_code, _headers = get_tag_relationships_campaigns_with_http_info(id, opts)
       data
     end
 
-    # Get Tag Relationships
-    # Get the relationships for a tag. If &#x60;related_resource&#x60; is &#x60;tag-group&#x60;, the request will return the &#x60;tag_group_id&#x60; of the tag group to which the tag belongs. If &#x60;related_resource&#x60; is set to &#x60;campaigns&#x60;, &#x60;flows&#x60;, &#x60;lists&#x60;, or &#x60;segments&#x60;, the request will return the IDs of all associated resources of that type. The scopes listed below are conditionally required depending on the specified related resource.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60; &#x60;Lists Read&#x60; &#x60;Segments Read&#x60; &#x60;Tags Read&#x60;
+    # Get Tag Relationships Campaigns
+    # Returns the IDs of all campaigns associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Campaigns Read&#x60; &#x60;Tags Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_tag_relationships_with_http_info(id, related_resource, opts = {})
+    def get_tag_relationships_campaigns_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_relationships ...'
+        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_relationships_campaigns ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling TagsApi.get_tag_relationships"
-      end
-      # verify enum value
-      allowable_values = ["flows", "lists", "segments", "tag-groups"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_relationships_campaigns"
       end
       # resource path
-      local_var_path = '/api/tags/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/tags/{id}/relationships/campaigns/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -894,7 +1306,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"TagsApi.get_tag_relationships",
+        :operation => :"TagsApi.get_tag_relationships_campaigns",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -905,7 +1317,267 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: TagsApi#get_tag_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: TagsApi#get_tag_relationships_campaigns\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Tag Relationships Flows
+    # Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Flows Read` `Tags Read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_tag_relationships_flows(id, opts = {})
+      data, _status_code, _headers = get_tag_relationships_flows_with_http_info(id, opts)
+      data
+    end
+
+    # Get Tag Relationships Flows
+    # Returns the IDs of all flows associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Flows Read&#x60; &#x60;Tags Read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_tag_relationships_flows_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_relationships_flows ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_relationships_flows"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/flows/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.get_tag_relationships_flows",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#get_tag_relationships_flows\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Tag Relationships Lists
+    # Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `List Read` `Tags Read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_tag_relationships_lists(id, opts = {})
+      data, _status_code, _headers = get_tag_relationships_lists_with_http_info(id, opts)
+      data
+    end
+
+    # Get Tag Relationships Lists
+    # Returns the IDs of all lists associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;List Read&#x60; &#x60;Tags Read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_tag_relationships_lists_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_relationships_lists ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_relationships_lists"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/lists/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.get_tag_relationships_lists",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#get_tag_relationships_lists\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Tag Relationships Segments
+    # Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Segments Read` `Tags Read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_tag_relationships_segments(id, opts = {})
+      data, _status_code, _headers = get_tag_relationships_segments_with_http_info(id, opts)
+      data
+    end
+
+    # Get Tag Relationships Segments
+    # Returns the IDs of all segments associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Segments Read&#x60; &#x60;Tags Read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_tag_relationships_segments_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_relationships_segments ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_relationships_segments"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/segments/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.get_tag_relationships_segments",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#get_tag_relationships_segments\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Tag Relationships Tag Group
+    # Returns the ids of all tag groups related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Tags Read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_tag_relationships_tag_group(id, opts = {})
+      data, _status_code, _headers = get_tag_relationships_tag_group_with_http_info(id, opts)
+      data
+    end
+
+    # Get Tag Relationships Tag Group
+    # Returns the ids of all tag groups related to the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Tags Read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_tag_relationships_tag_group_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_relationships_tag_group ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_relationships_tag_group"
+      end
+      # resource path
+      local_var_path = '/api/tags/{id}/relationships/tag-group/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"TagsApi.get_tag_relationships_tag_group",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: TagsApi#get_tag_relationships_tag_group\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

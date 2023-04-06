@@ -128,7 +128,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "anonymous_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties"]
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.timestamp", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppressions", "subscriptions.email.marketing.suppressions.reason", "subscriptions.email.marketing.suppressions.timestamp", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.list_suppressions.list_id", "subscriptions.email.marketing.list_suppressions.reason", "subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -258,6 +258,7 @@ module KlaviyoAPI
     # Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Events Read` `Profiles Read`
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_event_profiles(id, opts = {})
@@ -269,6 +270,7 @@ module KlaviyoAPI
     # Get the profile associated with an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Read&#x60; &#x60;Profiles Read&#x60;
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_event_profiles_with_http_info(id, opts = {})
@@ -279,7 +281,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_event_profiles"
       end
-      allowable_values = ["email", "phone_number", "external_id", "anonymous_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties"]
+      allowable_values = ["predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.timestamp", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppressions", "subscriptions.email.marketing.suppressions.reason", "subscriptions.email.marketing.suppressions.timestamp", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.list_suppressions.list_id", "subscriptions.email.marketing.list_suppressions.reason", "subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -288,6 +294,7 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
       query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
 
       # header parameters
@@ -326,42 +333,31 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Event Relationships
-    # Get metrics or profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Events Read` `Metrics Read` `Profiles Read`
+    # Get Event Relationships Metrics
+    # Get a list of related Metrics for an Event<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Events Read` `Metrics Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
-    def get_event_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_event_relationships_with_http_info(id, related_resource, opts)
+    def get_event_relationships_metrics(id, opts = {})
+      data, _status_code, _headers = get_event_relationships_metrics_with_http_info(id, opts)
       data
     end
 
-    # Get Event Relationships
-    # Get metrics or profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Read&#x60; &#x60;Metrics Read&#x60; &#x60;Profiles Read&#x60;
+    # Get Event Relationships Metrics
+    # Get a list of related Metrics for an Event&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Read&#x60; &#x60;Metrics Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_event_relationships_with_http_info(id, related_resource, opts = {})
+    def get_event_relationships_metrics_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: EventsApi.get_event_relationships ...'
+        @api_client.config.logger.debug 'Calling API: EventsApi.get_event_relationships_metrics ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_event_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling EventsApi.get_event_relationships"
-      end
-      # verify enum value
-      allowable_values = ["metrics", "profiles"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_event_relationships_metrics"
       end
       # resource path
-      local_var_path = '/api/events/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/events/{id}/relationships/metrics/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -386,7 +382,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"EventsApi.get_event_relationships",
+        :operation => :"EventsApi.get_event_relationships_metrics",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -397,7 +393,72 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: EventsApi#get_event_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: EventsApi#get_event_relationships_metrics\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Event Relationships Profiles
+    # Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Events Read` `Profiles Read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_event_relationships_profiles(id, opts = {})
+      data, _status_code, _headers = get_event_relationships_profiles_with_http_info(id, opts)
+      data
+    end
+
+    # Get Event Relationships Profiles
+    # Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Events Read&#x60; &#x60;Profiles Read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_event_relationships_profiles_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: EventsApi.get_event_relationships_profiles ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_event_relationships_profiles"
+      end
+      # resource path
+      local_var_path = '/api/events/{id}/relationships/profiles/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"EventsApi.get_event_relationships_profiles",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: EventsApi#get_event_relationships_profiles\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -408,7 +469,7 @@ module KlaviyoAPI
     # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
     # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
@@ -424,7 +485,7 @@ module KlaviyoAPI
     # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
     # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#relationships
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
@@ -441,7 +502,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "anonymous_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties"]
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.timestamp", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppressions", "subscriptions.email.marketing.suppressions.reason", "subscriptions.email.marketing.suppressions.timestamp", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.list_suppressions.list_id", "subscriptions.email.marketing.list_suppressions.reason", "subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end

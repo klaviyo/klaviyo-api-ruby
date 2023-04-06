@@ -89,48 +89,37 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Create Catalog Category Relationships
+    # Create Catalog Category Relationships Items
     # Create a new item relationship for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def create_catalog_category_relationships(id, related_resource, catalog_category_item_op, opts = {})
-      create_catalog_category_relationships_with_http_info(id, related_resource, catalog_category_item_op, opts)
+    def create_catalog_category_relationships_items(id, catalog_category_item_op, opts = {})
+      create_catalog_category_relationships_items_with_http_info(id, catalog_category_item_op, opts)
       nil
     end
 
-    # Create Catalog Category Relationships
+    # Create Catalog Category Relationships Items
     # Create a new item relationship for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def create_catalog_category_relationships_with_http_info(id, related_resource, catalog_category_item_op, opts = {})
+    def create_catalog_category_relationships_items_with_http_info(id, catalog_category_item_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.create_catalog_category_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.create_catalog_category_relationships_items ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.create_catalog_category_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.create_catalog_category_relationships"
-      end
-      # verify enum value
-      allowable_values = ["items"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.create_catalog_category_relationships_items"
       end
       # verify the required parameter 'catalog_category_item_op' is set
       if @api_client.config.client_side_validation && catalog_category_item_op.nil?
-        fail ArgumentError, "Missing the required parameter 'catalog_category_item_op' when calling CatalogsApi.create_catalog_category_relationships"
+        fail ArgumentError, "Missing the required parameter 'catalog_category_item_op' when calling CatalogsApi.create_catalog_category_relationships_items"
       end
       # resource path
-      local_var_path = '/api/catalog-categories/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-categories/{id}/relationships/items/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -160,7 +149,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.create_catalog_category_relationships",
+        :operation => :"CatalogsApi.create_catalog_category_relationships_items",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -171,7 +160,7 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#create_catalog_category_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#create_catalog_category_relationships_items\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -246,48 +235,37 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Create Catalog Item Relationships
+    # Create Catalog Item Relationships Categories
     # Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def create_catalog_item_relationships(id, related_resource, catalog_item_category_op, opts = {})
-      create_catalog_item_relationships_with_http_info(id, related_resource, catalog_item_category_op, opts)
+    def create_catalog_item_relationships_categories(id, catalog_item_category_op, opts = {})
+      create_catalog_item_relationships_categories_with_http_info(id, catalog_item_category_op, opts)
       nil
     end
 
-    # Create Catalog Item Relationships
+    # Create Catalog Item Relationships Categories
     # Create a new catalog category relationship for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def create_catalog_item_relationships_with_http_info(id, related_resource, catalog_item_category_op, opts = {})
+    def create_catalog_item_relationships_categories_with_http_info(id, catalog_item_category_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.create_catalog_item_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.create_catalog_item_relationships_categories ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.create_catalog_item_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.create_catalog_item_relationships"
-      end
-      # verify enum value
-      allowable_values = ["categories"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.create_catalog_item_relationships_categories"
       end
       # verify the required parameter 'catalog_item_category_op' is set
       if @api_client.config.client_side_validation && catalog_item_category_op.nil?
-        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.create_catalog_item_relationships"
+        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.create_catalog_item_relationships_categories"
       end
       # resource path
-      local_var_path = '/api/catalog-items/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-items/{id}/relationships/categories/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -317,7 +295,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.create_catalog_item_relationships",
+        :operation => :"CatalogsApi.create_catalog_item_relationships_categories",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -328,7 +306,7 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#create_catalog_item_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#create_catalog_item_relationships_categories\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -405,7 +383,7 @@ module KlaviyoAPI
 
     # Delete Catalog Category
     # Delete a catalog category using the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
-    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_catalog_category(id, opts = {})
@@ -415,7 +393,7 @@ module KlaviyoAPI
 
     # Delete Catalog Category
     # Delete a catalog category using the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_catalog_category_with_http_info(id, opts = {})
@@ -468,48 +446,37 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Delete Catalog Category Relationships
+    # Delete Catalog Category Relationships Items
     # Delete item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def delete_catalog_category_relationships(id, related_resource, catalog_category_item_op, opts = {})
-      delete_catalog_category_relationships_with_http_info(id, related_resource, catalog_category_item_op, opts)
+    def delete_catalog_category_relationships_items(id, catalog_category_item_op, opts = {})
+      delete_catalog_category_relationships_items_with_http_info(id, catalog_category_item_op, opts)
       nil
     end
 
-    # Delete Catalog Category Relationships
+    # Delete Catalog Category Relationships Items
     # Delete item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def delete_catalog_category_relationships_with_http_info(id, related_resource, catalog_category_item_op, opts = {})
+    def delete_catalog_category_relationships_items_with_http_info(id, catalog_category_item_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.delete_catalog_category_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.delete_catalog_category_relationships_items ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.delete_catalog_category_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.delete_catalog_category_relationships"
-      end
-      # verify enum value
-      allowable_values = ["items"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.delete_catalog_category_relationships_items"
       end
       # verify the required parameter 'catalog_category_item_op' is set
       if @api_client.config.client_side_validation && catalog_category_item_op.nil?
-        fail ArgumentError, "Missing the required parameter 'catalog_category_item_op' when calling CatalogsApi.delete_catalog_category_relationships"
+        fail ArgumentError, "Missing the required parameter 'catalog_category_item_op' when calling CatalogsApi.delete_catalog_category_relationships_items"
       end
       # resource path
-      local_var_path = '/api/catalog-categories/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-categories/{id}/relationships/items/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -539,7 +506,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.delete_catalog_category_relationships",
+        :operation => :"CatalogsApi.delete_catalog_category_relationships_items",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -550,14 +517,14 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#delete_catalog_category_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#delete_catalog_category_relationships_items\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
     # Delete Catalog Item
     # Delete a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
-    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_catalog_item(id, opts = {})
@@ -567,7 +534,7 @@ module KlaviyoAPI
 
     # Delete Catalog Item
     # Delete a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_catalog_item_with_http_info(id, opts = {})
@@ -620,48 +587,37 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Delete Catalog Item Relationships
+    # Delete Catalog Item Relationships Categories
     # Delete catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def delete_catalog_item_relationships(id, related_resource, catalog_item_category_op, opts = {})
-      delete_catalog_item_relationships_with_http_info(id, related_resource, catalog_item_category_op, opts)
+    def delete_catalog_item_relationships_categories(id, catalog_item_category_op, opts = {})
+      delete_catalog_item_relationships_categories_with_http_info(id, catalog_item_category_op, opts)
       nil
     end
 
-    # Delete Catalog Item Relationships
+    # Delete Catalog Item Relationships Categories
     # Delete catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def delete_catalog_item_relationships_with_http_info(id, related_resource, catalog_item_category_op, opts = {})
+    def delete_catalog_item_relationships_categories_with_http_info(id, catalog_item_category_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.delete_catalog_item_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.delete_catalog_item_relationships_categories ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.delete_catalog_item_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.delete_catalog_item_relationships"
-      end
-      # verify enum value
-      allowable_values = ["categories"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.delete_catalog_item_relationships_categories"
       end
       # verify the required parameter 'catalog_item_category_op' is set
       if @api_client.config.client_side_validation && catalog_item_category_op.nil?
-        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.delete_catalog_item_relationships"
+        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.delete_catalog_item_relationships_categories"
       end
       # resource path
-      local_var_path = '/api/catalog-items/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-items/{id}/relationships/categories/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -691,7 +647,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.delete_catalog_item_relationships",
+        :operation => :"CatalogsApi.delete_catalog_item_relationships_categories",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -702,14 +658,14 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#delete_catalog_item_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#delete_catalog_item_relationships_categories\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
     # Delete Catalog Variant
     # Delete a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
-    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def delete_catalog_variant(id, opts = {})
@@ -719,7 +675,7 @@ module KlaviyoAPI
 
     # Delete Catalog Variant
     # Delete a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_catalog_variant_with_http_info(id, opts = {})
@@ -853,7 +809,7 @@ module KlaviyoAPI
 
     # Get Catalog Category
     # Get a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
-    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
@@ -864,7 +820,7 @@ module KlaviyoAPI
 
     # Get Catalog Category
     # Get a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -925,7 +881,7 @@ module KlaviyoAPI
 
     # Get Catalog Category Items
     # Get all items in a category with the given category ID. Items can be sorted by the following fields, in ascending and descending order: `created` Include parameters can be provided to get the following related resource data: `variants` Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
-    # @param category_id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param category_id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -941,7 +897,7 @@ module KlaviyoAPI
 
     # Get Catalog Category Items
     # Get all items in a category with the given category ID. Items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Include parameters can be provided to get the following related resource data: &#x60;variants&#x60; Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-    # @param category_id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param category_id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -1022,44 +978,33 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Catalog Category Relationships
+    # Get Catalog Category Relationships Items
     # Get all items in the given category ID. Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @return [Hash<String, Object>]
-    def get_catalog_category_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_catalog_category_relationships_with_http_info(id, related_resource, opts)
+    def get_catalog_category_relationships_items(id, opts = {})
+      data, _status_code, _headers = get_catalog_category_relationships_items_with_http_info(id, opts)
       data
     end
 
-    # Get Catalog Category Relationships
+    # Get Catalog Category Relationships Items
     # Get all items in the given category ID. Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_catalog_category_relationships_with_http_info(id, related_resource, opts = {})
+    def get_catalog_category_relationships_items_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.get_catalog_category_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.get_catalog_category_relationships_items ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.get_catalog_category_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.get_catalog_category_relationships"
-      end
-      # verify enum value
-      allowable_values = ["items"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.get_catalog_category_relationships_items"
       end
       # resource path
-      local_var_path = '/api/catalog-categories/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-categories/{id}/relationships/items/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -1085,7 +1030,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.get_catalog_category_relationships",
+        :operation => :"CatalogsApi.get_catalog_category_relationships_items",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1096,14 +1041,14 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#get_catalog_category_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#get_catalog_category_relationships_items\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
     # Get Catalog Item
     # Get a specific catalog item with the given item ID. Include parameters can be provided to get the following related resource data: `variants`<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
-    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -1116,7 +1061,7 @@ module KlaviyoAPI
 
     # Get Catalog Item
     # Get a specific catalog item with the given item ID. Include parameters can be provided to get the following related resource data: &#x60;variants&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -1189,7 +1134,7 @@ module KlaviyoAPI
 
     # Get Catalog Item Categories
     # Get all catalog categories that an item with the given item ID is in. Catalog categories can be sorted by the following fields, in ascending and descending order: `created` Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
-    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
@@ -1203,7 +1148,7 @@ module KlaviyoAPI
 
     # Get Catalog Item Categories
     # Get all catalog categories that an item with the given item ID is in. Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
@@ -1272,44 +1217,33 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Catalog Item Relationships
+    # Get Catalog Item Relationships Categories
     # Get all catalog categories that a particular item is in. Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @return [Hash<String, Object>]
-    def get_catalog_item_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_catalog_item_relationships_with_http_info(id, related_resource, opts)
+    def get_catalog_item_relationships_categories(id, opts = {})
+      data, _status_code, _headers = get_catalog_item_relationships_categories_with_http_info(id, opts)
       data
     end
 
-    # Get Catalog Item Relationships
+    # Get Catalog Item Relationships Categories
     # Get all catalog categories that a particular item is in. Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_catalog_item_relationships_with_http_info(id, related_resource, opts = {})
+    def get_catalog_item_relationships_categories_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.get_catalog_item_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.get_catalog_item_relationships_categories ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.get_catalog_item_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.get_catalog_item_relationships"
-      end
-      # verify enum value
-      allowable_values = ["categories"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.get_catalog_item_relationships_categories"
       end
       # resource path
-      local_var_path = '/api/catalog-items/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-items/{id}/relationships/categories/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -1335,7 +1269,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.get_catalog_item_relationships",
+        :operation => :"CatalogsApi.get_catalog_item_relationships_categories",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -1346,14 +1280,14 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#get_catalog_item_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#get_catalog_item_relationships_categories\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
     # Get Catalog Item Variants
     # Get all variants related to the given item ID. Variants can be sorted by the following fields, in ascending and descending order: `created` Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
-    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
@@ -1367,7 +1301,7 @@ module KlaviyoAPI
 
     # Get Catalog Item Variants
     # Get all variants related to the given item ID. Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60; Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param item_id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
@@ -1531,7 +1465,7 @@ module KlaviyoAPI
 
     # Get Catalog Variant
     # Get a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `Catalogs Read`
-    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
@@ -1542,7 +1476,7 @@ module KlaviyoAPI
 
     # Get Catalog Variant
     # Get a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;Catalogs Read&#x60;
-    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -3692,7 +3626,7 @@ module KlaviyoAPI
 
     # Update Catalog Category
     # Update a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
-    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_update_query [CatalogCategoryUpdateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -3703,7 +3637,7 @@ module KlaviyoAPI
 
     # Update Catalog Category
     # Update a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_update_query [CatalogCategoryUpdateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -3766,48 +3700,37 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Update Catalog Category Relationships
+    # Update Catalog Category Relationships Items
     # Update item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def update_catalog_category_relationships(id, related_resource, catalog_category_item_op, opts = {})
-      update_catalog_category_relationships_with_http_info(id, related_resource, catalog_category_item_op, opts)
+    def update_catalog_category_relationships_items(id, catalog_category_item_op, opts = {})
+      update_catalog_category_relationships_items_with_http_info(id, catalog_category_item_op, opts)
       nil
     end
 
-    # Update Catalog Category Relationships
+    # Update Catalog Category Relationships Items
     # Update item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def update_catalog_category_relationships_with_http_info(id, related_resource, catalog_category_item_op, opts = {})
+    def update_catalog_category_relationships_items_with_http_info(id, catalog_category_item_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.update_catalog_category_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.update_catalog_category_relationships_items ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.update_catalog_category_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.update_catalog_category_relationships"
-      end
-      # verify enum value
-      allowable_values = ["items"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.update_catalog_category_relationships_items"
       end
       # verify the required parameter 'catalog_category_item_op' is set
       if @api_client.config.client_side_validation && catalog_category_item_op.nil?
-        fail ArgumentError, "Missing the required parameter 'catalog_category_item_op' when calling CatalogsApi.update_catalog_category_relationships"
+        fail ArgumentError, "Missing the required parameter 'catalog_category_item_op' when calling CatalogsApi.update_catalog_category_relationships_items"
       end
       # resource path
-      local_var_path = '/api/catalog-categories/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-categories/{id}/relationships/items/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -3837,7 +3760,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.update_catalog_category_relationships",
+        :operation => :"CatalogsApi.update_catalog_category_relationships_items",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -3848,14 +3771,14 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#update_catalog_category_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#update_catalog_category_relationships_items\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
     # Update Catalog Item
     # Update a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
-    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_update_query [CatalogItemUpdateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -3866,7 +3789,7 @@ module KlaviyoAPI
 
     # Update Catalog Item
     # Update a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_update_query [CatalogItemUpdateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -3929,48 +3852,37 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Update Catalog Item Relationships
+    # Update Catalog Item Relationships Categories
     # Update catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def update_catalog_item_relationships(id, related_resource, catalog_item_category_op, opts = {})
-      update_catalog_item_relationships_with_http_info(id, related_resource, catalog_item_category_op, opts)
+    def update_catalog_item_relationships_categories(id, catalog_item_category_op, opts = {})
+      update_catalog_item_relationships_categories_with_http_info(id, catalog_item_category_op, opts)
       nil
     end
 
-    # Update Catalog Item Relationships
+    # Update Catalog Item Relationships Categories
     # Update catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def update_catalog_item_relationships_with_http_info(id, related_resource, catalog_item_category_op, opts = {})
+    def update_catalog_item_relationships_categories_with_http_info(id, catalog_item_category_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.update_catalog_item_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.update_catalog_item_relationships_categories ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.update_catalog_item_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CatalogsApi.update_catalog_item_relationships"
-      end
-      # verify enum value
-      allowable_values = ["categories"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.update_catalog_item_relationships_categories"
       end
       # verify the required parameter 'catalog_item_category_op' is set
       if @api_client.config.client_side_validation && catalog_item_category_op.nil?
-        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.update_catalog_item_relationships"
+        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.update_catalog_item_relationships_categories"
       end
       # resource path
-      local_var_path = '/api/catalog-items/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/catalog-items/{id}/relationships/categories/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -4000,7 +3912,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.update_catalog_item_relationships",
+        :operation => :"CatalogsApi.update_catalog_item_relationships_categories",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -4011,14 +3923,14 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#update_catalog_item_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#update_catalog_item_relationships_categories\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
     # Update Catalog Variant
     # Update a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Catalogs Write`
-    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_variant_update_query [CatalogVariantUpdateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -4029,7 +3941,7 @@ module KlaviyoAPI
 
     # Update Catalog Variant
     # Update a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Catalogs Write&#x60;
-    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;${integration}:::${catalog}:::${external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
+    # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_variant_update_query [CatalogVariantUpdateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers

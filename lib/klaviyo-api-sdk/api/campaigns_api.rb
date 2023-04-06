@@ -159,7 +159,7 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Create Campaign Message Assign Template
+    # Assign Campaign Message Template
     # Creates a non-reusable version of the template and assigns it to the message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `Campaigns Write`
     # @param campaign_message_assign_template_query [CampaignMessageAssignTemplateQuery] Takes a reusable template, clones it, and assigns the non-reusable clone to the message.
     # @param [Hash] opts the optional parameters
@@ -169,7 +169,7 @@ module KlaviyoAPI
       data
     end
 
-    # Create Campaign Message Assign Template
+    # Assign Campaign Message Template
     # Creates a non-reusable version of the template and assigns it to the message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Campaigns Write&#x60;
     # @param campaign_message_assign_template_query [CampaignMessageAssignTemplateQuery] Takes a reusable template, clones it, and assigns the non-reusable clone to the message.
     # @param [Hash] opts the optional parameters
@@ -736,37 +736,31 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Campaign Relationships
-    # If the `related_resource` is `tags`, returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Campaigns Read` `Tags Read`
+    # Get Campaign Relationships Tags
+    # Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Campaigns Read` `Tags Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
-    def get_campaign_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_campaign_relationships_with_http_info(id, related_resource, opts)
+    def get_campaign_relationships_tags(id, opts = {})
+      data, _status_code, _headers = get_campaign_relationships_tags_with_http_info(id, opts)
       data
     end
 
-    # Get Campaign Relationships
-    # If the &#x60;related_resource&#x60; is &#x60;tags&#x60;, returns the IDs of all tags associated with the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Campaigns Read&#x60; &#x60;Tags Read&#x60;
+    # Get Campaign Relationships Tags
+    # Returns the IDs of all tags associated with the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Campaigns Read&#x60; &#x60;Tags Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_campaign_relationships_with_http_info(id, related_resource, opts = {})
+    def get_campaign_relationships_tags_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_relationships ...'
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_relationships_tags ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling CampaignsApi.get_campaign_relationships"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_relationships_tags"
       end
       # resource path
-      local_var_path = '/api/campaigns/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/campaigns/{id}/relationships/tags/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -791,7 +785,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"CampaignsApi.get_campaign_relationships",
+        :operation => :"CampaignsApi.get_campaign_relationships_tags",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -802,7 +796,7 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_relationships_tags\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

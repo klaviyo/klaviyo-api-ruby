@@ -446,7 +446,7 @@ module KlaviyoAPI
     end
 
     # Update Template
-    # Update a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `Templates Write`
+    # Update a template with the given template ID. Does not currently update drag & drop templates.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `Templates Write`
     # @param id [String] The ID of template
     # @param template_update_query [TemplateUpdateQuery] 
     # @param [Hash] opts the optional parameters
@@ -457,7 +457,7 @@ module KlaviyoAPI
     end
 
     # Update Template
-    # Update a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Write&#x60;
+    # Update a template with the given template ID. Does not currently update drag &amp; drop templates.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Templates Write&#x60;
     # @param id [String] The ID of template
     # @param template_update_query [TemplateUpdateQuery] 
     # @param [Hash] opts the optional parameters

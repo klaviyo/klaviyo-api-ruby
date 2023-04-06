@@ -89,26 +89,24 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Add Profile to List
+    # Add Profile To List
     # Add a profile to a list with the given list ID. It is recommended that you use the [Subscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/subscribe_profiles) if you're trying to give a profile consent to receive email marketing. This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `List Write` `Profiles Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param list_members_add_query [ListMembersAddQuery] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def create_list_relationships(id, related_resource, list_members_add_query, opts = {})
-      create_list_relationships_with_http_info(id, related_resource, list_members_add_query, opts)
+    def create_list_relationships(id, list_members_add_query, opts = {})
+      create_list_relationships_with_http_info(id, list_members_add_query, opts)
       nil
     end
 
-    # Add Profile to List
+    # Add Profile To List
     # Add a profile to a list with the given list ID. It is recommended that you use the [Subscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/subscribe_profiles) if you&#39;re trying to give a profile consent to receive email marketing. This endpoint accepts a maximum of 1000 profiles per call.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Profiles Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param list_members_add_query [ListMembersAddQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def create_list_relationships_with_http_info(id, related_resource, list_members_add_query, opts = {})
+    def create_list_relationships_with_http_info(id, list_members_add_query, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ListsApi.create_list_relationships ...'
       end
@@ -116,21 +114,12 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ListsApi.create_list_relationships"
       end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling ListsApi.create_list_relationships"
-      end
-      # verify enum value
-      allowable_values = ["profiles", "tags"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
-      end
       # verify the required parameter 'list_members_add_query' is set
       if @api_client.config.client_side_validation && list_members_add_query.nil?
         fail ArgumentError, "Missing the required parameter 'list_members_add_query' when calling ListsApi.create_list_relationships"
       end
       # resource path
-      local_var_path = '/api/lists/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/lists/{id}/relationships/profiles/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -241,26 +230,24 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Remove Profile from List
-    # Remove a profile from a list with the given list ID. The provided profile will no longer receive marketing from this particular list once removed. Removing a profile from a list will not impact the profile's consent status or subscription status in general. To update a profile's subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `List Write` `Profiles Write`
+    # Remove Profile From List
+    # Remove a profile from a list with the given list ID. The provided profile will no longer receive marketing from this particular list once removed. Removing a profile from a list will not impact the profile's consent status or subscription status in general. To update a profile's subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles). This endpoint accepts a maximum of 1000 profiles per call.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `List Write` `Profiles Write`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param list_members_delete_query [ListMembersDeleteQuery] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def delete_list_relationships(id, related_resource, list_members_delete_query, opts = {})
-      delete_list_relationships_with_http_info(id, related_resource, list_members_delete_query, opts)
+    def delete_list_relationships(id, list_members_delete_query, opts = {})
+      delete_list_relationships_with_http_info(id, list_members_delete_query, opts)
       nil
     end
 
-    # Remove Profile from List
-    # Remove a profile from a list with the given list ID. The provided profile will no longer receive marketing from this particular list once removed. Removing a profile from a list will not impact the profile&#39;s consent status or subscription status in general. To update a profile&#39;s subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Profiles Write&#x60;
+    # Remove Profile From List
+    # Remove a profile from a list with the given list ID. The provided profile will no longer receive marketing from this particular list once removed. Removing a profile from a list will not impact the profile&#39;s consent status or subscription status in general. To update a profile&#39;s subscription status, please use the [Unsubscribe Profiles endpoint](https://developers.klaviyo.com/en/reference/unsubscribe_profiles). This endpoint accepts a maximum of 1000 profiles per call.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Profiles Write&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param list_members_delete_query [ListMembersDeleteQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def delete_list_relationships_with_http_info(id, related_resource, list_members_delete_query, opts = {})
+    def delete_list_relationships_with_http_info(id, list_members_delete_query, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ListsApi.delete_list_relationships ...'
       end
@@ -268,21 +255,12 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ListsApi.delete_list_relationships"
       end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling ListsApi.delete_list_relationships"
-      end
-      # verify enum value
-      allowable_values = ["profiles", "tags"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
-      end
       # verify the required parameter 'list_members_delete_query' is set
       if @api_client.config.client_side_validation && list_members_delete_query.nil?
         fail ArgumentError, "Missing the required parameter 'list_members_delete_query' when calling ListsApi.delete_list_relationships"
       end
       # resource path
-      local_var_path = '/api/lists/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/lists/{id}/relationships/profiles/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -404,9 +382,11 @@ module KlaviyoAPI
     # Get all profiles within a list with the given list ID. Filter to request a subset of all profiles. Profiles can be filtered by `email`, `phone_number`, and `push_token` fields. You can adjust the number of results per page via the `page[size]` query parameter, e.g. `?page[size]=25`. **Default**: 20. **Max**: 100.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `List Read` `Profiles Read`
     # @param list_id [String] Primary key that uniquely identifies this list. Generated by Klaviyo.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;push_token&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+    # @option opts [Integer] :page_size The number of results to return per page. Default &#x3D; 20. Max &#x3D; 100
     # @return [Hash<String, Object>]
     def get_list_profiles(list_id, opts = {})
       data, _status_code, _headers = get_list_profiles_with_http_info(list_id, opts)
@@ -417,9 +397,11 @@ module KlaviyoAPI
     # Get all profiles within a list with the given list ID. Filter to request a subset of all profiles. Profiles can be filtered by &#x60;email&#x60;, &#x60;phone_number&#x60;, and &#x60;push_token&#x60; fields. You can adjust the number of results per page via the &#x60;page[size]&#x60; query parameter, e.g. &#x60;?page[size]&#x3D;25&#x60;. **Default**: 20. **Max**: 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;List Read&#x60; &#x60;Profiles Read&#x60;
     # @param list_id [String] Primary key that uniquely identifies this list. Generated by Klaviyo.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;push_token&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
+    # @option opts [Integer] :page_size The number of results to return per page. Default &#x3D; 20. Max &#x3D; 100
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_list_profiles_with_http_info(list_id, opts = {})
       if @api_client.config.debugging
@@ -429,7 +411,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && list_id.nil?
         fail ArgumentError, "Missing the required parameter 'list_id' when calling ListsApi.get_list_profiles"
       end
-      allowable_values = ["email", "phone_number", "external_id", "anonymous_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties"]
+      allowable_values = ["predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.timestamp", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppressions", "subscriptions.email.marketing.suppressions.reason", "subscriptions.email.marketing.suppressions.timestamp", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.list_suppressions.list_id", "subscriptions.email.marketing.list_suppressions.reason", "subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -438,9 +424,11 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
       query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -478,44 +466,33 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get List Relationships
+    # Get List Relationships Profiles
     # Get profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a list with the given list ID. You can adjust the number of results per page via the `page[size]` query parameter, e.g. `?page[size]=25`. **Default**: 20. **Max**: 100.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `List Read` `Profiles Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @return [Hash<String, Object>]
-    def get_list_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_list_relationships_with_http_info(id, related_resource, opts)
+    def get_list_relationships_profiles(id, opts = {})
+      data, _status_code, _headers = get_list_relationships_profiles_with_http_info(id, opts)
       data
     end
 
-    # Get List Relationships
+    # Get List Relationships Profiles
     # Get profile membership [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a list with the given list ID. You can adjust the number of results per page via the &#x60;page[size]&#x60; query parameter, e.g. &#x60;?page[size]&#x3D;25&#x60;. **Default**: 20. **Max**: 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;List Read&#x60; &#x60;Profiles Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_list_relationships_with_http_info(id, related_resource, opts = {})
+    def get_list_relationships_profiles_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ListsApi.get_list_relationships ...'
+        @api_client.config.logger.debug 'Calling API: ListsApi.get_list_relationships_profiles ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling ListsApi.get_list_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling ListsApi.get_list_relationships"
-      end
-      # verify enum value
-      allowable_values = ["profiles", "tags"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling ListsApi.get_list_relationships_profiles"
       end
       # resource path
-      local_var_path = '/api/lists/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/lists/{id}/relationships/profiles/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -541,7 +518,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"ListsApi.get_list_relationships",
+        :operation => :"ListsApi.get_list_relationships_profiles",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -552,7 +529,72 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ListsApi#get_list_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ListsApi#get_list_relationships_profiles\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get List Relationships Tags
+    # Returns the tag IDs of all tags associated with the given list.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `List Read` `Tags Read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_list_relationships_tags(id, opts = {})
+      data, _status_code, _headers = get_list_relationships_tags_with_http_info(id, opts)
+      data
+    end
+
+    # Get List Relationships Tags
+    # Returns the tag IDs of all tags associated with the given list.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;List Read&#x60; &#x60;Tags Read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_list_relationships_tags_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ListsApi.get_list_relationships_tags ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling ListsApi.get_list_relationships_tags"
+      end
+      # resource path
+      local_var_path = '/api/lists/{id}/relationships/tags/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"ListsApi.get_list_relationships_tags",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ListsApi#get_list_relationships_tags\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
