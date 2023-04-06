@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2023-04-06
+### Added
+- Profiles API now returns predictive analytics when calling `get_profile` and `get_profiles` by passing in `additional_fields_profile: ["predictive_analytics"]`.
+
+### Changed
+- Relationship endpoints that were previously grouped together are now split into related-resource-specific endpoints.
+
+### Migration Guide
+- To migrate to this latest version, all calls to relationship endpoints need to be updated, as in the following example:
+  - `get_campaign_relationships(id, "tags")` will become `get_campaign_relationships_tags(id)`.
 ## [1.2.0] - 2023-02-22
 ### Added
 - Campagins (which were previously in our Beta API/SDKs)

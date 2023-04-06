@@ -23,6 +23,7 @@ module KlaviyoAPI
     # Create a new profile. If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you'll need to include at least one other identifier attribute (`email` or `external_id`) in addition to the `phone_number` attribute for the API call to work.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Profiles Write`
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @return [Hash<String, Object>]
     def create_profile(profile_create_query, opts = {})
       data, _status_code, _headers = create_profile_with_http_info(profile_create_query, opts)
@@ -33,6 +34,7 @@ module KlaviyoAPI
     # Create a new profile. If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you&#39;ll need to include at least one other identifier attribute (&#x60;email&#x60; or &#x60;external_id&#x60;) in addition to the &#x60;phone_number&#x60; attribute for the API call to work.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60;
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_profile_with_http_info(profile_create_query, opts = {})
       if @api_client.config.debugging
@@ -42,11 +44,16 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && profile_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'profile_create_query' when calling ProfilesApi.create_profile"
       end
+      allowable_values = ["predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/profiles/'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -90,9 +97,10 @@ module KlaviyoAPI
     end
 
     # Get Profile
-    # Get the profile with the given profile ID. Include parameters can be provided to get the following related resource data: `lists` memberships, `segments` memberships\"<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Profiles Read`
+    # Get the profile with the given profile ID. Include parameters can be provided to get the following related resource data: `lists` memberships, `segments` memberships\"<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Profiles Read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -104,9 +112,10 @@ module KlaviyoAPI
     end
 
     # Get Profile
-    # Get the profile with the given profile ID. Include parameters can be provided to get the following related resource data: &#x60;lists&#x60; memberships, &#x60;segments&#x60; memberships\&quot;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60;
+    # Get the profile with the given profile ID. Include parameters can be provided to get the following related resource data: &#x60;lists&#x60; memberships, &#x60;segments&#x60; memberships\&quot;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
     # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
@@ -120,11 +129,15 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_profile"
       end
+      allowable_values = ["predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
       allowable_values = ["name", "created", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_list'] && !opts[:'fields_list'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_list\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "anonymous_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties"]
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.timestamp", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppressions", "subscriptions.email.marketing.suppressions.reason", "subscriptions.email.marketing.suppressions.timestamp", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.list_suppressions.list_id", "subscriptions.email.marketing.list_suppressions.reason", "subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -141,6 +154,7 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
       query_params[:'fields[list]'] = @api_client.build_collection_param(opts[:'fields_list'], :csv) if !opts[:'fields_list'].nil?
       query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
       query_params[:'fields[segment]'] = @api_client.build_collection_param(opts[:'fields_segment'], :csv) if !opts[:'fields_segment'].nil?
@@ -254,42 +268,31 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Profile Relationships
-    # Get list membership or segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Lists Read` `Profiles Read` `Segments Read`
+    # Get Profile Relationships Lists
+    # Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `List Read` `Profiles Read`
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
-    def get_profile_relationships(id, related_resource, opts = {})
-      data, _status_code, _headers = get_profile_relationships_with_http_info(id, related_resource, opts)
+    def get_profile_relationships_lists(id, opts = {})
+      data, _status_code, _headers = get_profile_relationships_lists_with_http_info(id, opts)
       data
     end
 
-    # Get Profile Relationships
-    # Get list membership or segment membership relationships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Lists Read&#x60; &#x60;Profiles Read&#x60; &#x60;Segments Read&#x60;
+    # Get Profile Relationships Lists
+    # Get list memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;List Read&#x60; &#x60;Profiles Read&#x60;
     # @param id [String] 
-    # @param related_resource [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_profile_relationships_with_http_info(id, related_resource, opts = {})
+    def get_profile_relationships_lists_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ProfilesApi.get_profile_relationships ...'
+        @api_client.config.logger.debug 'Calling API: ProfilesApi.get_profile_relationships_lists ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_profile_relationships"
-      end
-      # verify the required parameter 'related_resource' is set
-      if @api_client.config.client_side_validation && related_resource.nil?
-        fail ArgumentError, "Missing the required parameter 'related_resource' when calling ProfilesApi.get_profile_relationships"
-      end
-      # verify enum value
-      allowable_values = ["lists", "segments"]
-      if @api_client.config.client_side_validation && !allowable_values.include?(related_resource)
-        fail ArgumentError, "invalid value for \"related_resource\", must be one of #{allowable_values}"
+        fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_profile_relationships_lists"
       end
       # resource path
-      local_var_path = '/api/profiles/{id}/relationships/{related_resource}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s)).sub('{' + 'related_resource' + '}', CGI.escape(related_resource.to_s))
+      local_var_path = '/api/profiles/{id}/relationships/lists/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
@@ -314,7 +317,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
 
       new_options = opts.merge(
-        :operation => :"ProfilesApi.get_profile_relationships",
+        :operation => :"ProfilesApi.get_profile_relationships_lists",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -325,7 +328,72 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ProfilesApi#get_profile_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ProfilesApi#get_profile_relationships_lists\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Profile Relationships Segments
+    # Get segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Profiles Read` `Segments Read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_profile_relationships_segments(id, opts = {})
+      data, _status_code, _headers = get_profile_relationships_segments_with_http_info(id, opts)
+      data
+    end
+
+    # Get Profile Relationships Segments
+    # Get segment membership relationships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60; &#x60;Segments Read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_profile_relationships_segments_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ProfilesApi.get_profile_relationships_segments ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_profile_relationships_segments"
+      end
+      # resource path
+      local_var_path = '/api/profiles/{id}/relationships/segments/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['API_REVISION'] || "2023-02-22"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+
+      new_options = opts.merge(
+        :operation => :"ProfilesApi.get_profile_relationships_segments",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ProfilesApi#get_profile_relationships_segments\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -403,12 +471,14 @@ module KlaviyoAPI
     end
 
     # Get Profiles
-    # Get all profiles in an account. Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `email` You can adjust the number of results per page via the `page[size]` query parameter, e.g. `?page[size]=25`. **Default**: 20. **Max**: 100.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `Profiles Read`
+    # Get all profiles in an account. Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email` You can adjust the number of results per page via the `page[size]` query parameter, e.g. `?page[size]=25`. **Default**: 20. **Max**: 100.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `Profiles Read`
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;anonymous_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+    # @option opts [Integer] :page_size The number of results to return per page. Default &#x3D; 20. Max &#x3D; 100
     # @return [Hash<String, Object>]
     def get_profiles(opts = {})
       data, _status_code, _headers = get_profiles_with_http_info(opts)
@@ -416,22 +486,28 @@ module KlaviyoAPI
     end
 
     # Get Profiles
-    # Get all profiles in an account. Profiles can be sorted by the following fields in ascending and descending order: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;email&#x60; You can adjust the number of results per page via the &#x60;page[size]&#x60; query parameter, e.g. &#x60;?page[size]&#x3D;25&#x60;. **Default**: 20. **Max**: 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60;
+    # Get all profiles in an account. Profiles can be sorted by the following fields in ascending and descending order: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;email&#x60; You can adjust the number of results per page via the &#x60;page[size]&#x60; query parameter, e.g. &#x60;?page[size]&#x3D;25&#x60;. **Default**: 20. **Max**: 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;Profiles Read&#x60;
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;anonymous_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#pagination
     # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2023-02-22/reference/api-overview#sorting
+    # @option opts [Integer] :page_size The number of results to return per page. Default &#x3D; 20. Max &#x3D; 100
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profiles_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ProfilesApi.get_profiles ...'
       end
-      allowable_values = ["email", "phone_number", "external_id", "anonymous_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties"]
+      allowable_values = ["predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.timestamp", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppressions", "subscriptions.email.marketing.suppressions.reason", "subscriptions.email.marketing.suppressions.timestamp", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.list_suppressions.list_id", "subscriptions.email.marketing.list_suppressions.reason", "subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "-created", "email", "-email", "id", "-id"]
+      allowable_values = ["created", "-created", "email", "-email", "id", "-id", "updated", "-updated"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
       end
@@ -440,10 +516,12 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
       query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -482,7 +560,7 @@ module KlaviyoAPI
     end
 
     # Subscribe Profiles
-    # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships). Maximum number of profile can be submitted for subscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `List Write` `Profiles Write` `Subscriptions Write`
+    # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships). This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about suppressed profiles in [this document](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1). Maximum number of profile can be submitted for subscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `List Write` `Profiles Write` `Subscriptions Write`
     # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -492,7 +570,7 @@ module KlaviyoAPI
     end
 
     # Subscribe Profiles
-    # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships). Maximum number of profile can be submitted for subscription: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Profiles Write&#x60; &#x60;Subscriptions Write&#x60;
+    # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships). This API will remove any &#x60;UNSUBSCRIBE&#x60;, &#x60;SPAM_REPORT&#x60; or &#x60;USER_SUPPRESSED&#x60; suppressions from the provided profiles. Learn more about suppressed profiles in [this document](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1). Maximum number of profile can be submitted for subscription: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;List Write&#x60; &#x60;Profiles Write&#x60; &#x60;Subscriptions Write&#x60;
     # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -552,7 +630,7 @@ module KlaviyoAPI
     end
 
     # Suppress Profiles
-    # Manually suppress one or more profiles. Manually suppressed profiles will not receive email marketing. Not supported for SMS marketing. Maximum number of profile can be submitted for suppression: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Profiles Write` `Subscriptions Write`
+    # Manually suppress one or more profiles. Such profiles will have `USER_SUPPRESSED` as their suppression reason. Manually suppressed profiles _will not_ receive email marketing. Learn more about suppressed profiles [in this document](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1). Not supported for SMS marketing. Maximum number of profile can be submitted for suppression: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Profiles Write` `Subscriptions Write`
     # @param suppression_create_job_create_query [SuppressionCreateJobCreateQuery] Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -562,7 +640,7 @@ module KlaviyoAPI
     end
 
     # Suppress Profiles
-    # Manually suppress one or more profiles. Manually suppressed profiles will not receive email marketing. Not supported for SMS marketing. Maximum number of profile can be submitted for suppression: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60; &#x60;Subscriptions Write&#x60;
+    # Manually suppress one or more profiles. Such profiles will have &#x60;USER_SUPPRESSED&#x60; as their suppression reason. Manually suppressed profiles _will not_ receive email marketing. Learn more about suppressed profiles [in this document](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1). Not supported for SMS marketing. Maximum number of profile can be submitted for suppression: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Profiles Write&#x60; &#x60;Subscriptions Write&#x60;
     # @param suppression_create_job_create_query [SuppressionCreateJobCreateQuery] Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -692,7 +770,7 @@ module KlaviyoAPI
     end
 
     # Unsuppress Profiles
-    # Unsuppress one or more profiles. Unsuppressed profiles will receive email marketing. Not supported for SMS marketing. Profiles suppressed due to a hard bounced email will not be unsuppressed. Maximum number of profile can be submitted for unsuppression: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Subscriptions Write`
+    # Unsuppress one or more profiles, this will remove any Manual Suppressions (USER_SUPPRESSED) on these profiles. A profile may receive email marketing after a manual suppression is removed so long as they have not revoked consent, i.e. unsubscribed. Not supported for SMS marketing. Only manual suppressions (USER_SUPPRESSED) will be removed. `UNSUBSCRIBE` and `SPAM_REPORT` suppressions are removed whenever a [profile resubscribes](https://developers.klaviyo.com/en/reference/subscribe_profiles). `INVALID_EMAIL` and `HARD_BOUNCE` suppressions cannot be removed by the API. Maximum number of profile can be submitted for unsuppression: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `Subscriptions Write`
     # @param unsuppression_create_job_create_query [UnsuppressionCreateJobCreateQuery] Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -702,7 +780,7 @@ module KlaviyoAPI
     end
 
     # Unsuppress Profiles
-    # Unsuppress one or more profiles. Unsuppressed profiles will receive email marketing. Not supported for SMS marketing. Profiles suppressed due to a hard bounced email will not be unsuppressed. Maximum number of profile can be submitted for unsuppression: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Subscriptions Write&#x60;
+    # Unsuppress one or more profiles, this will remove any Manual Suppressions (USER_SUPPRESSED) on these profiles. A profile may receive email marketing after a manual suppression is removed so long as they have not revoked consent, i.e. unsubscribed. Not supported for SMS marketing. Only manual suppressions (USER_SUPPRESSED) will be removed. &#x60;UNSUBSCRIBE&#x60; and &#x60;SPAM_REPORT&#x60; suppressions are removed whenever a [profile resubscribes](https://developers.klaviyo.com/en/reference/subscribe_profiles). &#x60;INVALID_EMAIL&#x60; and &#x60;HARD_BOUNCE&#x60; suppressions cannot be removed by the API. Maximum number of profile can be submitted for unsuppression: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;Subscriptions Write&#x60;
     # @param unsuppression_create_job_create_query [UnsuppressionCreateJobCreateQuery] Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -766,6 +844,7 @@ module KlaviyoAPI
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @return [Hash<String, Object>]
     def update_profile(id, profile_partial_update_query, opts = {})
       data, _status_code, _headers = update_profile_with_http_info(id, profile_partial_update_query, opts)
@@ -777,6 +856,7 @@ module KlaviyoAPI
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;predictive_analytics&#39;
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_profile_with_http_info(id, profile_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -790,11 +870,16 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && profile_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'profile_partial_update_query' when calling ProfilesApi.update_profile"
       end
+      allowable_values = ["predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/profiles/{id}/'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

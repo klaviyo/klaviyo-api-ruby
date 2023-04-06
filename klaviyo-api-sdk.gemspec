@@ -17,7 +17,7 @@ require "klaviyo-api-sdk/version"
 
 Gem::Specification.new do |s|
   s.name        = "klaviyo-api-sdk"
-  s.version     = "1.2.0"
+  s.version     = "2.0.0"
   s.authors     = ['Klaviyo Team']
   s.email       = ['libraries@klaviyo.com']
   s.summary     = 'You heard us, a Ruby wrapper for the Klaviyo API'
