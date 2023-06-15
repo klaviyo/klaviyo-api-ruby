@@ -1,12 +1,12 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 2.0.0
-- API revision: 2023-02-22
+- SDK version: 3.0.0
+- API revision: 2023-06-15
 
 ## Helpful Resources
 
-- [API Reference](https://developers.klaviyo.com/en/v2023-02-22/reference)
-- [API Guides](https://developers.klaviyo.com/en/v2023-02-22/docs)
+- [API Reference](https://developers.klaviyo.com/en/v2023-06-15/reference)
+- [API Guides](https://developers.klaviyo.com/en/v2023-06-15/docs)
 - [Postman Workspace](https://www.postman.com/klaviyo/workspace/klaviyo-developers)
 
 ## Design & Approach
@@ -19,15 +19,15 @@ This SDK is organized into the following resources:
 
 
 
+- Accounts
+
+
+
 - Campaigns
 
 
 
 - Catalogs
-
-
-
-- Client
 
 
 
@@ -68,10 +68,10 @@ This SDK is organized into the following resources:
 
 
 
-# Installation
+## Installation
 
 
-## Build
+### Build
 
 To build the Ruby code into a gem:
 
@@ -82,13 +82,13 @@ gem build klaviyo-api-sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo-api-sdk-2.0.0.gem
+gem install ./klaviyo-api-sdk-3.0.0.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo-api-sdk', '~> 2.0.0'
+    gem 'klaviyo-api-sdk', '~> 3.0.0'
 
 To install directly from rubygems:
 
@@ -96,7 +96,7 @@ To install directly from rubygems:
 gem install klaviyo-api-sdk
 ```
 
-# Usage Example
+## Usage Example
 
 ### To load the gem
 
@@ -132,7 +132,7 @@ begin
 end
 ```
 
-# Error Handling
+## Error Handling
 
 This SDK throws an `ApiException` error when the server returns a non-`2XX` response. 
 ```ruby
@@ -142,13 +142,6 @@ rescue KlaviyoAPI::ApiError => e
   puts "Error when calling get_catalog_items #{e}"
 end
 ```
-
-# Comprehensive list of Operations & Parameters
-
-_**NOTE:**_
-- Organization: Resource groups and operation_ids are listed in alphabetical order, first by Resource name, then by **OpenAPI Summary**. Operation summaries are those listed in the right side bar of the [API Reference](https://developers.klaviyo.com/en/v2023-02-22/reference/get_events).
-- For example values / data types, as well as whether parameters are required/optional, please reference the corresponding API Reference link.
-- Some args are required for the API call to succeed, the API docs above are the source of truth regarding which params are required.
 
 ## Method signatures
 - `get` operations can be passed an optional `opts` object (e.g. `get_list_profiles(opts)`).
@@ -185,6 +178,304 @@ body = {
 KlaviyoAPI::Catalogs.create_catalog_item(body)
 ```
 
+## Optional Parameters and Json Api Features
+
+Here we will go over
+
+- Pagination
+- Page size
+- Additional Fields
+- Filtering
+- Sparse Fields
+- Sorting
+- Relationships
+
+### Quick rule
+
+As a reminder, the optional parameters are named slightly different from how you would make the call without the SDK docs, query parameter names have variables that make bad Ruby names like
+`page[cursor]` are transformed to `page_cursor`.
+
+### Cursor based Pagination
+
+All the endpoints that return list of results use cursor base pagination.
+
+Obtain the cursor value from the call you want to get the next page for, then pass it under the `page_cursor` optional parameter. The page cursor looks like `WzE2NDA5OTUyMDAsICIzYzRjeXdGTndadyIsIHRydWVd`.
+
+If you were using the api directly you would pass the cursor like:
+
+```
+https://a.klaviyo.com/api/profiles/?page[cursor]=WzE2NTcyMTM4NjQsICIzc042NjRyeHo0ciIsIHRydWVd
+```
+
+The same call in the sdk the call would look like this:
+
+```ruby
+opts = {
+  page_cursor: 'WzE2NTcyMTM4NjQsICIzc042NjRyeHo0ciIsIHRydWVd',
+}
+
+response = KlaviyoAPI::Profiles.get_profiles(opts)
+```
+
+You get the cursor for the next page from `response[:links][:next]` returns the entire url of the next call but the sdk will accept the entire link and use only the relevant cursor.
+
+Here is an example of getting the second next and passing in the page cursor:
+
+```ruby
+opts = {
+  page_cursor: response[:links][:next], # previous response
+}
+
+response = KlaviyoAPI::Profiles.get_profiles(opts)
+```
+
+There are more page cursors than just next, check the endpoint's docs or the response type but often there is `first`, `last`, `next` and `prev`.
+
+### Page Size
+Some endpoint you can get a larger or smaller page size by using the `page_size` parameter.
+
+if you were hitting the api directly this would look like
+
+```
+https://a.klaviyo.com/api/profiles/?page[size]=20
+```
+
+In the SDK this looks like:
+
+```ruby
+opts = {
+  page_size: 20,
+}
+
+response = KlaviyoAPI::Profiles.get_profiles(opts)
+```
+
+### Additional Fields
+
+Additional fields are used to populate part of the response that would be null otherwise.
+For the `getProfile` endpoint you can pass in a request to get the predictive analytics of the profile. Using the `additional_fields` parameter often will change the rate limit of the endpoint so be sure to keep an eye on your usage.
+
+The url would look like:
+```
+https://a.klaviyo.com/api/profiles/01GDDKASAP8TKDDA2GRZDSVP4H/?additional-fields[profile]=predictive_analytics
+```
+
+The SDK equivalent is:
+
+```ruby
+profile_id = '01GDDKASAP8TKDDA2GRZDSVP4H'
+opts = {
+  additional_fields_profile: ["predictive_analytics"]
+}
+
+response = KlaviyoAPI::Profiles.get_profile(profile_id, opts)
+
+# If your profile has enough information for predictive analytis it will populate
+pp(response[:data][:attributes][:predictive_analytics])
+```
+
+### Filtering
+
+Filter by passing the filter as a string as under the optional parameter `filter`.
+
+Read more about formatting your filter strings in our [developer documentation](https://developers.klaviyo.com/en/v2023-02-22/docs/filtering_)
+
+Here is an example of a filter string for results between two date times: `less-than(updated,2023-04-26T00:00:00Z),greater-than(updated,2023-04-19T00:00:00Z)`
+
+Here is a code example filter for profiles with the matching emails:
+
+```
+https://a.klaviyo.com/api/profiles/?filter=any(email,["henry.chan@klaviyo-demo.com","amanda.das@klaviyo-demo.com"]
+```
+For the sdk:
+```ruby
+opts = {
+  filter: 'any(email,["henry.chan@klaviyo-demo.com","amanda.das@klaviyo-demo.com"])'
+}
+
+response = KlaviyoAPI::Profiles.get_profiles(opts)
+```
+
+### Sparse Fields
+
+If you only want a specific subset of data from a specific query you can use sparse fields to request only the specific properties.
+The SDK expands the optional sparse fields into their own option, where you can pass a list of the desired items to include.
+
+To get a list of event properties the URL your would use is:
+```
+https://a.klaviyo.com/api/events/?fields[event]=event_properties
+```
+
+In the SDK you would use
+
+```ruby
+opts = {
+  fields_event: ["event_properties"]
+}
+
+response = KlaviyoAPI::Events.get_events(opts)
+```
+
+### Sorting
+
+Your can request the results of specific endpoints to be ordered by a given parameter. The direction of the sort can swapped by adding a `-` in front of the sort key.
+For example `datetime` will be ascending while `-datetime` will be descending.
+
+If you are unsure about the available sort fields you can always check the documentation for the endpoint you are using.
+For a comprehensive list that links to the documentation for each function check the Endpoints section below.
+
+Get events sorted by oldest to newest datetime.
+```
+https://a.klaviyo.com/api/events/?sort=-datetime
+```
+and via the sdk
+
+```ruby
+opts = {
+  sort: '-datetime'
+}
+
+response = KlaviyoAPI::Events.get_events(opts)
+```
+
+### Includes
+
+How to add additional information to your API response via additional-fields and the `includes` parameter.
+This allows you to get information about two or more objects from a single api call.
+Using the `includes` parameter often changes the rate limit of the endpoint so be sure to take note.
+
+Using the URl to get profile information and the information about the lists the profile is in:
+
+```
+https://a.klaviyo.com/api/profiles/01GDDKASAP8TKDDA2GRZDSVP4H/?include=lists
+```
+
+In the sdk:
+
+```ruby
+profile_id = '01GDDKASAP8TKDDA2GRZDSVP4H'
+opts = {
+  include: ["lists"]
+}
+
+response = KlaviyoAPI::Profiles.get_profile(profile_id,opts)
+
+# Profile information is accessed the same way with
+pp(response[:data])
+# Lists related to the profile with be accessible via the included array
+pp(response[:included])
+```
+
+*Note about sparse fields and relationships:* you can request only specific fields of the included object as well.
+
+```ruby
+profile_id = '01GDDKASAP8TKDDA2GRZDSVP4H'
+opts = {
+  fields_list: ["name"],
+  include: ["lists"]
+}
+
+response = KlaviyoAPI::Profiles.get_profile(profile_id,opts)
+
+
+
+# Profile information is accessed the same way with
+pp(response[:data])
+# Lists related to the profile with be accessible via the included array
+pp(response[:included])
+```
+
+### Relationships
+
+The Klaviyo Api has a series of endpoints to expose the relationships between your different Klaviyo Items. You can read more about relationships in [our documentation](https://developers.klaviyo.com/en/v2023-02-22/docs/relationships_).
+
+Here are some use cases and their examples:
+
+How to get the list memberships for a profile with the given profile ID.
+
+Via the URL:
+
+```
+https://a.klaviyo.com/api/profiles/01GDDKASAP8TKDDA2GRZDSVP4H/relationships/lists/
+```
+
+and for the SDK:
+
+```ruby
+profile_id = '01GDDKASAP8TKDDA2GRZDSVP4H'
+
+response = KlaviyoAPI::Profiles.get_profile_relationships_lists(profile_id)
+```
+
+For another example:
+
+Get all campaigns associated with the given `tag_id`.
+
+the URL:
+
+```
+https://a.klaviyo.com/api/tags/9c8db7a0-5ab5-4e3c-9a37-a3224fd14382/relationships/campaigns/
+```
+
+Through the SDK:
+
+```ruby
+tag_id = '9c8db7a0-5ab5-4e3c-9a37-a3224fd14382'
+
+response = KlaviyoAPI::Tags.get_tag_relationships_campaigns(tag_id)
+```
+### Combining
+
+You can use any combination of the features outlines above in conjunction with one another.
+
+#### Get events associated with a specific metric, then return just the event properties sorted by oldest to newest datetime.
+
+```
+https://a.klaviyo.com/api/events/?fields[event]=event_properties&filter=equals(metric_id,"URDbLg")&sort=-datetime
+```
+or
+```ruby
+opts = {
+  filter: 'equals(metric_id,"URDbLg")',
+  fields_event: ["event_properties"]
+}
+
+response = KlaviyoAPI::Events.get_events(opts)
+```
+
+
+## Comprehensive list of Operations & Parameters
+
+_**NOTE:**_
+- Organization: Resource groups and operation_ids are listed in alphabetical order, first by Resource name, then by **OpenAPI Summary**. Operation summaries are those listed in the right side bar of the [API Reference](https://developers.klaviyo.com/en/v2023-06-15/reference/get_events).
+- For example values / data types, as well as whether parameters are required/optional, please reference the corresponding API Reference link.
+- Some args are required for the API call to succeed, the API docs above are the source of truth regarding which params are required.
+
+
+
+
+
+
+## Accounts
+
+
+#### [Get Account](https://developers.klaviyo.com/en/v2023-06-15/reference/get_account)
+
+```ruby
+KlaviyoAPI::Accounts.get_account(id, opts)
+```
+
+
+
+
+
+#### [Get Accounts](https://developers.klaviyo.com/en/v2023-06-15/reference/get_accounts)
+
+```ruby
+KlaviyoAPI::Accounts.get_accounts(opts)
+```
+
+
 
 
 
@@ -192,7 +483,7 @@ KlaviyoAPI::Catalogs.create_catalog_item(body)
 ## Campaigns
 
 
-#### [Create Campaign](https://developers.klaviyo.com/en/v2023-02-22/reference/create_campaign)
+#### [Create Campaign](https://developers.klaviyo.com/en/v2023-06-15/reference/create_campaign)
 
 ```ruby
 KlaviyoAPI::Campaigns.create_campaign(body)
@@ -202,7 +493,7 @@ KlaviyoAPI::Campaigns.create_campaign(body)
 
 
 
-#### [Create Campaign Clone](https://developers.klaviyo.com/en/v2023-02-22/reference/create_campaign_clone)
+#### [Create Campaign Clone](https://developers.klaviyo.com/en/v2023-06-15/reference/create_campaign_clone)
 
 ```ruby
 KlaviyoAPI::Campaigns.create_campaign_clone(body)
@@ -212,7 +503,7 @@ KlaviyoAPI::Campaigns.create_campaign_clone(body)
 
 
 
-#### [Assign Campaign Message Template](https://developers.klaviyo.com/en/v2023-02-22/reference/create_campaign_message_assign_template)
+#### [Assign Campaign Message Template](https://developers.klaviyo.com/en/v2023-06-15/reference/create_campaign_message_assign_template)
 
 ```ruby
 KlaviyoAPI::Campaigns.create_campaign_message_assign_template(body)
@@ -222,7 +513,7 @@ KlaviyoAPI::Campaigns.create_campaign_message_assign_template(body)
 
 
 
-#### [Create Campaign Recipient Estimation Job](https://developers.klaviyo.com/en/v2023-02-22/reference/create_campaign_recipient_estimation_job)
+#### [Create Campaign Recipient Estimation Job](https://developers.klaviyo.com/en/v2023-06-15/reference/create_campaign_recipient_estimation_job)
 
 ```ruby
 KlaviyoAPI::Campaigns.create_campaign_recipient_estimation_job(body)
@@ -232,7 +523,7 @@ KlaviyoAPI::Campaigns.create_campaign_recipient_estimation_job(body)
 
 
 
-#### [Create Campaign Send Job](https://developers.klaviyo.com/en/v2023-02-22/reference/create_campaign_send_job)
+#### [Create Campaign Send Job](https://developers.klaviyo.com/en/v2023-06-15/reference/create_campaign_send_job)
 
 ```ruby
 KlaviyoAPI::Campaigns.create_campaign_send_job(body)
@@ -242,7 +533,7 @@ KlaviyoAPI::Campaigns.create_campaign_send_job(body)
 
 
 
-#### [Delete Campaign](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_campaign)
+#### [Delete Campaign](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_campaign)
 
 ```ruby
 KlaviyoAPI::Campaigns.delete_campaign(id)
@@ -252,7 +543,7 @@ KlaviyoAPI::Campaigns.delete_campaign(id)
 
 
 
-#### [Get Campaign](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign)
+#### [Get Campaign](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaign)
 
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign(id, opts)
@@ -262,7 +553,7 @@ KlaviyoAPI::Campaigns.get_campaign(id, opts)
 
 
 
-#### [Get Campaign Message](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_message)
+#### [Get Campaign Message](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaign_message)
 
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_message(id, opts)
@@ -272,7 +563,7 @@ KlaviyoAPI::Campaigns.get_campaign_message(id, opts)
 
 
 
-#### [Get Campaign Recipient Estimation](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_recipient_estimation)
+#### [Get Campaign Recipient Estimation](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaign_recipient_estimation)
 
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_recipient_estimation(id, opts)
@@ -282,7 +573,7 @@ KlaviyoAPI::Campaigns.get_campaign_recipient_estimation(id, opts)
 
 
 
-#### [Get Campaign Recipient Estimation Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_recipient_estimation_job)
+#### [Get Campaign Recipient Estimation Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaign_recipient_estimation_job)
 
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_recipient_estimation_job(id, opts)
@@ -292,7 +583,7 @@ KlaviyoAPI::Campaigns.get_campaign_recipient_estimation_job(id, opts)
 
 
 
-#### [Get Campaign Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_relationships_tags)
+#### [Get Campaign Relationships Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaign_relationships_tags)
 
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_relationships_tags(id)
@@ -302,7 +593,7 @@ KlaviyoAPI::Campaigns.get_campaign_relationships_tags(id)
 
 
 
-#### [Get Campaign Send Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_send_job)
+#### [Get Campaign Send Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaign_send_job)
 
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_send_job(id, opts)
@@ -312,17 +603,17 @@ KlaviyoAPI::Campaigns.get_campaign_send_job(id, opts)
 
 
 
-#### [Get Campaign Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaign_tags)
+#### [Get Campaign Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaign_tags)
 
 ```ruby
-KlaviyoAPI::Campaigns.get_campaign_tags(campaign_id, opts)
+KlaviyoAPI::Campaigns.get_campaign_tags(id, opts)
 ```
 
 
 
 
 
-#### [Get Campaigns](https://developers.klaviyo.com/en/v2023-02-22/reference/get_campaigns)
+#### [Get Campaigns](https://developers.klaviyo.com/en/v2023-06-15/reference/get_campaigns)
 
 ```ruby
 KlaviyoAPI::Campaigns.get_campaigns(opts)
@@ -332,7 +623,7 @@ KlaviyoAPI::Campaigns.get_campaigns(opts)
 
 
 
-#### [Update Campaign](https://developers.klaviyo.com/en/v2023-02-22/reference/update_campaign)
+#### [Update Campaign](https://developers.klaviyo.com/en/v2023-06-15/reference/update_campaign)
 
 ```ruby
 KlaviyoAPI::Campaigns.update_campaign(id, body)
@@ -342,7 +633,7 @@ KlaviyoAPI::Campaigns.update_campaign(id, body)
 
 
 
-#### [Update Campaign Message](https://developers.klaviyo.com/en/v2023-02-22/reference/update_campaign_message)
+#### [Update Campaign Message](https://developers.klaviyo.com/en/v2023-06-15/reference/update_campaign_message)
 
 ```ruby
 KlaviyoAPI::Campaigns.update_campaign_message(id, body)
@@ -352,7 +643,7 @@ KlaviyoAPI::Campaigns.update_campaign_message(id, body)
 
 
 
-#### [Update Campaign Send Job](https://developers.klaviyo.com/en/v2023-02-22/reference/update_campaign_send_job)
+#### [Update Campaign Send Job](https://developers.klaviyo.com/en/v2023-06-15/reference/update_campaign_send_job)
 
 ```ruby
 KlaviyoAPI::Campaigns.update_campaign_send_job(id, body)
@@ -366,7 +657,7 @@ KlaviyoAPI::Campaigns.update_campaign_send_job(id, body)
 ## Catalogs
 
 
-#### [Create Catalog Category](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_category)
+#### [Create Catalog Category](https://developers.klaviyo.com/en/v2023-06-15/reference/create_catalog_category)
 
 ```ruby
 KlaviyoAPI::Catalogs.create_catalog_category(body)
@@ -376,7 +667,7 @@ KlaviyoAPI::Catalogs.create_catalog_category(body)
 
 
 
-#### [Create Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_category_relationships_items)
+#### [Create Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-06-15/reference/create_catalog_category_relationships_items)
 
 ```ruby
 KlaviyoAPI::Catalogs.create_catalog_category_relationships_items(id, body)
@@ -386,7 +677,7 @@ KlaviyoAPI::Catalogs.create_catalog_category_relationships_items(id, body)
 
 
 
-#### [Create Catalog Item](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_item)
+#### [Create Catalog Item](https://developers.klaviyo.com/en/v2023-06-15/reference/create_catalog_item)
 
 ```ruby
 KlaviyoAPI::Catalogs.create_catalog_item(body)
@@ -396,7 +687,7 @@ KlaviyoAPI::Catalogs.create_catalog_item(body)
 
 
 
-#### [Create Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_item_relationships_categories)
+#### [Create Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-06-15/reference/create_catalog_item_relationships_categories)
 
 ```ruby
 KlaviyoAPI::Catalogs.create_catalog_item_relationships_categories(id, body)
@@ -406,7 +697,7 @@ KlaviyoAPI::Catalogs.create_catalog_item_relationships_categories(id, body)
 
 
 
-#### [Create Catalog Variant](https://developers.klaviyo.com/en/v2023-02-22/reference/create_catalog_variant)
+#### [Create Catalog Variant](https://developers.klaviyo.com/en/v2023-06-15/reference/create_catalog_variant)
 
 ```ruby
 KlaviyoAPI::Catalogs.create_catalog_variant(body)
@@ -416,7 +707,7 @@ KlaviyoAPI::Catalogs.create_catalog_variant(body)
 
 
 
-#### [Delete Catalog Category](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_category)
+#### [Delete Catalog Category](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_catalog_category)
 
 ```ruby
 KlaviyoAPI::Catalogs.delete_catalog_category(id)
@@ -426,7 +717,7 @@ KlaviyoAPI::Catalogs.delete_catalog_category(id)
 
 
 
-#### [Delete Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_category_relationships_items)
+#### [Delete Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_catalog_category_relationships_items)
 
 ```ruby
 KlaviyoAPI::Catalogs.delete_catalog_category_relationships_items(id, body)
@@ -436,7 +727,7 @@ KlaviyoAPI::Catalogs.delete_catalog_category_relationships_items(id, body)
 
 
 
-#### [Delete Catalog Item](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_item)
+#### [Delete Catalog Item](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_catalog_item)
 
 ```ruby
 KlaviyoAPI::Catalogs.delete_catalog_item(id)
@@ -446,7 +737,7 @@ KlaviyoAPI::Catalogs.delete_catalog_item(id)
 
 
 
-#### [Delete Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_item_relationships_categories)
+#### [Delete Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_catalog_item_relationships_categories)
 
 ```ruby
 KlaviyoAPI::Catalogs.delete_catalog_item_relationships_categories(id, body)
@@ -456,7 +747,7 @@ KlaviyoAPI::Catalogs.delete_catalog_item_relationships_categories(id, body)
 
 
 
-#### [Delete Catalog Variant](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_catalog_variant)
+#### [Delete Catalog Variant](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_catalog_variant)
 
 ```ruby
 KlaviyoAPI::Catalogs.delete_catalog_variant(id)
@@ -466,7 +757,7 @@ KlaviyoAPI::Catalogs.delete_catalog_variant(id)
 
 
 
-#### [Get Catalog Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_categories)
+#### [Get Catalog Categories](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_categories)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_categories(opts)
@@ -476,7 +767,7 @@ KlaviyoAPI::Catalogs.get_catalog_categories(opts)
 
 
 
-#### [Get Catalog Category](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_category)
+#### [Get Catalog Category](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_category)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_category(id, opts)
@@ -486,17 +777,17 @@ KlaviyoAPI::Catalogs.get_catalog_category(id, opts)
 
 
 
-#### [Get Catalog Category Items](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_category_items)
+#### [Get Catalog Category Items](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_category_items)
 
 ```ruby
-KlaviyoAPI::Catalogs.get_catalog_category_items(category_id, opts)
+KlaviyoAPI::Catalogs.get_catalog_category_items(id, opts)
 ```
 
 
 
 
 
-#### [Get Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_category_relationships_items)
+#### [Get Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_category_relationships_items)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_category_relationships_items(id, opts)
@@ -506,7 +797,7 @@ KlaviyoAPI::Catalogs.get_catalog_category_relationships_items(id, opts)
 
 
 
-#### [Get Catalog Item](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_item)
+#### [Get Catalog Item](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_item)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_item(id, opts)
@@ -516,17 +807,17 @@ KlaviyoAPI::Catalogs.get_catalog_item(id, opts)
 
 
 
-#### [Get Catalog Item Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_item_categories)
+#### [Get Catalog Item Categories](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_item_categories)
 
 ```ruby
-KlaviyoAPI::Catalogs.get_catalog_item_categories(item_id, opts)
+KlaviyoAPI::Catalogs.get_catalog_item_categories(id, opts)
 ```
 
 
 
 
 
-#### [Get Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_item_relationships_categories)
+#### [Get Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_item_relationships_categories)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_item_relationships_categories(id, opts)
@@ -536,17 +827,17 @@ KlaviyoAPI::Catalogs.get_catalog_item_relationships_categories(id, opts)
 
 
 
-#### [Get Catalog Item Variants](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_item_variants)
+#### [Get Catalog Item Variants](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_item_variants)
 
 ```ruby
-KlaviyoAPI::Catalogs.get_catalog_item_variants(item_id, opts)
+KlaviyoAPI::Catalogs.get_catalog_item_variants(id, opts)
 ```
 
 
 
 
 
-#### [Get Catalog Items](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_items)
+#### [Get Catalog Items](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_items)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_items(opts)
@@ -556,7 +847,7 @@ KlaviyoAPI::Catalogs.get_catalog_items(opts)
 
 
 
-#### [Get Catalog Variant](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_variant)
+#### [Get Catalog Variant](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_variant)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_variant(id, opts)
@@ -566,7 +857,7 @@ KlaviyoAPI::Catalogs.get_catalog_variant(id, opts)
 
 
 
-#### [Get Catalog Variants](https://developers.klaviyo.com/en/v2023-02-22/reference/get_catalog_variants)
+#### [Get Catalog Variants](https://developers.klaviyo.com/en/v2023-06-15/reference/get_catalog_variants)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_catalog_variants(opts)
@@ -576,7 +867,7 @@ KlaviyoAPI::Catalogs.get_catalog_variants(opts)
 
 
 
-#### [Get Create Categories Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_create_categories_job)
+#### [Get Create Categories Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_create_categories_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_categories_job(job_id, opts)
@@ -586,7 +877,7 @@ KlaviyoAPI::Catalogs.get_create_categories_job(job_id, opts)
 
 
 
-#### [Get Create Categories Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_create_categories_jobs)
+#### [Get Create Categories Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_create_categories_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_categories_jobs(opts)
@@ -596,7 +887,7 @@ KlaviyoAPI::Catalogs.get_create_categories_jobs(opts)
 
 
 
-#### [Get Create Items Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_create_items_job)
+#### [Get Create Items Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_create_items_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_items_job(job_id, opts)
@@ -606,7 +897,7 @@ KlaviyoAPI::Catalogs.get_create_items_job(job_id, opts)
 
 
 
-#### [Get Create Items Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_create_items_jobs)
+#### [Get Create Items Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_create_items_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_items_jobs(opts)
@@ -616,7 +907,7 @@ KlaviyoAPI::Catalogs.get_create_items_jobs(opts)
 
 
 
-#### [Get Create Variants Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_create_variants_job)
+#### [Get Create Variants Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_create_variants_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_variants_job(job_id, opts)
@@ -626,7 +917,7 @@ KlaviyoAPI::Catalogs.get_create_variants_job(job_id, opts)
 
 
 
-#### [Get Create Variants Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_create_variants_jobs)
+#### [Get Create Variants Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_create_variants_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_variants_jobs(opts)
@@ -636,7 +927,7 @@ KlaviyoAPI::Catalogs.get_create_variants_jobs(opts)
 
 
 
-#### [Get Delete Categories Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_delete_categories_job)
+#### [Get Delete Categories Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_delete_categories_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_categories_job(job_id, opts)
@@ -646,7 +937,7 @@ KlaviyoAPI::Catalogs.get_delete_categories_job(job_id, opts)
 
 
 
-#### [Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_delete_categories_jobs)
+#### [Get Delete Categories Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_delete_categories_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_categories_jobs(opts)
@@ -656,7 +947,7 @@ KlaviyoAPI::Catalogs.get_delete_categories_jobs(opts)
 
 
 
-#### [Get Delete Items Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_delete_items_job)
+#### [Get Delete Items Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_delete_items_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_items_job(job_id, opts)
@@ -666,7 +957,7 @@ KlaviyoAPI::Catalogs.get_delete_items_job(job_id, opts)
 
 
 
-#### [Get Delete Items Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_delete_items_jobs)
+#### [Get Delete Items Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_delete_items_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_items_jobs(opts)
@@ -676,7 +967,7 @@ KlaviyoAPI::Catalogs.get_delete_items_jobs(opts)
 
 
 
-#### [Get Delete Variants Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_delete_variants_job)
+#### [Get Delete Variants Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_delete_variants_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_variants_job(job_id, opts)
@@ -686,7 +977,7 @@ KlaviyoAPI::Catalogs.get_delete_variants_job(job_id, opts)
 
 
 
-#### [Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_delete_variants_jobs)
+#### [Get Delete Variants Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_delete_variants_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_variants_jobs(opts)
@@ -696,7 +987,7 @@ KlaviyoAPI::Catalogs.get_delete_variants_jobs(opts)
 
 
 
-#### [Get Update Categories Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_update_categories_job)
+#### [Get Update Categories Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_update_categories_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_categories_job(job_id, opts)
@@ -706,7 +997,7 @@ KlaviyoAPI::Catalogs.get_update_categories_job(job_id, opts)
 
 
 
-#### [Get Update Categories Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_update_categories_jobs)
+#### [Get Update Categories Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_update_categories_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_categories_jobs(opts)
@@ -716,7 +1007,7 @@ KlaviyoAPI::Catalogs.get_update_categories_jobs(opts)
 
 
 
-#### [Get Update Items Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_update_items_job)
+#### [Get Update Items Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_update_items_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_items_job(job_id, opts)
@@ -726,7 +1017,7 @@ KlaviyoAPI::Catalogs.get_update_items_job(job_id, opts)
 
 
 
-#### [Get Update Items Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_update_items_jobs)
+#### [Get Update Items Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_update_items_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_items_jobs(opts)
@@ -736,7 +1027,7 @@ KlaviyoAPI::Catalogs.get_update_items_jobs(opts)
 
 
 
-#### [Get Update Variants Job](https://developers.klaviyo.com/en/v2023-02-22/reference/get_update_variants_job)
+#### [Get Update Variants Job](https://developers.klaviyo.com/en/v2023-06-15/reference/get_update_variants_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_variants_job(job_id, opts)
@@ -746,7 +1037,7 @@ KlaviyoAPI::Catalogs.get_update_variants_job(job_id, opts)
 
 
 
-#### [Get Update Variants Jobs](https://developers.klaviyo.com/en/v2023-02-22/reference/get_update_variants_jobs)
+#### [Get Update Variants Jobs](https://developers.klaviyo.com/en/v2023-06-15/reference/get_update_variants_jobs)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_variants_jobs(opts)
@@ -756,7 +1047,7 @@ KlaviyoAPI::Catalogs.get_update_variants_jobs(opts)
 
 
 
-#### [Spawn Create Categories Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_create_categories_job)
+#### [Spawn Create Categories Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_create_categories_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_create_categories_job(body)
@@ -766,7 +1057,7 @@ KlaviyoAPI::Catalogs.spawn_create_categories_job(body)
 
 
 
-#### [Spawn Create Items Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_create_items_job)
+#### [Spawn Create Items Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_create_items_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_create_items_job(body)
@@ -776,7 +1067,7 @@ KlaviyoAPI::Catalogs.spawn_create_items_job(body)
 
 
 
-#### [Spawn Create Variants Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_create_variants_job)
+#### [Spawn Create Variants Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_create_variants_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_create_variants_job(body)
@@ -786,7 +1077,7 @@ KlaviyoAPI::Catalogs.spawn_create_variants_job(body)
 
 
 
-#### [Spawn Delete Categories Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_delete_categories_job)
+#### [Spawn Delete Categories Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_delete_categories_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_delete_categories_job(body)
@@ -796,7 +1087,7 @@ KlaviyoAPI::Catalogs.spawn_delete_categories_job(body)
 
 
 
-#### [Spawn Delete Items Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_delete_items_job)
+#### [Spawn Delete Items Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_delete_items_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_delete_items_job(body)
@@ -806,7 +1097,7 @@ KlaviyoAPI::Catalogs.spawn_delete_items_job(body)
 
 
 
-#### [Spawn Delete Variants Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_delete_variants_job)
+#### [Spawn Delete Variants Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_delete_variants_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_delete_variants_job(body)
@@ -816,7 +1107,7 @@ KlaviyoAPI::Catalogs.spawn_delete_variants_job(body)
 
 
 
-#### [Spawn Update Categories Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_update_categories_job)
+#### [Spawn Update Categories Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_update_categories_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_update_categories_job(body)
@@ -826,7 +1117,7 @@ KlaviyoAPI::Catalogs.spawn_update_categories_job(body)
 
 
 
-#### [Spawn Update Items Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_update_items_job)
+#### [Spawn Update Items Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_update_items_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_update_items_job(body)
@@ -836,7 +1127,7 @@ KlaviyoAPI::Catalogs.spawn_update_items_job(body)
 
 
 
-#### [Spawn Update Variants Job](https://developers.klaviyo.com/en/v2023-02-22/reference/spawn_update_variants_job)
+#### [Spawn Update Variants Job](https://developers.klaviyo.com/en/v2023-06-15/reference/spawn_update_variants_job)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_update_variants_job(body)
@@ -846,7 +1137,7 @@ KlaviyoAPI::Catalogs.spawn_update_variants_job(body)
 
 
 
-#### [Update Catalog Category](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_category)
+#### [Update Catalog Category](https://developers.klaviyo.com/en/v2023-06-15/reference/update_catalog_category)
 
 ```ruby
 KlaviyoAPI::Catalogs.update_catalog_category(id, body)
@@ -856,7 +1147,7 @@ KlaviyoAPI::Catalogs.update_catalog_category(id, body)
 
 
 
-#### [Update Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_category_relationships_items)
+#### [Update Catalog Category Relationships Items](https://developers.klaviyo.com/en/v2023-06-15/reference/update_catalog_category_relationships_items)
 
 ```ruby
 KlaviyoAPI::Catalogs.update_catalog_category_relationships_items(id, body)
@@ -866,7 +1157,7 @@ KlaviyoAPI::Catalogs.update_catalog_category_relationships_items(id, body)
 
 
 
-#### [Update Catalog Item](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_item)
+#### [Update Catalog Item](https://developers.klaviyo.com/en/v2023-06-15/reference/update_catalog_item)
 
 ```ruby
 KlaviyoAPI::Catalogs.update_catalog_item(id, body)
@@ -876,7 +1167,7 @@ KlaviyoAPI::Catalogs.update_catalog_item(id, body)
 
 
 
-#### [Update Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_item_relationships_categories)
+#### [Update Catalog Item Relationships Categories](https://developers.klaviyo.com/en/v2023-06-15/reference/update_catalog_item_relationships_categories)
 
 ```ruby
 KlaviyoAPI::Catalogs.update_catalog_item_relationships_categories(id, body)
@@ -886,7 +1177,7 @@ KlaviyoAPI::Catalogs.update_catalog_item_relationships_categories(id, body)
 
 
 
-#### [Update Catalog Variant](https://developers.klaviyo.com/en/v2023-02-22/reference/update_catalog_variant)
+#### [Update Catalog Variant](https://developers.klaviyo.com/en/v2023-06-15/reference/update_catalog_variant)
 
 ```ruby
 KlaviyoAPI::Catalogs.update_catalog_variant(id, body)
@@ -897,44 +1188,10 @@ KlaviyoAPI::Catalogs.update_catalog_variant(id, body)
 
 
 
-## Client
-
-
-#### [Create Client Event](https://developers.klaviyo.com/en/v2023-02-22/reference/create_client_event)
-
-```ruby
-KlaviyoAPI::Client.create_client_event(company_id, body)
-```
-
-
-
-
-
-#### [Create or Update Client Profile](https://developers.klaviyo.com/en/v2023-02-22/reference/create_client_profile)
-
-```ruby
-KlaviyoAPI::Client.create_client_profile(company_id, body)
-```
-
-
-
-
-
-#### [Create Client Subscription](https://developers.klaviyo.com/en/v2023-02-22/reference/create_client_subscription)
-
-```ruby
-KlaviyoAPI::Client.create_client_subscription(company_id, body)
-```
-
-
-
-
-
-
 ## Data Privacy
 
 
-#### [Request Profile Deletion](https://developers.klaviyo.com/en/v2023-02-22/reference/request_profile_deletion)
+#### [Request Profile Deletion](https://developers.klaviyo.com/en/v2023-06-15/reference/request_profile_deletion)
 
 ```ruby
 KlaviyoAPI::DataPrivacy.request_profile_deletion(body)
@@ -948,7 +1205,7 @@ KlaviyoAPI::DataPrivacy.request_profile_deletion(body)
 ## Events
 
 
-#### [Create Event](https://developers.klaviyo.com/en/v2023-02-22/reference/create_event)
+#### [Create Event](https://developers.klaviyo.com/en/v2023-06-15/reference/create_event)
 
 ```ruby
 KlaviyoAPI::Events.create_event(body)
@@ -958,7 +1215,7 @@ KlaviyoAPI::Events.create_event(body)
 
 
 
-#### [Get Event](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event)
+#### [Get Event](https://developers.klaviyo.com/en/v2023-06-15/reference/get_event)
 
 ```ruby
 KlaviyoAPI::Events.get_event(id, opts)
@@ -968,7 +1225,7 @@ KlaviyoAPI::Events.get_event(id, opts)
 
 
 
-#### [Get Event Metrics](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event_metrics)
+#### [Get Event Metrics](https://developers.klaviyo.com/en/v2023-06-15/reference/get_event_metrics)
 
 ```ruby
 KlaviyoAPI::Events.get_event_metrics(id, opts)
@@ -978,7 +1235,7 @@ KlaviyoAPI::Events.get_event_metrics(id, opts)
 
 
 
-#### [Get Event Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event_profiles)
+#### [Get Event Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/get_event_profiles)
 
 ```ruby
 KlaviyoAPI::Events.get_event_profiles(id, opts)
@@ -988,7 +1245,7 @@ KlaviyoAPI::Events.get_event_profiles(id, opts)
 
 
 
-#### [Get Event Relationships Metrics](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event_relationships_metrics)
+#### [Get Event Relationships Metrics](https://developers.klaviyo.com/en/v2023-06-15/reference/get_event_relationships_metrics)
 
 ```ruby
 KlaviyoAPI::Events.get_event_relationships_metrics(id)
@@ -998,7 +1255,7 @@ KlaviyoAPI::Events.get_event_relationships_metrics(id)
 
 
 
-#### [Get Event Relationships Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_event_relationships_profiles)
+#### [Get Event Relationships Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/get_event_relationships_profiles)
 
 ```ruby
 KlaviyoAPI::Events.get_event_relationships_profiles(id)
@@ -1008,7 +1265,7 @@ KlaviyoAPI::Events.get_event_relationships_profiles(id)
 
 
 
-#### [Get Events](https://developers.klaviyo.com/en/v2023-02-22/reference/get_events)
+#### [Get Events](https://developers.klaviyo.com/en/v2023-06-15/reference/get_events)
 
 ```ruby
 KlaviyoAPI::Events.get_events(opts)
@@ -1022,7 +1279,7 @@ KlaviyoAPI::Events.get_events(opts)
 ## Flows
 
 
-#### [Get Flow](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow)
+#### [Get Flow](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow(id, opts)
@@ -1032,7 +1289,7 @@ KlaviyoAPI::Flows.get_flow(id, opts)
 
 
 
-#### [Get Flow Action](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action)
+#### [Get Flow Action](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_action)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_action(id, opts)
@@ -1042,27 +1299,27 @@ KlaviyoAPI::Flows.get_flow_action(id, opts)
 
 
 
-#### [Get Flow For Flow Action](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action_flow)
+#### [Get Flow For Flow Action](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_action_flow)
 
 ```ruby
-KlaviyoAPI::Flows.get_flow_action_flow(action_id, opts)
+KlaviyoAPI::Flows.get_flow_action_flow(id, opts)
 ```
 
 
 
 
 
-#### [Get Messages For Flow Action](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action_messages)
+#### [Get Messages For Flow Action](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_action_messages)
 
 ```ruby
-KlaviyoAPI::Flows.get_flow_action_messages(action_id, opts)
+KlaviyoAPI::Flows.get_flow_action_messages(id, opts)
 ```
 
 
 
 
 
-#### [Get Flow Action Relationships Flow](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action_relationships_flow)
+#### [Get Flow Action Relationships Flow](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_action_relationships_flow)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_action_relationships_flow(id)
@@ -1072,7 +1329,7 @@ KlaviyoAPI::Flows.get_flow_action_relationships_flow(id)
 
 
 
-#### [Get Flow Action Relationships Messages](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_action_relationships_messages)
+#### [Get Flow Action Relationships Messages](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_action_relationships_messages)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_action_relationships_messages(id, opts)
@@ -1082,17 +1339,17 @@ KlaviyoAPI::Flows.get_flow_action_relationships_messages(id, opts)
 
 
 
-#### [Get Flow Actions For Flow](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_flow_actions)
+#### [Get Flow Actions For Flow](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_flow_actions)
 
 ```ruby
-KlaviyoAPI::Flows.get_flow_flow_actions(flow_id, opts)
+KlaviyoAPI::Flows.get_flow_flow_actions(id, opts)
 ```
 
 
 
 
 
-#### [Get Flow Message](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_message)
+#### [Get Flow Message](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_message)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_message(id, opts)
@@ -1102,17 +1359,17 @@ KlaviyoAPI::Flows.get_flow_message(id, opts)
 
 
 
-#### [Get Flow Action For Message](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_message_action)
+#### [Get Flow Action For Message](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_message_action)
 
 ```ruby
-KlaviyoAPI::Flows.get_flow_message_action(message_id, opts)
+KlaviyoAPI::Flows.get_flow_message_action(id, opts)
 ```
 
 
 
 
 
-#### [Get Flow Message Relationships Action](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_message_relationships_action)
+#### [Get Flow Message Relationships Action](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_message_relationships_action)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_message_relationships_action(id)
@@ -1122,7 +1379,7 @@ KlaviyoAPI::Flows.get_flow_message_relationships_action(id)
 
 
 
-#### [Get Flow Relationships Flow Actions](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_relationships_flow_actions)
+#### [Get Flow Relationships Flow Actions](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_relationships_flow_actions)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_relationships_flow_actions(id, opts)
@@ -1132,7 +1389,7 @@ KlaviyoAPI::Flows.get_flow_relationships_flow_actions(id, opts)
 
 
 
-#### [Get Flow Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_relationships_tags)
+#### [Get Flow Relationships Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_relationships_tags)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_relationships_tags(id)
@@ -1142,17 +1399,17 @@ KlaviyoAPI::Flows.get_flow_relationships_tags(id)
 
 
 
-#### [Get Flow Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flow_tags)
+#### [Get Flow Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flow_tags)
 
 ```ruby
-KlaviyoAPI::Flows.get_flow_tags(flow_id, opts)
+KlaviyoAPI::Flows.get_flow_tags(id, opts)
 ```
 
 
 
 
 
-#### [Get Flows](https://developers.klaviyo.com/en/v2023-02-22/reference/get_flows)
+#### [Get Flows](https://developers.klaviyo.com/en/v2023-06-15/reference/get_flows)
 
 ```ruby
 KlaviyoAPI::Flows.get_flows(opts)
@@ -1162,7 +1419,7 @@ KlaviyoAPI::Flows.get_flows(opts)
 
 
 
-#### [Update Flow Status](https://developers.klaviyo.com/en/v2023-02-22/reference/update_flow)
+#### [Update Flow Status](https://developers.klaviyo.com/en/v2023-06-15/reference/update_flow)
 
 ```ruby
 KlaviyoAPI::Flows.update_flow(id, body)
@@ -1176,7 +1433,7 @@ KlaviyoAPI::Flows.update_flow(id, body)
 ## Lists
 
 
-#### [Create List](https://developers.klaviyo.com/en/v2023-02-22/reference/create_list)
+#### [Create List](https://developers.klaviyo.com/en/v2023-06-15/reference/create_list)
 
 ```ruby
 KlaviyoAPI::Lists.create_list(body)
@@ -1186,7 +1443,7 @@ KlaviyoAPI::Lists.create_list(body)
 
 
 
-#### [Add Profile To List](https://developers.klaviyo.com/en/v2023-02-22/reference/create_list_relationships)
+#### [Add Profile To List](https://developers.klaviyo.com/en/v2023-06-15/reference/create_list_relationships)
 
 ```ruby
 KlaviyoAPI::Lists.create_list_relationships(id, body)
@@ -1196,7 +1453,7 @@ KlaviyoAPI::Lists.create_list_relationships(id, body)
 
 
 
-#### [Delete List](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_list)
+#### [Delete List](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_list)
 
 ```ruby
 KlaviyoAPI::Lists.delete_list(id)
@@ -1206,7 +1463,7 @@ KlaviyoAPI::Lists.delete_list(id)
 
 
 
-#### [Remove Profile From List](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_list_relationships)
+#### [Remove Profile From List](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_list_relationships)
 
 ```ruby
 KlaviyoAPI::Lists.delete_list_relationships(id, body)
@@ -1216,7 +1473,7 @@ KlaviyoAPI::Lists.delete_list_relationships(id, body)
 
 
 
-#### [Get List](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list)
+#### [Get List](https://developers.klaviyo.com/en/v2023-06-15/reference/get_list)
 
 ```ruby
 KlaviyoAPI::Lists.get_list(id, opts)
@@ -1226,17 +1483,17 @@ KlaviyoAPI::Lists.get_list(id, opts)
 
 
 
-#### [Get List Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list_profiles)
+#### [Get List Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/get_list_profiles)
 
 ```ruby
-KlaviyoAPI::Lists.get_list_profiles(list_id, opts)
+KlaviyoAPI::Lists.get_list_profiles(id, opts)
 ```
 
 
 
 
 
-#### [Get List Relationships Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list_relationships_profiles)
+#### [Get List Relationships Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/get_list_relationships_profiles)
 
 ```ruby
 KlaviyoAPI::Lists.get_list_relationships_profiles(id, opts)
@@ -1246,7 +1503,7 @@ KlaviyoAPI::Lists.get_list_relationships_profiles(id, opts)
 
 
 
-#### [Get List Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list_relationships_tags)
+#### [Get List Relationships Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_list_relationships_tags)
 
 ```ruby
 KlaviyoAPI::Lists.get_list_relationships_tags(id)
@@ -1256,17 +1513,17 @@ KlaviyoAPI::Lists.get_list_relationships_tags(id)
 
 
 
-#### [Get List Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_list_tags)
+#### [Get List Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_list_tags)
 
 ```ruby
-KlaviyoAPI::Lists.get_list_tags(list_id, opts)
+KlaviyoAPI::Lists.get_list_tags(id, opts)
 ```
 
 
 
 
 
-#### [Get Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/get_lists)
+#### [Get Lists](https://developers.klaviyo.com/en/v2023-06-15/reference/get_lists)
 
 ```ruby
 KlaviyoAPI::Lists.get_lists(opts)
@@ -1276,7 +1533,7 @@ KlaviyoAPI::Lists.get_lists(opts)
 
 
 
-#### [Update List](https://developers.klaviyo.com/en/v2023-02-22/reference/update_list)
+#### [Update List](https://developers.klaviyo.com/en/v2023-06-15/reference/update_list)
 
 ```ruby
 KlaviyoAPI::Lists.update_list(id, body)
@@ -1290,7 +1547,7 @@ KlaviyoAPI::Lists.update_list(id, body)
 ## Metrics
 
 
-#### [Get Metric](https://developers.klaviyo.com/en/v2023-02-22/reference/get_metric)
+#### [Get Metric](https://developers.klaviyo.com/en/v2023-06-15/reference/get_metric)
 
 ```ruby
 KlaviyoAPI::Metrics.get_metric(id, opts)
@@ -1300,7 +1557,7 @@ KlaviyoAPI::Metrics.get_metric(id, opts)
 
 
 
-#### [Get Metrics](https://developers.klaviyo.com/en/v2023-02-22/reference/get_metrics)
+#### [Get Metrics](https://developers.klaviyo.com/en/v2023-06-15/reference/get_metrics)
 
 ```ruby
 KlaviyoAPI::Metrics.get_metrics(opts)
@@ -1310,7 +1567,7 @@ KlaviyoAPI::Metrics.get_metrics(opts)
 
 
 
-#### [Query Metric Aggregates](https://developers.klaviyo.com/en/v2023-02-22/reference/query_metric_aggregates)
+#### [Query Metric Aggregates](https://developers.klaviyo.com/en/v2023-06-15/reference/query_metric_aggregates)
 
 ```ruby
 KlaviyoAPI::Metrics.query_metric_aggregates(body)
@@ -1324,17 +1581,17 @@ KlaviyoAPI::Metrics.query_metric_aggregates(body)
 ## Profiles
 
 
-#### [Create Profile](https://developers.klaviyo.com/en/v2023-02-22/reference/create_profile)
+#### [Create Profile](https://developers.klaviyo.com/en/v2023-06-15/reference/create_profile)
 
 ```ruby
-KlaviyoAPI::Profiles.create_profile(body, opts)
+KlaviyoAPI::Profiles.create_profile(body)
 ```
 
 
 
 
 
-#### [Get Profile](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile)
+#### [Get Profile](https://developers.klaviyo.com/en/v2023-06-15/reference/get_profile)
 
 ```ruby
 KlaviyoAPI::Profiles.get_profile(id, opts)
@@ -1344,17 +1601,17 @@ KlaviyoAPI::Profiles.get_profile(id, opts)
 
 
 
-#### [Get Profile Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile_lists)
+#### [Get Profile Lists](https://developers.klaviyo.com/en/v2023-06-15/reference/get_profile_lists)
 
 ```ruby
-KlaviyoAPI::Profiles.get_profile_lists(profile_id, opts)
+KlaviyoAPI::Profiles.get_profile_lists(id, opts)
 ```
 
 
 
 
 
-#### [Get Profile Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile_relationships_lists)
+#### [Get Profile Relationships Lists](https://developers.klaviyo.com/en/v2023-06-15/reference/get_profile_relationships_lists)
 
 ```ruby
 KlaviyoAPI::Profiles.get_profile_relationships_lists(id)
@@ -1364,7 +1621,7 @@ KlaviyoAPI::Profiles.get_profile_relationships_lists(id)
 
 
 
-#### [Get Profile Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile_relationships_segments)
+#### [Get Profile Relationships Segments](https://developers.klaviyo.com/en/v2023-06-15/reference/get_profile_relationships_segments)
 
 ```ruby
 KlaviyoAPI::Profiles.get_profile_relationships_segments(id)
@@ -1374,17 +1631,17 @@ KlaviyoAPI::Profiles.get_profile_relationships_segments(id)
 
 
 
-#### [Get Profile Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profile_segments)
+#### [Get Profile Segments](https://developers.klaviyo.com/en/v2023-06-15/reference/get_profile_segments)
 
 ```ruby
-KlaviyoAPI::Profiles.get_profile_segments(profile_id, opts)
+KlaviyoAPI::Profiles.get_profile_segments(id, opts)
 ```
 
 
 
 
 
-#### [Get Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_profiles)
+#### [Get Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/get_profiles)
 
 ```ruby
 KlaviyoAPI::Profiles.get_profiles(opts)
@@ -1394,7 +1651,7 @@ KlaviyoAPI::Profiles.get_profiles(opts)
 
 
 
-#### [Subscribe Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/subscribe_profiles)
+#### [Subscribe Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/subscribe_profiles)
 
 ```ruby
 KlaviyoAPI::Profiles.subscribe_profiles(body)
@@ -1404,7 +1661,7 @@ KlaviyoAPI::Profiles.subscribe_profiles(body)
 
 
 
-#### [Suppress Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/suppress_profiles)
+#### [Suppress Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/suppress_profiles)
 
 ```ruby
 KlaviyoAPI::Profiles.suppress_profiles(body)
@@ -1414,7 +1671,7 @@ KlaviyoAPI::Profiles.suppress_profiles(body)
 
 
 
-#### [Unsubscribe Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/unsubscribe_profiles)
+#### [Unsubscribe Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/unsubscribe_profiles)
 
 ```ruby
 KlaviyoAPI::Profiles.unsubscribe_profiles(body)
@@ -1424,7 +1681,7 @@ KlaviyoAPI::Profiles.unsubscribe_profiles(body)
 
 
 
-#### [Unsuppress Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/unsuppress_profiles)
+#### [Unsuppress Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/unsuppress_profiles)
 
 ```ruby
 KlaviyoAPI::Profiles.unsuppress_profiles(body)
@@ -1434,10 +1691,10 @@ KlaviyoAPI::Profiles.unsuppress_profiles(body)
 
 
 
-#### [Update Profile](https://developers.klaviyo.com/en/v2023-02-22/reference/update_profile)
+#### [Update Profile](https://developers.klaviyo.com/en/v2023-06-15/reference/update_profile)
 
 ```ruby
-KlaviyoAPI::Profiles.update_profile(id, body, opts)
+KlaviyoAPI::Profiles.update_profile(id, body)
 ```
 
 
@@ -1448,7 +1705,7 @@ KlaviyoAPI::Profiles.update_profile(id, body, opts)
 ## Segments
 
 
-#### [Get Segment](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment)
+#### [Get Segment](https://developers.klaviyo.com/en/v2023-06-15/reference/get_segment)
 
 ```ruby
 KlaviyoAPI::Segments.get_segment(id, opts)
@@ -1458,17 +1715,17 @@ KlaviyoAPI::Segments.get_segment(id, opts)
 
 
 
-#### [Get Segment Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment_profiles)
+#### [Get Segment Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/get_segment_profiles)
 
 ```ruby
-KlaviyoAPI::Segments.get_segment_profiles(segment_id, opts)
+KlaviyoAPI::Segments.get_segment_profiles(id, opts)
 ```
 
 
 
 
 
-#### [Get Segment Relationships Profiles](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment_relationships_profiles)
+#### [Get Segment Relationships Profiles](https://developers.klaviyo.com/en/v2023-06-15/reference/get_segment_relationships_profiles)
 
 ```ruby
 KlaviyoAPI::Segments.get_segment_relationships_profiles(id, opts)
@@ -1478,7 +1735,7 @@ KlaviyoAPI::Segments.get_segment_relationships_profiles(id, opts)
 
 
 
-#### [Get Segment Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment_relationships_tags)
+#### [Get Segment Relationships Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_segment_relationships_tags)
 
 ```ruby
 KlaviyoAPI::Segments.get_segment_relationships_tags(id)
@@ -1488,17 +1745,17 @@ KlaviyoAPI::Segments.get_segment_relationships_tags(id)
 
 
 
-#### [Get Segment Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segment_tags)
+#### [Get Segment Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_segment_tags)
 
 ```ruby
-KlaviyoAPI::Segments.get_segment_tags(segment_id, opts)
+KlaviyoAPI::Segments.get_segment_tags(id, opts)
 ```
 
 
 
 
 
-#### [Get Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/get_segments)
+#### [Get Segments](https://developers.klaviyo.com/en/v2023-06-15/reference/get_segments)
 
 ```ruby
 KlaviyoAPI::Segments.get_segments(opts)
@@ -1508,7 +1765,7 @@ KlaviyoAPI::Segments.get_segments(opts)
 
 
 
-#### [Update Segment](https://developers.klaviyo.com/en/v2023-02-22/reference/update_segment)
+#### [Update Segment](https://developers.klaviyo.com/en/v2023-06-15/reference/update_segment)
 
 ```ruby
 KlaviyoAPI::Segments.update_segment(id, body)
@@ -1522,7 +1779,7 @@ KlaviyoAPI::Segments.update_segment(id, body)
 ## Tags
 
 
-#### [Create Tag](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag)
+#### [Create Tag](https://developers.klaviyo.com/en/v2023-06-15/reference/create_tag)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag(body)
@@ -1532,7 +1789,7 @@ KlaviyoAPI::Tags.create_tag(body)
 
 
 
-#### [Create Tag Group](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_group)
+#### [Create Tag Group](https://developers.klaviyo.com/en/v2023-06-15/reference/create_tag_group)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag_group(body)
@@ -1542,7 +1799,7 @@ KlaviyoAPI::Tags.create_tag_group(body)
 
 
 
-#### [Create Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_campaigns)
+#### [Create Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-06-15/reference/create_tag_relationships_campaigns)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_campaigns(id, body)
@@ -1552,7 +1809,7 @@ KlaviyoAPI::Tags.create_tag_relationships_campaigns(id, body)
 
 
 
-#### [Create Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_flows)
+#### [Create Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-06-15/reference/create_tag_relationships_flows)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_flows(id, body)
@@ -1562,7 +1819,7 @@ KlaviyoAPI::Tags.create_tag_relationships_flows(id, body)
 
 
 
-#### [Create Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_lists)
+#### [Create Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-06-15/reference/create_tag_relationships_lists)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_lists(id, body)
@@ -1572,7 +1829,7 @@ KlaviyoAPI::Tags.create_tag_relationships_lists(id, body)
 
 
 
-#### [Create Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/create_tag_relationships_segments)
+#### [Create Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-06-15/reference/create_tag_relationships_segments)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_segments(id, body)
@@ -1582,7 +1839,7 @@ KlaviyoAPI::Tags.create_tag_relationships_segments(id, body)
 
 
 
-#### [Delete Tag](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag)
+#### [Delete Tag](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_tag)
 
 ```ruby
 KlaviyoAPI::Tags.delete_tag(id)
@@ -1592,7 +1849,7 @@ KlaviyoAPI::Tags.delete_tag(id)
 
 
 
-#### [Delete Tag Group](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_group)
+#### [Delete Tag Group](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_tag_group)
 
 ```ruby
 KlaviyoAPI::Tags.delete_tag_group(id)
@@ -1602,7 +1859,7 @@ KlaviyoAPI::Tags.delete_tag_group(id)
 
 
 
-#### [Delete Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_campaigns)
+#### [Delete Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_tag_relationships_campaigns)
 
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_campaigns(id, body)
@@ -1612,7 +1869,7 @@ KlaviyoAPI::Tags.delete_tag_relationships_campaigns(id, body)
 
 
 
-#### [Delete Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_flows)
+#### [Delete Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_tag_relationships_flows)
 
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_flows(id, body)
@@ -1622,7 +1879,7 @@ KlaviyoAPI::Tags.delete_tag_relationships_flows(id, body)
 
 
 
-#### [Delete Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_lists)
+#### [Delete Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_tag_relationships_lists)
 
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_lists(id, body)
@@ -1632,7 +1889,7 @@ KlaviyoAPI::Tags.delete_tag_relationships_lists(id, body)
 
 
 
-#### [Delete Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_tag_relationships_segments)
+#### [Delete Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_tag_relationships_segments)
 
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_segments(id, body)
@@ -1642,7 +1899,7 @@ KlaviyoAPI::Tags.delete_tag_relationships_segments(id, body)
 
 
 
-#### [Get Tag](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag)
+#### [Get Tag](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag(id, opts)
@@ -1652,7 +1909,7 @@ KlaviyoAPI::Tags.get_tag(id, opts)
 
 
 
-#### [Get Tag Group](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_group)
+#### [Get Tag Group](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_group)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_group(id, opts)
@@ -1662,7 +1919,7 @@ KlaviyoAPI::Tags.get_tag_group(id, opts)
 
 
 
-#### [Get Tag Group Relationships Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_group_relationships_tags)
+#### [Get Tag Group Relationships Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_group_relationships_tags)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_group_relationships_tags(id)
@@ -1672,7 +1929,7 @@ KlaviyoAPI::Tags.get_tag_group_relationships_tags(id)
 
 
 
-#### [Get Tag Group Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_group_tags)
+#### [Get Tag Group Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_group_tags)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_group_tags(id, opts)
@@ -1682,7 +1939,7 @@ KlaviyoAPI::Tags.get_tag_group_tags(id, opts)
 
 
 
-#### [Get Tag Groups](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_groups)
+#### [Get Tag Groups](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_groups)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_groups(opts)
@@ -1692,7 +1949,7 @@ KlaviyoAPI::Tags.get_tag_groups(opts)
 
 
 
-#### [Get Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_campaigns)
+#### [Get Tag Relationships Campaigns](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_relationships_campaigns)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_relationships_campaigns(id)
@@ -1702,7 +1959,7 @@ KlaviyoAPI::Tags.get_tag_relationships_campaigns(id)
 
 
 
-#### [Get Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_flows)
+#### [Get Tag Relationships Flows](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_relationships_flows)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_relationships_flows(id)
@@ -1712,7 +1969,7 @@ KlaviyoAPI::Tags.get_tag_relationships_flows(id)
 
 
 
-#### [Get Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_lists)
+#### [Get Tag Relationships Lists](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_relationships_lists)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_relationships_lists(id)
@@ -1722,7 +1979,7 @@ KlaviyoAPI::Tags.get_tag_relationships_lists(id)
 
 
 
-#### [Get Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_segments)
+#### [Get Tag Relationships Segments](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_relationships_segments)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_relationships_segments(id)
@@ -1732,7 +1989,7 @@ KlaviyoAPI::Tags.get_tag_relationships_segments(id)
 
 
 
-#### [Get Tag Relationships Tag Group](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_relationships_tag_group)
+#### [Get Tag Relationships Tag Group](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_relationships_tag_group)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_relationships_tag_group(id)
@@ -1742,7 +1999,7 @@ KlaviyoAPI::Tags.get_tag_relationships_tag_group(id)
 
 
 
-#### [Get Tag Tag Group](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tag_tag_group)
+#### [Get Tag Tag Group](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tag_tag_group)
 
 ```ruby
 KlaviyoAPI::Tags.get_tag_tag_group(id, opts)
@@ -1752,7 +2009,7 @@ KlaviyoAPI::Tags.get_tag_tag_group(id, opts)
 
 
 
-#### [Get Tags](https://developers.klaviyo.com/en/v2023-02-22/reference/get_tags)
+#### [Get Tags](https://developers.klaviyo.com/en/v2023-06-15/reference/get_tags)
 
 ```ruby
 KlaviyoAPI::Tags.get_tags(opts)
@@ -1762,7 +2019,7 @@ KlaviyoAPI::Tags.get_tags(opts)
 
 
 
-#### [Update Tag](https://developers.klaviyo.com/en/v2023-02-22/reference/update_tag)
+#### [Update Tag](https://developers.klaviyo.com/en/v2023-06-15/reference/update_tag)
 
 ```ruby
 KlaviyoAPI::Tags.update_tag(id, body)
@@ -1772,7 +2029,7 @@ KlaviyoAPI::Tags.update_tag(id, body)
 
 
 
-#### [Update Tag Group](https://developers.klaviyo.com/en/v2023-02-22/reference/update_tag_group)
+#### [Update Tag Group](https://developers.klaviyo.com/en/v2023-06-15/reference/update_tag_group)
 
 ```ruby
 KlaviyoAPI::Tags.update_tag_group(id, body)
@@ -1786,7 +2043,7 @@ KlaviyoAPI::Tags.update_tag_group(id, body)
 ## Templates
 
 
-#### [Create Template](https://developers.klaviyo.com/en/v2023-02-22/reference/create_template)
+#### [Create Template](https://developers.klaviyo.com/en/v2023-06-15/reference/create_template)
 
 ```ruby
 KlaviyoAPI::Templates.create_template(body)
@@ -1796,7 +2053,7 @@ KlaviyoAPI::Templates.create_template(body)
 
 
 
-#### [Create Template Clone](https://developers.klaviyo.com/en/v2023-02-22/reference/create_template_clone)
+#### [Create Template Clone](https://developers.klaviyo.com/en/v2023-06-15/reference/create_template_clone)
 
 ```ruby
 KlaviyoAPI::Templates.create_template_clone(body)
@@ -1806,7 +2063,7 @@ KlaviyoAPI::Templates.create_template_clone(body)
 
 
 
-#### [Create Template Render](https://developers.klaviyo.com/en/v2023-02-22/reference/create_template_render)
+#### [Create Template Render](https://developers.klaviyo.com/en/v2023-06-15/reference/create_template_render)
 
 ```ruby
 KlaviyoAPI::Templates.create_template_render(body)
@@ -1816,7 +2073,7 @@ KlaviyoAPI::Templates.create_template_render(body)
 
 
 
-#### [Delete Template](https://developers.klaviyo.com/en/v2023-02-22/reference/delete_template)
+#### [Delete Template](https://developers.klaviyo.com/en/v2023-06-15/reference/delete_template)
 
 ```ruby
 KlaviyoAPI::Templates.delete_template(id)
@@ -1826,7 +2083,7 @@ KlaviyoAPI::Templates.delete_template(id)
 
 
 
-#### [Get Template](https://developers.klaviyo.com/en/v2023-02-22/reference/get_template)
+#### [Get Template](https://developers.klaviyo.com/en/v2023-06-15/reference/get_template)
 
 ```ruby
 KlaviyoAPI::Templates.get_template(id, opts)
@@ -1836,7 +2093,7 @@ KlaviyoAPI::Templates.get_template(id, opts)
 
 
 
-#### [Get Templates](https://developers.klaviyo.com/en/v2023-02-22/reference/get_templates)
+#### [Get Templates](https://developers.klaviyo.com/en/v2023-06-15/reference/get_templates)
 
 ```ruby
 KlaviyoAPI::Templates.get_templates(opts)
@@ -1846,7 +2103,7 @@ KlaviyoAPI::Templates.get_templates(opts)
 
 
 
-#### [Update Template](https://developers.klaviyo.com/en/v2023-02-22/reference/update_template)
+#### [Update Template](https://developers.klaviyo.com/en/v2023-06-15/reference/update_template)
 
 ```ruby
 KlaviyoAPI::Templates.update_template(id, body)
