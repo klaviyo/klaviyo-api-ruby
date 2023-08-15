@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0] - revision 2023-08-15
+### Added
+- Flow Message Templates
+- You can now retrieve the templates associated with flow messages using `Flows.get_flow_message_template()` or `Flows.get_flow_message_relationships_template()` . You’re also able to include the template HTML for a flow message using `Flows.get_flow_message(id, {"include": ["template"]})`.
+- Create or Update Push Tokens
+- We have added an endpoint to create push tokens, `Profiles.create_push_token()`. This endpoint can be used to migrate profiles and their push tokens from another platform to Klaviyo. If you’re looking to register push tokens from users’ devices, please use our mobile SDKs.
+
 ## [4.0.0] - revision 2023-07-15
 ### Added
 - Back-In-stock APIs
