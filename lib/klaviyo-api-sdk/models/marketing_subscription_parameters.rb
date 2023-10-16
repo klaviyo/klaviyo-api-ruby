@@ -14,19 +14,36 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  class SubscriptionCreateJobCreateQueryResourceObject
-    attr_accessor :type
+  class MarketingSubscriptionParameters
+    # The Consent status to subscribe to for the \"Marketing\" type. Currently supports \"SUBSCRIBED\".
+    attr_accessor :consent
 
-    attr_accessor :attributes
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
 
-    attr_accessor :relationships
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'attributes' => :'attributes',
-        :'relationships' => :'relationships'
+        :'consent' => :'consent'
       }
     end
 
@@ -38,9 +55,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfileSubscriptionBulkCreateJobEnum',
-        :'attributes' => :'SubscriptionCreateJobCreateQueryResourceObjectAttributes',
-        :'relationships' => :'SubscriptionCreateJobCreateQueryResourceObjectRelationships'
+        :'consent' => :'String'
       }
     end
 
@@ -54,27 +69,19 @@ module KlaviyoAPI
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::SubscriptionCreateJobCreateQueryResourceObject` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::MarketingSubscriptionParameters` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::SubscriptionCreateJobCreateQueryResourceObject`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::MarketingSubscriptionParameters`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
-      end
-
-      if attributes.key?(:'attributes')
-        self.attributes = attributes[:'attributes']
-      end
-
-      if attributes.key?(:'relationships')
-        self.relationships = attributes[:'relationships']
+      if attributes.key?(:'consent')
+        self.consent = attributes[:'consent']
       end
     end
 
@@ -82,16 +89,8 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
-      end
-
-      if @attributes.nil?
-        invalid_properties.push('invalid value for "attributes", attributes cannot be nil.')
-      end
-
-      if @relationships.nil?
-        invalid_properties.push('invalid value for "relationships", relationships cannot be nil.')
+      if @consent.nil?
+        invalid_properties.push('invalid value for "consent", consent cannot be nil.')
       end
 
       invalid_properties
@@ -100,10 +99,20 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @type.nil?
-      return false if @attributes.nil?
-      return false if @relationships.nil?
+      return false if @consent.nil?
+      consent_validator = EnumAttributeValidator.new('String', ["SUBSCRIBED"])
+      return false unless consent_validator.valid?(@consent)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] consent Object to be assigned
+    def consent=(consent)
+      validator = EnumAttributeValidator.new('String', ["SUBSCRIBED"])
+      unless validator.valid?(consent)
+        fail ArgumentError, "invalid value for \"consent\", must be one of #{validator.allowable_values}."
+      end
+      @consent = consent
     end
 
     # Checks equality by comparing each attribute.
@@ -111,9 +120,7 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          attributes == o.attributes &&
-          relationships == o.relationships
+          consent == o.consent
     end
 
     # @see the `==` method
@@ -125,7 +132,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, attributes, relationships].hash
+      [consent].hash
     end
 
     # Builds the object from hash
