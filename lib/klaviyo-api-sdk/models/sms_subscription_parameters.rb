@@ -14,19 +14,13 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  class SubscriptionCreateJobCreateQueryResourceObject
-    attr_accessor :type
-
-    attr_accessor :attributes
-
-    attr_accessor :relationships
+  class SMSSubscriptionParameters
+    attr_accessor :marketing
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'attributes' => :'attributes',
-        :'relationships' => :'relationships'
+        :'marketing' => :'marketing'
       }
     end
 
@@ -38,9 +32,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfileSubscriptionBulkCreateJobEnum',
-        :'attributes' => :'SubscriptionCreateJobCreateQueryResourceObjectAttributes',
-        :'relationships' => :'SubscriptionCreateJobCreateQueryResourceObjectRelationships'
+        :'marketing' => :'MarketingSubscriptionParameters'
       }
     end
 
@@ -54,27 +46,19 @@ module KlaviyoAPI
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::SubscriptionCreateJobCreateQueryResourceObject` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::SMSSubscriptionParameters` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::SubscriptionCreateJobCreateQueryResourceObject`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::SMSSubscriptionParameters`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
-      end
-
-      if attributes.key?(:'attributes')
-        self.attributes = attributes[:'attributes']
-      end
-
-      if attributes.key?(:'relationships')
-        self.relationships = attributes[:'relationships']
+      if attributes.key?(:'marketing')
+        self.marketing = attributes[:'marketing']
       end
     end
 
@@ -82,16 +66,8 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
-      end
-
-      if @attributes.nil?
-        invalid_properties.push('invalid value for "attributes", attributes cannot be nil.')
-      end
-
-      if @relationships.nil?
-        invalid_properties.push('invalid value for "relationships", relationships cannot be nil.')
+      if @marketing.nil?
+        invalid_properties.push('invalid value for "marketing", marketing cannot be nil.')
       end
 
       invalid_properties
@@ -100,9 +76,7 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @type.nil?
-      return false if @attributes.nil?
-      return false if @relationships.nil?
+      return false if @marketing.nil?
       true
     end
 
@@ -111,9 +85,7 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          attributes == o.attributes &&
-          relationships == o.relationships
+          marketing == o.marketing
     end
 
     # @see the `==` method
@@ -125,7 +97,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, attributes, relationships].hash
+      [marketing].hash
     end
 
     # Builds the object from hash
