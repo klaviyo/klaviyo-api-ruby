@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0] - revision 2023-12-15
+### Added
+- New Endpoints: Bulk Profile Imports:
+    - `Profiles.spawn_bulk_profile_import_job`
+    - `Profiles.get_bulk_profile_import_job`
+    - `Profiles.get_bulk_profile_import_jobs`
+    - `Profiles.get_bulk_profile_import_job_lists`
+    - `Profiles.get_bulk_profile_import_job_profiles`
+    - `Profiles.get_bulk_profile_import_job_import_errors`
+    - `Profiles.get_bulk_profile_import_job_relationships_profiles`
+    - `Profiles.get_bulk_profile_import_job_relationships_lists`
+### Changed
+- The `relationships` field of Profiles.subscribe_profiles payload is now optional. (see [subscribe_profiles reference](https://developers.klaviyo.com/en/reference/subscribe_profiles) for details).
+
 ## [5.0.0] - revision 2023-10-15
 
 ### Added
