@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.1.0] - revision 2024-04-16
+
+### Changed:
+
+- Use `KLAVIYO_API_REVISION` as the env var for controlling which Klaviyo API to call, instead of `API_REVISION`.  However, `API_REVISION` is a fallback, to avoid making this a breaking change
+
 ## [6.0.0] - revision 2024-02-15
 
-### Added: 
+### Added:
 
 - New `Reporting` allows you to request campaign and flow performance data that you can view in the Klaviyo UI.
 
@@ -26,9 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - This endpoint operates synchronously and offers an upsert pattern similar to the [v1/v2 Identify API](https://developers.klaviyo.com/en/docs/apis_comparison_chart).
 
 ### Changed:
-	
+
 - Removed the $attribution field from event_properties in get_event and  get_events (breaking change).
-	
+
   - To include this data in your request, add include=attributions to your request.
 
 
@@ -52,20 +58,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Support for returning list suppressions via the [/profiles endpoint](https://developers.klaviyo.com/en/reference/get_profiles)
 
-  Rules for suppression [filtering](https://developers.klaviyo.com/en/docs/filtering_):  
+  Rules for suppression [filtering](https://developers.klaviyo.com/en/docs/filtering_):
 
-    - You may not mix-and-match list and global filters  
-    - You may only specify a single date filter  
-    - You may or may not specify a reason  
+    - You may not mix-and-match list and global filters
+    - You may only specify a single date filter
+    - You may or may not specify a reason
     - You must specify a list_id to filter on any list suppression properties
 
   Examples:
 
-  - To return profiles who were suppressed after a certain date:  
+  - To return profiles who were suppressed after a certain date:
     `{filter: "greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z)`
-  - To return profiles who were suppressed from a specific list after a certain date:  
+  - To return profiles who were suppressed from a specific list after a certain date:
     `{filter: "greater-than(subscriptions.email.marketing.list_suppressions.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.list_suppressions.list_id,\"LIST_ID\"")`
-  - To return all profiles who were suppressed for a specific reason after a certain date:  
+  - To return all profiles who were suppressed for a specific reason after a certain date:
     `{"filter: 'greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.suppression.reason\"user_suppressed\"")`
 
 - Optionally retrieve subscription status on Get List Profiles, Get Segment Profiles, Get Event Profile
@@ -81,13 +87,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  -  Profile Subscription Fields Renamed
 
   - In the interest of providing more clarity and information on the subscription object, we have renamed several fields, and added several as well. This will provide more context on a contact's subscriptions and consent, as well as boolean fields to see who you can or cannot message.
-    
+
   For SMSMarketing:
 
   - `timestamp` is now `consent_timestamp`
   - `last_updated` is a new field that mirrors `consent_timestamp`
-  - `can_receive_sms_marketing` is a new field which is `True` if the profile is consented for SMS 
-    
+  - `can_receive_sms_marketing` is a new field which is `True` if the profile is consented for SMS
+
   For EmailMarketing:
 
   - `timestamp` is now `consent_timestamp`
@@ -123,7 +129,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [4.0.0] - revision 2023-07-15
 ### Added
 - Back-In-stock APIs
-  - We have added support for subscribing profiles to back-in-stock notifications, for both email and SMS, using the new [create_back_in_stock_subscription](./README.md#create-back-in-stock-subscription) endpoint.  
+  - We have added support for subscribing profiles to back-in-stock notifications, for both email and SMS, using the new [create_back_in_stock_subscription](./README.md#create-back-in-stock-subscription) endpoint.
 - New functionality to Campaigns API
   - CRUD support for SMS campaigns is now available
   - You can now also retrieve all messages for a campaign to determine performance data on campaigns where you're running A/B tests
@@ -134,11 +140,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Relationship Standardization
   - We are making a number of changes across endpoints to standardize how we handle [relationships](https://developers.klaviyo.com/en/docs/relationships_) in our APIs and leverage consistently typed objects across endpoints. For example, you can create a profile in our APIs in the same shape, regardless of whether you're calling the profiles endpoint or the events endpoint.
   - The changes include:
-    - Updating 1:1 relationships to use singular tense and an object (instead of plural and an array) 
+    - Updating 1:1 relationships to use singular tense and an object (instead of plural and an array)
       - example: for [get_flow_action](./README.md#get-flow-action), if you want to use the `include` param, you would set `include=` to `"flow"` (instead of `"flows"`)
     - Moving related object IDs from the attributes payload to relationships
       - example: The format for the [body](https://developers.klaviyo.com/en/reference/create_tag) of [create_tag](./README.md#create-tag) has changed, with `tag_group_id` previously at `data.attributes.tag_group_id` being removed and replaced by a `data` object containing `type`+`id` and located at `data.relationships.tag-group.data`.
-    - Specifying a relationship between two Klaviyo objects to allow for improved consistency and greater interoperability across endpoints 
+    - Specifying a relationship between two Klaviyo objects to allow for improved consistency and greater interoperability across endpoints
       - example: for [create_event](./README.md#create-event), you can now create/update a profile for an event in the same way you would when using the profiles API directly
   - NOTE: The examples for the above relationship changes are illustrative, not comprehensive. For a complete list of ALL the endpoints that have changed and exactly how, please refer to our latest [API Changelog](https://developers.klaviyo.com/en/docs/changelog_#revision-2023-07-15)
 - For [get_campaigns](./README.md#get-campaigns) endpoint, `filter` param is now required, to, at minimum, filter on `messages.channel`
@@ -152,7 +158,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Accounts API is now available, this will allow you to access information about the Klaviyo account associated with your API key.
   - `get_accounts`
   - `get_account`
-  
+
 **Note:** You will need to generate a new API key with either the `Accounts` scope enabled or `Full Access` to use these endpoints.
 
 ### Removed
@@ -203,5 +209,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Package name: klaviyo_sdk -> klaviyo-api-sdk
     - Module name: KlaviyoBeta -> KlaviyoAPI
     - Some functions have changed name
-- New resources and endpoints: 
+- New resources and endpoints:
     - See API Changelog for full details

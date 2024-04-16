@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 6.0.0
+- SDK version: 6.1.0
 - API revision: 2024-02-15
 
 ## Helpful Resources
@@ -94,13 +94,13 @@ gem build klaviyo-api-sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo-api-sdk-6.0.0.gem
+gem install ./klaviyo-api-sdk-6.1.0.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo-api-sdk', '~> 6.0.0'
+    gem 'klaviyo-api-sdk', '~> 6.1.0'
 
 To install directly from rubygems:
 
@@ -124,7 +124,7 @@ KlaviyoAPI.configure do |config|
 end
 ```
 
-NOTE: 
+NOTE:
 * The SDK retries on resolvable errors, namely: rate limits (common) and server errors on klaviyo (rare).
 * `max_retry` denotes number of attempts the client will make in order to execute the request successfully.
 * `max_delay` denotes total delay (in seconds) across all attempts.
@@ -146,7 +146,7 @@ end
 
 ## Error Handling
 
-This SDK throws an `ApiException` error when the server returns a non-`2XX` response. 
+This SDK throws an `ApiException` error when the server returns a non-`2XX` response.
 ```ruby
 begin
   result = KlaviyoAPI::Catalogs.get_catalog_items(opts)
