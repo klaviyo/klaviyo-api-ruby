@@ -21,7 +21,7 @@ module KlaviyoAPI
     end
     # Create or Update Profile
     # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
-    # @param profile_upsert_query [ProfileUpsertQuery] 
+    # @param profile_upsert_query [ProfileUpsertQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def create_or_update_profile(profile_upsert_query, opts = {})
@@ -31,7 +31,7 @@ module KlaviyoAPI
 
     # Create or Update Profile
     # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
-    # @param profile_upsert_query [ProfileUpsertQuery] 
+    # @param profile_upsert_query [ProfileUpsertQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_or_update_profile_with_http_info(profile_upsert_query, opts = {})
@@ -51,7 +51,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -91,7 +91,7 @@ module KlaviyoAPI
 
     # Create Profile
     # Create a new profile.  If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you'll need to include at least one other identifier attribute (`email` or `external_id`) in addition to the `phone_number` attribute for the API call to work.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
-    # @param profile_create_query [ProfileCreateQuery] 
+    # @param profile_create_query [ProfileCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def create_profile(profile_create_query, opts = {})
@@ -101,7 +101,7 @@ module KlaviyoAPI
 
     # Create Profile
     # Create a new profile.  If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you&#39;ll need to include at least one other identifier attribute (&#x60;email&#x60; or &#x60;external_id&#x60;) in addition to the &#x60;phone_number&#x60; attribute for the API call to work.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
-    # @param profile_create_query [ProfileCreateQuery] 
+    # @param profile_create_query [ProfileCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_profile_with_http_info(profile_create_query, opts = {})
@@ -121,7 +121,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -161,7 +161,7 @@ module KlaviyoAPI
 
     # Create or Update Push Token
     # Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users' devices.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `push-tokens:write`
-    # @param push_token_create_query [PushTokenCreateQuery] 
+    # @param push_token_create_query [PushTokenCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def create_push_token(push_token_create_query, opts = {})
@@ -171,7 +171,7 @@ module KlaviyoAPI
 
     # Create or Update Push Token
     # Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users&#39; devices.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60; &#x60;push-tokens:write&#x60;
-    # @param push_token_create_query [PushTokenCreateQuery] 
+    # @param push_token_create_query [PushTokenCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def create_push_token_with_http_info(push_token_create_query, opts = {})
@@ -191,7 +191,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -282,7 +282,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -317,7 +317,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Errors
     # Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_import_error For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
@@ -330,7 +330,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Errors
     # Get import errors for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_import_error For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
@@ -368,7 +368,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -403,7 +403,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Lists
     # Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
@@ -414,7 +414,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Lists
     # Get list for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -440,7 +440,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -475,7 +475,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Profiles
     # Get profiles for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
@@ -489,7 +489,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Profiles
     # Get profiles for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
@@ -533,7 +533,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -568,7 +568,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Relationships Lists
     # Get list relationship for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def get_bulk_profile_import_job_relationships_lists(id, opts = {})
@@ -578,7 +578,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Relationships Lists
     # Get list relationship for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_profile_import_job_relationships_lists_with_http_info(id, opts = {})
@@ -598,7 +598,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -633,7 +633,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Relationships Profiles
     # Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
@@ -645,7 +645,7 @@ module KlaviyoAPI
 
     # Get Bulk Profile Import Job Relationships Profiles
     # Get profile relationships for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
@@ -677,7 +677,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -767,7 +767,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -802,7 +802,7 @@ module KlaviyoAPI
 
     # Get Profile
     # Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
@@ -817,7 +817,7 @@ module KlaviyoAPI
 
     # Get Profile
     # Get the profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
@@ -867,7 +867,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -902,7 +902,7 @@ module KlaviyoAPI
 
     # Get Profile Lists
     # Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
@@ -913,7 +913,7 @@ module KlaviyoAPI
 
     # Get Profile Lists
     # Get list memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;profiles:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -939,7 +939,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -974,7 +974,7 @@ module KlaviyoAPI
 
     # Get Profile Relationships Lists
     # Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def get_profile_relationships_lists(id, opts = {})
@@ -984,7 +984,7 @@ module KlaviyoAPI
 
     # Get Profile Relationships Lists
     # Get list memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;profiles:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profile_relationships_lists_with_http_info(id, opts = {})
@@ -1004,7 +1004,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -1039,7 +1039,7 @@ module KlaviyoAPI
 
     # Get Profile Relationships Segments
     # Get segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def get_profile_relationships_segments(id, opts = {})
@@ -1049,7 +1049,7 @@ module KlaviyoAPI
 
     # Get Profile Relationships Segments
     # Get segment membership relationships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;profiles:read&#x60; &#x60;segments:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profile_relationships_segments_with_http_info(id, opts = {})
@@ -1069,7 +1069,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -1104,7 +1104,7 @@ module KlaviyoAPI
 
     # Get Profile Segments
     # Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
@@ -1115,7 +1115,7 @@ module KlaviyoAPI
 
     # Get Profile Segments
     # Get segment memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;profiles:read&#x60; &#x60;segments:read&#x60;
-    # @param id [String] 
+    # @param id [String]
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1141,7 +1141,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -1238,7 +1238,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -1273,7 +1273,7 @@ module KlaviyoAPI
 
     # Merge Profiles
     # Merge a given related profile into a profile with the given profile ID.  The profile provided under `relationships` (the \"source\" profile) will be merged into the profile provided by the ID in the base data object (the \"destination\" profile). This endpoint queues an asynchronous task which will merge data from the source profile into the destination profile, deleting the source profile in the process. This endpoint accepts only one source profile.  To learn more about how profile data is preserved or overwritten during a merge, please [visit our Help Center](https://help.klaviyo.com/hc/en-us/articles/115005073847#merge-2-profiles3).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:write`
-    # @param profile_merge_query [ProfileMergeQuery] 
+    # @param profile_merge_query [ProfileMergeQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def merge_profiles(profile_merge_query, opts = {})
@@ -1283,7 +1283,7 @@ module KlaviyoAPI
 
     # Merge Profiles
     # Merge a given related profile into a profile with the given profile ID.  The profile provided under &#x60;relationships&#x60; (the \&quot;source\&quot; profile) will be merged into the profile provided by the ID in the base data object (the \&quot;destination\&quot; profile). This endpoint queues an asynchronous task which will merge data from the source profile into the destination profile, deleting the source profile in the process. This endpoint accepts only one source profile.  To learn more about how profile data is preserved or overwritten during a merge, please [visit our Help Center](https://help.klaviyo.com/hc/en-us/articles/115005073847#merge-2-profiles3).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
-    # @param profile_merge_query [ProfileMergeQuery] 
+    # @param profile_merge_query [ProfileMergeQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def merge_profiles_with_http_info(profile_merge_query, opts = {})
@@ -1303,7 +1303,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -1343,7 +1343,7 @@ module KlaviyoAPI
 
     # Spawn Bulk Profile Import Job
     # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
-    # @param profile_import_job_create_query [ProfileImportJobCreateQuery] 
+    # @param profile_import_job_create_query [ProfileImportJobCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def spawn_bulk_profile_import_job(profile_import_job_create_query, opts = {})
@@ -1353,7 +1353,7 @@ module KlaviyoAPI
 
     # Spawn Bulk Profile Import Job
     # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60;
-    # @param profile_import_job_create_query [ProfileImportJobCreateQuery] 
+    # @param profile_import_job_create_query [ProfileImportJobCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def spawn_bulk_profile_import_job_with_http_info(profile_import_job_create_query, opts = {})
@@ -1373,7 +1373,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -1443,7 +1443,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -1513,7 +1513,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -1583,7 +1583,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -1653,7 +1653,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -1694,7 +1694,7 @@ module KlaviyoAPI
     # Update Profile
     # Update the profile with the given profile ID.  If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you'll need to include at least one other identifier attribute (`email` or `external_id`) in addition to the `phone_number` attribute for the API call to work.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
-    # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
+    # @param profile_partial_update_query [ProfilePartialUpdateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def update_profile(id, profile_partial_update_query, opts = {})
@@ -1705,7 +1705,7 @@ module KlaviyoAPI
     # Update Profile
     # Update the profile with the given profile ID.  If you use a phone number as the profile identifier and SMS is not set up in the Klaviyo account, you&#39;ll need to include at least one other identifier attribute (&#x60;email&#x60; or &#x60;external_id&#x60;) in addition to the &#x60;phone_number&#x60; attribute for the API call to work.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
-    # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
+    # @param profile_partial_update_query [ProfilePartialUpdateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_profile_with_http_info(id, profile_partial_update_query, opts = {})
@@ -1729,7 +1729,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'

@@ -21,7 +21,7 @@ module KlaviyoAPI
     end
     # Query Campaign Values
     # Returns the requested campaign analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `campaigns:read`
-    # @param campaign_values_request_dto [CampaignValuesRequestDTO] 
+    # @param campaign_values_request_dto [CampaignValuesRequestDTO]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
@@ -32,7 +32,7 @@ module KlaviyoAPI
 
     # Query Campaign Values
     # Returns the requested campaign analytics values data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;campaigns:read&#x60;
-    # @param campaign_values_request_dto [CampaignValuesRequestDTO] 
+    # @param campaign_values_request_dto [CampaignValuesRequestDTO]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -54,7 +54,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -94,7 +94,7 @@ module KlaviyoAPI
 
     # Query Flow Series
     # Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
-    # @param flow_series_request_dto [FlowSeriesRequestDTO] 
+    # @param flow_series_request_dto [FlowSeriesRequestDTO]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
@@ -105,7 +105,7 @@ module KlaviyoAPI
 
     # Query Flow Series
     # Returns the requested flow analytics series data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;flows:read&#x60;
-    # @param flow_series_request_dto [FlowSeriesRequestDTO] 
+    # @param flow_series_request_dto [FlowSeriesRequestDTO]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -127,7 +127,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -167,7 +167,7 @@ module KlaviyoAPI
 
     # Query Flow Values
     # Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
-    # @param flow_values_request_dto [FlowValuesRequestDTO] 
+    # @param flow_values_request_dto [FlowValuesRequestDTO]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
@@ -178,7 +178,7 @@ module KlaviyoAPI
 
     # Query Flow Values
     # Returns the requested flow analytics values data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;flows:read&#x60;
-    # @param flow_values_request_dto [FlowValuesRequestDTO] 
+    # @param flow_values_request_dto [FlowValuesRequestDTO]
     # @param [Hash] opts the optional parameters
     # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-02-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -200,7 +200,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'

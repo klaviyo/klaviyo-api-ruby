@@ -21,7 +21,7 @@ module KlaviyoAPI
     end
     # Create Template
     # Create a new custom HTML template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
-    # @param template_create_query [TemplateCreateQuery] 
+    # @param template_create_query [TemplateCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def create_template(template_create_query, opts = {})
@@ -31,7 +31,7 @@ module KlaviyoAPI
 
     # Create Template
     # Create a new custom HTML template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
-    # @param template_create_query [TemplateCreateQuery] 
+    # @param template_create_query [TemplateCreateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_template_with_http_info(template_create_query, opts = {})
@@ -51,7 +51,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -91,7 +91,7 @@ module KlaviyoAPI
 
     # Create Template Clone
     # Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
-    # @param template_clone_query [TemplateCloneQuery] 
+    # @param template_clone_query [TemplateCloneQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def create_template_clone(template_clone_query, opts = {})
@@ -101,7 +101,7 @@ module KlaviyoAPI
 
     # Create Template Clone
     # Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
-    # @param template_clone_query [TemplateCloneQuery] 
+    # @param template_clone_query [TemplateCloneQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_template_clone_with_http_info(template_clone_query, opts = {})
@@ -121,7 +121,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -161,7 +161,7 @@ module KlaviyoAPI
 
     # Create Template Render
     # Render a template with the given template ID and context attribute. Returns the HTML and plain text versions of the email template.  **Request body parameters** (nested under `attributes`):  * `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding `context` values are treated as `FALSE` and output nothing.  Ex. `{ \"name\" : \"George Washington\", \"state\" : \"VA\" }`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
-    # @param template_render_query [TemplateRenderQuery] 
+    # @param template_render_query [TemplateRenderQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def create_template_render(template_render_query, opts = {})
@@ -171,7 +171,7 @@ module KlaviyoAPI
 
     # Create Template Render
     # Render a template with the given template ID and context attribute. Returns the HTML and plain text versions of the email template.  **Request body parameters** (nested under &#x60;attributes&#x60;):  * &#x60;return_fields&#x60;: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * &#x60;context&#x60;: This is the context your email template will be rendered with. You must pass in a &#x60;context&#x60; object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding &#x60;context&#x60; values are treated as &#x60;FALSE&#x60; and output nothing.  Ex. &#x60;{ \&quot;name\&quot; : \&quot;George Washington\&quot;, \&quot;state\&quot; : \&quot;VA\&quot; }&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;templates:read&#x60;
-    # @param template_render_query [TemplateRenderQuery] 
+    # @param template_render_query [TemplateRenderQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_template_render_with_http_info(template_render_query, opts = {})
@@ -191,7 +191,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
@@ -261,7 +261,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -333,7 +333,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -412,7 +412,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
@@ -448,7 +448,7 @@ module KlaviyoAPI
     # Update Template
     # Update a template with the given template ID. Does not currently update drag & drop templates.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `templates:write`
     # @param id [String] The ID of template
-    # @param template_update_query [TemplateUpdateQuery] 
+    # @param template_update_query [TemplateUpdateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def update_template(id, template_update_query, opts = {})
@@ -459,7 +459,7 @@ module KlaviyoAPI
     # Update Template
     # Update a template with the given template ID. Does not currently update drag &amp; drop templates.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
     # @param id [String] The ID of template
-    # @param template_update_query [TemplateUpdateQuery] 
+    # @param template_update_query [TemplateUpdateQuery]
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_template_with_http_info(id, template_update_query, opts = {})
@@ -483,7 +483,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['API_REVISION'] || "2024-02-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-02-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
