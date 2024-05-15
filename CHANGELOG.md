@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-  - Bulk Create Events API with 
+  - Bulk Create Events API 
     - We have added support for creating events in bulk via the `KlaviyoAPI::Event.bulk_create_events` method
   - Create multiple events for new and existing profiles and/or update profile properties in a single API call. For more information, see our [Events API overview](https://developers.klaviyo.com/en/reference/events_api_overview).
 
