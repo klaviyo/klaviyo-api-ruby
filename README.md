@@ -170,6 +170,12 @@ opts = {
   additional_fields_profile: ['predictive_analytics'], # for endpoints that support predictive analytics such as `get_profile`
 }
 ```
+For `GET` methods that require a filter, Pass the filter perameter as a query paraemeter not inside the `opts` object
+
+   ```
+    KlaviyoAPI::Campaigns.get_campaigns("equals(messages.channel,'email')")
+   ```
+
 **Note, for parameters that use square brackets such as `page[cursor]` or `fields[catalog-item]` ruby will replace the square brackets `[]` with `_` underscores.
 
 - For `create`, `update` & some `delete` operations (i.e. `create_catalog_item` or `update_catalog_item` or `delete_catalog_category_relationships`)
