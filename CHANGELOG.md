@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - new `KlaviyoAPI::Webooks` class containing CRUD operations for webhooks.
 
 ### Changed
- - `ProfilesApi.subscribe()`
+ - `Profiles.subscribe()`
   - Added `historical_import` flag for importing historically consented profiles can now be optionally supplied in the payload for the Subscribe Profiles endpoint.
   - When using this flag, a consented_at date must be provided and must be in the past.
 
