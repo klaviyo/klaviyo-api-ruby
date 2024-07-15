@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.0] - revision 2024-07-15
+
+### Added
+
+ - Forms API
+  - New `KlaviyoAPI::Forms` class with methods to get forms, form versions and relationships.
+ - Webhooks API
+  - new `KlaviyoAPI::Webooks` class containing CRUD operations for webhooks.
+
+### Changed
+ - `ProfilesApi.subscribe()`
+  - Added `historical_import` flag for importing historically consented profiles can now be optionally supplied in the payload for the Subscribe Profiles endpoint.
+  - When using this flag, a consented_at date must be provided and must be in the past.
+
+
 ## [7.1.0] - revision 2024-06-15
 
 ### Added
