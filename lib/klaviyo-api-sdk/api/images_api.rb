@@ -269,6 +269,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `upload_image_from_file`
+    alias create_image_upload upload_image_from_file
+
     # Upload Image From File
     # Upload an image from a file.  If you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;100/m&#x60;&lt;br&gt;Daily: &#x60;100/d&#x60;  **Scopes:** &#x60;images:write&#x60;
     # @param file [File] The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.
@@ -334,6 +337,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `upload_image_from_file_with_http_info`
+    alias create_image_upload_with_http_info upload_image_from_file_with_http_info
+
     # Upload Image From URL
     # Import an image from a url or data uri.  If you want to upload an image from a file, use the Upload Image From File endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`  **Scopes:** `images:write`
     # @param image_create_query [ImageCreateQuery] 
@@ -343,6 +349,9 @@ module KlaviyoAPI
       data, _status_code, _headers = upload_image_from_url_with_http_info(image_create_query, opts)
       data
     end
+
+    # alias of `upload_image_from_url`
+    alias create_image upload_image_from_url
 
     # Upload Image From URL
     # Import an image from a url or data uri.  If you want to upload an image from a file, use the Upload Image From File endpoint instead.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;100/m&#x60;&lt;br&gt;Daily: &#x60;100/d&#x60;  **Scopes:** &#x60;images:write&#x60;
@@ -403,5 +412,8 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `upload_image_from_url_with_http_info`
+    alias create_image_with_http_info upload_image_from_url_with_http_info
   end
 end

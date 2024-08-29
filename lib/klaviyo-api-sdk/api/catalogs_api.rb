@@ -170,6 +170,9 @@ module KlaviyoAPI
       nil
     end
 
+    # alias of `create_catalog_category_relationships_items`
+    alias create_catalog_category_relationships_item create_catalog_category_relationships_items
+
     # Create Catalog Category Relationships Items
     # Create a new item relationship for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
     # @param id [String] 
@@ -234,6 +237,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `create_catalog_category_relationships_items_with_http_info`
+    alias create_catalog_category_relationships_item_with_http_info create_catalog_category_relationships_items_with_http_info
 
     # Create Catalog Item
     # Create a new catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -316,6 +322,9 @@ module KlaviyoAPI
       nil
     end
 
+    # alias of `create_catalog_item_relationships_categories`
+    alias create_catalog_item_relationships_category create_catalog_item_relationships_categories
+
     # Create Catalog Item Relationships Categories
     # Create a new catalog category relationship for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
     # @param id [String] 
@@ -380,6 +389,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `create_catalog_item_relationships_categories_with_http_info`
+    alias create_catalog_item_relationships_category_with_http_info create_catalog_item_relationships_categories_with_http_info
 
     # Create Catalog Variant
     # Create a new variant for a related catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -1697,6 +1709,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `get_create_categories_job`
+    alias get_catalog_category_bulk_create_job get_create_categories_job
+
     # Get Create Categories Job
     # Get a catalog category bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
     # @param job_id [String] ID of the job to retrieve.
@@ -1770,6 +1785,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_create_categories_job_with_http_info`
+    alias get_catalog_category_bulk_create_job_with_http_info get_create_categories_job_with_http_info
+
     # Get Create Categories Jobs
     # Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -1781,6 +1799,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_create_categories_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_create_categories_jobs`
+    alias get_catalog_category_bulk_create_jobs get_create_categories_jobs
 
     # Get Create Categories Jobs
     # Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -1842,6 +1863,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_create_categories_jobs_with_http_info`
+    alias get_catalog_category_bulk_create_jobs_with_http_info get_create_categories_jobs_with_http_info
+
     # Get Create Items Job
     # Get a catalog item bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -1854,6 +1878,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_create_items_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_create_items_job`
+    alias get_catalog_item_bulk_create_job get_create_items_job
 
     # Get Create Items Job
     # Get a catalog item bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -1928,6 +1955,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_create_items_job_with_http_info`
+    alias get_catalog_item_bulk_create_job_with_http_info get_create_items_job_with_http_info
+
     # Get Create Items Jobs
     # Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -1939,6 +1969,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_create_items_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_create_items_jobs`
+    alias get_catalog_item_bulk_create_jobs get_create_items_jobs
 
     # Get Create Items Jobs
     # Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2000,6 +2033,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_create_items_jobs_with_http_info`
+    alias get_catalog_item_bulk_create_jobs_with_http_info get_create_items_jobs_with_http_info
+
     # Get Create Variants Job
     # Get a catalog variant bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -2012,6 +2048,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_create_variants_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_create_variants_job`
+    alias get_catalog_variant_bulk_create_job get_create_variants_job
 
     # Get Create Variants Job
     # Get a catalog variant bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2086,6 +2125,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_create_variants_job_with_http_info`
+    alias get_catalog_variant_bulk_create_job_with_http_info get_create_variants_job_with_http_info
+
     # Get Create Variants Jobs
     # Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -2097,6 +2139,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_create_variants_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_create_variants_jobs`
+    alias get_catalog_variant_bulk_create_jobs get_create_variants_jobs
 
     # Get Create Variants Jobs
     # Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2158,6 +2203,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_create_variants_jobs_with_http_info`
+    alias get_catalog_variant_bulk_create_jobs_with_http_info get_create_variants_jobs_with_http_info
+
     # Get Delete Categories Job
     # Get a catalog category bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -2168,6 +2216,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_delete_categories_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_delete_categories_job`
+    alias get_catalog_category_bulk_delete_job get_delete_categories_job
 
     # Get Delete Categories Job
     # Get a catalog category bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2230,6 +2281,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_delete_categories_job_with_http_info`
+    alias get_catalog_category_bulk_delete_job_with_http_info get_delete_categories_job_with_http_info
+
     # Get Delete Categories Jobs
     # Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -2241,6 +2295,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_delete_categories_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_delete_categories_jobs`
+    alias get_catalog_category_bulk_delete_jobs get_delete_categories_jobs
 
     # Get Delete Categories Jobs
     # Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2302,6 +2359,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_delete_categories_jobs_with_http_info`
+    alias get_catalog_category_bulk_delete_jobs_with_http_info get_delete_categories_jobs_with_http_info
+
     # Get Delete Items Job
     # Get a catalog item bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -2312,6 +2372,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_delete_items_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_delete_items_job`
+    alias get_catalog_item_bulk_delete_job get_delete_items_job
 
     # Get Delete Items Job
     # Get a catalog item bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2374,6 +2437,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_delete_items_job_with_http_info`
+    alias get_catalog_item_bulk_delete_job_with_http_info get_delete_items_job_with_http_info
+
     # Get Delete Items Jobs
     # Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -2385,6 +2451,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_delete_items_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_delete_items_jobs`
+    alias get_catalog_item_bulk_delete_jobs get_delete_items_jobs
 
     # Get Delete Items Jobs
     # Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2446,6 +2515,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_delete_items_jobs_with_http_info`
+    alias get_catalog_item_bulk_delete_jobs_with_http_info get_delete_items_jobs_with_http_info
+
     # Get Delete Variants Job
     # Get a catalog variant bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -2456,6 +2528,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_delete_variants_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_delete_variants_job`
+    alias get_catalog_variant_bulk_delete_job get_delete_variants_job
 
     # Get Delete Variants Job
     # Get a catalog variant bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2518,6 +2593,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_delete_variants_job_with_http_info`
+    alias get_catalog_variant_bulk_delete_job_with_http_info get_delete_variants_job_with_http_info
+
     # Get Delete Variants Jobs
     # Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -2529,6 +2607,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_delete_variants_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_delete_variants_jobs`
+    alias get_catalog_variant_bulk_delete_jobs get_delete_variants_jobs
 
     # Get Delete Variants Jobs
     # Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2590,6 +2671,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_delete_variants_jobs_with_http_info`
+    alias get_catalog_variant_bulk_delete_jobs_with_http_info get_delete_variants_jobs_with_http_info
+
     # Get Update Categories Job
     # Get a catalog category bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -2602,6 +2686,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_update_categories_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_update_categories_job`
+    alias get_catalog_category_bulk_update_job get_update_categories_job
 
     # Get Update Categories Job
     # Get a catalog category bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2676,6 +2763,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_update_categories_job_with_http_info`
+    alias get_catalog_category_bulk_update_job_with_http_info get_update_categories_job_with_http_info
+
     # Get Update Categories Jobs
     # Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -2687,6 +2777,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_update_categories_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_update_categories_jobs`
+    alias get_catalog_category_bulk_update_jobs get_update_categories_jobs
 
     # Get Update Categories Jobs
     # Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2748,6 +2841,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_update_categories_jobs_with_http_info`
+    alias get_catalog_category_bulk_update_jobs_with_http_info get_update_categories_jobs_with_http_info
+
     # Get Update Items Job
     # Get a catalog item bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -2760,6 +2856,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_update_items_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_update_items_job`
+    alias get_catalog_item_bulk_update_job get_update_items_job
 
     # Get Update Items Job
     # Get a catalog item bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2834,6 +2933,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_update_items_job_with_http_info`
+    alias get_catalog_item_bulk_update_job_with_http_info get_update_items_job_with_http_info
+
     # Get Update Items Jobs
     # Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -2845,6 +2947,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_update_items_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_update_items_jobs`
+    alias get_catalog_item_bulk_update_jobs get_update_items_jobs
 
     # Get Update Items Jobs
     # Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2906,6 +3011,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_update_items_jobs_with_http_info`
+    alias get_catalog_item_bulk_update_jobs_with_http_info get_update_items_jobs_with_http_info
+
     # Get Update Variants Job
     # Get a catalog variate bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param job_id [String] ID of the job to retrieve.
@@ -2918,6 +3026,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_update_variants_job_with_http_info(job_id, opts)
       data
     end
+
+    # alias of `get_update_variants_job`
+    alias get_catalog_variant_bulk_update_job get_update_variants_job
 
     # Get Update Variants Job
     # Get a catalog variate bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -2992,6 +3103,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_update_variants_job_with_http_info`
+    alias get_catalog_variant_bulk_update_job_with_http_info get_update_variants_job_with_http_info
+
     # Get Update Variants Jobs
     # Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
     # @param [Hash] opts the optional parameters
@@ -3003,6 +3117,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_update_variants_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_update_variants_jobs`
+    alias get_catalog_variant_bulk_update_jobs get_update_variants_jobs
 
     # Get Update Variants Jobs
     # Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
@@ -3064,6 +3181,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_update_variants_jobs_with_http_info`
+    alias get_catalog_variant_bulk_update_jobs_with_http_info get_update_variants_jobs_with_http_info
+
     # Spawn Create Categories Job
     # Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_category_create_job_create_query [CatalogCategoryCreateJobCreateQuery] 
@@ -3073,6 +3193,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_create_categories_job_with_http_info(catalog_category_create_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_create_categories_job`
+    alias create_catalog_category_bulk_create_job spawn_create_categories_job
 
     # Spawn Create Categories Job
     # Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3134,6 +3257,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_create_categories_job_with_http_info`
+    alias create_catalog_category_bulk_create_job_with_http_info spawn_create_categories_job_with_http_info
+
     # Spawn Create Items Job
     # Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_item_create_job_create_query [CatalogItemCreateJobCreateQuery] 
@@ -3143,6 +3269,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_create_items_job_with_http_info(catalog_item_create_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_create_items_job`
+    alias create_catalog_item_bulk_create_job spawn_create_items_job
 
     # Spawn Create Items Job
     # Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3204,6 +3333,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_create_items_job_with_http_info`
+    alias create_catalog_item_bulk_create_job_with_http_info spawn_create_items_job_with_http_info
+
     # Spawn Create Variants Job
     # Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_variant_create_job_create_query [CatalogVariantCreateJobCreateQuery] 
@@ -3213,6 +3345,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_create_variants_job_with_http_info(catalog_variant_create_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_create_variants_job`
+    alias create_catalog_variant_bulk_create_job spawn_create_variants_job
 
     # Spawn Create Variants Job
     # Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3274,6 +3409,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_create_variants_job_with_http_info`
+    alias create_catalog_variant_bulk_create_job_with_http_info spawn_create_variants_job_with_http_info
+
     # Spawn Delete Categories Job
     # Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_category_delete_job_create_query [CatalogCategoryDeleteJobCreateQuery] 
@@ -3283,6 +3421,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_delete_categories_job_with_http_info(catalog_category_delete_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_delete_categories_job`
+    alias create_catalog_category_bulk_delete_job spawn_delete_categories_job
 
     # Spawn Delete Categories Job
     # Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3344,6 +3485,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_delete_categories_job_with_http_info`
+    alias create_catalog_category_bulk_delete_job_with_http_info spawn_delete_categories_job_with_http_info
+
     # Spawn Delete Items Job
     # Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_item_delete_job_create_query [CatalogItemDeleteJobCreateQuery] 
@@ -3353,6 +3497,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_delete_items_job_with_http_info(catalog_item_delete_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_delete_items_job`
+    alias create_catalog_item_bulk_delete_job spawn_delete_items_job
 
     # Spawn Delete Items Job
     # Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3414,6 +3561,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_delete_items_job_with_http_info`
+    alias create_catalog_item_bulk_delete_job_with_http_info spawn_delete_items_job_with_http_info
+
     # Spawn Delete Variants Job
     # Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_variant_delete_job_create_query [CatalogVariantDeleteJobCreateQuery] 
@@ -3423,6 +3573,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_delete_variants_job_with_http_info(catalog_variant_delete_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_delete_variants_job`
+    alias create_catalog_variant_bulk_delete_job spawn_delete_variants_job
 
     # Spawn Delete Variants Job
     # Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3484,6 +3637,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_delete_variants_job_with_http_info`
+    alias create_catalog_variant_bulk_delete_job_with_http_info spawn_delete_variants_job_with_http_info
+
     # Spawn Update Categories Job
     # Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_category_update_job_create_query [CatalogCategoryUpdateJobCreateQuery] 
@@ -3493,6 +3649,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_update_categories_job_with_http_info(catalog_category_update_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_update_categories_job`
+    alias create_catalog_category_bulk_update_job spawn_update_categories_job
 
     # Spawn Update Categories Job
     # Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3554,6 +3713,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_update_categories_job_with_http_info`
+    alias create_catalog_category_bulk_update_job_with_http_info spawn_update_categories_job_with_http_info
+
     # Spawn Update Items Job
     # Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_item_update_job_create_query [CatalogItemUpdateJobCreateQuery] 
@@ -3563,6 +3725,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_update_items_job_with_http_info(catalog_item_update_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_update_items_job`
+    alias create_catalog_item_bulk_update_job spawn_update_items_job
 
     # Spawn Update Items Job
     # Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3624,6 +3789,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_update_items_job_with_http_info`
+    alias create_catalog_item_bulk_update_job_with_http_info spawn_update_items_job_with_http_info
+
     # Spawn Update Variants Job
     # Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param catalog_variant_update_job_create_query [CatalogVariantUpdateJobCreateQuery] 
@@ -3633,6 +3801,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_update_variants_job_with_http_info(catalog_variant_update_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_update_variants_job`
+    alias create_catalog_variant_bulk_update_job spawn_update_variants_job
 
     # Spawn Update Variants Job
     # Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -3693,6 +3864,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `spawn_update_variants_job_with_http_info`
+    alias create_catalog_variant_bulk_update_job_with_http_info spawn_update_variants_job_with_http_info
 
     # Update Catalog Category
     # Update a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`

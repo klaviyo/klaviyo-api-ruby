@@ -29,6 +29,9 @@ module KlaviyoAPI
       nil
     end
 
+    # alias of `request_profile_deletion`
+    alias create_data_privacy_deletion_job request_profile_deletion
+
     # Request Profile Deletion
     # Request a deletion for the profiles corresponding to one of the following identifiers: &#x60;email&#x60;, &#x60;phone_number&#x60;, or &#x60;id&#x60;. If multiple identifiers are provided, we will return an error.  All profiles that match the provided identifier will be deleted.  The deletion occurs asynchronously; however, once it has completed, the deleted profile will appear on the [Deleted Profiles page](https://www.klaviyo.com/account/deleted).  For more information on the deletion process, please refer to our [Help Center docs on how to handle GDPR and CCPA deletion requests](https://help.klaviyo.com/hc/en-us/articles/360004217631-How-to-Handle-GDPR-Requests#record-gdpr-and-ccpa%20%20-deletion-requests2).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;data-privacy:write&#x60;
     # @param data_privacy_create_deletion_job_query [DataPrivacyCreateDeletionJobQuery] 
@@ -88,5 +91,8 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `request_profile_deletion_with_http_info`
+    alias create_data_privacy_deletion_job_with_http_info request_profile_deletion_with_http_info
   end
 end

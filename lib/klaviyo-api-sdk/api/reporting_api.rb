@@ -30,6 +30,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `query_campaign_values`
+    alias create_campaign_value_report query_campaign_values
+
     # Query Campaign Values
     # Returns the requested campaign analytics values data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;campaigns:read&#x60;
     # @param campaign_values_request_dto [CampaignValuesRequestDTO] 
@@ -92,6 +95,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `query_campaign_values_with_http_info`
+    alias create_campaign_value_report_with_http_info query_campaign_values_with_http_info
+
     # Query Flow Series
     # Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
     # @param flow_series_request_dto [FlowSeriesRequestDTO] 
@@ -102,6 +108,9 @@ module KlaviyoAPI
       data, _status_code, _headers = query_flow_series_with_http_info(flow_series_request_dto, opts)
       data
     end
+
+    # alias of `query_flow_series`
+    alias create_flow_sery_report query_flow_series
 
     # Query Flow Series
     # Returns the requested flow analytics series data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;flows:read&#x60;
@@ -165,6 +174,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `query_flow_series_with_http_info`
+    alias create_flow_sery_report_with_http_info query_flow_series_with_http_info
+
     # Query Flow Values
     # Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
     # @param flow_values_request_dto [FlowValuesRequestDTO] 
@@ -175,6 +187,9 @@ module KlaviyoAPI
       data, _status_code, _headers = query_flow_values_with_http_info(flow_values_request_dto, opts)
       data
     end
+
+    # alias of `query_flow_values`
+    alias create_flow_value_report query_flow_values
 
     # Query Flow Values
     # Returns the requested flow analytics values data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;flows:read&#x60;
@@ -237,5 +252,8 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `query_flow_values_with_http_info`
+    alias create_flow_value_report_with_http_info query_flow_values_with_http_info
   end
 end

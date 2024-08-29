@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 8.0.0
+- SDK version: 9.0.0
 - API revision: 2024-07-15
 
 ## Helpful Resources
@@ -102,19 +102,29 @@ gem build klaviyo-api-sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo-api-sdk-8.0.0.gem
+gem install ./klaviyo-api-sdk-9.0.0.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo-api-sdk', '~> 8.0.0'
+    gem 'klaviyo-api-sdk', '~> 9.0.0'
 
 To install directly from rubygems:
 
 ```shell
 gem install klaviyo-api-sdk
 ```
+
+### For macOS developers
+
+To avoid compatability issues between macOS and the underlying HTTP client library (Typhoeus), add the following to your local bash file:
+
+```
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+```
+
+As the issue only affects macOS, it should not affect your production environment. Check [this thread](https://github.com/rails/rails/issues/38560) for more information.
 
 ## Usage Example
 
@@ -773,6 +783,10 @@ KlaviyoAPI::Catalogs.create_catalog_category(body)
 ```ruby
 KlaviyoAPI::Catalogs.create_catalog_category_relationships_items(id, body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_category_relationships_item(id, body)
+```
 
 
 
@@ -792,6 +806,10 @@ KlaviyoAPI::Catalogs.create_catalog_item(body)
 
 ```ruby
 KlaviyoAPI::Catalogs.create_catalog_item_relationships_categories(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_item_relationships_category(id, body)
 ```
 
 
@@ -973,6 +991,10 @@ KlaviyoAPI::Catalogs.get_catalog_variants(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_create_categories_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_category_bulk_create_job(job_id, opts)
+```
 
 
 
@@ -982,6 +1004,10 @@ KlaviyoAPI::Catalogs.get_create_categories_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_categories_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_category_bulk_create_jobs(opts)
 ```
 
 
@@ -993,6 +1019,10 @@ KlaviyoAPI::Catalogs.get_create_categories_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_create_items_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_item_bulk_create_job(job_id, opts)
+```
 
 
 
@@ -1002,6 +1032,10 @@ KlaviyoAPI::Catalogs.get_create_items_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_items_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_item_bulk_create_jobs(opts)
 ```
 
 
@@ -1013,6 +1047,10 @@ KlaviyoAPI::Catalogs.get_create_items_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_create_variants_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_variant_bulk_create_job(job_id, opts)
+```
 
 
 
@@ -1022,6 +1060,10 @@ KlaviyoAPI::Catalogs.get_create_variants_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_create_variants_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_variant_bulk_create_jobs(opts)
 ```
 
 
@@ -1033,6 +1075,10 @@ KlaviyoAPI::Catalogs.get_create_variants_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_categories_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_category_bulk_delete_job(job_id, opts)
+```
 
 
 
@@ -1042,6 +1088,10 @@ KlaviyoAPI::Catalogs.get_delete_categories_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_categories_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_category_bulk_delete_jobs(opts)
 ```
 
 
@@ -1053,6 +1103,10 @@ KlaviyoAPI::Catalogs.get_delete_categories_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_items_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_item_bulk_delete_job(job_id, opts)
+```
 
 
 
@@ -1062,6 +1116,10 @@ KlaviyoAPI::Catalogs.get_delete_items_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_items_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_item_bulk_delete_jobs(opts)
 ```
 
 
@@ -1073,6 +1131,10 @@ KlaviyoAPI::Catalogs.get_delete_items_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_variants_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_variant_bulk_delete_job(job_id, opts)
+```
 
 
 
@@ -1082,6 +1144,10 @@ KlaviyoAPI::Catalogs.get_delete_variants_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_delete_variants_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_variant_bulk_delete_jobs(opts)
 ```
 
 
@@ -1093,6 +1159,10 @@ KlaviyoAPI::Catalogs.get_delete_variants_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_update_categories_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_category_bulk_update_job(job_id, opts)
+```
 
 
 
@@ -1102,6 +1172,10 @@ KlaviyoAPI::Catalogs.get_update_categories_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_categories_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_category_bulk_update_jobs(opts)
 ```
 
 
@@ -1113,6 +1187,10 @@ KlaviyoAPI::Catalogs.get_update_categories_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_update_items_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_item_bulk_update_job(job_id, opts)
+```
 
 
 
@@ -1122,6 +1200,10 @@ KlaviyoAPI::Catalogs.get_update_items_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_items_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_item_bulk_update_jobs(opts)
 ```
 
 
@@ -1133,6 +1215,10 @@ KlaviyoAPI::Catalogs.get_update_items_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.get_update_variants_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_variant_bulk_update_job(job_id, opts)
+```
 
 
 
@@ -1142,6 +1228,10 @@ KlaviyoAPI::Catalogs.get_update_variants_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Catalogs.get_update_variants_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.get_catalog_variant_bulk_update_jobs(opts)
 ```
 
 
@@ -1153,6 +1243,10 @@ KlaviyoAPI::Catalogs.get_update_variants_jobs(opts)
 ```ruby
 KlaviyoAPI::Catalogs.spawn_create_categories_job(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_category_bulk_create_job(body)
+```
 
 
 
@@ -1162,6 +1256,10 @@ KlaviyoAPI::Catalogs.spawn_create_categories_job(body)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_create_items_job(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_item_bulk_create_job(body)
 ```
 
 
@@ -1173,6 +1271,10 @@ KlaviyoAPI::Catalogs.spawn_create_items_job(body)
 ```ruby
 KlaviyoAPI::Catalogs.spawn_create_variants_job(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_variant_bulk_create_job(body)
+```
 
 
 
@@ -1182,6 +1284,10 @@ KlaviyoAPI::Catalogs.spawn_create_variants_job(body)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_delete_categories_job(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_category_bulk_delete_job(body)
 ```
 
 
@@ -1193,6 +1299,10 @@ KlaviyoAPI::Catalogs.spawn_delete_categories_job(body)
 ```ruby
 KlaviyoAPI::Catalogs.spawn_delete_items_job(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_item_bulk_delete_job(body)
+```
 
 
 
@@ -1202,6 +1312,10 @@ KlaviyoAPI::Catalogs.spawn_delete_items_job(body)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_delete_variants_job(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_variant_bulk_delete_job(body)
 ```
 
 
@@ -1213,6 +1327,10 @@ KlaviyoAPI::Catalogs.spawn_delete_variants_job(body)
 ```ruby
 KlaviyoAPI::Catalogs.spawn_update_categories_job(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_category_bulk_update_job(body)
+```
 
 
 
@@ -1223,6 +1341,10 @@ KlaviyoAPI::Catalogs.spawn_update_categories_job(body)
 ```ruby
 KlaviyoAPI::Catalogs.spawn_update_items_job(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_item_bulk_update_job(body)
+```
 
 
 
@@ -1232,6 +1354,10 @@ KlaviyoAPI::Catalogs.spawn_update_items_job(body)
 
 ```ruby
 KlaviyoAPI::Catalogs.spawn_update_variants_job(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Catalogs.create_catalog_variant_bulk_update_job(body)
 ```
 
 
@@ -1397,6 +1523,10 @@ KlaviyoAPI::Coupons.get_coupon_codes(opts)
 ```ruby
 KlaviyoAPI::Coupons.get_coupon_codes_for_coupon(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Coupons.get_coupon_coupon_codes(id, opts)
+```
 
 
 
@@ -1406,6 +1536,10 @@ KlaviyoAPI::Coupons.get_coupon_codes_for_coupon(id, opts)
 
 ```ruby
 KlaviyoAPI::Coupons.get_coupon_for_coupon_code(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Coupons.get_coupon_code_coupon(id, opts)
 ```
 
 
@@ -1436,6 +1570,10 @@ KlaviyoAPI::Coupons.get_coupons(opts)
 
 ```ruby
 KlaviyoAPI::Coupons.spawn_coupon_code_bulk_create_job(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Coupons.create_coupon_code_bulk_create_job(body)
 ```
 
 
@@ -1471,6 +1609,10 @@ KlaviyoAPI::Coupons.update_coupon_code(id, body)
 ```ruby
 KlaviyoAPI::DataPrivacy.request_profile_deletion(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::DataPrivacy.create_data_privacy_deletion_job(body)
+```
 
 
 
@@ -1484,6 +1626,10 @@ KlaviyoAPI::DataPrivacy.request_profile_deletion(body)
 
 ```ruby
 KlaviyoAPI::Events.bulk_create_events(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Events.create_event_bulk_create_job(body)
 ```
 
 
@@ -1763,6 +1909,10 @@ KlaviyoAPI::Forms.get_form(id, opts)
 ```ruby
 KlaviyoAPI::Forms.get_form_for_form_version(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Forms.get_form_version_form(id, opts)
+```
 
 
 
@@ -1772,6 +1922,10 @@ KlaviyoAPI::Forms.get_form_for_form_version(id, opts)
 
 ```ruby
 KlaviyoAPI::Forms.get_form_id_for_form_version(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Forms.get_form_version_relationships_form(id)
 ```
 
 
@@ -1803,6 +1957,10 @@ KlaviyoAPI::Forms.get_forms(opts)
 ```ruby
 KlaviyoAPI::Forms.get_version_ids_for_form(id)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Forms.get_form_relationships_form_versions(id)
+```
 
 
 
@@ -1812,6 +1970,10 @@ KlaviyoAPI::Forms.get_version_ids_for_form(id)
 
 ```ruby
 KlaviyoAPI::Forms.get_versions_for_form(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Forms.get_form_form_versions(id, opts)
 ```
 
 
@@ -1857,6 +2019,10 @@ KlaviyoAPI::Images.update_image(id, body)
 ```ruby
 KlaviyoAPI::Images.upload_image_from_file(file, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Images.create_image_upload(file, opts)
+```
 
 
 
@@ -1866,6 +2032,10 @@ KlaviyoAPI::Images.upload_image_from_file(file, opts)
 
 ```ruby
 KlaviyoAPI::Images.upload_image_from_url(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Images.create_image(body)
 ```
 
 
@@ -1891,6 +2061,10 @@ KlaviyoAPI::Lists.create_list(body)
 ```ruby
 KlaviyoAPI::Lists.create_list_relationships(id, body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.create_list_relationships_profile(id, body)
+```
 
 
 
@@ -1910,6 +2084,10 @@ KlaviyoAPI::Lists.delete_list(id)
 
 ```ruby
 KlaviyoAPI::Lists.delete_list_relationships(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.delete_list_relationships_profiles(id, body)
 ```
 
 
@@ -2015,6 +2193,10 @@ KlaviyoAPI::Metrics.get_metrics(opts)
 ```ruby
 KlaviyoAPI::Metrics.query_metric_aggregates(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Metrics.create_metric_aggregate(body)
+```
 
 
 
@@ -2028,6 +2210,10 @@ KlaviyoAPI::Metrics.query_metric_aggregates(body)
 
 ```ruby
 KlaviyoAPI::Profiles.create_or_update_profile(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_import(body)
 ```
 
 
@@ -2059,6 +2245,10 @@ KlaviyoAPI::Profiles.create_push_token(body)
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_job(job_id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_bulk_import_job(job_id, opts)
+```
 
 
 
@@ -2068,6 +2258,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job(job_id, opts)
 
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_job_import_errors(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_bulk_import_job_import_errors(id, opts)
 ```
 
 
@@ -2079,6 +2273,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_import_errors(id, opts)
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_job_lists(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_bulk_import_job_lists(id, opts)
+```
 
 
 
@@ -2088,6 +2286,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_lists(id, opts)
 
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_job_profiles(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_bulk_import_job_profiles(id, opts)
 ```
 
 
@@ -2099,6 +2301,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_profiles(id, opts)
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_job_relationships_lists(id)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_bulk_import_job_relationships_lists(id)
+```
 
 
 
@@ -2109,6 +2315,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_relationships_lists(id)
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_job_relationships_profiles(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_bulk_import_job_relationships_profiles(id, opts)
+```
 
 
 
@@ -2118,6 +2328,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_relationships_profiles(id, opts
 
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_jobs(opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_bulk_import_jobs(opts)
 ```
 
 
@@ -2189,6 +2403,10 @@ KlaviyoAPI::Profiles.get_profiles(opts)
 ```ruby
 KlaviyoAPI::Profiles.merge_profiles(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_merge(body)
+```
 
 
 
@@ -2198,6 +2416,10 @@ KlaviyoAPI::Profiles.merge_profiles(body)
 
 ```ruby
 KlaviyoAPI::Profiles.spawn_bulk_profile_import_job(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_bulk_import_job(body)
 ```
 
 
@@ -2209,6 +2431,10 @@ KlaviyoAPI::Profiles.spawn_bulk_profile_import_job(body)
 ```ruby
 KlaviyoAPI::Profiles.subscribe_profiles(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_subscription_bulk_create_job(body)
+```
 
 
 
@@ -2218,6 +2444,10 @@ KlaviyoAPI::Profiles.subscribe_profiles(body)
 
 ```ruby
 KlaviyoAPI::Profiles.suppress_profiles(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_suppression_bulk_create_job(body)
 ```
 
 
@@ -2229,6 +2459,10 @@ KlaviyoAPI::Profiles.suppress_profiles(body)
 ```ruby
 KlaviyoAPI::Profiles.unsubscribe_profiles(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_subscription_bulk_delete_job(body)
+```
 
 
 
@@ -2238,6 +2472,10 @@ KlaviyoAPI::Profiles.unsubscribe_profiles(body)
 
 ```ruby
 KlaviyoAPI::Profiles.unsuppress_profiles(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_suppression_bulk_delete_job(body)
 ```
 
 
@@ -2263,6 +2501,10 @@ KlaviyoAPI::Profiles.update_profile(id, body)
 ```ruby
 KlaviyoAPI::Reporting.query_campaign_values(body, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_campaign_value_report(body, opts)
+```
 
 
 
@@ -2273,6 +2515,10 @@ KlaviyoAPI::Reporting.query_campaign_values(body, opts)
 ```ruby
 KlaviyoAPI::Reporting.query_flow_series(body, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_flow_sery_report(body, opts)
+```
 
 
 
@@ -2282,6 +2528,10 @@ KlaviyoAPI::Reporting.query_flow_series(body, opts)
 
 ```ruby
 KlaviyoAPI::Reporting.query_flow_values(body, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_flow_value_report(body, opts)
 ```
 
 
@@ -2411,6 +2661,10 @@ KlaviyoAPI::Tags.create_tag_group(body)
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_campaigns(id, body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_campaign(id, body)
+```
 
 
 
@@ -2420,6 +2674,10 @@ KlaviyoAPI::Tags.create_tag_relationships_campaigns(id, body)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_flows(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_flow(id, body)
 ```
 
 
@@ -2431,6 +2689,10 @@ KlaviyoAPI::Tags.create_tag_relationships_flows(id, body)
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_lists(id, body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_list(id, body)
+```
 
 
 
@@ -2440,6 +2702,10 @@ KlaviyoAPI::Tags.create_tag_relationships_lists(id, body)
 
 ```ruby
 KlaviyoAPI::Tags.create_tag_relationships_segments(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_segment(id, body)
 ```
 
 

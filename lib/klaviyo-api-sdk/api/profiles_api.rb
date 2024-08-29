@@ -29,6 +29,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `create_or_update_profile`
+    alias create_profile_import create_or_update_profile
+
     # Create or Update Profile
     # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_upsert_query [ProfileUpsertQuery] 
@@ -88,6 +91,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `create_or_update_profile_with_http_info`
+    alias create_profile_import_with_http_info create_or_update_profile_with_http_info
 
     # Create Profile
     # Create a new profile.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
@@ -242,6 +248,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `get_bulk_profile_import_job`
+    alias get_profile_bulk_import_job get_bulk_profile_import_job
+
     # Get Bulk Profile Import Job
     # Get a bulk profile import job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;profiles:read&#x60;
     # @param job_id [String] ID of the job to retrieve.
@@ -315,6 +324,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_bulk_profile_import_job_with_http_info`
+    alias get_profile_bulk_import_job_with_http_info get_bulk_profile_import_job_with_http_info
+
     # Get Bulk Profile Import Job Errors
     # Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
     # @param id [String] 
@@ -327,6 +339,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_bulk_profile_import_job_import_errors_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_bulk_profile_import_job_import_errors`
+    alias get_profile_bulk_import_job_import_errors get_bulk_profile_import_job_import_errors
 
     # Get Bulk Profile Import Job Errors
     # Get import errors for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
@@ -401,6 +416,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_bulk_profile_import_job_import_errors_with_http_info`
+    alias get_profile_bulk_import_job_import_errors_with_http_info get_bulk_profile_import_job_import_errors_with_http_info
+
     # Get Bulk Profile Import Job Lists
     # Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
     # @param id [String] 
@@ -411,6 +429,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_bulk_profile_import_job_lists_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_bulk_profile_import_job_lists`
+    alias get_profile_bulk_import_job_lists get_bulk_profile_import_job_lists
 
     # Get Bulk Profile Import Job Lists
     # Get list for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60;
@@ -473,6 +494,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_bulk_profile_import_job_lists_with_http_info`
+    alias get_profile_bulk_import_job_lists_with_http_info get_bulk_profile_import_job_lists_with_http_info
+
     # Get Bulk Profile Import Job Profiles
     # Get profiles for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
     # @param id [String] 
@@ -486,6 +510,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_bulk_profile_import_job_profiles_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_bulk_profile_import_job_profiles`
+    alias get_profile_bulk_import_job_profiles get_bulk_profile_import_job_profiles
 
     # Get Bulk Profile Import Job Profiles
     # Get profiles for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
@@ -508,7 +535,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -566,6 +593,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_bulk_profile_import_job_profiles_with_http_info`
+    alias get_profile_bulk_import_job_profiles_with_http_info get_bulk_profile_import_job_profiles_with_http_info
+
     # Get Bulk Profile Import Job Relationships Lists
     # Get list relationship for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
     # @param id [String] 
@@ -575,6 +605,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_bulk_profile_import_job_relationships_lists_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_bulk_profile_import_job_relationships_lists`
+    alias get_profile_bulk_import_job_relationships_lists get_bulk_profile_import_job_relationships_lists
 
     # Get Bulk Profile Import Job Relationships Lists
     # Get list relationship for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60;
@@ -631,6 +664,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_bulk_profile_import_job_relationships_lists_with_http_info`
+    alias get_profile_bulk_import_job_relationships_lists_with_http_info get_bulk_profile_import_job_relationships_lists_with_http_info
+
     # Get Bulk Profile Import Job Relationships Profiles
     # Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
     # @param id [String] 
@@ -642,6 +678,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_bulk_profile_import_job_relationships_profiles_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_bulk_profile_import_job_relationships_profiles`
+    alias get_profile_bulk_import_job_relationships_profiles get_bulk_profile_import_job_relationships_profiles
 
     # Get Bulk Profile Import Job Relationships Profiles
     # Get profile relationships for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
@@ -710,6 +749,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_bulk_profile_import_job_relationships_profiles_with_http_info`
+    alias get_profile_bulk_import_job_relationships_profiles_with_http_info get_bulk_profile_import_job_relationships_profiles_with_http_info
+
     # Get Bulk Profile Import Jobs
     # Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
     # @param [Hash] opts the optional parameters
@@ -723,6 +765,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_bulk_profile_import_jobs_with_http_info(opts)
       data
     end
+
+    # alias of `get_bulk_profile_import_jobs`
+    alias get_profile_bulk_import_jobs get_bulk_profile_import_jobs
 
     # Get Bulk Profile Import Jobs
     # Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;profiles:read&#x60;
@@ -800,6 +845,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_bulk_profile_import_jobs_with_http_info`
+    alias get_profile_bulk_import_jobs_with_http_info get_bulk_profile_import_jobs_with_http_info
+
     # Get Profile
     # Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
     # @param id [String] 
@@ -841,7 +889,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_list'] && !opts[:'fields_list'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_list\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -1207,7 +1255,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -1281,6 +1329,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `merge_profiles`
+    alias create_profile_merge merge_profiles
+
     # Merge Profiles
     # Merge a given related profile into a profile with the given profile ID.  The profile provided under &#x60;relationships&#x60; (the \&quot;source\&quot; profile) will be merged into the profile provided by the ID in the base data object (the \&quot;destination\&quot; profile). This endpoint queues an asynchronous task which will merge data from the source profile into the destination profile, deleting the source profile in the process. This endpoint accepts only one source profile.  To learn more about how profile data is preserved or overwritten during a merge, please [visit our Help Center](https://help.klaviyo.com/hc/en-us/articles/115005073847#merge-2-profiles3).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_merge_query [ProfileMergeQuery] 
@@ -1341,6 +1392,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `merge_profiles_with_http_info`
+    alias create_profile_merge_with_http_info merge_profiles_with_http_info
+
     # Spawn Bulk Profile Import Job
     # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
     # @param profile_import_job_create_query [ProfileImportJobCreateQuery] 
@@ -1350,6 +1404,9 @@ module KlaviyoAPI
       data, _status_code, _headers = spawn_bulk_profile_import_job_with_http_info(profile_import_job_create_query, opts)
       data
     end
+
+    # alias of `spawn_bulk_profile_import_job`
+    alias create_profile_bulk_import_job spawn_bulk_profile_import_job
 
     # Spawn Bulk Profile Import Job
     # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60;
@@ -1411,6 +1468,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `spawn_bulk_profile_import_job_with_http_info`
+    alias create_profile_bulk_import_job_with_http_info spawn_bulk_profile_import_job_with_http_info
+
     # Subscribe Profiles
     # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a `historical_import` flag. If this flag is set `true`, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \"Added to list\" flows. This is useful for importing historical data where you have already collected consent. If `historical_import` is set to true, the `consented_at` field is required and must be in the past.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
     # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
@@ -1420,6 +1480,9 @@ module KlaviyoAPI
       subscribe_profiles_with_http_info(subscription_create_job_create_query, opts)
       nil
     end
+
+    # alias of `subscribe_profiles`
+    alias create_profile_subscription_bulk_create_job subscribe_profiles
 
     # Subscribe Profiles
     # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any &#x60;UNSUBSCRIBE&#x60;, &#x60;SPAM_REPORT&#x60; or &#x60;USER_SUPPRESSED&#x60; suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a &#x60;historical_import&#x60; flag. If this flag is set &#x60;true&#x60;, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \&quot;Added to list\&quot; flows. This is useful for importing historical data where you have already collected consent. If &#x60;historical_import&#x60; is set to true, the &#x60;consented_at&#x60; field is required and must be in the past.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
@@ -1481,6 +1544,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `subscribe_profiles_with_http_info`
+    alias create_profile_subscription_bulk_create_job_with_http_info subscribe_profiles_with_http_info
+
     # Suppress Profiles
     # Manually suppress profiles using their email address, or by specifying a segment or list ID to suppress all current members.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our [email suppressions guide](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1) and our [collecting consent guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email addresses per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `subscriptions:write`
     # @param suppression_create_job_create_query [SuppressionCreateJobCreateQuery] Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
@@ -1490,6 +1556,9 @@ module KlaviyoAPI
       suppress_profiles_with_http_info(suppression_create_job_create_query, opts)
       nil
     end
+
+    # alias of `suppress_profiles`
+    alias create_profile_suppression_bulk_create_job suppress_profiles
 
     # Suppress Profiles
     # Manually suppress profiles using their email address, or by specifying a segment or list ID to suppress all current members.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our [email suppressions guide](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1) and our [collecting consent guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email addresses per request limit: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
@@ -1551,6 +1620,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `suppress_profiles_with_http_info`
+    alias create_profile_suppression_bulk_create_job_with_http_info suppress_profiles_with_http_info
+
     # Unsubscribe Profiles
     # Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
     # @param subscription_delete_job_create_query [SubscriptionDeleteJobCreateQuery] Unsubscribes one or more profiles from marketing. Currently, supports email and SMS only. All profiles will be removed from the provided list. Either email or phone number is required. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
@@ -1560,6 +1632,9 @@ module KlaviyoAPI
       unsubscribe_profiles_with_http_info(subscription_delete_job_create_query, opts)
       nil
     end
+
+    # alias of `unsubscribe_profiles`
+    alias create_profile_subscription_bulk_delete_job unsubscribe_profiles
 
     # Unsubscribe Profiles
     # Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profile from List](https://developers.klaviyo.com/en/reference/delete_list_relationships).  Maximum number of profile can be submitted for unsubscription: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
@@ -1621,6 +1696,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `unsubscribe_profiles_with_http_info`
+    alias create_profile_subscription_bulk_delete_job_with_http_info unsubscribe_profiles_with_http_info
+
     # Unsuppress Profiles
     # Manually unsuppress profiles using their email address, or by specifying a segment or list ID to unsuppress all current members.  This only removes suppressions with reason `USER_SUPPRESSED`, leaving unsubscribed profiles and profiles suppressed with reason `INVALID_EMAIL` or `HARD_BOUNCE` unchanged. To learn more, see our [email suppressions guide](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1) and our [collecting consent guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email addresses per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:write`
     # @param suppression_delete_job_create_query [SuppressionDeleteJobCreateQuery] Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
@@ -1630,6 +1708,9 @@ module KlaviyoAPI
       unsuppress_profiles_with_http_info(suppression_delete_job_create_query, opts)
       nil
     end
+
+    # alias of `unsuppress_profiles`
+    alias create_profile_suppression_bulk_delete_job unsuppress_profiles
 
     # Unsuppress Profiles
     # Manually unsuppress profiles using their email address, or by specifying a segment or list ID to unsuppress all current members.  This only removes suppressions with reason &#x60;USER_SUPPRESSED&#x60;, leaving unsubscribed profiles and profiles suppressed with reason &#x60;INVALID_EMAIL&#x60; or &#x60;HARD_BOUNCE&#x60; unchanged. To learn more, see our [email suppressions guide](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1) and our [collecting consent guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email addresses per request limit: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;subscriptions:write&#x60;
@@ -1690,6 +1771,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `unsuppress_profiles_with_http_info`
+    alias create_profile_suppression_bulk_delete_job_with_http_info unsuppress_profiles_with_http_info
 
     # Update Profile
     # Update the profile with the given profile ID.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
