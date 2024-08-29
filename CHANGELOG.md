@@ -7,9 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [9.0.0] - revision 2024-07-15
 ### Added
 - Added several method aliases based on previous operation IDs
-### Fixed
-- **Breaking**
- - Removed incorrect `links` property from several DTO classes
 
 ## [8.0.0] - revision 2024-07-15
 
@@ -105,52 +102,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [5.0.0] - revision 2023-10-15
 
-### Added
+### Improved Endpoints
 
-- Support for returning list suppressions via the [/profiles endpoint](https://developers.klaviyo.com/en/reference/get_profiles)
+#### Support for returning list suppressions via the [/profiles endpoint](https://developers.klaviyo.com/en/reference/get_profiles)
 
-  Rules for suppression [filtering](https://developers.klaviyo.com/en/docs/filtering_):  
+We now support filtering on list suppression with the get profiles endpoint, which brings us to parity with v2 list suppression endpoint that was the previously recommended solution.
 
-    - You may not mix-and-match list and global filters  
-    - You may only specify a single date filter  
-    - You may or may not specify a reason  
-    - You must specify a list_id to filter on any list suppression properties
+Rules for suppression [filtering](https://developers.klaviyo.com/en/docs/filtering_):  
 
-  Examples:
+- You may not mix-and-match list and global filters  
+- You may only specify a single date filter  
+- You may or may not specify a reason  
+- You must specify a list_id to filter on any list suppression properties
 
-  - To return profiles who were suppressed after a certain date:  
-    `{filter: "greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z)`
-  - To return profiles who were suppressed from a specific list after a certain date:  
-    `{filter: "greater-than(subscriptions.email.marketing.list_suppressions.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.list_suppressions.list_id,\"LIST_ID\"")`
-  - To return all profiles who were suppressed for a specific reason after a certain date:  
-    `{"filter: 'greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.suppression.reason\"user_suppressed\"")`
+Examples:
 
-- Optionally retrieve subscription status on Get List Profiles, Get Segment Profiles, Get Event Profile
+- To return profiles who were suppressed after a certain date:  
+  `{filter: "greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z)`
+- To return profiles who were suppressed from a specific list after a certain date:  
+  `{filter: "greater-than(subscriptions.email.marketing.list_suppressions.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.list_suppressions.list_id,\"LIST_ID\"")`
+- To return all profiles who were suppressed for a specific reason after a certain date:  
+  `{"filter: 'greater-than(subscriptions.email.marketing.suppression.timestamp,2023-03-01T01:00:00Z),equals(subscriptions.email.marketing.suppression.reason\"user_suppressed\"")`
 
-  -  Use `{additional_fields_profile = ["subscriptions"]}` on these endpoints to include subscription information.
+### Optionally retrieve subscription status on Get List Profiles, Get Segment Profiles, Get Event Profile
 
-## Changes
+Now you can retrieve subscription status on any endpoint that returns profiles, including Get List Profiles, Get Segment Profiles and Get Event Profile.  Use `{additional_fields_profile = ["subscriptions"]}` on these endpoints to include subscription information.
 
-- Subscription object not returned by default on Get Profile / Get Profiles
+## Breaking changes
 
-  -  The subscription object is no longer returned by default with get profile(s) requests. However, it can be included by adding  `{additional_fields_profile = ["subscriptions"]}s` to the request. This change will allow us to  provide a more performant experience when making requests to Get Profiles without including the subscriptions object.
+### Subscription object not returned by default on Get Profile / Get Profiles
 
- -  Profile Subscription Fields Renamed
+The subscription object is no longer returned by default with get profile(s) requests. However, it can be included by adding  `{additional_fields_profile = ["subscriptions"]}s` to the request. This change will allow us to provide a more performant experience when making requests to Get Profiles without including the subscriptions object.
 
-  - In the interest of providing more clarity and information on the subscription object, we have renamed several fields, and added several as well. This will provide more context on a contact's subscriptions and consent, as well as boolean fields to see who you can or cannot message.
-    
-  For SMSMarketing:
+### Profile Subscription Fields Renamed
 
-  - `timestamp` is now `consent_timestamp`
-  - `last_updated` is a new field that mirrors `consent_timestamp`
-  - `can_receive_sms_marketing` is a new field which is `True` if the profile is consented for SMS 
-    
-  For EmailMarketing:
+In the interest of providing more clarity and information on the subscription object, we have renamed several fields, and added several as well. This will provide more context on a contact's subscriptions and consent, as well as boolean fields to see who you can or cannot message.
 
-  - `timestamp` is now `consent_timestamp`
-  - `can_receive_email_marketing` is True if the profile does not have a global suppression
-  - `suppressions` is now `suppression`
-  - `last_updated` is a new field that is the most recent of all the dates on the object
+For SMSMarketing:
+
+- `timestamp` is now `consent_timestamp`
+- `last_updated` is a new field that mirrors `consent_timestamp`
+- `can_receive_sms_marketing` is a new field which is `True` if the profile is consented for SMS 
+
+For EmailMarketing:
+
+- `timestamp` is now `consent_timestamp`
+- `can_receive_email_marketing` is True if the profile does not have a global suppression
+- `suppressions` is now `suppression`
+- `last_updated` is a new field that is the most recent of all the dates on the object
 
 
 ## [4.2.0] - revision 2023-09-15
