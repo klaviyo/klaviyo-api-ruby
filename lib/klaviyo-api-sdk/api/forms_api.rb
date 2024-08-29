@@ -116,6 +116,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `get_form_for_form_version`
+    alias get_form_version_form get_form_for_form_version
+
     # Get Form for Form Version
     # Get the form associated with the given form version.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;
     # @param id [String] 
@@ -177,6 +180,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_form_for_form_version_with_http_info`
+    alias get_form_version_form_with_http_info get_form_for_form_version_with_http_info
+
     # Get Form ID for Form Version
     # Get the ID of the form associated with the given form version.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
     # @param id [String] 
@@ -186,6 +192,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_form_id_for_form_version_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_form_id_for_form_version`
+    alias get_form_version_relationships_form get_form_id_for_form_version
 
     # Get Form ID for Form Version
     # Get the ID of the form associated with the given form version.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;
@@ -241,6 +250,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `get_form_id_for_form_version_with_http_info`
+    alias get_form_version_relationships_form_with_http_info get_form_id_for_form_version_with_http_info
 
     # Get Form Version
     # Get the form version with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
@@ -414,6 +426,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `get_version_ids_for_form`
+    alias get_form_relationships_form_versions get_version_ids_for_form
+
     # Get Version IDs for Form
     # Get the IDs of the form versions for the given form.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;
     # @param id [String] 
@@ -469,6 +484,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_version_ids_for_form_with_http_info`
+    alias get_form_relationships_form_versions_with_http_info get_version_ids_for_form_with_http_info
+
     # Get Versions for Form
     # Get the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
     # @param id [String] 
@@ -483,6 +501,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_versions_for_form_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_versions_for_form`
+    alias get_form_form_versions get_versions_for_form
 
     # Get Versions for Form
     # Get the form versions for the given form.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;
@@ -564,5 +585,8 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `get_versions_for_form_with_http_info`
+    alias get_form_form_versions_with_http_info get_versions_for_form_with_http_info
   end
 end

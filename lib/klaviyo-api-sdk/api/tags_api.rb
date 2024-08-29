@@ -170,6 +170,9 @@ module KlaviyoAPI
       nil
     end
 
+    # alias of `create_tag_relationships_campaigns`
+    alias create_tag_relationships_campaign create_tag_relationships_campaigns
+
     # Create Tag Relationships Campaigns
     # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60; &#x60;tags:write&#x60;
     # @param id [String] 
@@ -235,6 +238,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `create_tag_relationships_campaigns_with_http_info`
+    alias create_tag_relationships_campaign_with_http_info create_tag_relationships_campaigns_with_http_info
+
     # Create Tag Relationships Flows
     # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
     # @param id [String] 
@@ -245,6 +251,9 @@ module KlaviyoAPI
       create_tag_relationships_flows_with_http_info(id, tag_flow_op, opts)
       nil
     end
+
+    # alias of `create_tag_relationships_flows`
+    alias create_tag_relationships_flow create_tag_relationships_flows
 
     # Create Tag Relationships Flows
     # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60; &#x60;tags:write&#x60;
@@ -311,6 +320,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `create_tag_relationships_flows_with_http_info`
+    alias create_tag_relationships_flow_with_http_info create_tag_relationships_flows_with_http_info
+
     # Create Tag Relationships Lists
     # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
     # @param id [String] 
@@ -321,6 +333,9 @@ module KlaviyoAPI
       create_tag_relationships_lists_with_http_info(id, tag_list_op, opts)
       nil
     end
+
+    # alias of `create_tag_relationships_lists`
+    alias create_tag_relationships_list create_tag_relationships_lists
 
     # Create Tag Relationships Lists
     # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;tags:write&#x60;
@@ -387,6 +402,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `create_tag_relationships_lists_with_http_info`
+    alias create_tag_relationships_list_with_http_info create_tag_relationships_lists_with_http_info
+
     # Create Tag Relationships Segments
     # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
     # @param id [String] 
@@ -397,6 +415,9 @@ module KlaviyoAPI
       create_tag_relationships_segments_with_http_info(id, tag_segment_op, opts)
       nil
     end
+
+    # alias of `create_tag_relationships_segments`
+    alias create_tag_relationships_segment create_tag_relationships_segments
 
     # Create Tag Relationships Segments
     # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:write&#x60; &#x60;tags:write&#x60;
@@ -462,6 +483,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `create_tag_relationships_segments_with_http_info`
+    alias create_tag_relationships_segment_with_http_info create_tag_relationships_segments_with_http_info
 
     # Delete Tag
     # Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`

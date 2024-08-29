@@ -772,6 +772,9 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `get_coupon_codes_for_coupon`
+    alias get_coupon_coupon_codes get_coupon_codes_for_coupon
+
     # Get Coupon Codes For Coupon
     # Gets a list of coupon codes associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
     # @param id [String] 
@@ -837,6 +840,9 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # alias of `get_coupon_codes_for_coupon_with_http_info`
+    alias get_coupon_coupon_codes_with_http_info get_coupon_codes_for_coupon_with_http_info
+
     # Get Coupon For Coupon Code
     # Get the coupon associated with a given coupon code ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
     # @param id [String] 
@@ -847,6 +853,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_coupon_for_coupon_code_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_coupon_for_coupon_code`
+    alias get_coupon_code_coupon get_coupon_for_coupon_code
 
     # Get Coupon For Coupon Code
     # Get the coupon associated with a given coupon code ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;
@@ -908,6 +917,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `get_coupon_for_coupon_code_with_http_info`
+    alias get_coupon_code_coupon_with_http_info get_coupon_for_coupon_code_with_http_info
 
     # Get Coupon Relationships Coupon Codes
     # Gets the coupon relationship associated with the given coupon code id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
@@ -1044,7 +1056,7 @@ module KlaviyoAPI
     end
 
     # Spawn Coupon Code Bulk Create Job
-    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:write`
+    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:write`
     # @param coupon_code_create_job_create_query [CouponCodeCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -1053,8 +1065,11 @@ module KlaviyoAPI
       data
     end
 
+    # alias of `spawn_coupon_code_bulk_create_job`
+    alias create_coupon_code_bulk_create_job spawn_coupon_code_bulk_create_job
+
     # Spawn Coupon Code Bulk Create Job
-    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of jobs queued at once we allow for is 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;
+    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;
     # @param coupon_code_create_job_create_query [CouponCodeCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1112,6 +1127,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `spawn_coupon_code_bulk_create_job_with_http_info`
+    alias create_coupon_code_bulk_create_job_with_http_info spawn_coupon_code_bulk_create_job_with_http_info
 
     # Update Coupon
     # *Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
