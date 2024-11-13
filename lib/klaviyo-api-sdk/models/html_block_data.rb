@@ -19,14 +19,11 @@ module KlaviyoAPI
 
     attr_accessor :display_options
 
-    attr_accessor :styles
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'content' => :'content',
-        :'display_options' => :'display_options',
-        :'styles' => :'styles'
+        :'display_options' => :'display_options'
       }
     end
 
@@ -39,15 +36,13 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'content' => :'String',
-        :'display_options' => :'BlockDisplayOptions',
-        :'styles' => :'String'
+        :'display_options' => :'BlockDisplayOptions'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'styles'
       ])
     end
 
@@ -72,10 +67,6 @@ module KlaviyoAPI
 
       if attributes.key?(:'display_options')
         self.display_options = attributes[:'display_options']
-      end
-
-      if attributes.key?(:'styles')
-        self.styles = attributes[:'styles']
       end
     end
 
@@ -108,8 +99,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           content == o.content &&
-          display_options == o.display_options &&
-          styles == o.styles
+          display_options == o.display_options
     end
 
     # @see the `==` method
@@ -121,7 +111,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [content, display_options, styles].hash
+      [content, display_options].hash
     end
 
     # Builds the object from hash

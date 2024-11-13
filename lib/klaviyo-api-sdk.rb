@@ -660,25 +660,10 @@ module KlaviyoAPI
             # recreate methods
             original_class.public_instance_methods(false).each do |m|
               wrapper_class.class_eval { 
-                define_singleton_method m do |*arg| 
-                  # max_delay=60, max_retries=3
-                  # retry_codes = [429,503,504]
-                  # only add retriable if both of these are not set
-                  max_retries = Configuration.default.max_retries
-                  max_delay = Configuration.default.max_delay
-
-                  if (max_retries != nil && max_delay != nil)
-                    Retriable.configure do |c|
-                      c.tries = max_retries
-                      c.max_elapsed_time = max_delay
-                      c.on = {
-                        KlaviyoAPI::ApiError => [/429/, /503/, /504/]
-                      }
-                    end
-                    Retriable.retriable do
-                      KlaviyoAPI.const_get(c).new.send(m, *arg)
-                    end
-                  else
+                define_singleton_method m do |*arg|
+                  max_retries = Configuration.default.max_retries || 3
+                  max_delay = Configuration.default.max_delay || 60
+                  KlaviyoAPI.with_retry(max_retries, max_delay) do
                     KlaviyoAPI.const_get(c).new.send(m, *arg)
                   end
                 end
@@ -687,6 +672,34 @@ module KlaviyoAPI
           end
         end
         @is_initialized = true
+      end
+    end
+
+    def with_retry(tries, max_elapsed_time)
+      start_time = Time.now
+      elapsed_time = -> { Time.now - start_time }
+      last_request_retry_after = nil
+      last_request_timestamp = nil
+      index = 0
+      attempt = 0
+      last_exception = nil
+      while true
+        begin
+          retry_after_value_elapsed = last_request_retry_after == nil || Time.now - last_request_timestamp > Integer(last_request_retry_after)
+          if retry_after_value_elapsed
+              attempt += 1
+              return yield
+          end
+        rescue KlaviyoAPI::ApiError => exception
+          last_exception = exception
+          last_request_retry_after = exception.response_headers[:'Retry-After']
+          last_request_timestamp = Time.now
+          raise unless [429, 503, 504, 524].include? exception.code
+        end
+        interval = Retriable::ExponentialBackoff.new(tries: index + 1).intervals[index]
+        raise last_exception if attempt >= tries || (elapsed_time.call + interval) > max_elapsed_time
+        sleep interval
+        index += 1
       end
     end
   end
