@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 10.0.0
+- SDK version: 11.0.0
 - API revision: 2024-10-15
 
 ## Helpful Resources
@@ -110,13 +110,13 @@ gem build klaviyo-api-sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo-api-sdk-10.0.0.gem
+gem install ./klaviyo-api-sdk-11.0.0.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo-api-sdk', '~> 10.0.0'
+    gem 'klaviyo-api-sdk', '~> 11.0.0'
 
 To install directly from rubygems:
 
@@ -152,8 +152,10 @@ end
 
 NOTE: 
 * The SDK retries on resolvable errors, namely: rate limits (common) and server errors on klaviyo (rare).
-* `max_retry` denotes number of attempts the client will make in order to execute the request successfully.
-* `max_delay` denotes total delay (in seconds) across all attempts.
+* `max_retries` denotes the number of attempts the client will make in order to execute the request successfully.
+  * Set to 0 to disable automatic retries
+* `max_delay` denotes the maximum amount of time (in seconds) that will be spent retrying a request across all attempts.
+* The time interval between retries is calculated using exponential backoff and the `Retry-After` header.
 
 ### To call the `get_catalog_items` operation:
 
@@ -2619,11 +2621,11 @@ KlaviyoAPI::Profiles.create_profile_suppression_bulk_delete_job(body)
 #### [Create or Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/create_or_update_profile)
 
 ```ruby
-KlaviyoAPI::Profiles.create_or_update_profile(body)
+KlaviyoAPI::Profiles.create_or_update_profile(body, opts)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Profiles.create_profile_import(body)
+KlaviyoAPI::Profiles.create_profile_import(body, opts)
 ```
 
 
@@ -2633,7 +2635,7 @@ KlaviyoAPI::Profiles.create_profile_import(body)
 #### [Create Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/create_profile)
 
 ```ruby
-KlaviyoAPI::Profiles.create_profile(body)
+KlaviyoAPI::Profiles.create_profile(body, opts)
 ```
 
 
@@ -2943,7 +2945,7 @@ KlaviyoAPI::Profiles.create_profile_bulk_import_job(body)
 #### [Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/update_profile)
 
 ```ruby
-KlaviyoAPI::Profiles.update_profile(id, body)
+KlaviyoAPI::Profiles.update_profile(id, body, opts)
 ```
 
 

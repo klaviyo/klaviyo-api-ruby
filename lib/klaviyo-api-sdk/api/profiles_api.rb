@@ -351,6 +351,7 @@ module KlaviyoAPI
     # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
     # @param profile_upsert_query [ProfileUpsertQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @return [Hash<String, Object>]
     def create_or_update_profile(profile_upsert_query, opts = {})
       data, _status_code, _headers = create_or_update_profile_with_http_info(profile_upsert_query, opts)
@@ -364,6 +365,7 @@ module KlaviyoAPI
     # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_upsert_query [ProfileUpsertQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_or_update_profile_with_http_info(profile_upsert_query, opts = {})
       if @api_client.config.debugging
@@ -373,11 +375,16 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && profile_upsert_query.nil?
         fail ArgumentError, "Missing the required parameter 'profile_upsert_query' when calling ProfilesApi.create_or_update_profile"
       end
+      allowable_values = ["subscriptions", "predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/profile-import'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -427,6 +434,7 @@ module KlaviyoAPI
     # Create a new profile.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @return [Hash<String, Object>]
     def create_profile(profile_create_query, opts = {})
       data, _status_code, _headers = create_profile_with_http_info(profile_create_query, opts)
@@ -437,6 +445,7 @@ module KlaviyoAPI
     # Create a new profile.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_profile_with_http_info(profile_create_query, opts = {})
       if @api_client.config.debugging
@@ -446,11 +455,16 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && profile_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'profile_create_query' when calling ProfilesApi.create_profile"
       end
+      allowable_values = ["subscriptions", "predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/profiles'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -1498,7 +1512,7 @@ module KlaviyoAPI
     alias get_profile_lists_with_http_info get_lists_for_profile_with_http_info
 
     # Get Profile
-    # Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:read`
+    # Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -1513,7 +1527,7 @@ module KlaviyoAPI
     end
 
     # Get Profile
-    # Get the profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
+    # Get the profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;list&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;segment&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;include&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -2202,6 +2216,7 @@ module KlaviyoAPI
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @return [Hash<String, Object>]
     def update_profile(id, profile_partial_update_query, opts = {})
       data, _status_code, _headers = update_profile_with_http_info(id, profile_partial_update_query, opts)
@@ -2213,6 +2228,7 @@ module KlaviyoAPI
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_profile_with_http_info(id, profile_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -2226,11 +2242,16 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && profile_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'profile_partial_update_query' when calling ProfilesApi.update_profile"
       end
+      allowable_values = ["subscriptions", "predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/profiles/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}

@@ -17,10 +17,13 @@ module KlaviyoAPI
   class SMSSubscriptionParameters
     attr_accessor :marketing
 
+    attr_accessor :transactional
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'marketing' => :'marketing'
+        :'marketing' => :'marketing',
+        :'transactional' => :'transactional'
       }
     end
 
@@ -32,7 +35,8 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'marketing' => :'SubscriptionParameters'
+        :'marketing' => :'SubscriptionParameters',
+        :'transactional' => :'SubscriptionParameters'
       }
     end
 
@@ -60,6 +64,10 @@ module KlaviyoAPI
       if attributes.key?(:'marketing')
         self.marketing = attributes[:'marketing']
       end
+
+      if attributes.key?(:'transactional')
+        self.transactional = attributes[:'transactional']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -80,7 +88,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          marketing == o.marketing
+          marketing == o.marketing &&
+          transactional == o.transactional
     end
 
     # @see the `==` method
@@ -92,7 +101,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [marketing].hash
+      [marketing, transactional].hash
     end
 
     # Builds the object from hash

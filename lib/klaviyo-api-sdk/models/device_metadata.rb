@@ -206,7 +206,7 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      klaviyo_sdk_validator = EnumAttributeValidator.new('String', ["android", "react_native", "swift"])
+      klaviyo_sdk_validator = EnumAttributeValidator.new('String', ["android", "flutter_community", "react_native", "swift"])
       return false unless klaviyo_sdk_validator.valid?(@klaviyo_sdk)
       os_name_validator = EnumAttributeValidator.new('String', ["android", "ios", "ipados", "macos", "tvos"])
       return false unless os_name_validator.valid?(@os_name)
@@ -218,7 +218,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] klaviyo_sdk Object to be assigned
     def klaviyo_sdk=(klaviyo_sdk)
-      validator = EnumAttributeValidator.new('String', ["android", "react_native", "swift"])
+      validator = EnumAttributeValidator.new('String', ["android", "flutter_community", "react_native", "swift"])
       unless validator.valid?(klaviyo_sdk)
         fail ArgumentError, "invalid value for \"klaviyo_sdk\", must be one of #{validator.allowable_values}."
       end
