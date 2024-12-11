@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 11.0.0
+- SDK version: 11.1.0
 - API revision: 2024-10-15
 
 ## Helpful Resources
@@ -110,13 +110,13 @@ gem build klaviyo-api-sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo-api-sdk-11.0.0.gem
+gem install ./klaviyo-api-sdk-11.1.0.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo-api-sdk', '~> 11.0.0'
+    gem 'klaviyo-api-sdk', '~> 11.1.0'
 
 To install directly from rubygems:
 
@@ -171,6 +171,18 @@ begin
   result = KlaviyoAPI::Catalogs.get_catalog_items(opts)
 end
 ```
+
+## OAuth Authentication
+
+To use OAuth Authentication, pass an access token instead of an API key:
+
+```ruby
+KlaviyoAPI.configure do |config|
+  config.access_token = 'your-oauth-access-token'
+end
+```
+
+See our [guide](https://developers.klaviyo.com/en/docs/set_up_oauth) for an overview on setting up an OAuth integration.
 
 ## Error Handling
 
@@ -679,6 +691,10 @@ KlaviyoAPI::Campaigns.get_campaign_send_job(id, opts)
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_tags(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Campaigns.get_tags_for_campaign(id, opts)
+```
 
 
 
@@ -703,6 +719,10 @@ KlaviyoAPI::Campaigns.get_message_ids_for_campaign(id)
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_relationships_campaign_messages(id)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Campaigns.get_campaign_relationships_messages(id)
+```
 
 
 
@@ -716,6 +736,10 @@ KlaviyoAPI::Campaigns.get_messages_for_campaign(id, opts)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Campaigns.get_campaign_campaign_messages(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Campaigns.get_campaign_messages(id, opts)
 ```
 
 
@@ -816,18 +840,22 @@ KlaviyoAPI::Campaigns.update_campaign_message(id, body)
 ## Catalogs
 
 
-#### [Add Category to Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/add_category_to_catalog_item)
+#### [Add Categories to Catalog Item](https://developers.klaviyo.com/en/v2024-10-15/reference/add_categories_to_catalog_item)
 
+```ruby
+KlaviyoAPI::Catalogs.add_categories_to_catalog_item(id, body)
+```
+##### Method alias:
 ```ruby
 KlaviyoAPI::Catalogs.add_category_to_catalog_item(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Catalogs.create_catalog_item_relationships_categories(id, body)
+KlaviyoAPI::Catalogs.create_catalog_item_relationships_category(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Catalogs.create_catalog_item_relationships_category(id, body)
+KlaviyoAPI::Catalogs.create_catalog_item_relationships_categories(id, body)
 ```
 
 
@@ -841,11 +869,11 @@ KlaviyoAPI::Catalogs.add_items_to_catalog_category(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Catalogs.create_catalog_category_relationships_items(id, body)
+KlaviyoAPI::Catalogs.create_catalog_category_relationships_item(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Catalogs.create_catalog_category_relationships_item(id, body)
+KlaviyoAPI::Catalogs.create_catalog_category_relationships_items(id, body)
 ```
 
 
@@ -1666,20 +1694,6 @@ KlaviyoAPI::Coupons.get_coupon_code_bulk_create_job(job_id, opts)
 
 
 
-#### [Get Code IDs for Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_code_ids_for_coupon)
-
-```ruby
-KlaviyoAPI::Coupons.get_code_ids_for_coupon(id, opts)
-```
-##### Method alias:
-```ruby
-KlaviyoAPI::Coupons.get_coupon_code_relationships_coupon(id, opts)
-```
-
-
-
-
-
 #### [Get Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon)
 
 ```ruby
@@ -1700,6 +1714,28 @@ KlaviyoAPI::Coupons.get_coupon_code(id, opts)
 
 
 
+#### [Get Coupon Code IDs for Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_code_ids_for_coupon)
+
+```ruby
+KlaviyoAPI::Coupons.get_coupon_code_ids_for_coupon(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Coupons.get_coupon_code_relationships_coupon(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Coupons.get_code_ids_for_coupon(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Coupons.get_coupon_relationships_codes(id, opts)
+```
+
+
+
+
+
 #### [Get Coupon Codes](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes)
 
 ```ruby
@@ -1710,7 +1746,7 @@ KlaviyoAPI::Coupons.get_coupon_codes(opts)
 
 
 
-#### [Get Coupon Codes For Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes_for_coupon)
+#### [Get Coupon Codes for Coupon](https://developers.klaviyo.com/en/v2024-10-15/reference/get_coupon_codes_for_coupon)
 
 ```ruby
 KlaviyoAPI::Coupons.get_coupon_codes_for_coupon(id, opts)
@@ -1718,6 +1754,10 @@ KlaviyoAPI::Coupons.get_coupon_codes_for_coupon(id, opts)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Coupons.get_coupon_coupon_codes(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Coupons.get_codes_for_coupon(id, opts)
 ```
 
 
@@ -1838,30 +1878,24 @@ KlaviyoAPI::Events.get_event(id, opts)
 
 
 
-#### [Get Event Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_event_metric)
-
-```ruby
-KlaviyoAPI::Events.get_event_metric(id, opts)
-```
-
-
-
-
-
-#### [Get Event Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/get_event_profile)
-
-```ruby
-KlaviyoAPI::Events.get_event_profile(id, opts)
-```
-
-
-
-
-
 #### [Get Events](https://developers.klaviyo.com/en/v2024-10-15/reference/get_events)
 
 ```ruby
 KlaviyoAPI::Events.get_events(opts)
+```
+
+
+
+
+
+#### [Get Metric for Event](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_for_event)
+
+```ruby
+KlaviyoAPI::Events.get_metric_for_event(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Events.get_event_metric(id, opts)
 ```
 
 
@@ -1876,6 +1910,20 @@ KlaviyoAPI::Events.get_metric_id_for_event(id)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Events.get_event_relationships_metric(id)
+```
+
+
+
+
+
+#### [Get Profile for Event](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_for_event)
+
+```ruby
+KlaviyoAPI::Events.get_profile_for_event(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Events.get_event_profile(id, opts)
 ```
 
 
@@ -1910,6 +1958,20 @@ KlaviyoAPI::Flows.delete_flow(id)
 
 
 
+#### [Get Action for Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_action_for_flow_message)
+
+```ruby
+KlaviyoAPI::Flows.get_action_for_flow_message(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Flows.get_flow_message_action(id, opts)
+```
+
+
+
+
+
 #### [Get Action ID for Flow Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_action_id_for_flow_message)
 
 ```ruby
@@ -1933,6 +1995,10 @@ KlaviyoAPI::Flows.get_action_ids_for_flow(id, opts)
 ```ruby
 KlaviyoAPI::Flows.get_flow_relationships_flow_actions(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Flows.get_flow_relationships_actions(id, opts)
+```
 
 
 
@@ -1946,6 +2012,10 @@ KlaviyoAPI::Flows.get_actions_for_flow(id, opts)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Flows.get_flow_flow_actions(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Flows.get_flow_actions(id, opts)
 ```
 
 
@@ -1972,8 +2042,12 @@ KlaviyoAPI::Flows.get_flow_action(id, opts)
 
 
 
-#### [Get Flow For Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_action_flow)
+#### [Get Flow for Flow Action](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_for_flow_action)
 
+```ruby
+KlaviyoAPI::Flows.get_flow_for_flow_action(id, opts)
+```
+##### Method alias:
 ```ruby
 KlaviyoAPI::Flows.get_flow_action_flow(id, opts)
 ```
@@ -2000,26 +2074,6 @@ KlaviyoAPI::Flows.get_flow_action_relationships_flow(id)
 
 ```ruby
 KlaviyoAPI::Flows.get_flow_message(id, opts)
-```
-
-
-
-
-
-#### [Get Flow Action For Message](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_message_action)
-
-```ruby
-KlaviyoAPI::Flows.get_flow_message_action(id, opts)
-```
-
-
-
-
-
-#### [Get Flow Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flow_tags)
-
-```ruby
-KlaviyoAPI::Flows.get_flow_tags(id, opts)
 ```
 
 
@@ -2072,6 +2126,20 @@ KlaviyoAPI::Flows.get_tag_ids_for_flow(id)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Flows.get_flow_relationships_tags(id)
+```
+
+
+
+
+
+#### [Get Tags for Flow](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tags_for_flow)
+
+```ruby
+KlaviyoAPI::Flows.get_tags_for_flow(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Flows.get_flow_tags(id, opts)
 ```
 
 
@@ -2187,6 +2255,10 @@ KlaviyoAPI::Forms.get_version_ids_for_form(id)
 ```ruby
 KlaviyoAPI::Forms.get_form_relationships_form_versions(id)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Forms.get_form_relationships_versions(id)
+```
 
 
 
@@ -2200,6 +2272,10 @@ KlaviyoAPI::Forms.get_versions_for_form(id, opts)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Forms.get_form_form_versions(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Forms.get_form_versions(id, opts)
 ```
 
 
@@ -2272,24 +2348,32 @@ KlaviyoAPI::Images.create_image(body)
 ## Lists
 
 
-#### [Create List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list)
+#### [Add Profiles to List](https://developers.klaviyo.com/en/v2024-10-15/reference/add_profiles_to_list)
 
 ```ruby
-KlaviyoAPI::Lists.create_list(body)
+KlaviyoAPI::Lists.add_profiles_to_list(id, body)
 ```
-
-
-
-
-
-#### [Add Profile To List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list_relationships)
-
+##### Method alias:
 ```ruby
 KlaviyoAPI::Lists.create_list_relationships(id, body)
 ```
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Lists.create_list_relationships_profile(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.create_list_relationships_profiles(id, body)
+```
+
+
+
+
+
+#### [Create List](https://developers.klaviyo.com/en/v2024-10-15/reference/create_list)
+
+```ruby
+KlaviyoAPI::Lists.create_list(body)
 ```
 
 
@@ -2306,14 +2390,36 @@ KlaviyoAPI::Lists.delete_list(id)
 
 
 
-#### [Remove Profile From List](https://developers.klaviyo.com/en/v2024-10-15/reference/delete_list_relationships)
+#### [Get Flows Triggered by List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flows_triggered_by_list)
 
 ```ruby
-KlaviyoAPI::Lists.delete_list_relationships(id, body)
+KlaviyoAPI::Lists.get_flows_triggered_by_list(id, opts)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Lists.delete_list_relationships_profiles(id, body)
+KlaviyoAPI::Lists.get_flow_triggers_for_list(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.get_list_flow_triggers(id, opts)
+```
+
+
+
+
+
+#### [Get IDs for Flows Triggered by List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_ids_for_flows_triggered_by_list)
+
+```ruby
+KlaviyoAPI::Lists.get_ids_for_flows_triggered_by_list(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.get_flow_trigger_ids_for_list(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.get_list_relationships_flow_triggers(id)
 ```
 
 
@@ -2324,46 +2430,6 @@ KlaviyoAPI::Lists.delete_list_relationships_profiles(id, body)
 
 ```ruby
 KlaviyoAPI::Lists.get_list(id, opts)
-```
-
-
-
-
-
-#### [Get List Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_flow_triggers)
-
-```ruby
-KlaviyoAPI::Lists.get_list_flow_triggers(id, opts)
-```
-
-
-
-
-
-#### [Get List Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_profiles)
-
-```ruby
-KlaviyoAPI::Lists.get_list_profiles(id, opts)
-```
-
-
-
-
-
-#### [Get List Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_relationships_flow_triggers)
-
-```ruby
-KlaviyoAPI::Lists.get_list_relationships_flow_triggers(id)
-```
-
-
-
-
-
-#### [Get List Tags](https://developers.klaviyo.com/en/v2024-10-15/reference/get_list_tags)
-
-```ruby
-KlaviyoAPI::Lists.get_list_tags(id, opts)
 ```
 
 
@@ -2394,6 +2460,20 @@ KlaviyoAPI::Lists.get_list_relationships_profiles(id, opts)
 
 
 
+#### [Get Profiles for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profiles_for_list)
+
+```ruby
+KlaviyoAPI::Lists.get_profiles_for_list(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.get_list_profiles(id, opts)
+```
+
+
+
+
+
 #### [Get Tag IDs for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tag_ids_for_list)
 
 ```ruby
@@ -2402,6 +2482,38 @@ KlaviyoAPI::Lists.get_tag_ids_for_list(id)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Lists.get_list_relationships_tags(id)
+```
+
+
+
+
+
+#### [Get Tags for List](https://developers.klaviyo.com/en/v2024-10-15/reference/get_tags_for_list)
+
+```ruby
+KlaviyoAPI::Lists.get_tags_for_list(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.get_list_tags(id, opts)
+```
+
+
+
+
+
+#### [Remove Profiles from List](https://developers.klaviyo.com/en/v2024-10-15/reference/remove_profiles_from_list)
+
+```ruby
+KlaviyoAPI::Lists.remove_profiles_from_list(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.delete_list_relationships(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Lists.delete_list_relationships_profiles(id, body)
 ```
 
 
@@ -2422,20 +2534,46 @@ KlaviyoAPI::Lists.update_list(id, body)
 ## Metrics
 
 
-#### [Get Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric)
+#### [Get Flows Triggered by Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flows_triggered_by_metric)
 
 ```ruby
-KlaviyoAPI::Metrics.get_metric(id, opts)
+KlaviyoAPI::Metrics.get_flows_triggered_by_metric(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Metrics.get_flow_triggers_for_metric(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Metrics.get_metric_flow_triggers(id, opts)
 ```
 
 
 
 
 
-#### [Get Metric Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_flow_triggers)
+#### [Get IDs for Flows Triggered by Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_ids_for_flows_triggered_by_metric)
 
 ```ruby
-KlaviyoAPI::Metrics.get_metric_flow_triggers(id, opts)
+KlaviyoAPI::Metrics.get_ids_for_flows_triggered_by_metric(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Metrics.get_flow_trigger_ids_for_metric(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Metrics.get_metric_relationships_flow_triggers(id)
+```
+
+
+
+
+
+#### [Get Metric](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric)
+
+```ruby
+KlaviyoAPI::Metrics.get_metric(id, opts)
 ```
 
 
@@ -2480,16 +2618,6 @@ KlaviyoAPI::Metrics.get_metric_property(id, opts)
 
 
 
-#### [Get Metric Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metric_relationships_flow_triggers)
-
-```ruby
-KlaviyoAPI::Metrics.get_metric_relationships_flow_triggers(id)
-```
-
-
-
-
-
 #### [Get Metrics](https://developers.klaviyo.com/en/v2024-10-15/reference/get_metrics)
 
 ```ruby
@@ -2509,6 +2637,10 @@ KlaviyoAPI::Metrics.get_properties_for_metric(id, opts)
 ```ruby
 KlaviyoAPI::Metrics.get_metric_metric_properties(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Metrics.get_metric_properties(id, opts)
+```
 
 
 
@@ -2522,6 +2654,10 @@ KlaviyoAPI::Metrics.get_property_ids_for_metric(id)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Metrics.get_metric_relationships_metric_properties(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Metrics.get_metric_relationships_properties(id)
 ```
 
 
@@ -2544,6 +2680,24 @@ KlaviyoAPI::Metrics.create_metric_aggregate(body)
 
 
 ## Profiles
+
+
+#### [Bulk Import Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_import_profiles)
+
+```ruby
+KlaviyoAPI::Profiles.bulk_import_profiles(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.spawn_bulk_profile_import_job(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.create_profile_bulk_import_job(body)
+```
+
+
+
 
 
 #### [Bulk Subscribe Profiles](https://developers.klaviyo.com/en/v2024-10-15/reference/bulk_subscribe_profiles)
@@ -2755,6 +2909,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_import_errors(id, opts)
 ```
 ##### Method alias:
 ```ruby
+KlaviyoAPI::Profiles.get_import_errors_for_profile_bulk_import_job(id, opts)
+```
+##### Method alias:
+```ruby
 KlaviyoAPI::Profiles.get_profile_bulk_import_job_import_errors(id, opts)
 ```
 
@@ -2773,6 +2931,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_lists(id, opts)
 ```
 ##### Method alias:
 ```ruby
+KlaviyoAPI::Profiles.get_lists_for_profile_bulk_import_job(id, opts)
+```
+##### Method alias:
+```ruby
 KlaviyoAPI::Profiles.get_profile_bulk_import_job_lists(id, opts)
 ```
 
@@ -2788,6 +2950,10 @@ KlaviyoAPI::Profiles.get_list_ids_for_bulk_import_profiles_job(id)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Profiles.get_bulk_profile_import_job_relationships_lists(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_list_ids_for_profile_bulk_import_job(id)
 ```
 ##### Method alias:
 ```ruby
@@ -2849,6 +3015,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_relationships_profiles(id, opts
 ```ruby
 KlaviyoAPI::Profiles.get_profile_bulk_import_job_relationships_profiles(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profile_ids_for_profile_bulk_import_job(id, opts)
+```
 
 
 
@@ -2876,6 +3046,10 @@ KlaviyoAPI::Profiles.get_bulk_profile_import_job_profiles(id, opts)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Profiles.get_profile_bulk_import_job_profiles(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Profiles.get_profiles_for_profile_bulk_import_job(id, opts)
 ```
 
 
@@ -2924,24 +3098,6 @@ KlaviyoAPI::Profiles.create_profile_merge(body)
 
 
 
-#### [Spawn Bulk Profile Import Job](https://developers.klaviyo.com/en/v2024-10-15/reference/spawn_bulk_profile_import_job)
-
-```ruby
-KlaviyoAPI::Profiles.spawn_bulk_profile_import_job(body)
-```
-##### Method alias:
-```ruby
-KlaviyoAPI::Profiles.bulk_import_profiles(body)
-```
-##### Method alias:
-```ruby
-KlaviyoAPI::Profiles.create_profile_bulk_import_job(body)
-```
-
-
-
-
-
 #### [Update Profile](https://developers.klaviyo.com/en/v2024-10-15/reference/update_profile)
 
 ```ruby
@@ -2965,6 +3121,10 @@ KlaviyoAPI::Reporting.query_campaign_values(body, opts)
 ```ruby
 KlaviyoAPI::Reporting.create_campaign_value_report(body, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_campaign_values_report(body, opts)
+```
 
 
 
@@ -2978,6 +3138,10 @@ KlaviyoAPI::Reporting.query_flow_series(body, opts)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Reporting.create_flow_sery_report(body, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_flow_series_report(body, opts)
 ```
 
 
@@ -2993,6 +3157,10 @@ KlaviyoAPI::Reporting.query_flow_values(body, opts)
 ```ruby
 KlaviyoAPI::Reporting.create_flow_value_report(body, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_flow_values_report(body, opts)
+```
 
 
 
@@ -3006,6 +3174,10 @@ KlaviyoAPI::Reporting.query_form_series(body)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Reporting.create_form_sery_report(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_form_series_report(body)
 ```
 
 
@@ -3021,6 +3193,10 @@ KlaviyoAPI::Reporting.query_form_values(body)
 ```ruby
 KlaviyoAPI::Reporting.create_form_value_report(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_form_values_report(body)
+```
 
 
 
@@ -3035,6 +3211,10 @@ KlaviyoAPI::Reporting.query_segment_series(body)
 ```ruby
 KlaviyoAPI::Reporting.create_segment_sery_report(body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_segment_series_report(body)
+```
 
 
 
@@ -3048,6 +3228,10 @@ KlaviyoAPI::Reporting.query_segment_values(body)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Reporting.create_segment_value_report(body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Reporting.create_segment_values_report(body)
 ```
 
 
@@ -3102,6 +3286,42 @@ KlaviyoAPI::Segments.delete_segment(id)
 
 
 
+#### [Get Flows Triggered by Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_flows_triggered_by_segment)
+
+```ruby
+KlaviyoAPI::Segments.get_flows_triggered_by_segment(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Segments.get_flow_triggers_for_segment(id, opts)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Segments.get_segment_flow_triggers(id, opts)
+```
+
+
+
+
+
+#### [Get IDs for Flows Triggered by Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_ids_for_flows_triggered_by_segment)
+
+```ruby
+KlaviyoAPI::Segments.get_ids_for_flows_triggered_by_segment(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Segments.get_flow_trigger_ids_for_segment(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Segments.get_segment_relationships_flow_triggers(id)
+```
+
+
+
+
+
 #### [Get Profile IDs for Segment](https://developers.klaviyo.com/en/v2024-10-15/reference/get_profile_ids_for_segment)
 
 ```ruby
@@ -3134,26 +3354,6 @@ KlaviyoAPI::Segments.get_segment_profiles(id, opts)
 
 ```ruby
 KlaviyoAPI::Segments.get_segment(id, opts)
-```
-
-
-
-
-
-#### [Get Segment Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_flow_triggers)
-
-```ruby
-KlaviyoAPI::Segments.get_segment_flow_triggers(id, opts)
-```
-
-
-
-
-
-#### [Get Segment Relationships Flow Triggers](https://developers.klaviyo.com/en/v2024-10-15/reference/get_segment_relationships_flow_triggers)
-
-```ruby
-KlaviyoAPI::Segments.get_segment_relationships_flow_triggers(id)
 ```
 
 
@@ -3337,6 +3537,10 @@ KlaviyoAPI::Tags.get_tag_group_for_tag(id, opts)
 ```ruby
 KlaviyoAPI::Tags.get_tag_tag_group(id, opts)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.get_group_for_tag(id, opts)
+```
 
 
 
@@ -3350,6 +3554,14 @@ KlaviyoAPI::Tags.get_tag_group_id_for_tag(id)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Tags.get_tag_relationships_tag_group(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.get_group_id_for_tag(id)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.get_tag_relationships_group(id)
 ```
 
 
@@ -3413,6 +3625,10 @@ KlaviyoAPI::Tags.remove_tag_from_campaigns(id, body)
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_campaigns(id, body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.remove_campaigns_from_tag(id, body)
+```
 
 
 
@@ -3426,6 +3642,10 @@ KlaviyoAPI::Tags.remove_tag_from_flows(id, body)
 ##### Method alias:
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_flows(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.remove_flows_from_tag(id, body)
 ```
 
 
@@ -3441,6 +3661,10 @@ KlaviyoAPI::Tags.remove_tag_from_lists(id, body)
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_lists(id, body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.remove_lists_from_tag(id, body)
+```
 
 
 
@@ -3455,6 +3679,10 @@ KlaviyoAPI::Tags.remove_tag_from_segments(id, body)
 ```ruby
 KlaviyoAPI::Tags.delete_tag_relationships_segments(id, body)
 ```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.remove_segments_from_tag(id, body)
+```
 
 
 
@@ -3467,11 +3695,15 @@ KlaviyoAPI::Tags.tag_campaigns(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_campaigns(id, body)
+KlaviyoAPI::Tags.create_tag_relationships_campaign(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_campaign(id, body)
+KlaviyoAPI::Tags.add_campaigns_to_tag(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_campaigns(id, body)
 ```
 
 
@@ -3485,11 +3717,15 @@ KlaviyoAPI::Tags.tag_flows(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_flows(id, body)
+KlaviyoAPI::Tags.create_tag_relationships_flow(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_flow(id, body)
+KlaviyoAPI::Tags.add_flows_to_tag(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_flows(id, body)
 ```
 
 
@@ -3503,11 +3739,15 @@ KlaviyoAPI::Tags.tag_lists(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_lists(id, body)
+KlaviyoAPI::Tags.create_tag_relationships_list(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_list(id, body)
+KlaviyoAPI::Tags.add_lists_to_tag(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_lists(id, body)
 ```
 
 
@@ -3521,11 +3761,15 @@ KlaviyoAPI::Tags.tag_segments(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_segments(id, body)
+KlaviyoAPI::Tags.create_tag_relationships_segment(id, body)
 ```
 ##### Method alias:
 ```ruby
-KlaviyoAPI::Tags.create_tag_relationships_segment(id, body)
+KlaviyoAPI::Tags.add_segments_to_tag(id, body)
+```
+##### Method alias:
+```ruby
+KlaviyoAPI::Tags.create_tag_relationships_segments(id, body)
 ```
 
 

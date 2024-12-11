@@ -33,6 +33,9 @@ module KlaviyoAPI
     # alias of `query_campaign_values`
     alias create_campaign_value_report query_campaign_values
 
+    # alias of `query_campaign_values`
+    alias create_campaign_values_report query_campaign_values
+
     # Query Campaign Values
     # Returns the requested campaign analytics values data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;campaigns:read&#x60;
     # @param campaign_values_request_dto [CampaignValuesRequestDTO] 
@@ -76,7 +79,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ReportingApi.query_campaign_values",
@@ -98,6 +101,9 @@ module KlaviyoAPI
     # alias of `query_campaign_values_with_http_info`
     alias create_campaign_value_report_with_http_info query_campaign_values_with_http_info
 
+    # alias of `query_campaign_values_with_http_info`
+    alias create_campaign_values_report_with_http_info query_campaign_values_with_http_info
+
     # Query Flow Series
     # Returns the requested flow analytics series data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
     # @param flow_series_request_dto [FlowSeriesRequestDTO] 
@@ -111,6 +117,9 @@ module KlaviyoAPI
 
     # alias of `query_flow_series`
     alias create_flow_sery_report query_flow_series
+
+    # alias of `query_flow_series`
+    alias create_flow_series_report query_flow_series
 
     # Query Flow Series
     # Returns the requested flow analytics series data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;flows:read&#x60;
@@ -155,7 +164,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ReportingApi.query_flow_series",
@@ -177,6 +186,9 @@ module KlaviyoAPI
     # alias of `query_flow_series_with_http_info`
     alias create_flow_sery_report_with_http_info query_flow_series_with_http_info
 
+    # alias of `query_flow_series_with_http_info`
+    alias create_flow_series_report_with_http_info query_flow_series_with_http_info
+
     # Query Flow Values
     # Returns the requested flow analytics values data<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `flows:read`
     # @param flow_values_request_dto [FlowValuesRequestDTO] 
@@ -190,6 +202,9 @@ module KlaviyoAPI
 
     # alias of `query_flow_values`
     alias create_flow_value_report query_flow_values
+
+    # alias of `query_flow_values`
+    alias create_flow_values_report query_flow_values
 
     # Query Flow Values
     # Returns the requested flow analytics values data&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;flows:read&#x60;
@@ -234,7 +249,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ReportingApi.query_flow_values",
@@ -256,6 +271,9 @@ module KlaviyoAPI
     # alias of `query_flow_values_with_http_info`
     alias create_flow_value_report_with_http_info query_flow_values_with_http_info
 
+    # alias of `query_flow_values_with_http_info`
+    alias create_flow_values_report_with_http_info query_flow_values_with_http_info
+
     # Query Form Series
     # Returns the requested form analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
     # @param form_series_request_dto [FormSeriesRequestDTO] 
@@ -268,6 +286,9 @@ module KlaviyoAPI
 
     # alias of `query_form_series`
     alias create_form_sery_report query_form_series
+
+    # alias of `query_form_series`
+    alias create_form_series_report query_form_series
 
     # Query Form Series
     # Returns the requested form analytics series data.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;forms:read&#x60;
@@ -310,7 +331,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ReportingApi.query_form_series",
@@ -332,6 +353,9 @@ module KlaviyoAPI
     # alias of `query_form_series_with_http_info`
     alias create_form_sery_report_with_http_info query_form_series_with_http_info
 
+    # alias of `query_form_series_with_http_info`
+    alias create_form_series_report_with_http_info query_form_series_with_http_info
+
     # Query Form Values
     # Returns the requested form analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `forms:read`
     # @param form_values_request_dto [FormValuesRequestDTO] 
@@ -344,6 +368,9 @@ module KlaviyoAPI
 
     # alias of `query_form_values`
     alias create_form_value_report query_form_values
+
+    # alias of `query_form_values`
+    alias create_form_values_report query_form_values
 
     # Query Form Values
     # Returns the requested form analytics values data.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;forms:read&#x60;
@@ -386,7 +413,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ReportingApi.query_form_values",
@@ -408,6 +435,9 @@ module KlaviyoAPI
     # alias of `query_form_values_with_http_info`
     alias create_form_value_report_with_http_info query_form_values_with_http_info
 
+    # alias of `query_form_values_with_http_info`
+    alias create_form_values_report_with_http_info query_form_values_with_http_info
+
     # Query Segment Series
     # Returns the requested segment analytics series data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
     # @param segment_series_request_dto [SegmentSeriesRequestDTO] 
@@ -420,6 +450,9 @@ module KlaviyoAPI
 
     # alias of `query_segment_series`
     alias create_segment_sery_report query_segment_series
+
+    # alias of `query_segment_series`
+    alias create_segment_series_report query_segment_series
 
     # Query Segment Series
     # Returns the requested segment analytics series data.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;segments:read&#x60;
@@ -462,7 +495,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ReportingApi.query_segment_series",
@@ -484,6 +517,9 @@ module KlaviyoAPI
     # alias of `query_segment_series_with_http_info`
     alias create_segment_sery_report_with_http_info query_segment_series_with_http_info
 
+    # alias of `query_segment_series_with_http_info`
+    alias create_segment_series_report_with_http_info query_segment_series_with_http_info
+
     # Query Segment Values
     # Returns the requested segment analytics values data.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `2/m`<br>Daily: `225/d`  **Scopes:** `segments:read`
     # @param segment_values_request_dto [SegmentValuesRequestDTO] 
@@ -496,6 +532,9 @@ module KlaviyoAPI
 
     # alias of `query_segment_values`
     alias create_segment_value_report query_segment_values
+
+    # alias of `query_segment_values`
+    alias create_segment_values_report query_segment_values
 
     # Query Segment Values
     # Returns the requested segment analytics values data.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;2/m&#x60;&lt;br&gt;Daily: &#x60;225/d&#x60;  **Scopes:** &#x60;segments:read&#x60;
@@ -538,7 +577,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ReportingApi.query_segment_values",
@@ -559,5 +598,8 @@ module KlaviyoAPI
 
     # alias of `query_segment_values_with_http_info`
     alias create_segment_value_report_with_http_info query_segment_values_with_http_info
+
+    # alias of `query_segment_values_with_http_info`
+    alias create_segment_values_report_with_http_info query_segment_values_with_http_info
   end
 end

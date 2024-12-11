@@ -86,7 +86,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FormsApi.get_form",
@@ -161,7 +161,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FormsApi.get_form_for_form_version",
@@ -232,7 +232,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FormsApi.get_form_id_for_form_version",
@@ -307,7 +307,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FormsApi.get_form_version",
@@ -397,7 +397,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FormsApi.get_forms",
@@ -428,6 +428,9 @@ module KlaviyoAPI
 
     # alias of `get_version_ids_for_form`
     alias get_form_relationships_form_versions get_version_ids_for_form
+
+    # alias of `get_version_ids_for_form`
+    alias get_form_relationships_versions get_version_ids_for_form
 
     # Get Version IDs for Form
     # Get the IDs of the form versions for the given form.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;
@@ -465,7 +468,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FormsApi.get_version_ids_for_form",
@@ -487,6 +490,9 @@ module KlaviyoAPI
     # alias of `get_version_ids_for_form_with_http_info`
     alias get_form_relationships_form_versions_with_http_info get_version_ids_for_form_with_http_info
 
+    # alias of `get_version_ids_for_form_with_http_info`
+    alias get_form_relationships_versions_with_http_info get_version_ids_for_form_with_http_info
+
     # Get Versions for Form
     # Get the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`
     # @param id [String] The ID of the form
@@ -504,6 +510,9 @@ module KlaviyoAPI
 
     # alias of `get_versions_for_form`
     alias get_form_form_versions get_versions_for_form
+
+    # alias of `get_versions_for_form`
+    alias get_form_versions get_versions_for_form
 
     # Get Versions for Form
     # Get the form versions for the given form.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;
@@ -563,7 +572,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FormsApi.get_versions_for_form",
@@ -584,5 +593,8 @@ module KlaviyoAPI
 
     # alias of `get_versions_for_form_with_http_info`
     alias get_form_form_versions_with_http_info get_versions_for_form_with_http_info
+
+    # alias of `get_versions_for_form_with_http_info`
+    alias get_form_versions_with_http_info get_versions_for_form_with_http_info
   end
 end

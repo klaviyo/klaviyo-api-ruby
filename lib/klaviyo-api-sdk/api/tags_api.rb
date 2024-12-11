@@ -70,7 +70,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.create_tag",
@@ -140,7 +140,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.create_tag_group",
@@ -205,7 +205,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.delete_tag",
@@ -270,7 +270,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.delete_tag_group",
@@ -338,7 +338,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_campaign_ids_for_tag",
@@ -409,7 +409,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_flow_ids_for_tag",
@@ -480,7 +480,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_list_ids_for_tag",
@@ -551,7 +551,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_segment_ids_for_tag",
@@ -640,7 +640,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tag",
@@ -712,7 +712,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tag_group",
@@ -744,6 +744,9 @@ module KlaviyoAPI
 
     # alias of `get_tag_group_for_tag`
     alias get_tag_tag_group get_tag_group_for_tag
+
+    # alias of `get_tag_group_for_tag`
+    alias get_group_for_tag get_tag_group_for_tag
 
     # Get Tag Group for Tag
     # Returns the tag group resource for a given tag ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
@@ -787,7 +790,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tag_group_for_tag",
@@ -809,6 +812,9 @@ module KlaviyoAPI
     # alias of `get_tag_group_for_tag_with_http_info`
     alias get_tag_tag_group_with_http_info get_tag_group_for_tag_with_http_info
 
+    # alias of `get_tag_group_for_tag_with_http_info`
+    alias get_group_for_tag_with_http_info get_tag_group_for_tag_with_http_info
+
     # Get Tag Group ID for Tag
     # Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
     # @param id [String] The Tag ID
@@ -821,6 +827,12 @@ module KlaviyoAPI
 
     # alias of `get_tag_group_id_for_tag`
     alias get_tag_relationships_tag_group get_tag_group_id_for_tag
+
+    # alias of `get_tag_group_id_for_tag`
+    alias get_group_id_for_tag get_tag_group_id_for_tag
+
+    # alias of `get_tag_group_id_for_tag`
+    alias get_tag_relationships_group get_tag_group_id_for_tag
 
     # Get Tag Group ID for Tag
     # Returns the id of the tag group related to the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
@@ -858,7 +870,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tag_group_id_for_tag",
@@ -879,6 +891,12 @@ module KlaviyoAPI
 
     # alias of `get_tag_group_id_for_tag_with_http_info`
     alias get_tag_relationships_tag_group_with_http_info get_tag_group_id_for_tag_with_http_info
+
+    # alias of `get_tag_group_id_for_tag_with_http_info`
+    alias get_group_id_for_tag_with_http_info get_tag_group_id_for_tag_with_http_info
+
+    # alias of `get_tag_group_id_for_tag_with_http_info`
+    alias get_tag_relationships_group_with_http_info get_tag_group_id_for_tag_with_http_info
 
     # Get Tag Groups
     # List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
@@ -940,7 +958,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tag_groups",
@@ -1008,7 +1026,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tag_ids_for_tag_group",
@@ -1104,7 +1122,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tags",
@@ -1179,7 +1197,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.get_tags_for_tag_group",
@@ -1214,6 +1232,9 @@ module KlaviyoAPI
 
     # alias of `remove_tag_from_campaigns`
     alias delete_tag_relationships_campaigns remove_tag_from_campaigns
+
+    # alias of `remove_tag_from_campaigns`
+    alias remove_campaigns_from_tag remove_tag_from_campaigns
 
     # Remove Tag from Campaigns
     # Remove a tag&#39;s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60; &#x60;tags:write&#x60;
@@ -1261,7 +1282,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.remove_tag_from_campaigns",
@@ -1283,6 +1304,9 @@ module KlaviyoAPI
     # alias of `remove_tag_from_campaigns_with_http_info`
     alias delete_tag_relationships_campaigns_with_http_info remove_tag_from_campaigns_with_http_info
 
+    # alias of `remove_tag_from_campaigns_with_http_info`
+    alias remove_campaigns_from_tag_with_http_info remove_tag_from_campaigns_with_http_info
+
     # Remove Tag from Flows
     # Remove a tag's association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
     # @param id [String] The Tag ID
@@ -1296,6 +1320,9 @@ module KlaviyoAPI
 
     # alias of `remove_tag_from_flows`
     alias delete_tag_relationships_flows remove_tag_from_flows
+
+    # alias of `remove_tag_from_flows`
+    alias remove_flows_from_tag remove_tag_from_flows
 
     # Remove Tag from Flows
     # Remove a tag&#39;s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60; &#x60;tags:write&#x60;
@@ -1343,7 +1370,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.remove_tag_from_flows",
@@ -1365,6 +1392,9 @@ module KlaviyoAPI
     # alias of `remove_tag_from_flows_with_http_info`
     alias delete_tag_relationships_flows_with_http_info remove_tag_from_flows_with_http_info
 
+    # alias of `remove_tag_from_flows_with_http_info`
+    alias remove_flows_from_tag_with_http_info remove_tag_from_flows_with_http_info
+
     # Remove Tag from Lists
     # Remove a tag's association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
     # @param id [String] The Tag ID
@@ -1378,6 +1408,9 @@ module KlaviyoAPI
 
     # alias of `remove_tag_from_lists`
     alias delete_tag_relationships_lists remove_tag_from_lists
+
+    # alias of `remove_tag_from_lists`
+    alias remove_lists_from_tag remove_tag_from_lists
 
     # Remove Tag from Lists
     # Remove a tag&#39;s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;tags:write&#x60;
@@ -1425,7 +1458,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.remove_tag_from_lists",
@@ -1447,6 +1480,9 @@ module KlaviyoAPI
     # alias of `remove_tag_from_lists_with_http_info`
     alias delete_tag_relationships_lists_with_http_info remove_tag_from_lists_with_http_info
 
+    # alias of `remove_tag_from_lists_with_http_info`
+    alias remove_lists_from_tag_with_http_info remove_tag_from_lists_with_http_info
+
     # Remove Tag from Segments
     # Remove a tag's association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
     # @param id [String] The Tag ID
@@ -1460,6 +1496,9 @@ module KlaviyoAPI
 
     # alias of `remove_tag_from_segments`
     alias delete_tag_relationships_segments remove_tag_from_segments
+
+    # alias of `remove_tag_from_segments`
+    alias remove_segments_from_tag remove_tag_from_segments
 
     # Remove Tag from Segments
     # Remove a tag&#39;s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:write&#x60; &#x60;tags:write&#x60;
@@ -1507,7 +1546,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.remove_tag_from_segments",
@@ -1529,6 +1568,9 @@ module KlaviyoAPI
     # alias of `remove_tag_from_segments_with_http_info`
     alias delete_tag_relationships_segments_with_http_info remove_tag_from_segments_with_http_info
 
+    # alias of `remove_tag_from_segments_with_http_info`
+    alias remove_segments_from_tag_with_http_info remove_tag_from_segments_with_http_info
+
     # Tag Campaigns
     # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
     # @param id [String] The Tag ID
@@ -1541,10 +1583,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_campaigns`
-    alias create_tag_relationships_campaigns tag_campaigns
+    alias create_tag_relationships_campaign tag_campaigns
 
     # alias of `tag_campaigns`
-    alias create_tag_relationships_campaign tag_campaigns
+    alias add_campaigns_to_tag tag_campaigns
+
+    # alias of `tag_campaigns`
+    alias create_tag_relationships_campaigns tag_campaigns
 
     # Tag Campaigns
     # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60; &#x60;tags:write&#x60;
@@ -1592,7 +1637,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.tag_campaigns",
@@ -1612,10 +1657,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_campaigns_with_http_info`
-    alias create_tag_relationships_campaigns_with_http_info tag_campaigns_with_http_info
+    alias create_tag_relationships_campaign_with_http_info tag_campaigns_with_http_info
 
     # alias of `tag_campaigns_with_http_info`
-    alias create_tag_relationships_campaign_with_http_info tag_campaigns_with_http_info
+    alias add_campaigns_to_tag_with_http_info tag_campaigns_with_http_info
+
+    # alias of `tag_campaigns_with_http_info`
+    alias create_tag_relationships_campaigns_with_http_info tag_campaigns_with_http_info
 
     # Tag Flows
     # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
@@ -1629,10 +1677,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_flows`
-    alias create_tag_relationships_flows tag_flows
+    alias create_tag_relationships_flow tag_flows
 
     # alias of `tag_flows`
-    alias create_tag_relationships_flow tag_flows
+    alias add_flows_to_tag tag_flows
+
+    # alias of `tag_flows`
+    alias create_tag_relationships_flows tag_flows
 
     # Tag Flows
     # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60; &#x60;tags:write&#x60;
@@ -1680,7 +1731,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.tag_flows",
@@ -1700,10 +1751,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_flows_with_http_info`
-    alias create_tag_relationships_flows_with_http_info tag_flows_with_http_info
+    alias create_tag_relationships_flow_with_http_info tag_flows_with_http_info
 
     # alias of `tag_flows_with_http_info`
-    alias create_tag_relationships_flow_with_http_info tag_flows_with_http_info
+    alias add_flows_to_tag_with_http_info tag_flows_with_http_info
+
+    # alias of `tag_flows_with_http_info`
+    alias create_tag_relationships_flows_with_http_info tag_flows_with_http_info
 
     # Tag Lists
     # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
@@ -1717,10 +1771,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_lists`
-    alias create_tag_relationships_lists tag_lists
+    alias create_tag_relationships_list tag_lists
 
     # alias of `tag_lists`
-    alias create_tag_relationships_list tag_lists
+    alias add_lists_to_tag tag_lists
+
+    # alias of `tag_lists`
+    alias create_tag_relationships_lists tag_lists
 
     # Tag Lists
     # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;tags:write&#x60;
@@ -1768,7 +1825,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.tag_lists",
@@ -1788,10 +1845,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_lists_with_http_info`
-    alias create_tag_relationships_lists_with_http_info tag_lists_with_http_info
+    alias create_tag_relationships_list_with_http_info tag_lists_with_http_info
 
     # alias of `tag_lists_with_http_info`
-    alias create_tag_relationships_list_with_http_info tag_lists_with_http_info
+    alias add_lists_to_tag_with_http_info tag_lists_with_http_info
+
+    # alias of `tag_lists_with_http_info`
+    alias create_tag_relationships_lists_with_http_info tag_lists_with_http_info
 
     # Tag Segments
     # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
@@ -1805,10 +1865,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_segments`
-    alias create_tag_relationships_segments tag_segments
+    alias create_tag_relationships_segment tag_segments
 
     # alias of `tag_segments`
-    alias create_tag_relationships_segment tag_segments
+    alias add_segments_to_tag tag_segments
+
+    # alias of `tag_segments`
+    alias create_tag_relationships_segments tag_segments
 
     # Tag Segments
     # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:write&#x60; &#x60;tags:write&#x60;
@@ -1856,7 +1919,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.tag_segments",
@@ -1876,10 +1939,13 @@ module KlaviyoAPI
     end
 
     # alias of `tag_segments_with_http_info`
-    alias create_tag_relationships_segments_with_http_info tag_segments_with_http_info
+    alias create_tag_relationships_segment_with_http_info tag_segments_with_http_info
 
     # alias of `tag_segments_with_http_info`
-    alias create_tag_relationships_segment_with_http_info tag_segments_with_http_info
+    alias add_segments_to_tag_with_http_info tag_segments_with_http_info
+
+    # alias of `tag_segments_with_http_info`
+    alias create_tag_relationships_segments_with_http_info tag_segments_with_http_info
 
     # Update Tag
     # Update the tag with the given tag ID.  Only a tag's `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
@@ -1938,7 +2004,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.update_tag",
@@ -2014,7 +2080,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"TagsApi.update_tag_group",

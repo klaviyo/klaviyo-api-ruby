@@ -19,6 +19,88 @@ module KlaviyoAPI
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Bulk Import Profiles
+    # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
+    # @param profile_import_job_create_query [ProfileImportJobCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def bulk_import_profiles(profile_import_job_create_query, opts = {})
+      data, _status_code, _headers = bulk_import_profiles_with_http_info(profile_import_job_create_query, opts)
+      data
+    end
+
+    # alias of `bulk_import_profiles`
+    alias spawn_bulk_profile_import_job bulk_import_profiles
+
+    # alias of `bulk_import_profiles`
+    alias create_profile_bulk_import_job bulk_import_profiles
+
+    # Bulk Import Profiles
+    # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60;
+    # @param profile_import_job_create_query [ProfileImportJobCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def bulk_import_profiles_with_http_info(profile_import_job_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ProfilesApi.bulk_import_profiles ...'
+      end
+      # verify the required parameter 'profile_import_job_create_query' is set
+      if @api_client.config.client_side_validation && profile_import_job_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'profile_import_job_create_query' when calling ProfilesApi.bulk_import_profiles"
+      end
+      # resource path
+      local_var_path = '/api/profile-bulk-import-jobs'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(profile_import_job_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"ProfilesApi.bulk_import_profiles",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ProfilesApi#bulk_import_profiles\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `bulk_import_profiles_with_http_info`
+    alias spawn_bulk_profile_import_job_with_http_info bulk_import_profiles_with_http_info
+
+    # alias of `bulk_import_profiles_with_http_info`
+    alias create_profile_bulk_import_job_with_http_info bulk_import_profiles_with_http_info
+
     # Bulk Subscribe Profiles
     # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a `historical_import` flag. If this flag is set `true`, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \"Added to list\" flows. This is useful for importing historical data where you have already collected consent. If `historical_import` is set to true, the `consented_at` field is required and must be in the past.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
     # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
@@ -76,7 +158,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.bulk_subscribe_profiles",
@@ -158,7 +240,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.bulk_suppress_profiles",
@@ -240,7 +322,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.bulk_unsubscribe_profiles",
@@ -322,7 +404,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.bulk_unsuppress_profiles",
@@ -348,7 +430,7 @@ module KlaviyoAPI
     alias create_profile_suppression_bulk_delete_job_with_http_info bulk_unsuppress_profiles_with_http_info
 
     # Create or Update Profile
-    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
     # @param profile_upsert_query [ProfileUpsertQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -362,7 +444,7 @@ module KlaviyoAPI
     alias create_profile_import create_or_update_profile
 
     # Create or Update Profile
-    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
+    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_upsert_query [ProfileUpsertQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -408,7 +490,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.create_or_update_profile",
@@ -431,7 +513,7 @@ module KlaviyoAPI
     alias create_profile_import_with_http_info create_or_update_profile_with_http_info
 
     # Create Profile
-    # Create a new profile.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+    # Create a new profile.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -442,7 +524,7 @@ module KlaviyoAPI
     end
 
     # Create Profile
-    # Create a new profile.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
+    # Create a new profile.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -488,7 +570,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.create_profile",
@@ -558,7 +640,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.create_push_token",
@@ -650,7 +732,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_bulk_import_profiles_job",
@@ -752,7 +834,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_bulk_import_profiles_jobs",
@@ -833,7 +915,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_bulk_suppress_profiles_job",
@@ -918,7 +1000,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_bulk_suppress_profiles_jobs",
@@ -996,7 +1078,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_bulk_unsuppress_profiles_job",
@@ -1081,7 +1163,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_bulk_unsuppress_profiles_jobs",
@@ -1118,6 +1200,9 @@ module KlaviyoAPI
 
     # alias of `get_errors_for_bulk_import_profiles_job`
     alias get_bulk_profile_import_job_import_errors get_errors_for_bulk_import_profiles_job
+
+    # alias of `get_errors_for_bulk_import_profiles_job`
+    alias get_import_errors_for_profile_bulk_import_job get_errors_for_bulk_import_profiles_job
 
     # alias of `get_errors_for_bulk_import_profiles_job`
     alias get_profile_bulk_import_job_import_errors get_errors_for_bulk_import_profiles_job
@@ -1176,7 +1261,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_errors_for_bulk_import_profiles_job",
@@ -1199,6 +1284,9 @@ module KlaviyoAPI
     alias get_bulk_profile_import_job_import_errors_with_http_info get_errors_for_bulk_import_profiles_job_with_http_info
 
     # alias of `get_errors_for_bulk_import_profiles_job_with_http_info`
+    alias get_import_errors_for_profile_bulk_import_job_with_http_info get_errors_for_bulk_import_profiles_job_with_http_info
+
+    # alias of `get_errors_for_bulk_import_profiles_job_with_http_info`
     alias get_profile_bulk_import_job_import_errors_with_http_info get_errors_for_bulk_import_profiles_job_with_http_info
 
     # Get List for Bulk Import Profiles Job
@@ -1214,6 +1302,9 @@ module KlaviyoAPI
 
     # alias of `get_list_for_bulk_import_profiles_job`
     alias get_bulk_profile_import_job_lists get_list_for_bulk_import_profiles_job
+
+    # alias of `get_list_for_bulk_import_profiles_job`
+    alias get_lists_for_profile_bulk_import_job get_list_for_bulk_import_profiles_job
 
     # alias of `get_list_for_bulk_import_profiles_job`
     alias get_profile_bulk_import_job_lists get_list_for_bulk_import_profiles_job
@@ -1260,7 +1351,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_list_for_bulk_import_profiles_job",
@@ -1283,6 +1374,9 @@ module KlaviyoAPI
     alias get_bulk_profile_import_job_lists_with_http_info get_list_for_bulk_import_profiles_job_with_http_info
 
     # alias of `get_list_for_bulk_import_profiles_job_with_http_info`
+    alias get_lists_for_profile_bulk_import_job_with_http_info get_list_for_bulk_import_profiles_job_with_http_info
+
+    # alias of `get_list_for_bulk_import_profiles_job_with_http_info`
     alias get_profile_bulk_import_job_lists_with_http_info get_list_for_bulk_import_profiles_job_with_http_info
 
     # Get List IDs for Bulk Import Profiles Job
@@ -1297,6 +1391,9 @@ module KlaviyoAPI
 
     # alias of `get_list_ids_for_bulk_import_profiles_job`
     alias get_bulk_profile_import_job_relationships_lists get_list_ids_for_bulk_import_profiles_job
+
+    # alias of `get_list_ids_for_bulk_import_profiles_job`
+    alias get_list_ids_for_profile_bulk_import_job get_list_ids_for_bulk_import_profiles_job
 
     # alias of `get_list_ids_for_bulk_import_profiles_job`
     alias get_profile_bulk_import_job_relationships_lists get_list_ids_for_bulk_import_profiles_job
@@ -1337,7 +1434,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_list_ids_for_bulk_import_profiles_job",
@@ -1358,6 +1455,9 @@ module KlaviyoAPI
 
     # alias of `get_list_ids_for_bulk_import_profiles_job_with_http_info`
     alias get_bulk_profile_import_job_relationships_lists_with_http_info get_list_ids_for_bulk_import_profiles_job_with_http_info
+
+    # alias of `get_list_ids_for_bulk_import_profiles_job_with_http_info`
+    alias get_list_ids_for_profile_bulk_import_job_with_http_info get_list_ids_for_bulk_import_profiles_job_with_http_info
 
     # alias of `get_list_ids_for_bulk_import_profiles_job_with_http_info`
     alias get_profile_bulk_import_job_relationships_lists_with_http_info get_list_ids_for_bulk_import_profiles_job_with_http_info
@@ -1411,7 +1511,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_list_ids_for_profile",
@@ -1489,7 +1589,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_lists_for_profile",
@@ -1512,7 +1612,7 @@ module KlaviyoAPI
     alias get_profile_lists_with_http_info get_lists_for_profile_with_http_info
 
     # Get Profile
-    # Get the profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+    # Get the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -1527,7 +1627,7 @@ module KlaviyoAPI
     end
 
     # Get Profile
-    # Get the profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;list&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;segment&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;include&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
+    # Get the profile with the given profile ID.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;list&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;segment&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;include&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -1592,7 +1692,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_profile",
@@ -1628,6 +1728,9 @@ module KlaviyoAPI
 
     # alias of `get_profile_ids_for_bulk_import_profiles_job`
     alias get_profile_bulk_import_job_relationships_profiles get_profile_ids_for_bulk_import_profiles_job
+
+    # alias of `get_profile_ids_for_bulk_import_profiles_job`
+    alias get_profile_ids_for_profile_bulk_import_job get_profile_ids_for_bulk_import_profiles_job
 
     # Get Profile IDs for Bulk Import Profiles Job
     # Get profile relationships for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
@@ -1677,7 +1780,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_profile_ids_for_bulk_import_profiles_job",
@@ -1702,8 +1805,11 @@ module KlaviyoAPI
     # alias of `get_profile_ids_for_bulk_import_profiles_job_with_http_info`
     alias get_profile_bulk_import_job_relationships_profiles_with_http_info get_profile_ids_for_bulk_import_profiles_job_with_http_info
 
+    # alias of `get_profile_ids_for_bulk_import_profiles_job_with_http_info`
+    alias get_profile_ids_for_profile_bulk_import_job_with_http_info get_profile_ids_for_bulk_import_profiles_job_with_http_info
+
     # Get Profiles
-    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
@@ -1718,7 +1824,7 @@ module KlaviyoAPI
     end
 
     # Get Profiles
-    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;email&#x60;, &#x60;subscriptions.email.marketing.suppression.timestamp&#x60;, &#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;additional-fields[profile]&#x3D;predictive_analytics&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;additional-fields&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
+    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;email&#x60;, &#x60;subscriptions.email.marketing.suppression.timestamp&#x60;, &#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;additional-fields[profile]&#x3D;predictive_analytics&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;additional-fields&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2024-10-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
     # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
@@ -1747,7 +1853,7 @@ module KlaviyoAPI
         fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling ProfilesApi.get_profiles, must be greater than or equal to 1.'
       end
 
-      allowable_values = ["created", "-created", "email", "-email", "id", "-id", "updated", "-updated", "subscriptions.email.marketing.list_suppressions.timestamp", "-subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.email.marketing.suppression.timestamp", "-subscriptions.email.marketing.suppression.timestamp"]
+      allowable_values = ["created", "-created", "email", "-email", "id", "-id", "subscriptions.email.marketing.list_suppressions.timestamp", "-subscriptions.email.marketing.list_suppressions.timestamp", "subscriptions.email.marketing.suppression.timestamp", "-subscriptions.email.marketing.suppression.timestamp", "updated", "-updated"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
       end
@@ -1780,7 +1886,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_profiles",
@@ -1818,6 +1924,9 @@ module KlaviyoAPI
 
     # alias of `get_profiles_for_bulk_import_profiles_job`
     alias get_profile_bulk_import_job_profiles get_profiles_for_bulk_import_profiles_job
+
+    # alias of `get_profiles_for_bulk_import_profiles_job`
+    alias get_profiles_for_profile_bulk_import_job get_profiles_for_bulk_import_profiles_job
 
     # Get Profiles for Bulk Import Profiles Job
     # Get profiles for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
@@ -1879,7 +1988,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_profiles_for_bulk_import_profiles_job",
@@ -1903,6 +2012,9 @@ module KlaviyoAPI
 
     # alias of `get_profiles_for_bulk_import_profiles_job_with_http_info`
     alias get_profile_bulk_import_job_profiles_with_http_info get_profiles_for_bulk_import_profiles_job_with_http_info
+
+    # alias of `get_profiles_for_bulk_import_profiles_job_with_http_info`
+    alias get_profiles_for_profile_bulk_import_job_with_http_info get_profiles_for_bulk_import_profiles_job_with_http_info
 
     # Get Segment IDs for Profile
     # Get segment membership relationships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
@@ -1953,7 +2065,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_segment_ids_for_profile",
@@ -2031,7 +2143,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.get_segments_for_profile",
@@ -2107,7 +2219,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.merge_profiles",
@@ -2129,90 +2241,8 @@ module KlaviyoAPI
     # alias of `merge_profiles_with_http_info`
     alias create_profile_merge_with_http_info merge_profiles_with_http_info
 
-    # Spawn Bulk Profile Import Job
-    # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:write` `profiles:write`
-    # @param profile_import_job_create_query [ProfileImportJobCreateQuery] 
-    # @param [Hash] opts the optional parameters
-    # @return [Hash<String, Object>]
-    def spawn_bulk_profile_import_job(profile_import_job_create_query, opts = {})
-      data, _status_code, _headers = spawn_bulk_profile_import_job_with_http_info(profile_import_job_create_query, opts)
-      data
-    end
-
-    # alias of `spawn_bulk_profile_import_job`
-    alias bulk_import_profiles spawn_bulk_profile_import_job
-
-    # alias of `spawn_bulk_profile_import_job`
-    alias create_profile_bulk_import_job spawn_bulk_profile_import_job
-
-    # Spawn Bulk Profile Import Job
-    # Create a bulk profile import job to create or update a batch of profiles.  Accepts up to 10,000 profiles per request. The maximum allowed payload size is 5MB.  To learn more, see our [Bulk Profile Import API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_bulk_profile_import_api).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60;
-    # @param profile_import_job_create_query [ProfileImportJobCreateQuery] 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def spawn_bulk_profile_import_job_with_http_info(profile_import_job_create_query, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: ProfilesApi.spawn_bulk_profile_import_job ...'
-      end
-      # verify the required parameter 'profile_import_job_create_query' is set
-      if @api_client.config.client_side_validation && profile_import_job_create_query.nil?
-        fail ArgumentError, "Missing the required parameter 'profile_import_job_create_query' when calling ProfilesApi.spawn_bulk_profile_import_job"
-      end
-      # resource path
-      local_var_path = '/api/profile-bulk-import-jobs'
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-      # HTTP header 'Content-Type'
-      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
-      if !content_type.nil?
-          header_params['Content-Type'] = content_type
-      end
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(profile_import_job_create_query)
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"ProfilesApi.spawn_bulk_profile_import_job",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ProfilesApi#spawn_bulk_profile_import_job\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # alias of `spawn_bulk_profile_import_job_with_http_info`
-    alias bulk_import_profiles_with_http_info spawn_bulk_profile_import_job_with_http_info
-
-    # alias of `spawn_bulk_profile_import_job_with_http_info`
-    alias create_profile_bulk_import_job_with_http_info spawn_bulk_profile_import_job_with_http_info
-
     # Update Profile
-    # Update the profile with the given profile ID.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+    # Update the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
@@ -2224,7 +2254,7 @@ module KlaviyoAPI
     end
 
     # Update Profile
-    # Update the profile with the given profile ID.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
+    # Update the profile with the given profile ID.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
@@ -2275,7 +2305,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"ProfilesApi.update_profile",

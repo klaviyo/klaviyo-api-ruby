@@ -21,11 +21,14 @@ module KlaviyoAPI
     # The phone number to unsubscribe. This must be in E.164 format.
     attr_accessor :phone_number
 
+    attr_accessor :subscriptions
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'email' => :'email',
-        :'phone_number' => :'phone_number'
+        :'phone_number' => :'phone_number',
+        :'subscriptions' => :'subscriptions'
       }
     end
 
@@ -38,7 +41,8 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'email' => :'String',
-        :'phone_number' => :'String'
+        :'phone_number' => :'String',
+        :'subscriptions' => :'UnsubscriptionChannels'
       }
     end
 
@@ -46,7 +50,7 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'email',
-        :'phone_number'
+        :'phone_number',
       ])
     end
 
@@ -72,6 +76,10 @@ module KlaviyoAPI
       if attributes.key?(:'phone_number')
         self.phone_number = attributes[:'phone_number']
       end
+
+      if attributes.key?(:'subscriptions')
+        self.subscriptions = attributes[:'subscriptions']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -93,7 +101,8 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           email == o.email &&
-          phone_number == o.phone_number
+          phone_number == o.phone_number &&
+          subscriptions == o.subscriptions
     end
 
     # @see the `==` method
@@ -105,7 +114,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, phone_number].hash
+      [email, phone_number, subscriptions].hash
     end
 
     # Builds the object from hash

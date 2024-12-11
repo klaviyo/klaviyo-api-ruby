@@ -14,9 +14,9 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  class CampaignSendJobPartialUpdateQueryResourceObjectAttributes
-    # The action you would like to take with this send job from among 'cancel' and 'revert'
-    attr_accessor :action
+  class UnsubscriptionParameters
+    # The Consent status to be set as part of the unsubscribe call. Currently supports \"UNSUBSCRIBED\".
+    attr_accessor :consent
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -43,7 +43,7 @@ module KlaviyoAPI
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'action' => :'action'
+        :'consent' => :'consent'
       }
     end
 
@@ -55,7 +55,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'action' => :'String'
+        :'consent' => :'String'
       }
     end
 
@@ -69,19 +69,19 @@ module KlaviyoAPI
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::CampaignSendJobPartialUpdateQueryResourceObjectAttributes` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::UnsubscriptionParameters` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::CampaignSendJobPartialUpdateQueryResourceObjectAttributes`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::UnsubscriptionParameters`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'action')
-        self.action = attributes[:'action']
+      if attributes.key?(:'consent')
+        self.consent = attributes[:'consent']
       end
     end
 
@@ -89,8 +89,8 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @action.nil?
-        invalid_properties.push('invalid value for "action", action cannot be nil.')
+      if @consent.nil?
+        invalid_properties.push('invalid value for "consent", consent cannot be nil.')
       end
 
       invalid_properties
@@ -99,20 +99,20 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @action.nil?
-      action_validator = EnumAttributeValidator.new('String', ["cancel", "revert"])
-      return false unless action_validator.valid?(@action)
+      return false if @consent.nil?
+      consent_validator = EnumAttributeValidator.new('String', ["UNSUBSCRIBED"])
+      return false unless consent_validator.valid?(@consent)
       true
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] action Object to be assigned
-    def action=(action)
-      validator = EnumAttributeValidator.new('String', ["cancel", "revert"])
-      unless validator.valid?(action)
-        fail ArgumentError, "invalid value for \"action\", must be one of #{validator.allowable_values}."
+    # @param [Object] consent Object to be assigned
+    def consent=(consent)
+      validator = EnumAttributeValidator.new('String', ["UNSUBSCRIBED"])
+      unless validator.valid?(consent)
+        fail ArgumentError, "invalid value for \"consent\", must be one of #{validator.allowable_values}."
       end
-      @action = action
+      @consent = consent
     end
 
     # Checks equality by comparing each attribute.
@@ -120,7 +120,7 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          action == o.action
+          consent == o.consent
     end
 
     # @see the `==` method
@@ -132,7 +132,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [action].hash
+      [consent].hash
     end
 
     # Builds the object from hash

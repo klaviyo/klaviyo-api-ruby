@@ -18,7 +18,7 @@ module KlaviyoAPI
     # The name of the template
     attr_accessor :name
 
-    # Restricted to CODE
+    # Restricted to CODE and USER_DRAGGABLE
     attr_accessor :editor_type
 
     # The HTML contents of the template

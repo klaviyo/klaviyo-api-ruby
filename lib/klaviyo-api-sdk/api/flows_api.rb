@@ -65,7 +65,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.delete_flow",
@@ -83,6 +83,84 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # Get Action for Flow Message
+    # Get the flow action for a flow message with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_action_for_flow_message(id, opts = {})
+      data, _status_code, _headers = get_action_for_flow_message_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_action_for_flow_message`
+    alias get_flow_message_action get_action_for_flow_message
+
+    # Get Action for Flow Message
+    # Get the flow action for a flow message with the given message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_action_for_flow_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: FlowsApi.get_action_for_flow_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_action_for_flow_message"
+      end
+      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
+      if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/flow-messages/{id}/flow-action'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[flow-action]'] = @api_client.build_collection_param(opts[:'fields_flow_action'], :csv) if !opts[:'fields_flow_action'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"FlowsApi.get_action_for_flow_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FlowsApi#get_action_for_flow_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_action_for_flow_message_with_http_info`
+    alias get_flow_message_action_with_http_info get_action_for_flow_message_with_http_info
 
     # Get Action ID for Flow Message
     # Get the [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for a flow message's flow action, given the flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -133,7 +211,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_action_id_for_flow_message",
@@ -170,6 +248,9 @@ module KlaviyoAPI
 
     # alias of `get_action_ids_for_flow`
     alias get_flow_relationships_flow_actions get_action_ids_for_flow
+
+    # alias of `get_action_ids_for_flow`
+    alias get_flow_relationships_actions get_action_ids_for_flow
 
     # Get Action IDs for Flow
     # Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Flow action relationships can be sorted by the following fields, in ascending and descending order: &#x60;id&#x60;,  &#x60;status&#x60;, &#x60;created&#x60;, &#x60;updated&#x60;  Use filters to narrow your results.  Returns a maximum of 50 flow action relationships per request, which can be paginated with offset pagination. Offset pagination uses the following parameters: &#x60;page[size]&#x60; and &#x60;page[number]&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
@@ -225,7 +306,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_action_ids_for_flow",
@@ -247,6 +328,9 @@ module KlaviyoAPI
     # alias of `get_action_ids_for_flow_with_http_info`
     alias get_flow_relationships_flow_actions_with_http_info get_action_ids_for_flow_with_http_info
 
+    # alias of `get_action_ids_for_flow_with_http_info`
+    alias get_flow_relationships_actions_with_http_info get_action_ids_for_flow_with_http_info
+
     # Get Actions for Flow
     # Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
@@ -264,6 +348,9 @@ module KlaviyoAPI
 
     # alias of `get_actions_for_flow`
     alias get_flow_flow_actions get_actions_for_flow
+
+    # alias of `get_actions_for_flow`
+    alias get_flow_actions get_actions_for_flow
 
     # Get Actions for Flow
     # Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
@@ -327,7 +414,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_actions_for_flow",
@@ -348,6 +435,9 @@ module KlaviyoAPI
 
     # alias of `get_actions_for_flow_with_http_info`
     alias get_flow_flow_actions_with_http_info get_actions_for_flow_with_http_info
+
+    # alias of `get_actions_for_flow_with_http_info`
+    alias get_flow_actions_with_http_info get_actions_for_flow_with_http_info
 
     # Get Flow
     # Get a flow with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -423,7 +513,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_flow",
@@ -516,7 +606,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_flow_action",
@@ -535,30 +625,33 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Flow For Flow Action
+    # Get Flow for Flow Action
     # Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
-    def get_flow_action_flow(id, opts = {})
-      data, _status_code, _headers = get_flow_action_flow_with_http_info(id, opts)
+    def get_flow_for_flow_action(id, opts = {})
+      data, _status_code, _headers = get_flow_for_flow_action_with_http_info(id, opts)
       data
     end
 
-    # Get Flow For Flow Action
+    # alias of `get_flow_for_flow_action`
+    alias get_flow_action_flow get_flow_for_flow_action
+
+    # Get Flow for Flow Action
     # Get the flow associated with the given action ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_flow_action_flow_with_http_info(id, opts = {})
+    def get_flow_for_flow_action_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: FlowsApi.get_flow_action_flow ...'
+        @api_client.config.logger.debug 'Calling API: FlowsApi.get_flow_for_flow_action ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_flow_action_flow"
+        fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_flow_for_flow_action"
       end
       allowable_values = ["name", "status", "archived", "created", "updated", "trigger_type"]
       if @api_client.config.client_side_validation && opts[:'fields_flow'] && !opts[:'fields_flow'].all? { |item| allowable_values.include?(item) }
@@ -588,10 +681,10 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
-        :operation => :"FlowsApi.get_flow_action_flow",
+        :operation => :"FlowsApi.get_flow_for_flow_action",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -602,10 +695,13 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: FlowsApi#get_flow_action_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: FlowsApi#get_flow_for_flow_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
+
+    # alias of `get_flow_for_flow_action_with_http_info`
+    alias get_flow_action_flow_with_http_info get_flow_for_flow_action_with_http_info
 
     # Get Flow ID for Flow Action
     # Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
@@ -656,7 +752,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_flow_id_for_flow_action",
@@ -752,7 +848,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_flow_message",
@@ -767,150 +863,6 @@ module KlaviyoAPI
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: FlowsApi#get_flow_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get Flow Action For Message
-    # Get the flow action for a flow message with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Hash<String, Object>]
-    def get_flow_message_action(id, opts = {})
-      data, _status_code, _headers = get_flow_message_action_with_http_info(id, opts)
-      data
-    end
-
-    # Get Flow Action For Message
-    # Get the flow action for a flow message with the given message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_flow_message_action_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: FlowsApi.get_flow_message_action ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_flow_message_action"
-      end
-      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
-      if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
-      end
-      # resource path
-      local_var_path = '/api/flow-messages/{id}/flow-action'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'fields[flow-action]'] = @api_client.build_collection_param(opts[:'fields_flow_action'], :csv) if !opts[:'fields_flow_action'].nil?
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"FlowsApi.get_flow_message_action",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: FlowsApi#get_flow_message_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get Flow Tags
-    # Return all tags associated with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Hash<String, Object>]
-    def get_flow_tags(id, opts = {})
-      data, _status_code, _headers = get_flow_tags_with_http_info(id, opts)
-      data
-    end
-
-    # Get Flow Tags
-    # Return all tags associated with the given flow ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;tags:read&#x60;
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_flow_tags_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: FlowsApi.get_flow_tags ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_flow_tags"
-      end
-      allowable_values = ["name"]
-      if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
-      end
-      # resource path
-      local_var_path = '/api/flows/{id}/tags'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'fields[tag]'] = @api_client.build_collection_param(opts[:'fields_tag'], :csv) if !opts[:'fields_tag'].nil?
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"FlowsApi.get_flow_tags",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: FlowsApi#get_flow_tags\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -1007,7 +959,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_flows",
@@ -1099,7 +1051,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_message_ids_for_flow_action",
@@ -1198,7 +1150,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_messages_for_flow_action",
@@ -1269,7 +1221,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_tag_ids_for_flow",
@@ -1290,6 +1242,84 @@ module KlaviyoAPI
 
     # alias of `get_tag_ids_for_flow_with_http_info`
     alias get_flow_relationships_tags_with_http_info get_tag_ids_for_flow_with_http_info
+
+    # Get Tags for Flow
+    # Return all tags associated with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_tags_for_flow(id, opts = {})
+      data, _status_code, _headers = get_tags_for_flow_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_tags_for_flow`
+    alias get_flow_tags get_tags_for_flow
+
+    # Get Tags for Flow
+    # Return all tags associated with the given flow ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;tags:read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_tags_for_flow_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: FlowsApi.get_tags_for_flow ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_tags_for_flow"
+      end
+      allowable_values = ["name"]
+      if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/flows/{id}/tags'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[tag]'] = @api_client.build_collection_param(opts[:'fields_tag'], :csv) if !opts[:'fields_tag'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"FlowsApi.get_tags_for_flow",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FlowsApi#get_tags_for_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_tags_for_flow_with_http_info`
+    alias get_flow_tags_with_http_info get_tags_for_flow_with_http_info
 
     # Get Template for Flow Message
     # Return the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
@@ -1347,7 +1377,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_template_for_flow_message",
@@ -1418,7 +1448,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.get_template_id_for_flow_message",
@@ -1497,7 +1527,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"FlowsApi.update_flow",

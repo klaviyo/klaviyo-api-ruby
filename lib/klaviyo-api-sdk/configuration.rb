@@ -215,15 +215,24 @@ module KlaviyoAPI
 
     # Returns Auth Settings hash for api client.
     def auth_settings
-      {
-        'Klaviyo-API-Key' =>
-          {
-            type: 'api_key',
-            in: 'header',
-            key: 'Authorization',
-            value: api_key_with_prefix('Klaviyo-API-Key')
-          },
-      }
+      auth = {}
+      if api_key_with_prefix('Klaviyo-API-Key')
+        auth['Klaviyo-API-Key'] = {
+          type: 'api_key',
+          in: 'header',
+          key: 'Authorization',
+          value: api_key_with_prefix('Klaviyo-API-Key')
+        }
+      end
+      if access_token
+        auth['OAuth'] = {
+          type: 'oauth2',
+          in: 'header',
+          key: 'Authorization',
+          value: "Bearer #{access_token}"
+        }
+      end
+      auth
     end
 
     # Returns an array of Server setting

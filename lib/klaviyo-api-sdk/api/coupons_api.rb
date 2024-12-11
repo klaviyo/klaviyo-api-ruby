@@ -76,7 +76,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.bulk_create_coupon_codes",
@@ -152,7 +152,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.create_coupon",
@@ -222,7 +222,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.create_coupon_code",
@@ -287,7 +287,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.delete_coupon",
@@ -352,7 +352,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.delete_coupon_code",
@@ -427,7 +427,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_bulk_create_coupon_code_jobs",
@@ -519,7 +519,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_bulk_create_coupon_codes_job",
@@ -540,80 +540,6 @@ module KlaviyoAPI
 
     # alias of `get_bulk_create_coupon_codes_job_with_http_info`
     alias get_coupon_code_bulk_create_job_with_http_info get_bulk_create_coupon_codes_job_with_http_info
-
-    # Get Code IDs for Coupon
-    # Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
-    # @param id [String] The ID of the coupon to look up the relationship of.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
-    # @return [Hash<String, Object>]
-    def get_code_ids_for_coupon(id, opts = {})
-      data, _status_code, _headers = get_code_ids_for_coupon_with_http_info(id, opts)
-      data
-    end
-
-    # alias of `get_code_ids_for_coupon`
-    alias get_coupon_code_relationships_coupon get_code_ids_for_coupon
-
-    # Get Code IDs for Coupon
-    # Gets a list of coupon code relationships associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
-    # @param id [String] The ID of the coupon to look up the relationship of.
-    # @param [Hash] opts the optional parameters
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_code_ids_for_coupon_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CouponsApi.get_code_ids_for_coupon ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_code_ids_for_coupon"
-      end
-      # resource path
-      local_var_path = '/api/coupons/{id}/relationships/coupon-codes'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"CouponsApi.get_code_ids_for_coupon",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CouponsApi#get_code_ids_for_coupon\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # alias of `get_code_ids_for_coupon_with_http_info`
-    alias get_coupon_code_relationships_coupon_with_http_info get_code_ids_for_coupon_with_http_info
 
     # Get Coupon
     # Get a specific coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
@@ -668,7 +594,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_coupon",
@@ -754,7 +680,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_coupon_code",
@@ -772,6 +698,92 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # Get Coupon Code IDs for Coupon
+    # Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
+    # @param id [String] The ID of the coupon to look up the relationship of.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+    # @return [Hash<String, Object>]
+    def get_coupon_code_ids_for_coupon(id, opts = {})
+      data, _status_code, _headers = get_coupon_code_ids_for_coupon_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_coupon_code_ids_for_coupon`
+    alias get_coupon_code_relationships_coupon get_coupon_code_ids_for_coupon
+
+    # alias of `get_coupon_code_ids_for_coupon`
+    alias get_code_ids_for_coupon get_coupon_code_ids_for_coupon
+
+    # alias of `get_coupon_code_ids_for_coupon`
+    alias get_coupon_relationships_codes get_coupon_code_ids_for_coupon
+
+    # Get Coupon Code IDs for Coupon
+    # Gets a list of coupon code relationships associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
+    # @param id [String] The ID of the coupon to look up the relationship of.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#pagination
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_coupon_code_ids_for_coupon_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CouponsApi.get_coupon_code_ids_for_coupon ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon_code_ids_for_coupon"
+      end
+      # resource path
+      local_var_path = '/api/coupons/{id}/relationships/coupon-codes'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CouponsApi.get_coupon_code_ids_for_coupon",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CouponsApi#get_coupon_code_ids_for_coupon\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_coupon_code_ids_for_coupon_with_http_info`
+    alias get_coupon_code_relationships_coupon_with_http_info get_coupon_code_ids_for_coupon_with_http_info
+
+    # alias of `get_coupon_code_ids_for_coupon_with_http_info`
+    alias get_code_ids_for_coupon_with_http_info get_coupon_code_ids_for_coupon_with_http_info
+
+    # alias of `get_coupon_code_ids_for_coupon_with_http_info`
+    alias get_coupon_relationships_codes_with_http_info get_coupon_code_ids_for_coupon_with_http_info
 
     # Get Coupon Codes
     # Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
@@ -840,7 +852,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_coupon_codes",
@@ -859,7 +871,7 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Coupon Codes For Coupon
+    # Get Coupon Codes for Coupon
     # Gets a list of coupon codes associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupon-codes:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
@@ -875,7 +887,10 @@ module KlaviyoAPI
     # alias of `get_coupon_codes_for_coupon`
     alias get_coupon_coupon_codes get_coupon_codes_for_coupon
 
-    # Get Coupon Codes For Coupon
+    # alias of `get_coupon_codes_for_coupon`
+    alias get_codes_for_coupon get_coupon_codes_for_coupon
+
+    # Get Coupon Codes for Coupon
     # Gets a list of coupon codes associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
@@ -921,7 +936,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_coupon_codes_for_coupon",
@@ -942,6 +957,9 @@ module KlaviyoAPI
 
     # alias of `get_coupon_codes_for_coupon_with_http_info`
     alias get_coupon_coupon_codes_with_http_info get_coupon_codes_for_coupon_with_http_info
+
+    # alias of `get_coupon_codes_for_coupon_with_http_info`
+    alias get_codes_for_coupon_with_http_info get_coupon_codes_for_coupon_with_http_info
 
     # Get Coupon For Coupon Code
     # Get the coupon associated with a given coupon code ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
@@ -999,7 +1017,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_coupon_for_coupon_code",
@@ -1023,7 +1041,7 @@ module KlaviyoAPI
 
     # Get Coupon ID for Coupon Code
     # Gets the coupon relationship associated with the given coupon code id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `coupons:read`
-    # @param id [String] The ID of the coupon code to look up the relationship of.
+    # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def get_coupon_id_for_coupon_code(id, opts = {})
@@ -1036,7 +1054,7 @@ module KlaviyoAPI
 
     # Get Coupon ID for Coupon Code
     # Gets the coupon relationship associated with the given coupon code id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;
-    # @param id [String] The ID of the coupon code to look up the relationship of.
+    # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupon_id_for_coupon_code_with_http_info(id, opts = {})
@@ -1070,7 +1088,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_coupon_id_for_coupon_code",
@@ -1142,7 +1160,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.get_coupons",
@@ -1218,7 +1236,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.update_coupon",
@@ -1294,7 +1312,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CouponsApi.update_coupon_code",
