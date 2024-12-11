@@ -73,7 +73,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"EventsApi.bulk_create_events",
@@ -146,7 +146,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"EventsApi.create_event",
@@ -239,7 +239,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"EventsApi.get_event",
@@ -254,157 +254,6 @@ module KlaviyoAPI
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: EventsApi#get_event\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get Event Metric
-    # Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`
-    # @param id [String] ID of the event
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Hash<String, Object>]
-    def get_event_metric(id, opts = {})
-      data, _status_code, _headers = get_event_metric_with_http_info(id, opts)
-      data
-    end
-
-    # Get Event Metric
-    # Get the metric for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;metrics:read&#x60;
-    # @param id [String] ID of the event
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_event_metric_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: EventsApi.get_event_metric ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_event_metric"
-      end
-      allowable_values = ["name", "created", "updated", "integration"]
-      if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
-      end
-      # resource path
-      local_var_path = '/api/events/{id}/metric'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'fields[metric]'] = @api_client.build_collection_param(opts[:'fields_metric'], :csv) if !opts[:'fields_metric'].nil?
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"EventsApi.get_event_metric",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: EventsApi#get_event_metric\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get Event Profile
-    # Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`
-    # @param id [String] ID of the event
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Hash<String, Object>]
-    def get_event_profile(id, opts = {})
-      data, _status_code, _headers = get_event_profile_with_http_info(id, opts)
-      data
-    end
-
-    # Get Event Profile
-    # Get the profile associated with an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;profiles:read&#x60;
-    # @param id [String] ID of the event
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_event_profile_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: EventsApi.get_event_profile ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_event_profile"
-      end
-      allowable_values = ["subscriptions", "predictive_analytics"]
-      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
-      end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.sms.transactional.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
-      if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
-      end
-      # resource path
-      local_var_path = '/api/events/{id}/profile'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
-      query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"EventsApi.get_event_profile",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: EventsApi#get_event_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -490,7 +339,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"EventsApi.get_events",
@@ -508,6 +357,84 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # Get Metric for Event
+    # Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`
+    # @param id [String] ID of the event
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_metric_for_event(id, opts = {})
+      data, _status_code, _headers = get_metric_for_event_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_metric_for_event`
+    alias get_event_metric get_metric_for_event
+
+    # Get Metric for Event
+    # Get the metric for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;metrics:read&#x60;
+    # @param id [String] ID of the event
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_metric_for_event_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: EventsApi.get_metric_for_event ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_metric_for_event"
+      end
+      allowable_values = ["name", "created", "updated", "integration"]
+      if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/events/{id}/metric'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[metric]'] = @api_client.build_collection_param(opts[:'fields_metric'], :csv) if !opts[:'fields_metric'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"EventsApi.get_metric_for_event",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: EventsApi#get_metric_for_event\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_metric_for_event_with_http_info`
+    alias get_event_metric_with_http_info get_metric_for_event_with_http_info
 
     # Get Metric ID for Event
     # Get a list of related Metrics for an Event<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`
@@ -558,7 +485,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"EventsApi.get_metric_id_for_event",
@@ -579,6 +506,91 @@ module KlaviyoAPI
 
     # alias of `get_metric_id_for_event_with_http_info`
     alias get_event_relationships_metric_with_http_info get_metric_id_for_event_with_http_info
+
+    # Get Profile for Event
+    # Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`
+    # @param id [String] ID of the event
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_profile_for_event(id, opts = {})
+      data, _status_code, _headers = get_profile_for_event_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_profile_for_event`
+    alias get_event_profile get_profile_for_event
+
+    # Get Profile for Event
+    # Get the profile associated with an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;profiles:read&#x60;
+    # @param id [String] ID of the event
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_profile_for_event_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: EventsApi.get_profile_for_event ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_profile_for_event"
+      end
+      allowable_values = ["subscriptions", "predictive_analytics"]
+      if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.sms.transactional.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order"]
+      if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/events/{id}/profile'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
+      query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"EventsApi.get_profile_for_event",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: EventsApi#get_profile_for_event\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_profile_for_event_with_http_info`
+    alias get_event_profile_with_http_info get_profile_for_event_with_http_info
 
     # Get Profile ID for Event
     # Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`
@@ -629,7 +641,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"EventsApi.get_profile_id_for_event",

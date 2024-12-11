@@ -19,6 +19,167 @@ module KlaviyoAPI
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
+    # Get Flows Triggered by Metric
+    # Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_flows_triggered_by_metric(id, opts = {})
+      data, _status_code, _headers = get_flows_triggered_by_metric_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_flows_triggered_by_metric`
+    alias get_flow_triggers_for_metric get_flows_triggered_by_metric
+
+    # alias of `get_flows_triggered_by_metric`
+    alias get_metric_flow_triggers get_flows_triggered_by_metric
+
+    # Get Flows Triggered by Metric
+    # Get all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_flows_triggered_by_metric_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: MetricsApi.get_flows_triggered_by_metric ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_flows_triggered_by_metric"
+      end
+      allowable_values = ["name", "status", "archived", "created", "updated", "trigger_type"]
+      if @api_client.config.client_side_validation && opts[:'fields_flow'] && !opts[:'fields_flow'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_flow\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/metrics/{id}/flow-triggers'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[flow]'] = @api_client.build_collection_param(opts[:'fields_flow'], :csv) if !opts[:'fields_flow'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"MetricsApi.get_flows_triggered_by_metric",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: MetricsApi#get_flows_triggered_by_metric\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_flows_triggered_by_metric_with_http_info`
+    alias get_flow_triggers_for_metric_with_http_info get_flows_triggered_by_metric_with_http_info
+
+    # alias of `get_flows_triggered_by_metric_with_http_info`
+    alias get_metric_flow_triggers_with_http_info get_flows_triggered_by_metric_with_http_info
+
+    # Get IDs for Flows Triggered by Metric
+    # Get the IDs of all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_ids_for_flows_triggered_by_metric(id, opts = {})
+      data, _status_code, _headers = get_ids_for_flows_triggered_by_metric_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_ids_for_flows_triggered_by_metric`
+    alias get_flow_trigger_ids_for_metric get_ids_for_flows_triggered_by_metric
+
+    # alias of `get_ids_for_flows_triggered_by_metric`
+    alias get_metric_relationships_flow_triggers get_ids_for_flows_triggered_by_metric
+
+    # Get IDs for Flows Triggered by Metric
+    # Get the IDs of all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_ids_for_flows_triggered_by_metric_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: MetricsApi.get_ids_for_flows_triggered_by_metric ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_ids_for_flows_triggered_by_metric"
+      end
+      # resource path
+      local_var_path = '/api/metrics/{id}/relationships/flow-triggers'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"MetricsApi.get_ids_for_flows_triggered_by_metric",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: MetricsApi#get_ids_for_flows_triggered_by_metric\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_ids_for_flows_triggered_by_metric_with_http_info`
+    alias get_flow_trigger_ids_for_metric_with_http_info get_ids_for_flows_triggered_by_metric_with_http_info
+
+    # alias of `get_ids_for_flows_triggered_by_metric_with_http_info`
+    alias get_metric_relationships_flow_triggers_with_http_info get_ids_for_flows_triggered_by_metric_with_http_info
+
     # Get Metric
     # Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
     # @param id [String] Metric ID
@@ -86,7 +247,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.get_metric",
@@ -101,78 +262,6 @@ module KlaviyoAPI
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: MetricsApi#get_metric\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get Metric Flow Triggers
-    # Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Hash<String, Object>]
-    def get_metric_flow_triggers(id, opts = {})
-      data, _status_code, _headers = get_metric_flow_triggers_with_http_info(id, opts)
-      data
-    end
-
-    # Get Metric Flow Triggers
-    # Get all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2024-10-15/reference/api-overview#sparse-fieldsets
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_metric_flow_triggers_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: MetricsApi.get_metric_flow_triggers ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_metric_flow_triggers"
-      end
-      allowable_values = ["name", "status", "archived", "created", "updated", "trigger_type"]
-      if @api_client.config.client_side_validation && opts[:'fields_flow'] && !opts[:'fields_flow'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_flow\", must include one of #{allowable_values}"
-      end
-      # resource path
-      local_var_path = '/api/metrics/{id}/flow-triggers'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-      query_params[:'fields[flow]'] = @api_client.build_collection_param(opts[:'fields_flow'], :csv) if !opts[:'fields_flow'].nil?
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"MetricsApi.get_metric_flow_triggers",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: MetricsApi#get_metric_flow_triggers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -233,7 +322,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.get_metric_for_metric_property",
@@ -304,7 +393,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.get_metric_id_for_metric_property",
@@ -400,7 +489,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.get_metric_property",
@@ -415,71 +504,6 @@ module KlaviyoAPI
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: MetricsApi#get_metric_property\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get Metric Relationships Flow Triggers
-    # Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @return [Hash<String, Object>]
-    def get_metric_relationships_flow_triggers(id, opts = {})
-      data, _status_code, _headers = get_metric_relationships_flow_triggers_with_http_info(id, opts)
-      data
-    end
-
-    # Get Metric Relationships Flow Triggers
-    # Get all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;
-    # @param id [String] 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_metric_relationships_flow_triggers_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: MetricsApi.get_metric_relationships_flow_triggers ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_metric_relationships_flow_triggers"
-      end
-      # resource path
-      local_var_path = '/api/metrics/{id}/relationships/flow-triggers'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2024-10-15"
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
-
-      new_options = opts.merge(
-        :operation => :"MetricsApi.get_metric_relationships_flow_triggers",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: MetricsApi#get_metric_relationships_flow_triggers\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -551,7 +575,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.get_metrics",
@@ -584,6 +608,9 @@ module KlaviyoAPI
 
     # alias of `get_properties_for_metric`
     alias get_metric_metric_properties get_properties_for_metric
+
+    # alias of `get_properties_for_metric`
+    alias get_metric_properties get_properties_for_metric
 
     # Get Properties for Metric
     # Get the metric properties for the given metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
@@ -633,7 +660,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.get_properties_for_metric",
@@ -655,6 +682,9 @@ module KlaviyoAPI
     # alias of `get_properties_for_metric_with_http_info`
     alias get_metric_metric_properties_with_http_info get_properties_for_metric_with_http_info
 
+    # alias of `get_properties_for_metric_with_http_info`
+    alias get_metric_properties_with_http_info get_properties_for_metric_with_http_info
+
     # Get Property IDs for Metric
     # Get the IDs of metric properties for the given metric.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
     # @param id [String] The ID of the metric
@@ -667,6 +697,9 @@ module KlaviyoAPI
 
     # alias of `get_property_ids_for_metric`
     alias get_metric_relationships_metric_properties get_property_ids_for_metric
+
+    # alias of `get_property_ids_for_metric`
+    alias get_metric_relationships_properties get_property_ids_for_metric
 
     # Get Property IDs for Metric
     # Get the IDs of metric properties for the given metric.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
@@ -704,7 +737,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.get_property_ids_for_metric",
@@ -725,6 +758,9 @@ module KlaviyoAPI
 
     # alias of `get_property_ids_for_metric_with_http_info`
     alias get_metric_relationships_metric_properties_with_http_info get_property_ids_for_metric_with_http_info
+
+    # alias of `get_property_ids_for_metric_with_http_info`
+    alias get_metric_relationships_properties_with_http_info get_property_ids_for_metric_with_http_info
 
     # Query Metric Aggregates
     # Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events. Queries must be passed in the JSON body of your `POST` request.  To request campaign and flow performance data that matches the data shown in Klaviyo's UI, we recommend the [Reporting API](https://developers.klaviyo.com/en/reference/reporting_api_overview).  Results can be filtered and grouped by time, event, or profile dimensions.  To learn more about how to use this endpoint, check out our new [Using the Query Metric Aggregates Endpoint guide](https://developers.klaviyo.com/en/docs/using-the-query-metric-aggregates-endpoint).  For a comprehensive list of request body parameters, native Klaviyo metrics, and their associated attributes for grouping and filtering, please refer to the [metrics attributes guide](https://developers.klaviyo.com/en/docs/supported_metrics_and_attributes).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
@@ -780,7 +816,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"MetricsApi.query_metric_aggregates",

@@ -73,7 +73,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.assign_template_to_campaign_message",
@@ -155,7 +155,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.cancel_campaign_send",
@@ -228,7 +228,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.create_campaign",
@@ -301,7 +301,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.create_campaign_clone",
@@ -369,7 +369,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.delete_campaign",
@@ -462,7 +462,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign",
@@ -537,7 +537,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign_for_campaign_message",
@@ -608,7 +608,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign_id_for_campaign_message",
@@ -704,7 +704,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign_message",
@@ -776,7 +776,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign_recipient_estimation",
@@ -848,7 +848,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign_recipient_estimation_job",
@@ -920,7 +920,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign_send_job",
@@ -949,6 +949,9 @@ module KlaviyoAPI
       data, _status_code, _headers = get_campaign_tags_with_http_info(id, opts)
       data
     end
+
+    # alias of `get_campaign_tags`
+    alias get_tags_for_campaign get_campaign_tags
 
     # Get Campaign Tags
     # Return all tags that belong to the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;tags:read&#x60;
@@ -992,7 +995,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaign_tags",
@@ -1010,6 +1013,9 @@ module KlaviyoAPI
       end
       return data, status_code, headers
     end
+
+    # alias of `get_campaign_tags_with_http_info`
+    alias get_tags_for_campaign_with_http_info get_campaign_tags_with_http_info
 
     # Get Campaigns
     # Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,'email')` to list email campaigns, or `?filter=equals(messages.channel,'sms')` to list SMS campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
@@ -1096,7 +1102,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_campaigns",
@@ -1127,6 +1133,9 @@ module KlaviyoAPI
 
     # alias of `get_message_ids_for_campaign`
     alias get_campaign_relationships_campaign_messages get_message_ids_for_campaign
+
+    # alias of `get_message_ids_for_campaign`
+    alias get_campaign_relationships_messages get_message_ids_for_campaign
 
     # Get Message IDs for Campaign
     # Returns the IDs of all messages associated with the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;
@@ -1164,7 +1173,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_message_ids_for_campaign",
@@ -1186,6 +1195,9 @@ module KlaviyoAPI
     # alias of `get_message_ids_for_campaign_with_http_info`
     alias get_campaign_relationships_campaign_messages_with_http_info get_message_ids_for_campaign_with_http_info
 
+    # alias of `get_message_ids_for_campaign_with_http_info`
+    alias get_campaign_relationships_messages_with_http_info get_message_ids_for_campaign_with_http_info
+
     # Get Messages for Campaign
     # Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`
     # @param id [String] 
@@ -1202,6 +1214,9 @@ module KlaviyoAPI
 
     # alias of `get_messages_for_campaign`
     alias get_campaign_campaign_messages get_messages_for_campaign
+
+    # alias of `get_messages_for_campaign`
+    alias get_campaign_messages get_messages_for_campaign
 
     # Get Messages for Campaign
     # Return all messages that belong to the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;
@@ -1263,7 +1278,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_messages_for_campaign",
@@ -1284,6 +1299,9 @@ module KlaviyoAPI
 
     # alias of `get_messages_for_campaign_with_http_info`
     alias get_campaign_campaign_messages_with_http_info get_messages_for_campaign_with_http_info
+
+    # alias of `get_messages_for_campaign_with_http_info`
+    alias get_campaign_messages_with_http_info get_messages_for_campaign_with_http_info
 
     # Get Tag IDs for Campaign
     # Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
@@ -1334,7 +1352,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_tag_ids_for_campaign",
@@ -1412,7 +1430,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_template_for_campaign_message",
@@ -1483,7 +1501,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.get_template_id_for_campaign_message",
@@ -1559,7 +1577,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.refresh_campaign_recipient_estimation",
@@ -1635,7 +1653,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.send_campaign",
@@ -1714,7 +1732,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.update_campaign",
@@ -1790,7 +1808,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CampaignsApi.update_campaign_message",

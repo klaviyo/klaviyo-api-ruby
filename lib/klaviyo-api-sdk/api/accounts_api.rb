@@ -72,7 +72,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"AccountsApi.get_account",
@@ -138,7 +138,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"AccountsApi.get_accounts",

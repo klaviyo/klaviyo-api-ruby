@@ -19,40 +19,43 @@ module KlaviyoAPI
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Add Category to Catalog Item
+    # Add Categories to Catalog Item
     # Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
-    def add_category_to_catalog_item(id, catalog_item_category_op, opts = {})
-      add_category_to_catalog_item_with_http_info(id, catalog_item_category_op, opts)
+    def add_categories_to_catalog_item(id, catalog_item_category_op, opts = {})
+      add_categories_to_catalog_item_with_http_info(id, catalog_item_category_op, opts)
       nil
     end
 
-    # alias of `add_category_to_catalog_item`
-    alias create_catalog_item_relationships_categories add_category_to_catalog_item
+    # alias of `add_categories_to_catalog_item`
+    alias add_category_to_catalog_item add_categories_to_catalog_item
 
-    # alias of `add_category_to_catalog_item`
-    alias create_catalog_item_relationships_category add_category_to_catalog_item
+    # alias of `add_categories_to_catalog_item`
+    alias create_catalog_item_relationships_category add_categories_to_catalog_item
 
-    # Add Category to Catalog Item
+    # alias of `add_categories_to_catalog_item`
+    alias create_catalog_item_relationships_categories add_categories_to_catalog_item
+
+    # Add Categories to Catalog Item
     # Create a new catalog category relationship for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
-    def add_category_to_catalog_item_with_http_info(id, catalog_item_category_op, opts = {})
+    def add_categories_to_catalog_item_with_http_info(id, catalog_item_category_op, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CatalogsApi.add_category_to_catalog_item ...'
+        @api_client.config.logger.debug 'Calling API: CatalogsApi.add_categories_to_catalog_item ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.add_category_to_catalog_item"
+        fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.add_categories_to_catalog_item"
       end
       # verify the required parameter 'catalog_item_category_op' is set
       if @api_client.config.client_side_validation && catalog_item_category_op.nil?
-        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.add_category_to_catalog_item"
+        fail ArgumentError, "Missing the required parameter 'catalog_item_category_op' when calling CatalogsApi.add_categories_to_catalog_item"
       end
       # resource path
       local_var_path = '/api/catalog-items/{id}/relationships/categories'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
@@ -82,10 +85,10 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
-        :operation => :"CatalogsApi.add_category_to_catalog_item",
+        :operation => :"CatalogsApi.add_categories_to_catalog_item",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -96,16 +99,19 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CatalogsApi#add_category_to_catalog_item\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CatalogsApi#add_categories_to_catalog_item\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # alias of `add_category_to_catalog_item_with_http_info`
-    alias create_catalog_item_relationships_categories_with_http_info add_category_to_catalog_item_with_http_info
+    # alias of `add_categories_to_catalog_item_with_http_info`
+    alias add_category_to_catalog_item_with_http_info add_categories_to_catalog_item_with_http_info
 
-    # alias of `add_category_to_catalog_item_with_http_info`
-    alias create_catalog_item_relationships_category_with_http_info add_category_to_catalog_item_with_http_info
+    # alias of `add_categories_to_catalog_item_with_http_info`
+    alias create_catalog_item_relationships_category_with_http_info add_categories_to_catalog_item_with_http_info
+
+    # alias of `add_categories_to_catalog_item_with_http_info`
+    alias create_catalog_item_relationships_categories_with_http_info add_categories_to_catalog_item_with_http_info
 
     # Add Items to Catalog Category
     # Create a new item relationship for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -119,10 +125,10 @@ module KlaviyoAPI
     end
 
     # alias of `add_items_to_catalog_category`
-    alias create_catalog_category_relationships_items add_items_to_catalog_category
+    alias create_catalog_category_relationships_item add_items_to_catalog_category
 
     # alias of `add_items_to_catalog_category`
-    alias create_catalog_category_relationships_item add_items_to_catalog_category
+    alias create_catalog_category_relationships_items add_items_to_catalog_category
 
     # Add Items to Catalog Category
     # Create a new item relationship for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
@@ -170,7 +176,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.add_items_to_catalog_category",
@@ -190,10 +196,10 @@ module KlaviyoAPI
     end
 
     # alias of `add_items_to_catalog_category_with_http_info`
-    alias create_catalog_category_relationships_items_with_http_info add_items_to_catalog_category_with_http_info
+    alias create_catalog_category_relationships_item_with_http_info add_items_to_catalog_category_with_http_info
 
     # alias of `add_items_to_catalog_category_with_http_info`
-    alias create_catalog_category_relationships_item_with_http_info add_items_to_catalog_category_with_http_info
+    alias create_catalog_category_relationships_items_with_http_info add_items_to_catalog_category_with_http_info
 
     # Bulk Create Catalog Categories
     # Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `catalogs:write`
@@ -252,7 +258,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_create_catalog_categories",
@@ -334,7 +340,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_create_catalog_items",
@@ -416,7 +422,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_create_catalog_variants",
@@ -498,7 +504,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_delete_catalog_categories",
@@ -580,7 +586,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_delete_catalog_items",
@@ -662,7 +668,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_delete_catalog_variants",
@@ -744,7 +750,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_update_catalog_categories",
@@ -826,7 +832,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_update_catalog_items",
@@ -908,7 +914,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.bulk_update_catalog_variants",
@@ -984,7 +990,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.create_back_in_stock_subscription",
@@ -1054,7 +1060,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.create_catalog_category",
@@ -1124,7 +1130,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.create_catalog_item",
@@ -1194,7 +1200,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.create_catalog_variant",
@@ -1259,7 +1265,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.delete_catalog_category",
@@ -1324,7 +1330,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.delete_catalog_item",
@@ -1389,7 +1395,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.delete_catalog_variant",
@@ -1481,7 +1487,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_bulk_create_catalog_items_job",
@@ -1565,7 +1571,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_bulk_create_catalog_items_jobs",
@@ -1649,7 +1655,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_bulk_delete_catalog_items_job",
@@ -1733,7 +1739,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_bulk_delete_catalog_items_jobs",
@@ -1831,7 +1837,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_bulk_update_catalog_items_job",
@@ -1915,7 +1921,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_bulk_update_catalog_items_jobs",
@@ -2000,7 +2006,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_catalog_categories",
@@ -2072,7 +2078,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_catalog_category",
@@ -2158,7 +2164,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_catalog_item",
@@ -2251,7 +2257,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_catalog_items",
@@ -2323,7 +2329,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_catalog_variant",
@@ -2402,7 +2408,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_catalog_variants",
@@ -2486,7 +2492,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_categories_for_catalog_item",
@@ -2560,7 +2566,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_category_ids_for_catalog_item",
@@ -2652,7 +2658,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_create_categories_job",
@@ -2730,7 +2736,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_create_categories_jobs",
@@ -2822,7 +2828,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_create_variants_job",
@@ -2900,7 +2906,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_create_variants_jobs",
@@ -2978,7 +2984,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_delete_categories_job",
@@ -3056,7 +3062,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_delete_categories_jobs",
@@ -3134,7 +3140,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_delete_variants_job",
@@ -3212,7 +3218,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_delete_variants_jobs",
@@ -3286,7 +3292,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_item_ids_for_catalog_category",
@@ -3387,7 +3393,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_items_for_catalog_category",
@@ -3479,7 +3485,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_update_categories_job",
@@ -3557,7 +3563,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_update_categories_jobs",
@@ -3649,7 +3655,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_update_variants_job",
@@ -3727,7 +3733,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_update_variants_jobs",
@@ -3814,7 +3820,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.get_variants_for_catalog_item",
@@ -3896,7 +3902,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.remove_categories_from_catalog_item",
@@ -3978,7 +3984,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.remove_items_from_catalog_category",
@@ -4057,7 +4063,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.update_catalog_category",
@@ -4133,7 +4139,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.update_catalog_item",
@@ -4209,7 +4215,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.update_catalog_variant",
@@ -4288,7 +4294,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.update_categories_for_catalog_item",
@@ -4370,7 +4376,7 @@ module KlaviyoAPI
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key']
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
         :operation => :"CatalogsApi.update_items_for_catalog_category",

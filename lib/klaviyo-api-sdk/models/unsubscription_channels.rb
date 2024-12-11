@@ -14,36 +14,16 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  class CampaignSendJobPartialUpdateQueryResourceObjectAttributes
-    # The action you would like to take with this send job from among 'cancel' and 'revert'
-    attr_accessor :action
+  class UnsubscriptionChannels
+    attr_accessor :email
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :sms
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'action' => :'action'
+        :'email' => :'email',
+        :'sms' => :'sms'
       }
     end
 
@@ -55,7 +35,8 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'action' => :'String'
+        :'email' => :'EmailUnsubscriptionParameters',
+        :'sms' => :'SMSUnsubscriptionParameters'
       }
     end
 
@@ -69,19 +50,23 @@ module KlaviyoAPI
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::CampaignSendJobPartialUpdateQueryResourceObjectAttributes` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::UnsubscriptionChannels` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::CampaignSendJobPartialUpdateQueryResourceObjectAttributes`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::UnsubscriptionChannels`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'action')
-        self.action = attributes[:'action']
+      if attributes.key?(:'email')
+        self.email = attributes[:'email']
+      end
+
+      if attributes.key?(:'sms')
+        self.sms = attributes[:'sms']
       end
     end
 
@@ -89,30 +74,13 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @action.nil?
-        invalid_properties.push('invalid value for "action", action cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @action.nil?
-      action_validator = EnumAttributeValidator.new('String', ["cancel", "revert"])
-      return false unless action_validator.valid?(@action)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] action Object to be assigned
-    def action=(action)
-      validator = EnumAttributeValidator.new('String', ["cancel", "revert"])
-      unless validator.valid?(action)
-        fail ArgumentError, "invalid value for \"action\", must be one of #{validator.allowable_values}."
-      end
-      @action = action
     end
 
     # Checks equality by comparing each attribute.
@@ -120,7 +88,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          action == o.action
+          email == o.email &&
+          sms == o.sms
     end
 
     # @see the `==` method
@@ -132,7 +101,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [action].hash
+      [email, sms].hash
     end
 
     # Builds the object from hash
