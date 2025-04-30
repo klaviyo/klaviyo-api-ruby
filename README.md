@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 13.0.0
+- SDK version: 13.0.1
 - API revision: 2025-04-15
 
 ## Helpful Resources
@@ -114,13 +114,13 @@ gem build klaviyo-api-sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo-api-sdk-13.0.0.gem
+gem install ./klaviyo-api-sdk-13.0.1.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo-api-sdk', '~> 13.0.0'
+    gem 'klaviyo-api-sdk', '~> 13.0.1'
 
 To install directly from rubygems:
 
