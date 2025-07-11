@@ -925,7 +925,7 @@ module KlaviyoAPI
           end
         rescue KlaviyoAPI::ApiError => exception
           last_exception = exception
-          last_request_retry_after = exception.response_headers[:'Retry-After']
+          last_request_retry_after = exception.response_headers && exception.response_headers[:'Retry-After']
           last_request_timestamp = Time.now
           raise unless [429, 503, 504, 524].include? exception.code
         end
