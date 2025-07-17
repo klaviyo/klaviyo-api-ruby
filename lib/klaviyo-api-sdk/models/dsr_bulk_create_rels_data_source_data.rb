@@ -13,22 +13,17 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  class CustomObjectPropertyCondition
+  class DataSourceRecordBulkCreateJobCreateQueryResourceObjectRelationshipsDataSourceData
     attr_accessor :type
 
-    attr_accessor :custom_object_label
-
-    attr_accessor :field
-
-    attr_accessor :filter
+    # The data source to which the records belong.
+    attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'type' => :'type',
-        :'custom_object_label' => :'custom_object_label',
-        :'field' => :'field',
-        :'filter' => :'filter'
+        :'id' => :'id'
       }
     end
 
@@ -40,10 +35,8 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'CustomObjectPropertyEnum',
-        :'custom_object_label' => :'String',
-        :'field' => :'String',
-        :'filter' => :'MetricPropertyConditionFilter'
+        :'type' => :'DataSourceEnum',
+        :'id' => :'String'
       }
     end
 
@@ -57,13 +50,13 @@ module KlaviyoAPI
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::CustomObjectPropertyCondition` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::DataSourceRecordBulkCreateJobCreateQueryResourceObjectRelationshipsDataSourceData` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::CustomObjectPropertyCondition`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::DataSourceRecordBulkCreateJobCreateQueryResourceObjectRelationshipsDataSourceData`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -72,16 +65,8 @@ module KlaviyoAPI
         self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'custom_object_label')
-        self.custom_object_label = attributes[:'custom_object_label']
-      end
-
-      if attributes.key?(:'field')
-        self.field = attributes[:'field']
-      end
-
-      if attributes.key?(:'filter')
-        self.filter = attributes[:'filter']
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
     end
 
@@ -93,16 +78,8 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if @custom_object_label.nil?
-        invalid_properties.push('invalid value for "custom_object_label", custom_object_label cannot be nil.')
-      end
-
-      if @field.nil?
-        invalid_properties.push('invalid value for "field", field cannot be nil.')
-      end
-
-      if @filter.nil?
-        invalid_properties.push('invalid value for "filter", filter cannot be nil.')
+      if @id.nil?
+        invalid_properties.push('invalid value for "id", id cannot be nil.')
       end
 
       invalid_properties
@@ -112,9 +89,7 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
-      return false if @custom_object_label.nil?
-      return false if @field.nil?
-      return false if @filter.nil?
+      return false if @id.nil?
       true
     end
 
@@ -124,9 +99,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           type == o.type &&
-          custom_object_label == o.custom_object_label &&
-          field == o.field &&
-          filter == o.filter
+          id == o.id
     end
 
     # @see the `==` method
@@ -138,7 +111,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, custom_object_label, field, filter].hash
+      [type, id].hash
     end
 
     # Builds the object from hash

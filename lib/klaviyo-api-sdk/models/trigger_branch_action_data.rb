@@ -64,7 +64,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'trigger_filter' => :'TriggerBranchActionDataTriggerFilter',
+        :'trigger_filter' => :'MetricPropertyConditionFilter',
         :'trigger_id' => :'String',
         :'trigger_type' => :'String',
         :'trigger_subtype' => :'String'
@@ -74,7 +74,6 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'trigger_filter',
         :'trigger_subtype'
       ])
     end
@@ -115,6 +114,10 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @trigger_filter.nil?
+        invalid_properties.push('invalid value for "trigger_filter", trigger_filter cannot be nil.')
+      end
+
       if @trigger_id.nil?
         invalid_properties.push('invalid value for "trigger_id", trigger_id cannot be nil.')
       end
@@ -129,6 +132,7 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @trigger_filter.nil?
       return false if @trigger_id.nil?
       return false if @trigger_type.nil?
       trigger_type_validator = EnumAttributeValidator.new('String', ["date", "list", "low-inventory", "metric", "price-drop", "scheduled", "segment"])

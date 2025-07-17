@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [14.0.0] - revision 2025-07-15
+### Added
+#### Mapped Metrics API
+
+- Use the [Mapped Metrics API](https://developers.klaviyo.com/en/reference/get_mapped_metrics) to retrieve some or all mapped metrics in your Klaviyo account, or [update](https://developers.klaviyo.com/en/reference/update_mapped_metric) a mapped metric.
+- Get the [metric](https://developers.klaviyo.com/en/reference/get_metric_for_mapped_metric), [custom metric](https://developers.klaviyo.com/en/reference/get_custom_metric_for_mapped_metric), or associated metric IDs for a given mapped metric.
+
+#### Custom Objects API
+
+- Use the [Custom Objects API](https://developers.klaviyo.com/en/reference/custom_objects_api_overview) to ingest data records from other third-party sources into Klaviyo and retrieve all available data sources for an account.
+- Use ingested data records to create [custom objects](https://help.klaviyo.com/hc/en-us/articles/35105337172123) in a Klaviyo account.
+
 ## [13.0.1] - revision 2025-04-15
 ### Fixed
 - Fixed `ApiError` initialization so that it doesn't swallow errors
