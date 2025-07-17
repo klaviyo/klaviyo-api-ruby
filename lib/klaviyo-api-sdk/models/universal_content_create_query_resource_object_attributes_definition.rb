@@ -18,7 +18,12 @@ module KlaviyoAPI
       # List of class defined in oneOf (OpenAPI v3)
       def openapi_one_of
         [
+          :'ButtonBlock',
+          :'DropShadowBlock',
           :'HTMLBlock',
+          :'HorizontalRuleBlock',
+          :'ImageBlock',
+          :'SpacerBlock',
           :'TextBlock'
         ]
       end

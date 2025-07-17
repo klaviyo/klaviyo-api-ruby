@@ -13,7 +13,7 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  # The timeframe to query for data within. The max length a timeframe can be is 1 year
+  # The time frame to pull data from (Max length: 1 year). See [available time frames](https://developers.klaviyo.com/en/reference/reporting_api_overview#available-time-frames).
   module CampaignValuesRequestDTOResourceObjectAttributesTimeframe
     class << self
       # List of class defined in oneOf (OpenAPI v3)

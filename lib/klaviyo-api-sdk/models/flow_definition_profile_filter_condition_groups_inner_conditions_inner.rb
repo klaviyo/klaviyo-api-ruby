@@ -24,6 +24,7 @@ module KlaviyoAPI
           :'ProfileNoGroupMembershipCondition',
           :'ProfileNotInFlowCondition',
           :'ProfilePostalCodeDistanceCondition',
+          :'ProfilePredictiveAnalyticsDateCondition',
           :'ProfilePredictiveAnalyticsNumericCondition',
           :'ProfilePredictiveAnalyticsStringCondition',
           :'ProfilePropertyCondition',
