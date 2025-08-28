@@ -17,10 +17,14 @@ module KlaviyoAPI
     # A description of the coupon.
     attr_accessor :description
 
+    # The monitor configuration for the coupon.
+    attr_accessor :monitor_configuration
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'description' => :'description'
+        :'description' => :'description',
+        :'monitor_configuration' => :'monitor_configuration'
       }
     end
 
@@ -32,14 +36,16 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'description' => :'String'
+        :'description' => :'String',
+        :'monitor_configuration' => :'Object'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'description'
+        :'description',
+        :'monitor_configuration'
       ])
     end
 
@@ -61,6 +67,10 @@ module KlaviyoAPI
       if attributes.key?(:'description')
         self.description = attributes[:'description']
       end
+
+      if attributes.key?(:'monitor_configuration')
+        self.monitor_configuration = attributes[:'monitor_configuration']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -81,7 +91,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          description == o.description
+          description == o.description &&
+          monitor_configuration == o.monitor_configuration
     end
 
     # @see the `==` method
@@ -93,7 +104,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [description].hash
+      [description, monitor_configuration].hash
     end
 
     # Builds the object from hash

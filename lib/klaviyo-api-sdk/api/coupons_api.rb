@@ -565,7 +565,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon"
       end
-      allowable_values = ["external_id", "description"]
+      allowable_values = ["external_id", "description", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -645,7 +645,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
       end
-      allowable_values = ["external_id", "description"]
+      allowable_values = ["external_id", "description", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -822,7 +822,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
       end
-      allowable_values = ["external_id", "description"]
+      allowable_values = ["external_id", "description", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -995,7 +995,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon_for_coupon_code"
       end
-      allowable_values = ["external_id", "description"]
+      allowable_values = ["external_id", "description", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -1137,7 +1137,7 @@ module KlaviyoAPI
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CouponsApi.get_coupons ...'
       end
-      allowable_values = ["external_id", "description"]
+      allowable_values = ["external_id", "description", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
