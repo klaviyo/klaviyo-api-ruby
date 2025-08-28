@@ -43,7 +43,7 @@ module KlaviyoAPI
         :'type' => :'LowInventoryPropertyEnum',
         :'metric_id' => :'String',
         :'field' => :'String',
-        :'filter' => :'MetricPropertyConditionFilter'
+        :'filter' => :'LowInventoryConditionFilter2'
       }
     end
 

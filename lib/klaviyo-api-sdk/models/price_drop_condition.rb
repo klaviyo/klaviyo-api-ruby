@@ -43,7 +43,7 @@ module KlaviyoAPI
         :'type' => :'PriceDropPropertyEnum',
         :'metric_id' => :'String',
         :'field' => :'String',
-        :'filter' => :'MetricPropertyConditionFilter'
+        :'filter' => :'PriceDropConditionFilter2'
       }
     end
 

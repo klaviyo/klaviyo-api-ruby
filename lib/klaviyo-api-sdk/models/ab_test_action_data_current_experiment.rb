@@ -87,7 +87,9 @@ module KlaviyoAPI
       Set.new([
         :'id',
         :'name',
+        :'allocations',
         :'started',
+        :'winner_metric',
       ])
     end
 
@@ -145,18 +147,6 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "variations", variations cannot be nil.')
       end
 
-      if @allocations.nil?
-        invalid_properties.push('invalid value for "allocations", allocations cannot be nil.')
-      end
-
-      if @winner_metric.nil?
-        invalid_properties.push('invalid value for "winner_metric", winner_metric cannot be nil.')
-      end
-
-      if @automatic_winner_selection_settings.nil?
-        invalid_properties.push('invalid value for "automatic_winner_selection_settings", automatic_winner_selection_settings cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -164,11 +154,8 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @variations.nil?
-      return false if @allocations.nil?
-      return false if @winner_metric.nil?
       winner_metric_validator = EnumAttributeValidator.new('String', ["submission", "unique-clicks", "unique-opens", "unique-placed-orders"])
       return false unless winner_metric_validator.valid?(@winner_metric)
-      return false if @automatic_winner_selection_settings.nil?
       true
     end
 

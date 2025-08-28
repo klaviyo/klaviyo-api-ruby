@@ -43,7 +43,7 @@ module KlaviyoAPI
         :'type' => :'MetricPropertyEnum',
         :'metric_id' => :'String',
         :'field' => :'String',
-        :'filter' => :'MetricPropertyConditionFilter'
+        :'filter' => :'MetricPropertyConditionFilter2'
       }
     end
 

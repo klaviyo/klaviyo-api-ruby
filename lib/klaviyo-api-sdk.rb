@@ -402,6 +402,7 @@ require 'klaviyo-api-sdk/models/internal_service_enum'
 require 'klaviyo-api-sdk/models/invalid_email_date_enum'
 require 'klaviyo-api-sdk/models/invalid_email_date_filter'
 require 'klaviyo-api-sdk/models/is_double_opt_in_enum'
+require 'klaviyo-api-sdk/models/is_rcs_capable_enum'
 require 'klaviyo-api-sdk/models/is_set_enum'
 require 'klaviyo-api-sdk/models/is_set_existence_filter'
 require 'klaviyo-api-sdk/models/less_than_enum'
@@ -429,6 +430,7 @@ require 'klaviyo-api-sdk/models/list_update_enum'
 require 'klaviyo-api-sdk/models/local_static_send'
 require 'klaviyo-api-sdk/models/low_inventory_condition'
 require 'klaviyo-api-sdk/models/low_inventory_condition_filter'
+require 'klaviyo-api-sdk/models/low_inventory_condition_filter2'
 require 'klaviyo-api-sdk/models/low_inventory_condition_group'
 require 'klaviyo-api-sdk/models/low_inventory_enum'
 require 'klaviyo-api-sdk/models/low_inventory_property_enum'
@@ -463,6 +465,7 @@ require 'klaviyo-api-sdk/models/metric_create_query_resource_object_attributes'
 require 'klaviyo-api-sdk/models/metric_enum'
 require 'klaviyo-api-sdk/models/metric_property_condition'
 require 'klaviyo-api-sdk/models/metric_property_condition_filter'
+require 'klaviyo-api-sdk/models/metric_property_condition_filter2'
 require 'klaviyo-api-sdk/models/metric_property_condition_group'
 require 'klaviyo-api-sdk/models/metric_property_enum'
 require 'klaviyo-api-sdk/models/metric_trigger'
@@ -514,6 +517,7 @@ require 'klaviyo-api-sdk/models/preference_page_filter'
 require 'klaviyo-api-sdk/models/preference_page_method_filter'
 require 'klaviyo-api-sdk/models/price_drop_condition'
 require 'klaviyo-api-sdk/models/price_drop_condition_filter'
+require 'klaviyo-api-sdk/models/price_drop_condition_filter2'
 require 'klaviyo-api-sdk/models/price_drop_condition_group'
 require 'klaviyo-api-sdk/models/price_drop_enum'
 require 'klaviyo-api-sdk/models/price_drop_property_enum'
@@ -735,6 +739,7 @@ require 'klaviyo-api-sdk/models/string_in_array_filter'
 require 'klaviyo-api-sdk/models/string_operator_filter'
 require 'klaviyo-api-sdk/models/string_phone_operator_array_filter'
 require 'klaviyo-api-sdk/models/subscribed_enum'
+require 'klaviyo-api-sdk/models/subscribed_smsis_rcs_capable_filter'
 require 'klaviyo-api-sdk/models/subscription_channels'
 require 'klaviyo-api-sdk/models/subscription_create_job_create_query'
 require 'klaviyo-api-sdk/models/subscription_create_job_create_query_resource_object'
@@ -960,7 +965,7 @@ module KlaviyoAPI
           end
         rescue KlaviyoAPI::ApiError => exception
           last_exception = exception
-          last_request_retry_after = exception.response_headers[:'Retry-After']
+          last_request_retry_after = exception.response_headers && exception.response_headers[:'Retry-After']
           last_request_timestamp = Time.now
           raise unless [429, 503, 504, 524].include? exception.code
         end

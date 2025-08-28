@@ -26,7 +26,8 @@ module KlaviyoAPI
           :'PreferencePageMethodFilter',
           :'SftpMethodFilter',
           :'ShopifyIntegrationMethodFilter',
-          :'StatusDateFilter'
+          :'StatusDateFilter',
+          :'SubscribedSMSIsRcsCapableFilter'
         ]
       end
 
