@@ -22,6 +22,7 @@ module KlaviyoAPI
           :'ProfileHasGroupMembershipCondition',
           :'ProfileMarketingConsentCondition',
           :'ProfileNoGroupMembershipCondition',
+          :'ProfilePermissionsCondition',
           :'ProfilePostalCodeDistanceCondition',
           :'ProfilePredictiveAnalyticsDateCondition',
           :'ProfilePredictiveAnalyticsNumericCondition',

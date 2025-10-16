@@ -57,7 +57,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -127,7 +127,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -164,7 +164,7 @@ module KlaviyoAPI
     # Get the flow action for a flow message with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_action_for_flow_message(id, opts = {})
       data, _status_code, _headers = get_action_for_flow_message_with_http_info(id, opts)
@@ -178,7 +178,7 @@ module KlaviyoAPI
     # Get the flow action for a flow message with the given message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_action_for_flow_message_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -188,7 +188,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_action_for_flow_message"
       end
-      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "badge_options", "badge_options.badge_config", "badge_options.value", "badge_options.set_from_property", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
+      allowable_values = ["created", "updated", "definition", "definition.id", "definition.temporary_id", "definition.type", "definition.links", "definition.links.next_if_true", "definition.links.next_if_false", "definition.data", "definition.data.action_output_filter", "definition.data.action_output_filter.condition_groups", "definition.links.next", "definition.data.profile_filter", "definition.data.profile_filter.condition_groups", "definition.data.message", "definition.data.message.from_email", "definition.data.message.from_label", "definition.data.message.reply_to_email", "definition.data.message.cc_email", "definition.data.message.bcc_email", "definition.data.message.subject_line", "definition.data.message.preview_text", "definition.data.message.template_id", "definition.data.message.smart_sending_enabled", "definition.data.message.transactional", "definition.data.message.add_tracking_params", "definition.data.message.custom_tracking_params", "definition.data.message.additional_filters", "definition.data.message.additional_filters.condition_groups", "definition.data.message.name", "definition.data.message.id", "definition.data.status", "definition.data.message.title", "definition.data.message.body", "definition.data.message.sound", "definition.data.message.badge", "definition.data.message.badge_options", "definition.data.message.badge_options.badge_config", "definition.data.message.badge_options.value", "definition.data.message.badge_options.set_from_property", "definition.data.message.image_id", "definition.data.message.dynamic_image", "definition.data.message.on_open", "definition.data.message.ios_link", "definition.data.message.android_link", "definition.data.message.conversion_metric_id", "definition.data.message.shorten_links", "definition.data.message.include_contact_card", "definition.data.message.add_org_prefix", "definition.data.message.add_info_link", "definition.data.message.add_opt_out_language", "definition.data.message.sms_quiet_hours_enabled", "definition.data.message.url", "definition.data.message.headers", "definition.data.message.to_emails", "definition.data.message.vendor_id", "definition.data.unit", "definition.data.value", "definition.data.secondary_value", "definition.data.timezone", "definition.data.delay_until_time", "definition.data.delay_until_weekdays", "definition.data.trigger_filter", "definition.data.trigger_filter.condition_groups", "definition.data.trigger_id", "definition.data.trigger_type", "definition.data.trigger_subtype", "definition.data.profile_operations", "definition.data.target_time", "definition.data.target_days", "definition.data.experiment_status", "definition.data.main_action", "definition.data.main_action.id", "definition.data.main_action.temporary_id", "definition.data.main_action.type", "definition.data.main_action.links", "definition.data.main_action.links.next", "definition.data.main_action.data", "definition.data.main_action.data.message", "definition.data.main_action.data.message.from_email", "definition.data.main_action.data.message.from_label", "definition.data.main_action.data.message.reply_to_email", "definition.data.main_action.data.message.cc_email", "definition.data.main_action.data.message.bcc_email", "definition.data.main_action.data.message.subject_line", "definition.data.main_action.data.message.preview_text", "definition.data.main_action.data.message.template_id", "definition.data.main_action.data.message.smart_sending_enabled", "definition.data.main_action.data.message.transactional", "definition.data.main_action.data.message.add_tracking_params", "definition.data.main_action.data.message.custom_tracking_params", "definition.data.main_action.data.message.additional_filters", "definition.data.main_action.data.message.additional_filters.condition_groups", "definition.data.main_action.data.message.name", "definition.data.main_action.data.message.id", "definition.data.main_action.data.status", "definition.data.main_action.data.message.body", "definition.data.main_action.data.message.image_id", "definition.data.main_action.data.message.dynamic_image", "definition.data.main_action.data.message.shorten_links", "definition.data.main_action.data.message.include_contact_card", "definition.data.main_action.data.message.add_org_prefix", "definition.data.main_action.data.message.add_info_link", "definition.data.main_action.data.message.add_opt_out_language", "definition.data.main_action.data.message.sms_quiet_hours_enabled", "definition.data.current_experiment", "definition.data.current_experiment.id", "definition.data.current_experiment.name", "definition.data.current_experiment.variations", "definition.data.current_experiment.allocations", "definition.data.current_experiment.started", "definition.data.current_experiment.winner_metric", "definition.data.current_experiment.automatic_winner_selection_settings", "definition.data.current_experiment.automatic_winner_selection_settings.enabled", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_date", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_statistical_certainty", "definition.data.name", "definition.data.on_execution", "definition.data.list_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
       end
@@ -202,7 +202,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -273,7 +273,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -313,10 +313,10 @@ module KlaviyoAPI
     # Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Returns a maximum of 100 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_action_ids_for_flow(id, opts = {})
       data, _status_code, _headers = get_action_ids_for_flow_with_http_info(id, opts)
@@ -333,10 +333,10 @@ module KlaviyoAPI
     # Get all [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for flow actions associated with the given flow ID.  Returns a maximum of 100 flows per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_action_ids_for_flow_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -371,7 +371,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -414,11 +414,11 @@ module KlaviyoAPI
     # Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_actions_for_flow(id, opts = {})
       data, _status_code, _headers = get_actions_for_flow_with_http_info(id, opts)
@@ -435,11 +435,11 @@ module KlaviyoAPI
     # Get all flow actions associated with the given flow ID.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;action_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_actions_for_flow_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -449,7 +449,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_actions_for_flow"
       end
-      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "badge_options", "badge_options.badge_config", "badge_options.value", "badge_options.set_from_property", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
+      allowable_values = ["created", "updated", "definition", "definition.id", "definition.temporary_id", "definition.type", "definition.links", "definition.links.next_if_true", "definition.links.next_if_false", "definition.data", "definition.data.action_output_filter", "definition.data.action_output_filter.condition_groups", "definition.links.next", "definition.data.profile_filter", "definition.data.profile_filter.condition_groups", "definition.data.message", "definition.data.message.from_email", "definition.data.message.from_label", "definition.data.message.reply_to_email", "definition.data.message.cc_email", "definition.data.message.bcc_email", "definition.data.message.subject_line", "definition.data.message.preview_text", "definition.data.message.template_id", "definition.data.message.smart_sending_enabled", "definition.data.message.transactional", "definition.data.message.add_tracking_params", "definition.data.message.custom_tracking_params", "definition.data.message.additional_filters", "definition.data.message.additional_filters.condition_groups", "definition.data.message.name", "definition.data.message.id", "definition.data.status", "definition.data.message.title", "definition.data.message.body", "definition.data.message.sound", "definition.data.message.badge", "definition.data.message.badge_options", "definition.data.message.badge_options.badge_config", "definition.data.message.badge_options.value", "definition.data.message.badge_options.set_from_property", "definition.data.message.image_id", "definition.data.message.dynamic_image", "definition.data.message.on_open", "definition.data.message.ios_link", "definition.data.message.android_link", "definition.data.message.conversion_metric_id", "definition.data.message.shorten_links", "definition.data.message.include_contact_card", "definition.data.message.add_org_prefix", "definition.data.message.add_info_link", "definition.data.message.add_opt_out_language", "definition.data.message.sms_quiet_hours_enabled", "definition.data.message.url", "definition.data.message.headers", "definition.data.message.to_emails", "definition.data.message.vendor_id", "definition.data.unit", "definition.data.value", "definition.data.secondary_value", "definition.data.timezone", "definition.data.delay_until_time", "definition.data.delay_until_weekdays", "definition.data.trigger_filter", "definition.data.trigger_filter.condition_groups", "definition.data.trigger_id", "definition.data.trigger_type", "definition.data.trigger_subtype", "definition.data.profile_operations", "definition.data.target_time", "definition.data.target_days", "definition.data.experiment_status", "definition.data.main_action", "definition.data.main_action.id", "definition.data.main_action.temporary_id", "definition.data.main_action.type", "definition.data.main_action.links", "definition.data.main_action.links.next", "definition.data.main_action.data", "definition.data.main_action.data.message", "definition.data.main_action.data.message.from_email", "definition.data.main_action.data.message.from_label", "definition.data.main_action.data.message.reply_to_email", "definition.data.main_action.data.message.cc_email", "definition.data.main_action.data.message.bcc_email", "definition.data.main_action.data.message.subject_line", "definition.data.main_action.data.message.preview_text", "definition.data.main_action.data.message.template_id", "definition.data.main_action.data.message.smart_sending_enabled", "definition.data.main_action.data.message.transactional", "definition.data.main_action.data.message.add_tracking_params", "definition.data.main_action.data.message.custom_tracking_params", "definition.data.main_action.data.message.additional_filters", "definition.data.main_action.data.message.additional_filters.condition_groups", "definition.data.main_action.data.message.name", "definition.data.main_action.data.message.id", "definition.data.main_action.data.status", "definition.data.main_action.data.message.body", "definition.data.main_action.data.message.image_id", "definition.data.main_action.data.message.dynamic_image", "definition.data.main_action.data.message.shorten_links", "definition.data.main_action.data.message.include_contact_card", "definition.data.main_action.data.message.add_org_prefix", "definition.data.main_action.data.message.add_info_link", "definition.data.main_action.data.message.add_opt_out_language", "definition.data.main_action.data.message.sms_quiet_hours_enabled", "definition.data.current_experiment", "definition.data.current_experiment.id", "definition.data.current_experiment.name", "definition.data.current_experiment.variations", "definition.data.current_experiment.allocations", "definition.data.current_experiment.started", "definition.data.current_experiment.winner_metric", "definition.data.current_experiment.automatic_winner_selection_settings", "definition.data.current_experiment.automatic_winner_selection_settings.enabled", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_date", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_statistical_certainty", "definition.data.name", "definition.data.on_execution", "definition.data.list_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
       end
@@ -479,7 +479,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -523,10 +523,10 @@ module KlaviyoAPI
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_flow Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_flow(id, opts = {})
       data, _status_code, _headers = get_flow_with_http_info(id, opts)
@@ -538,10 +538,10 @@ module KlaviyoAPI
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_flow Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_flow_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -555,7 +555,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_flow'] && !opts[:'additional_fields_flow'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_flow\", must include one of #{allowable_values}"
       end
-      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "badge_options", "badge_options.badge_config", "badge_options.value", "badge_options.set_from_property", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
+      allowable_values = ["created", "updated", "definition", "definition.id", "definition.temporary_id", "definition.type", "definition.links", "definition.links.next_if_true", "definition.links.next_if_false", "definition.data", "definition.data.action_output_filter", "definition.data.action_output_filter.condition_groups", "definition.links.next", "definition.data.profile_filter", "definition.data.profile_filter.condition_groups", "definition.data.message", "definition.data.message.from_email", "definition.data.message.from_label", "definition.data.message.reply_to_email", "definition.data.message.cc_email", "definition.data.message.bcc_email", "definition.data.message.subject_line", "definition.data.message.preview_text", "definition.data.message.template_id", "definition.data.message.smart_sending_enabled", "definition.data.message.transactional", "definition.data.message.add_tracking_params", "definition.data.message.custom_tracking_params", "definition.data.message.additional_filters", "definition.data.message.additional_filters.condition_groups", "definition.data.message.name", "definition.data.message.id", "definition.data.status", "definition.data.message.title", "definition.data.message.body", "definition.data.message.sound", "definition.data.message.badge", "definition.data.message.badge_options", "definition.data.message.badge_options.badge_config", "definition.data.message.badge_options.value", "definition.data.message.badge_options.set_from_property", "definition.data.message.image_id", "definition.data.message.dynamic_image", "definition.data.message.on_open", "definition.data.message.ios_link", "definition.data.message.android_link", "definition.data.message.conversion_metric_id", "definition.data.message.shorten_links", "definition.data.message.include_contact_card", "definition.data.message.add_org_prefix", "definition.data.message.add_info_link", "definition.data.message.add_opt_out_language", "definition.data.message.sms_quiet_hours_enabled", "definition.data.message.url", "definition.data.message.headers", "definition.data.message.to_emails", "definition.data.message.vendor_id", "definition.data.unit", "definition.data.value", "definition.data.secondary_value", "definition.data.timezone", "definition.data.delay_until_time", "definition.data.delay_until_weekdays", "definition.data.trigger_filter", "definition.data.trigger_filter.condition_groups", "definition.data.trigger_id", "definition.data.trigger_type", "definition.data.trigger_subtype", "definition.data.profile_operations", "definition.data.target_time", "definition.data.target_days", "definition.data.experiment_status", "definition.data.main_action", "definition.data.main_action.id", "definition.data.main_action.temporary_id", "definition.data.main_action.type", "definition.data.main_action.links", "definition.data.main_action.links.next", "definition.data.main_action.data", "definition.data.main_action.data.message", "definition.data.main_action.data.message.from_email", "definition.data.main_action.data.message.from_label", "definition.data.main_action.data.message.reply_to_email", "definition.data.main_action.data.message.cc_email", "definition.data.main_action.data.message.bcc_email", "definition.data.main_action.data.message.subject_line", "definition.data.main_action.data.message.preview_text", "definition.data.main_action.data.message.template_id", "definition.data.main_action.data.message.smart_sending_enabled", "definition.data.main_action.data.message.transactional", "definition.data.main_action.data.message.add_tracking_params", "definition.data.main_action.data.message.custom_tracking_params", "definition.data.main_action.data.message.additional_filters", "definition.data.main_action.data.message.additional_filters.condition_groups", "definition.data.main_action.data.message.name", "definition.data.main_action.data.message.id", "definition.data.main_action.data.status", "definition.data.main_action.data.message.body", "definition.data.main_action.data.message.image_id", "definition.data.main_action.data.message.dynamic_image", "definition.data.main_action.data.message.shorten_links", "definition.data.main_action.data.message.include_contact_card", "definition.data.main_action.data.message.add_org_prefix", "definition.data.main_action.data.message.add_info_link", "definition.data.main_action.data.message.add_opt_out_language", "definition.data.main_action.data.message.sms_quiet_hours_enabled", "definition.data.current_experiment", "definition.data.current_experiment.id", "definition.data.current_experiment.name", "definition.data.current_experiment.variations", "definition.data.current_experiment.allocations", "definition.data.current_experiment.started", "definition.data.current_experiment.winner_metric", "definition.data.current_experiment.automatic_winner_selection_settings", "definition.data.current_experiment.automatic_winner_selection_settings.enabled", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_date", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_statistical_certainty", "definition.data.name", "definition.data.on_execution", "definition.data.list_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
       end
@@ -585,7 +585,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -622,10 +622,10 @@ module KlaviyoAPI
     # Get a flow action from a flow with the given flow action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_flow_action(id, opts = {})
       data, _status_code, _headers = get_flow_action_with_http_info(id, opts)
@@ -636,10 +636,10 @@ module KlaviyoAPI
     # Get a flow action from a flow with the given flow action ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_flow_action_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -649,11 +649,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_flow_action"
       end
-      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "badge_options", "badge_options.badge_config", "badge_options.value", "badge_options.set_from_property", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
+      allowable_values = ["created", "updated", "definition", "definition.id", "definition.temporary_id", "definition.type", "definition.links", "definition.links.next_if_true", "definition.links.next_if_false", "definition.data", "definition.data.action_output_filter", "definition.data.action_output_filter.condition_groups", "definition.links.next", "definition.data.profile_filter", "definition.data.profile_filter.condition_groups", "definition.data.message", "definition.data.message.from_email", "definition.data.message.from_label", "definition.data.message.reply_to_email", "definition.data.message.cc_email", "definition.data.message.bcc_email", "definition.data.message.subject_line", "definition.data.message.preview_text", "definition.data.message.template_id", "definition.data.message.smart_sending_enabled", "definition.data.message.transactional", "definition.data.message.add_tracking_params", "definition.data.message.custom_tracking_params", "definition.data.message.additional_filters", "definition.data.message.additional_filters.condition_groups", "definition.data.message.name", "definition.data.message.id", "definition.data.status", "definition.data.message.title", "definition.data.message.body", "definition.data.message.sound", "definition.data.message.badge", "definition.data.message.badge_options", "definition.data.message.badge_options.badge_config", "definition.data.message.badge_options.value", "definition.data.message.badge_options.set_from_property", "definition.data.message.image_id", "definition.data.message.dynamic_image", "definition.data.message.on_open", "definition.data.message.ios_link", "definition.data.message.android_link", "definition.data.message.conversion_metric_id", "definition.data.message.shorten_links", "definition.data.message.include_contact_card", "definition.data.message.add_org_prefix", "definition.data.message.add_info_link", "definition.data.message.add_opt_out_language", "definition.data.message.sms_quiet_hours_enabled", "definition.data.message.url", "definition.data.message.headers", "definition.data.message.to_emails", "definition.data.message.vendor_id", "definition.data.unit", "definition.data.value", "definition.data.secondary_value", "definition.data.timezone", "definition.data.delay_until_time", "definition.data.delay_until_weekdays", "definition.data.trigger_filter", "definition.data.trigger_filter.condition_groups", "definition.data.trigger_id", "definition.data.trigger_type", "definition.data.trigger_subtype", "definition.data.profile_operations", "definition.data.target_time", "definition.data.target_days", "definition.data.experiment_status", "definition.data.main_action", "definition.data.main_action.id", "definition.data.main_action.temporary_id", "definition.data.main_action.type", "definition.data.main_action.links", "definition.data.main_action.links.next", "definition.data.main_action.data", "definition.data.main_action.data.message", "definition.data.main_action.data.message.from_email", "definition.data.main_action.data.message.from_label", "definition.data.main_action.data.message.reply_to_email", "definition.data.main_action.data.message.cc_email", "definition.data.main_action.data.message.bcc_email", "definition.data.main_action.data.message.subject_line", "definition.data.main_action.data.message.preview_text", "definition.data.main_action.data.message.template_id", "definition.data.main_action.data.message.smart_sending_enabled", "definition.data.main_action.data.message.transactional", "definition.data.main_action.data.message.add_tracking_params", "definition.data.main_action.data.message.custom_tracking_params", "definition.data.main_action.data.message.additional_filters", "definition.data.main_action.data.message.additional_filters.condition_groups", "definition.data.main_action.data.message.name", "definition.data.main_action.data.message.id", "definition.data.main_action.data.status", "definition.data.main_action.data.message.body", "definition.data.main_action.data.message.image_id", "definition.data.main_action.data.message.dynamic_image", "definition.data.main_action.data.message.shorten_links", "definition.data.main_action.data.message.include_contact_card", "definition.data.main_action.data.message.add_org_prefix", "definition.data.main_action.data.message.add_info_link", "definition.data.main_action.data.message.add_opt_out_language", "definition.data.main_action.data.message.sms_quiet_hours_enabled", "definition.data.current_experiment", "definition.data.current_experiment.id", "definition.data.current_experiment.name", "definition.data.current_experiment.variations", "definition.data.current_experiment.allocations", "definition.data.current_experiment.started", "definition.data.current_experiment.winner_metric", "definition.data.current_experiment.automatic_winner_selection_settings", "definition.data.current_experiment.automatic_winner_selection_settings.enabled", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_date", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_statistical_certainty", "definition.data.name", "definition.data.on_execution", "definition.data.list_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
       end
-      allowable_values = ["name", "channel", "content", "content.subject", "content.preview_text", "content.from_email", "content.from_label", "content.reply_to_email", "content.cc_email", "content.bcc_email", "content.body", "content.media_url", "content.title", "content.sound", "content.badge", "content.dynamic_image", "content.ios_link", "content.android_link", "content.on_open", "created", "updated"]
+      allowable_values = ["created", "updated", "definition", "definition.from_email", "definition.from_label", "definition.reply_to_email", "definition.cc_email", "definition.bcc_email", "definition.subject_line", "definition.preview_text", "definition.template_id", "definition.smart_sending_enabled", "definition.transactional", "definition.add_tracking_params", "definition.custom_tracking_params", "definition.additional_filters", "definition.additional_filters.condition_groups", "definition.name", "definition.id", "definition.to_emails", "definition.title", "definition.body", "definition.sound", "definition.badge", "definition.badge_options", "definition.badge_options.badge_config", "definition.badge_options.value", "definition.badge_options.set_from_property", "definition.image_id", "definition.dynamic_image", "definition.on_open", "definition.ios_link", "definition.android_link", "definition.conversion_metric_id", "definition.shorten_links", "definition.include_contact_card", "definition.add_org_prefix", "definition.add_info_link", "definition.add_opt_out_language", "definition.sms_quiet_hours_enabled", "definition.url", "definition.headers", "definition.vendor_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_message'] && !opts[:'fields_flow_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_message\", must include one of #{allowable_values}"
       end
@@ -678,7 +678,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -715,11 +715,11 @@ module KlaviyoAPI
     # Get all flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_flow_action_messages(id, opts = {})
       data, _status_code, _headers = get_flow_action_messages_with_http_info(id, opts)
@@ -733,11 +733,11 @@ module KlaviyoAPI
     # Get all flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_flow_action_messages_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -747,7 +747,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_flow_action_messages"
       end
-      allowable_values = ["name", "channel", "content", "content.subject", "content.preview_text", "content.from_email", "content.from_label", "content.reply_to_email", "content.cc_email", "content.bcc_email", "content.body", "content.media_url", "content.title", "content.sound", "content.badge", "content.dynamic_image", "content.ios_link", "content.android_link", "content.on_open", "created", "updated"]
+      allowable_values = ["created", "updated", "definition", "definition.from_email", "definition.from_label", "definition.reply_to_email", "definition.cc_email", "definition.bcc_email", "definition.subject_line", "definition.preview_text", "definition.template_id", "definition.smart_sending_enabled", "definition.transactional", "definition.add_tracking_params", "definition.custom_tracking_params", "definition.additional_filters", "definition.additional_filters.condition_groups", "definition.name", "definition.id", "definition.to_emails", "definition.title", "definition.body", "definition.sound", "definition.badge", "definition.badge_options", "definition.badge_options.badge_config", "definition.badge_options.value", "definition.badge_options.set_from_property", "definition.image_id", "definition.dynamic_image", "definition.on_open", "definition.ios_link", "definition.android_link", "definition.conversion_metric_id", "definition.shorten_links", "definition.include_contact_card", "definition.add_org_prefix", "definition.add_info_link", "definition.add_opt_out_language", "definition.sms_quiet_hours_enabled", "definition.url", "definition.headers", "definition.vendor_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_message'] && !opts[:'fields_flow_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_message\", must include one of #{allowable_values}"
       end
@@ -777,7 +777,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -817,7 +817,7 @@ module KlaviyoAPI
     # Get the flow associated with the given action ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_flow_for_flow_action(id, opts = {})
       data, _status_code, _headers = get_flow_for_flow_action_with_http_info(id, opts)
@@ -831,7 +831,7 @@ module KlaviyoAPI
     # Get the flow associated with the given action ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_flow_for_flow_action_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -855,7 +855,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -926,7 +926,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -963,13 +963,13 @@ module KlaviyoAPI
     alias get_flow_action_relationships_flow_with_http_info get_flow_id_for_flow_action_with_http_info
 
     # Get Flow Message
-    # Get the flow message of a flow with the given message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
+    # Get a flow message from a flow with the given flow message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_flow_message(id, opts = {})
       data, _status_code, _headers = get_flow_message_with_http_info(id, opts)
@@ -977,13 +977,13 @@ module KlaviyoAPI
     end
 
     # Get Flow Message
-    # Get the flow message of a flow with the given message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
+    # Get a flow message from a flow with the given flow message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow_message For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_flow_message_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -993,11 +993,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.get_flow_message"
       end
-      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "badge_options", "badge_options.badge_config", "badge_options.value", "badge_options.set_from_property", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
+      allowable_values = ["created", "updated", "definition", "definition.id", "definition.temporary_id", "definition.type", "definition.links", "definition.links.next_if_true", "definition.links.next_if_false", "definition.data", "definition.data.action_output_filter", "definition.data.action_output_filter.condition_groups", "definition.links.next", "definition.data.profile_filter", "definition.data.profile_filter.condition_groups", "definition.data.message", "definition.data.message.from_email", "definition.data.message.from_label", "definition.data.message.reply_to_email", "definition.data.message.cc_email", "definition.data.message.bcc_email", "definition.data.message.subject_line", "definition.data.message.preview_text", "definition.data.message.template_id", "definition.data.message.smart_sending_enabled", "definition.data.message.transactional", "definition.data.message.add_tracking_params", "definition.data.message.custom_tracking_params", "definition.data.message.additional_filters", "definition.data.message.additional_filters.condition_groups", "definition.data.message.name", "definition.data.message.id", "definition.data.status", "definition.data.message.title", "definition.data.message.body", "definition.data.message.sound", "definition.data.message.badge", "definition.data.message.badge_options", "definition.data.message.badge_options.badge_config", "definition.data.message.badge_options.value", "definition.data.message.badge_options.set_from_property", "definition.data.message.image_id", "definition.data.message.dynamic_image", "definition.data.message.on_open", "definition.data.message.ios_link", "definition.data.message.android_link", "definition.data.message.conversion_metric_id", "definition.data.message.shorten_links", "definition.data.message.include_contact_card", "definition.data.message.add_org_prefix", "definition.data.message.add_info_link", "definition.data.message.add_opt_out_language", "definition.data.message.sms_quiet_hours_enabled", "definition.data.message.url", "definition.data.message.headers", "definition.data.message.to_emails", "definition.data.message.vendor_id", "definition.data.unit", "definition.data.value", "definition.data.secondary_value", "definition.data.timezone", "definition.data.delay_until_time", "definition.data.delay_until_weekdays", "definition.data.trigger_filter", "definition.data.trigger_filter.condition_groups", "definition.data.trigger_id", "definition.data.trigger_type", "definition.data.trigger_subtype", "definition.data.profile_operations", "definition.data.target_time", "definition.data.target_days", "definition.data.experiment_status", "definition.data.main_action", "definition.data.main_action.id", "definition.data.main_action.temporary_id", "definition.data.main_action.type", "definition.data.main_action.links", "definition.data.main_action.links.next", "definition.data.main_action.data", "definition.data.main_action.data.message", "definition.data.main_action.data.message.from_email", "definition.data.main_action.data.message.from_label", "definition.data.main_action.data.message.reply_to_email", "definition.data.main_action.data.message.cc_email", "definition.data.main_action.data.message.bcc_email", "definition.data.main_action.data.message.subject_line", "definition.data.main_action.data.message.preview_text", "definition.data.main_action.data.message.template_id", "definition.data.main_action.data.message.smart_sending_enabled", "definition.data.main_action.data.message.transactional", "definition.data.main_action.data.message.add_tracking_params", "definition.data.main_action.data.message.custom_tracking_params", "definition.data.main_action.data.message.additional_filters", "definition.data.main_action.data.message.additional_filters.condition_groups", "definition.data.main_action.data.message.name", "definition.data.main_action.data.message.id", "definition.data.main_action.data.status", "definition.data.main_action.data.message.body", "definition.data.main_action.data.message.image_id", "definition.data.main_action.data.message.dynamic_image", "definition.data.main_action.data.message.shorten_links", "definition.data.main_action.data.message.include_contact_card", "definition.data.main_action.data.message.add_org_prefix", "definition.data.main_action.data.message.add_info_link", "definition.data.main_action.data.message.add_opt_out_language", "definition.data.main_action.data.message.sms_quiet_hours_enabled", "definition.data.current_experiment", "definition.data.current_experiment.id", "definition.data.current_experiment.name", "definition.data.current_experiment.variations", "definition.data.current_experiment.allocations", "definition.data.current_experiment.started", "definition.data.current_experiment.winner_metric", "definition.data.current_experiment.automatic_winner_selection_settings", "definition.data.current_experiment.automatic_winner_selection_settings.enabled", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_date", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_statistical_certainty", "definition.data.name", "definition.data.on_execution", "definition.data.list_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
       end
-      allowable_values = ["name", "channel", "content", "content.subject", "content.preview_text", "content.from_email", "content.from_label", "content.reply_to_email", "content.cc_email", "content.bcc_email", "content.body", "content.media_url", "content.title", "content.sound", "content.badge", "content.dynamic_image", "content.ios_link", "content.android_link", "content.on_open", "created", "updated"]
+      allowable_values = ["created", "updated", "definition", "definition.from_email", "definition.from_label", "definition.reply_to_email", "definition.cc_email", "definition.bcc_email", "definition.subject_line", "definition.preview_text", "definition.template_id", "definition.smart_sending_enabled", "definition.transactional", "definition.add_tracking_params", "definition.custom_tracking_params", "definition.additional_filters", "definition.additional_filters.condition_groups", "definition.name", "definition.id", "definition.to_emails", "definition.title", "definition.body", "definition.sound", "definition.badge", "definition.badge_options", "definition.badge_options.badge_config", "definition.badge_options.value", "definition.badge_options.set_from_property", "definition.image_id", "definition.dynamic_image", "definition.on_open", "definition.ios_link", "definition.android_link", "definition.conversion_metric_id", "definition.shorten_links", "definition.include_contact_card", "definition.add_org_prefix", "definition.add_info_link", "definition.add_opt_out_language", "definition.sms_quiet_hours_enabled", "definition.url", "definition.headers", "definition.vendor_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_message'] && !opts[:'fields_flow_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_message\", must include one of #{allowable_values}"
       end
@@ -1022,7 +1022,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1058,14 +1058,14 @@ module KlaviyoAPI
     # Get Flows
     # Get all flows in an account.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_flows(opts = {})
       data, _status_code, _headers = get_flows_with_http_info(opts)
@@ -1075,20 +1075,20 @@ module KlaviyoAPI
     # Get Flows
     # Get all flows in an account.  Returns a maximum of 50 flows per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow_action For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;trigger_type&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_flows_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: FlowsApi.get_flows ...'
       end
-      allowable_values = ["action_type", "status", "created", "updated", "settings", "tracking_options", "tracking_options.add_utm", "tracking_options.utm_params", "tracking_options.is_tracking_opens", "tracking_options.is_tracking_clicks", "send_options", "send_options.use_smart_sending", "send_options.is_transactional", "badge_options", "badge_options.badge_config", "badge_options.value", "badge_options.set_from_property", "render_options", "render_options.shorten_links", "render_options.add_org_prefix", "render_options.add_info_link", "render_options.add_opt_out_language"]
+      allowable_values = ["created", "updated", "definition", "definition.id", "definition.temporary_id", "definition.type", "definition.links", "definition.links.next_if_true", "definition.links.next_if_false", "definition.data", "definition.data.action_output_filter", "definition.data.action_output_filter.condition_groups", "definition.links.next", "definition.data.profile_filter", "definition.data.profile_filter.condition_groups", "definition.data.message", "definition.data.message.from_email", "definition.data.message.from_label", "definition.data.message.reply_to_email", "definition.data.message.cc_email", "definition.data.message.bcc_email", "definition.data.message.subject_line", "definition.data.message.preview_text", "definition.data.message.template_id", "definition.data.message.smart_sending_enabled", "definition.data.message.transactional", "definition.data.message.add_tracking_params", "definition.data.message.custom_tracking_params", "definition.data.message.additional_filters", "definition.data.message.additional_filters.condition_groups", "definition.data.message.name", "definition.data.message.id", "definition.data.status", "definition.data.message.title", "definition.data.message.body", "definition.data.message.sound", "definition.data.message.badge", "definition.data.message.badge_options", "definition.data.message.badge_options.badge_config", "definition.data.message.badge_options.value", "definition.data.message.badge_options.set_from_property", "definition.data.message.image_id", "definition.data.message.dynamic_image", "definition.data.message.on_open", "definition.data.message.ios_link", "definition.data.message.android_link", "definition.data.message.conversion_metric_id", "definition.data.message.shorten_links", "definition.data.message.include_contact_card", "definition.data.message.add_org_prefix", "definition.data.message.add_info_link", "definition.data.message.add_opt_out_language", "definition.data.message.sms_quiet_hours_enabled", "definition.data.message.url", "definition.data.message.headers", "definition.data.message.to_emails", "definition.data.message.vendor_id", "definition.data.unit", "definition.data.value", "definition.data.secondary_value", "definition.data.timezone", "definition.data.delay_until_time", "definition.data.delay_until_weekdays", "definition.data.trigger_filter", "definition.data.trigger_filter.condition_groups", "definition.data.trigger_id", "definition.data.trigger_type", "definition.data.trigger_subtype", "definition.data.profile_operations", "definition.data.target_time", "definition.data.target_days", "definition.data.experiment_status", "definition.data.main_action", "definition.data.main_action.id", "definition.data.main_action.temporary_id", "definition.data.main_action.type", "definition.data.main_action.links", "definition.data.main_action.links.next", "definition.data.main_action.data", "definition.data.main_action.data.message", "definition.data.main_action.data.message.from_email", "definition.data.main_action.data.message.from_label", "definition.data.main_action.data.message.reply_to_email", "definition.data.main_action.data.message.cc_email", "definition.data.main_action.data.message.bcc_email", "definition.data.main_action.data.message.subject_line", "definition.data.main_action.data.message.preview_text", "definition.data.main_action.data.message.template_id", "definition.data.main_action.data.message.smart_sending_enabled", "definition.data.main_action.data.message.transactional", "definition.data.main_action.data.message.add_tracking_params", "definition.data.main_action.data.message.custom_tracking_params", "definition.data.main_action.data.message.additional_filters", "definition.data.main_action.data.message.additional_filters.condition_groups", "definition.data.main_action.data.message.name", "definition.data.main_action.data.message.id", "definition.data.main_action.data.status", "definition.data.main_action.data.message.body", "definition.data.main_action.data.message.image_id", "definition.data.main_action.data.message.dynamic_image", "definition.data.main_action.data.message.shorten_links", "definition.data.main_action.data.message.include_contact_card", "definition.data.main_action.data.message.add_org_prefix", "definition.data.main_action.data.message.add_info_link", "definition.data.main_action.data.message.add_opt_out_language", "definition.data.main_action.data.message.sms_quiet_hours_enabled", "definition.data.current_experiment", "definition.data.current_experiment.id", "definition.data.current_experiment.name", "definition.data.current_experiment.variations", "definition.data.current_experiment.allocations", "definition.data.current_experiment.started", "definition.data.current_experiment.winner_metric", "definition.data.current_experiment.automatic_winner_selection_settings", "definition.data.current_experiment.automatic_winner_selection_settings.enabled", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_date", "definition.data.current_experiment.automatic_winner_selection_settings.automatic_end_statistical_certainty", "definition.data.name", "definition.data.on_execution", "definition.data.list_id"]
       if @api_client.config.client_side_validation && opts[:'fields_flow_action'] && !opts[:'fields_flow_action'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow_action\", must include one of #{allowable_values}"
       end
@@ -1133,7 +1133,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1170,10 +1170,10 @@ module KlaviyoAPI
     # Get all relationships for flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_message_ids_for_flow_action(id, opts = {})
       data, _status_code, _headers = get_message_ids_for_flow_action_with_http_info(id, opts)
@@ -1187,10 +1187,10 @@ module KlaviyoAPI
     # Get all relationships for flow messages associated with the given flow action ID.  Returns a maximum of 50 flow message relationships per request, which can be paginated with cursor-based pagination.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_message_ids_for_flow_action_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1225,7 +1225,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1296,7 +1296,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1336,7 +1336,7 @@ module KlaviyoAPI
     # Return all tags associated with the given flow ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_tags_for_flow(id, opts = {})
       data, _status_code, _headers = get_tags_for_flow_with_http_info(id, opts)
@@ -1350,7 +1350,7 @@ module KlaviyoAPI
     # Return all tags associated with the given flow ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;tags:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tags_for_flow_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1374,7 +1374,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1414,7 +1414,7 @@ module KlaviyoAPI
     # Return the related template<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_template_for_flow_message(id, opts = {})
       data, _status_code, _headers = get_template_for_flow_message_with_http_info(id, opts)
@@ -1428,7 +1428,7 @@ module KlaviyoAPI
     # Return the related template&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;templates:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2025-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_template_for_flow_message_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1452,7 +1452,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1523,7 +1523,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1597,7 +1597,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1631,6 +1631,82 @@ module KlaviyoAPI
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: FlowsApi#update_flow\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update Flow Action
+    # Update a flow action.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write`
+    # @param id [String] 
+    # @param flow_action_update_query [FlowActionUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def update_flow_action(id, flow_action_update_query, opts = {})
+      data, _status_code, _headers = update_flow_action_with_http_info(id, flow_action_update_query, opts)
+      data
+    end
+
+    # Update Flow Action
+    # Update a flow action.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60;
+    # @param id [String] 
+    # @param flow_action_update_query [FlowActionUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def update_flow_action_with_http_info(id, flow_action_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: FlowsApi.update_flow_action ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling FlowsApi.update_flow_action"
+      end
+      # verify the required parameter 'flow_action_update_query' is set
+      if @api_client.config.client_side_validation && flow_action_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'flow_action_update_query' when calling FlowsApi.update_flow_action"
+      end
+      # resource path
+      local_var_path = '/api/flow-actions/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2025-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(flow_action_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"FlowsApi.update_flow_action",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FlowsApi#update_flow_action\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

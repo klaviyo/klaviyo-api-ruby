@@ -14,7 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class EmailEnum
-    EMAIL = "email".freeze
+    _EMAIL = "$email".freeze
 
     # Builds the enum from string
     # @param [String] The enum value in the form of the string

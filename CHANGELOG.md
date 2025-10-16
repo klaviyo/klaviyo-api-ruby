@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [15.0.0] - revision 2025-10-15
+### Added
+#### Flow Actions API
+- Get flow actions, flow messages, flow action IDs, and more with the [Flow Actions API](https://developers.klaviyo.com/en/reference/get_flow_action).
+- Update flow actions within a flow, including associated message content, with the [Update Flow Action](https://developers.klaviyo.com/en/reference/update_flow_action) endpoint.
+
+### Updated
+#### Forms API
+- Retrieve a form and its definition with the [Forms API](https://developers.klaviyo.com/en/reference/forms_api_overview).
+- Use the [Create Form](https://developers.klaviyo.com/en/reference/create_form) endpoint to generate a new form by providing the status, A/B test preference, and name of the form.
+
 ## [14.0.1] - revision 2025-07-15
 ### Fixed
 - Added nil check when accessing `Retry-After` header

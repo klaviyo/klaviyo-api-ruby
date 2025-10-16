@@ -35,7 +35,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'type' => :'ProfileNotSentPushEnum',
-        :'timeframe_filter' => :'ProfileNotInFlowConditionTimeframeFilter'
+        :'timeframe_filter' => :'ProfileHasNotReceivedEmailMessageConditionTimeframeFilter'
       }
     end
 

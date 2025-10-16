@@ -13,13 +13,21 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  module ProfileNotInFlowConditionTimeframeFilter
+  module ImageAction
     class << self
       # List of class defined in oneOf (OpenAPI v3)
       def openapi_one_of
         [
-          :'AlltimeDateFilter',
-          :'InTheLastBaseRelativeDateFilter'
+          :'Close',
+          :'GoToInbox',
+          :'NextStep',
+          :'OpenForm',
+          :'PromotionalSMSSubscription',
+          :'Redirect',
+          :'ResendOptInCode',
+          :'SubmitBackInStock',
+          :'SubmitOptInCode',
+          :'SubscribeViaSMS'
         ]
       end
 
