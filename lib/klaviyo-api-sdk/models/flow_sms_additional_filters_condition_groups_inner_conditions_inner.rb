@@ -23,6 +23,7 @@ module KlaviyoAPI
           :'ProfileHasNotReceivedSmsMessageCondition',
           :'ProfileMarketingConsentCondition',
           :'ProfileNoGroupMembershipCondition',
+          :'ProfilePermissionsCondition',
           :'ProfilePostalCodeDistanceCondition',
           :'ProfilePredictiveAnalyticsDateCondition',
           :'ProfilePredictiveAnalyticsNumericCondition',

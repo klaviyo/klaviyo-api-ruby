@@ -19,10 +19,12 @@ module KlaviyoAPI
       def openapi_one_of
         [
           :'AbTestAction',
+          :'ActionOutputSplitAction',
           :'BackInStockDelayAction',
           :'BranchAction',
           :'CodeAction',
           :'ConditionalBranchAction',
+          :'ContentExperimentAction',
           :'CountdownDelayAction',
           :'InternalServiceAction',
           :'ListUpdateAction',
@@ -31,6 +33,7 @@ module KlaviyoAPI
           :'SendPushNotificationAction',
           :'SendSmsAction',
           :'SendWebhookAction',
+          :'SendWhatsAppAction',
           :'SplitAction',
           :'TargetDateAction',
           :'TimeDelayAction',
