@@ -20,20 +20,20 @@ module KlaviyoAPI
     # A temporary ID to use only during a create operation. Existing actions should use the id field.
     attr_accessor :temporary_id
 
+    attr_accessor :data
+
     attr_accessor :type
 
     attr_accessor :links
-
-    attr_accessor :data
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'temporary_id' => :'temporary_id',
+        :'data' => :'data',
         :'type' => :'type',
-        :'links' => :'links',
-        :'data' => :'data'
+        :'links' => :'links'
       }
     end
 
@@ -47,9 +47,9 @@ module KlaviyoAPI
       {
         :'id' => :'String',
         :'temporary_id' => :'String',
+        :'data' => :'ListUpdateActionData',
         :'type' => :'ListUpdateEnum',
-        :'links' => :'Link',
-        :'data' => :'ListUpdateActionData'
+        :'links' => :'Link'
       }
     end
 
@@ -84,6 +84,10 @@ module KlaviyoAPI
         self.temporary_id = attributes[:'temporary_id']
       end
 
+      if attributes.key?(:'data')
+        self.data = attributes[:'data']
+      end
+
       if attributes.key?(:'type')
         self.type = attributes[:'type']
       end
@@ -91,22 +95,18 @@ module KlaviyoAPI
       if attributes.key?(:'links')
         self.links = attributes[:'links']
       end
-
-      if attributes.key?(:'data')
-        self.data = attributes[:'data']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
-      end
-
       if @data.nil?
         invalid_properties.push('invalid value for "data", data cannot be nil.')
+      end
+
+      if @type.nil?
+        invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
       invalid_properties
@@ -115,8 +115,8 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @type.nil?
       return false if @data.nil?
+      return false if @type.nil?
       true
     end
 
@@ -127,9 +127,9 @@ module KlaviyoAPI
       self.class == o.class &&
           id == o.id &&
           temporary_id == o.temporary_id &&
+          data == o.data &&
           type == o.type &&
-          links == o.links &&
-          data == o.data
+          links == o.links
     end
 
     # @see the `==` method
@@ -141,7 +141,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, temporary_id, type, links, data].hash
+      [id, temporary_id, data, type, links].hash
     end
 
     # Builds the object from hash

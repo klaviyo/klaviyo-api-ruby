@@ -27,7 +27,8 @@ module KlaviyoAPI
           :'ResendOptInCode',
           :'SubmitBackInStock',
           :'SubmitOptInCode',
-          :'SubscribeViaSMS'
+          :'SubscribeViaSMS',
+          :'SubscribeViaWhatsApp'
         ]
       end
 

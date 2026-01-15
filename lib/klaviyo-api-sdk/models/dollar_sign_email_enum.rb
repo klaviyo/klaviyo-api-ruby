@@ -13,8 +13,8 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  class AgeGatedDateOfBirthEnum
-    _AGE_GATED_DATE_OF_BIRTH = "$age_gated_date_of_birth".freeze
+  class DollarSignEmailEnum
+    _EMAIL = "$email".freeze
 
     # Builds the enum from string
     # @param [String] The enum value in the form of the string
@@ -27,8 +27,8 @@ module KlaviyoAPI
     # @param [String] The enum value in the form of the string
     # @return [String] The enum value
     def build_from_hash(value)
-      constantValues = AgeGatedDateOfBirthEnum.constants.select { |c| AgeGatedDateOfBirthEnum::const_get(c) == value }
-      raise "Invalid ENUM value #{value} for class #AgeGatedDateOfBirthEnum" if constantValues.empty?
+      constantValues = DollarSignEmailEnum.constants.select { |c| DollarSignEmailEnum::const_get(c) == value }
+      raise "Invalid ENUM value #{value} for class #DollarSignEmailEnum" if constantValues.empty?
       value
     end
   end

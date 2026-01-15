@@ -30,7 +30,7 @@ module KlaviyoAPI
     # A dynamic image asset to include in the push notification.
     attr_accessor :dynamic_image
 
-    # See PushLinkAction in app.  This is not a flow action, but the literal action that should be taken when the push notification is tapped.
+    # See PushLinkAction in app.  This is not a flow action, but the literal action that should be     taken when the push notification is tapped.
     attr_accessor :on_open
 
     attr_accessor :ios_link

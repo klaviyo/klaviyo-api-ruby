@@ -25,7 +25,10 @@ module KlaviyoAPI
     # ID of the metric to be used for conversion statistics
     attr_accessor :conversion_metric_id
 
-    # API filter string used to filter the query. Allowed filters are flow_id, send_channel, flow_message_id. Allowed operators are equals, contains-any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter. When filtering on send_channel, allowed values are email, sms, push-notification.
+    # List of attributes to group the data by. Allowed group-bys are flow_id, flow_message_id, send_channel. If not passed in, the data will be grouped by flow_id, flow_message_id, send_channel. The following group by attributes are required: flow_message_id, flow_id.
+    attr_accessor :group_by
+
+    # API filter string used to filter the query. Allowed filters are flow_id, send_channel, flow_message_id. Allowed operators are equals, contains-any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter. When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.
     attr_accessor :filter
 
     class EnumAttributeValidator
@@ -57,6 +60,7 @@ module KlaviyoAPI
         :'timeframe' => :'timeframe',
         :'interval' => :'interval',
         :'conversion_metric_id' => :'conversion_metric_id',
+        :'group_by' => :'group_by',
         :'filter' => :'filter'
       }
     end
@@ -73,6 +77,7 @@ module KlaviyoAPI
         :'timeframe' => :'CampaignValuesRequestDTOResourceObjectAttributesTimeframe',
         :'interval' => :'String',
         :'conversion_metric_id' => :'String',
+        :'group_by' => :'Array<String>',
         :'filter' => :'String'
       }
     end
@@ -80,6 +85,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'group_by',
         :'filter'
       ])
     end
@@ -115,6 +121,12 @@ module KlaviyoAPI
 
       if attributes.key?(:'conversion_metric_id')
         self.conversion_metric_id = attributes[:'conversion_metric_id']
+      end
+
+      if attributes.key?(:'group_by')
+        if (value = attributes[:'group_by']).is_a?(Array)
+          self.group_by = value
+        end
       end
 
       if attributes.key?(:'filter')
@@ -176,6 +188,7 @@ module KlaviyoAPI
           timeframe == o.timeframe &&
           interval == o.interval &&
           conversion_metric_id == o.conversion_metric_id &&
+          group_by == o.group_by &&
           filter == o.filter
     end
 
@@ -188,7 +201,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [statistics, timeframe, interval, conversion_metric_id, filter].hash
+      [statistics, timeframe, interval, conversion_metric_id, group_by, filter].hash
     end
 
     # Builds the object from hash

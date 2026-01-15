@@ -30,6 +30,8 @@ module KlaviyoAPI
 
     attr_accessor :sms_consent_type
 
+    attr_accessor :channel_settings
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -62,7 +64,8 @@ module KlaviyoAPI
         :'required' => :'required',
         :'error_messages' => :'error_messages',
         :'property_name' => :'property_name',
-        :'sms_consent_type' => :'sms_consent_type'
+        :'sms_consent_type' => :'sms_consent_type',
+        :'channel_settings' => :'channel_settings'
       }
     end
 
@@ -81,7 +84,8 @@ module KlaviyoAPI
         :'required' => :'Boolean',
         :'error_messages' => :'ErrorMessages',
         :'property_name' => :'String',
-        :'sms_consent_type' => :'Array<String>'
+        :'sms_consent_type' => :'Array<String>',
+        :'channel_settings' => :'ChannelSettings'
       }
     end
 
@@ -91,6 +95,7 @@ module KlaviyoAPI
         :'label',
         :'placeholder',
         :'required',
+        :'sms_consent_type',
       ])
     end
 
@@ -150,6 +155,10 @@ module KlaviyoAPI
           self.sms_consent_type = value
         end
       end
+
+      if attributes.key?(:'channel_settings')
+        self.channel_settings = attributes[:'channel_settings']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -177,7 +186,8 @@ module KlaviyoAPI
           required == o.required &&
           error_messages == o.error_messages &&
           property_name == o.property_name &&
-          sms_consent_type == o.sms_consent_type
+          sms_consent_type == o.sms_consent_type &&
+          channel_settings == o.channel_settings
     end
 
     # @see the `==` method
@@ -189,7 +199,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, label, show_label, placeholder, required, error_messages, property_name, sms_consent_type].hash
+      [display_device, label, show_label, placeholder, required, error_messages, property_name, sms_consent_type, channel_settings].hash
     end
 
     # Builds the object from hash

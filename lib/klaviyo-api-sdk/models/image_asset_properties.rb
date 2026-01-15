@@ -14,23 +14,23 @@ require 'time'
 
 module KlaviyoAPI
   class ImageAssetProperties
-    attr_accessor :id
-
     attr_accessor :src
 
     attr_accessor :alt_text
 
     attr_accessor :original_image_url
 
+    attr_accessor :id
+
     attr_accessor :asset_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
         :'src' => :'src',
         :'alt_text' => :'alt_text',
         :'original_image_url' => :'original_image_url',
+        :'id' => :'id',
         :'asset_id' => :'asset_id'
       }
     end
@@ -43,10 +43,10 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'Integer',
         :'src' => :'String',
         :'alt_text' => :'String',
         :'original_image_url' => :'String',
+        :'id' => :'Integer',
         :'asset_id' => :'Integer'
       }
     end
@@ -54,8 +54,10 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'src',
         :'alt_text',
         :'original_image_url',
+        :'id',
         :'asset_id'
       ])
     end
@@ -75,10 +77,6 @@ module KlaviyoAPI
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
-      end
-
       if attributes.key?(:'src')
         self.src = attributes[:'src']
       end
@@ -91,6 +89,10 @@ module KlaviyoAPI
         self.original_image_url = attributes[:'original_image_url']
       end
 
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
+      end
+
       if attributes.key?(:'asset_id')
         self.asset_id = attributes[:'asset_id']
       end
@@ -100,17 +102,12 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @id.nil?
       true
     end
 
@@ -119,10 +116,10 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
           src == o.src &&
           alt_text == o.alt_text &&
           original_image_url == o.original_image_url &&
+          id == o.id &&
           asset_id == o.asset_id
     end
 
@@ -135,7 +132,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, src, alt_text, original_image_url, asset_id].hash
+      [src, alt_text, original_image_url, id, asset_id].hash
     end
 
     # Builds the object from hash

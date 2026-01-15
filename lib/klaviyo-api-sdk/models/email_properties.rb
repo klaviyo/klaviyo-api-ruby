@@ -77,7 +77,7 @@ module KlaviyoAPI
         :'placeholder' => :'String',
         :'required' => :'Boolean',
         :'error_messages' => :'ErrorMessages',
-        :'property_name' => :'EmailEnum'
+        :'property_name' => :'DollarSignEmailEnum'
       }
     end
 

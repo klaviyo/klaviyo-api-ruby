@@ -85,6 +85,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'font_weight',
         :'font_style',
         :'text_decoration',
       ])

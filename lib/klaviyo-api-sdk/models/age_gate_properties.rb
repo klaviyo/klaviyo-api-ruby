@@ -83,7 +83,7 @@ module KlaviyoAPI
         :'show_label' => :'Boolean',
         :'placeholder' => :'String',
         :'error_messages' => :'ErrorMessages',
-        :'property_name' => :'AgeGatedDateOfBirthEnum',
+        :'property_name' => :'DollarSignAgeGatedDateOfBirthEnum',
         :'date_format' => :'String',
         :'sms_country_code' => :'String',
         :'required' => :'Boolean'
