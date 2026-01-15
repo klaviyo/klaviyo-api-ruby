@@ -17,10 +17,36 @@ module KlaviyoAPI
     # A helpful name to label the list
     attr_accessor :name
 
+    # The opt-in process for this list. Valid values: 'double_opt_in', 'single_opt_in'. If not provided, uses account default.
+    attr_accessor :opt_in_process
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name'
+        :'name' => :'name',
+        :'opt_in_process' => :'opt_in_process'
       }
     end
 
@@ -32,13 +58,15 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String'
+        :'name' => :'String',
+        :'opt_in_process' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'opt_in_process'
       ])
     end
 
@@ -60,6 +88,10 @@ module KlaviyoAPI
       if attributes.key?(:'name')
         self.name = attributes[:'name']
       end
+
+      if attributes.key?(:'opt_in_process')
+        self.opt_in_process = attributes[:'opt_in_process']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -77,7 +109,19 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @name.nil?
+      opt_in_process_validator = EnumAttributeValidator.new('String', ["double_opt_in", "single_opt_in"])
+      return false unless opt_in_process_validator.valid?(@opt_in_process)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] opt_in_process Object to be assigned
+    def opt_in_process=(opt_in_process)
+      validator = EnumAttributeValidator.new('String', ["double_opt_in", "single_opt_in"])
+      unless validator.valid?(opt_in_process)
+        fail ArgumentError, "invalid value for \"opt_in_process\", must be one of #{validator.allowable_values}."
+      end
+      @opt_in_process = opt_in_process
     end
 
     # Checks equality by comparing each attribute.
@@ -85,7 +129,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name
+          name == o.name &&
+          opt_in_process == o.opt_in_process
     end
 
     # @see the `==` method
@@ -97,7 +142,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name].hash
+      [name, opt_in_process].hash
     end
 
     # Builds the object from hash

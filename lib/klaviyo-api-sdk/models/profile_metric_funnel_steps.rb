@@ -13,56 +13,19 @@ require 'date'
 require 'time'
 
 module KlaviyoAPI
-  class ProfilePartialUpdateQueryResourceObjectAttributes
-    # Individual's email address
-    attr_accessor :email
+  class ProfileMetricFunnelSteps
+    attr_accessor :metric_exists
 
-    # Individual's phone number in E.164 format
-    attr_accessor :phone_number
+    attr_accessor :metric_id
 
-    # A unique identifier used by customers to associate Klaviyo profiles with profiles in an external system, such as a point-of-sale system. Format varies based on the external system.
-    attr_accessor :external_id
-
-    attr_accessor :anonymous_id
-
-    # Individual's first name
-    attr_accessor :first_name
-
-    # Individual's last name
-    attr_accessor :last_name
-
-    # Name of the company or organization within the company for whom the individual works
-    attr_accessor :organization
-
-    # The locale of the profile, in the IETF BCP 47 language tag format like (ISO 639-1/2)-(ISO 3166 alpha-2)
-    attr_accessor :locale
-
-    # Individual's job title
-    attr_accessor :title
-
-    # URL pointing to the location of a profile image
-    attr_accessor :image
-
-    attr_accessor :location
-
-    # An object containing key/value pairs for any custom properties assigned to this profile
-    attr_accessor :properties
+    attr_accessor :metric_filters
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'email' => :'email',
-        :'phone_number' => :'phone_number',
-        :'external_id' => :'external_id',
-        :'anonymous_id' => :'anonymous_id',
-        :'first_name' => :'first_name',
-        :'last_name' => :'last_name',
-        :'organization' => :'organization',
-        :'locale' => :'locale',
-        :'title' => :'title',
-        :'image' => :'image',
-        :'location' => :'location',
-        :'properties' => :'properties'
+        :'metric_exists' => :'metric_exists',
+        :'metric_id' => :'metric_id',
+        :'metric_filters' => :'metric_filters'
       }
     end
 
@@ -74,35 +37,16 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'email' => :'String',
-        :'phone_number' => :'String',
-        :'external_id' => :'String',
-        :'anonymous_id' => :'String',
-        :'first_name' => :'String',
-        :'last_name' => :'String',
-        :'organization' => :'String',
-        :'locale' => :'String',
-        :'title' => :'String',
-        :'image' => :'String',
-        :'location' => :'ProfileLocation',
-        :'properties' => :'Object'
+        :'metric_exists' => :'Boolean',
+        :'metric_id' => :'String',
+        :'metric_filters' => :'Array<ProfileMetricPropertyFilter>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'email',
-        :'phone_number',
-        :'external_id',
-        :'anonymous_id',
-        :'first_name',
-        :'last_name',
-        :'organization',
-        :'locale',
-        :'title',
-        :'image',
-        :'properties'
+        :'metric_filters'
       ])
     end
 
@@ -110,63 +54,29 @@ module KlaviyoAPI
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::ProfilePartialUpdateQueryResourceObjectAttributes` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `KlaviyoAPI::ProfileMetricFunnelSteps` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::ProfilePartialUpdateQueryResourceObjectAttributes`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `KlaviyoAPI::ProfileMetricFunnelSteps`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'email')
-        self.email = attributes[:'email']
+      if attributes.key?(:'metric_exists')
+        self.metric_exists = attributes[:'metric_exists']
       end
 
-      if attributes.key?(:'phone_number')
-        self.phone_number = attributes[:'phone_number']
+      if attributes.key?(:'metric_id')
+        self.metric_id = attributes[:'metric_id']
       end
 
-      if attributes.key?(:'external_id')
-        self.external_id = attributes[:'external_id']
-      end
-
-      if attributes.key?(:'anonymous_id')
-        self.anonymous_id = attributes[:'anonymous_id']
-      end
-
-      if attributes.key?(:'first_name')
-        self.first_name = attributes[:'first_name']
-      end
-
-      if attributes.key?(:'last_name')
-        self.last_name = attributes[:'last_name']
-      end
-
-      if attributes.key?(:'organization')
-        self.organization = attributes[:'organization']
-      end
-
-      if attributes.key?(:'locale')
-        self.locale = attributes[:'locale']
-      end
-
-      if attributes.key?(:'title')
-        self.title = attributes[:'title']
-      end
-
-      if attributes.key?(:'image')
-        self.image = attributes[:'image']
-      end
-
-      if attributes.key?(:'location')
-        self.location = attributes[:'location']
-      end
-
-      if attributes.key?(:'properties')
-        self.properties = attributes[:'properties']
+      if attributes.key?(:'metric_filters')
+        if (value = attributes[:'metric_filters']).is_a?(Array)
+          self.metric_filters = value
+        end
       end
     end
 
@@ -174,12 +84,22 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @metric_exists.nil?
+        invalid_properties.push('invalid value for "metric_exists", metric_exists cannot be nil.')
+      end
+
+      if @metric_id.nil?
+        invalid_properties.push('invalid value for "metric_id", metric_id cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @metric_exists.nil?
+      return false if @metric_id.nil?
       true
     end
 
@@ -188,18 +108,9 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          email == o.email &&
-          phone_number == o.phone_number &&
-          external_id == o.external_id &&
-          anonymous_id == o.anonymous_id &&
-          first_name == o.first_name &&
-          last_name == o.last_name &&
-          organization == o.organization &&
-          locale == o.locale &&
-          title == o.title &&
-          image == o.image &&
-          location == o.location &&
-          properties == o.properties
+          metric_exists == o.metric_exists &&
+          metric_id == o.metric_id &&
+          metric_filters == o.metric_filters
     end
 
     # @see the `==` method
@@ -211,7 +122,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, phone_number, external_id, anonymous_id, first_name, last_name, organization, locale, title, image, location, properties].hash
+      [metric_exists, metric_id, metric_filters].hash
     end
 
     # Builds the object from hash

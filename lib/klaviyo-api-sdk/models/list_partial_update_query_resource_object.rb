@@ -40,7 +40,7 @@ module KlaviyoAPI
       {
         :'type' => :'ListEnum',
         :'id' => :'String',
-        :'attributes' => :'ListCreateQueryResourceObjectAttributes'
+        :'attributes' => :'ListPartialUpdateQueryResourceObjectAttributes'
       }
     end
 

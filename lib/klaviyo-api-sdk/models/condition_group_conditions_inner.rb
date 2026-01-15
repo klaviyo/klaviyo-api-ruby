@@ -30,7 +30,8 @@ module KlaviyoAPI
           :'ProfilePredictiveAnalyticsStringCondition',
           :'ProfilePropertyCondition',
           :'ProfileRegionCondition',
-          :'SegmentsProfileMetricCondition'
+          :'SegmentsProfileMetricCondition',
+          :'SegmentsProfileMetricFunnelCondition'
         ]
       end
 

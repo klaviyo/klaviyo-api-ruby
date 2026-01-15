@@ -19,6 +19,7 @@ module KlaviyoAPI
       def openapi_one_of
         [
           :'AfterCloseTimeout',
+          :'BackInStock',
           :'CartItemCount',
           :'CartProduct',
           :'CartValue',

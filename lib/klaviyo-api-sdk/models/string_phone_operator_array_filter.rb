@@ -16,7 +16,7 @@ module KlaviyoAPI
   class StringPhoneOperatorArrayFilter
     attr_accessor :type
 
-    # Operators for phone string array filters.  Example condition using this filter:     {
+    # Operators for phone string array filters.  Example condition using this filter:         {
     attr_accessor :operator
 
     attr_accessor :value

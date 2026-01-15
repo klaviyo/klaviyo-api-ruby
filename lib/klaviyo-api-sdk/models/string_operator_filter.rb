@@ -121,7 +121,7 @@ module KlaviyoAPI
     def valid?
       return false if @type.nil?
       return false if @operator.nil?
-      operator_validator = EnumAttributeValidator.new('String', ["contains", "ends-with", "equals", "not-contains", "not-ends-with", "not-equals", "not-starts-with", "starts-with"])
+      operator_validator = EnumAttributeValidator.new('String', ["contains", "ends-with", "equals", "not-contains", "not-ends-with", "not-equals", "not-starts-with", "nregex", "regex", "starts-with"])
       return false unless operator_validator.valid?(@operator)
       true
     end
@@ -129,7 +129,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] operator Object to be assigned
     def operator=(operator)
-      validator = EnumAttributeValidator.new('String', ["contains", "ends-with", "equals", "not-contains", "not-ends-with", "not-equals", "not-starts-with", "starts-with"])
+      validator = EnumAttributeValidator.new('String', ["contains", "ends-with", "equals", "not-contains", "not-ends-with", "not-equals", "not-starts-with", "nregex", "regex", "starts-with"])
       unless validator.valid?(operator)
         fail ArgumentError, "invalid value for \"operator\", must be one of #{validator.allowable_values}."
       end

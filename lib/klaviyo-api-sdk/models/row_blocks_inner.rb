@@ -32,6 +32,7 @@ module KlaviyoAPI
           :'OptInCode',
           :'PhoneNumber',
           :'RadioButtons',
+          :'Review',
           :'SMSConsentCheckbox',
           :'SMSDisclosure',
           :'SignupCounter',

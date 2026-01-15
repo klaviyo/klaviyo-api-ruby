@@ -16,7 +16,7 @@ module KlaviyoAPI
   class DataSourceCreateQueryResourceObjectAttributes
     attr_accessor :title
 
-    # Visibility of data source. Currently only PRIVATE is supported.
+    # Visibility of data source.
     attr_accessor :visibility
 
     attr_accessor :description

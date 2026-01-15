@@ -22,7 +22,7 @@ module KlaviyoAPI
 
     attr_accessor :fallback_coupon_code
 
-    # Timeframes for the signup counter lookback.
+    # Coupon integration types for unique coupon blocks.
     attr_accessor :integration
 
     class EnumAttributeValidator
@@ -136,7 +136,7 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
-      integration_validator = EnumAttributeValidator.new('String', ["shopify", "uploaded"])
+      integration_validator = EnumAttributeValidator.new('String', ["api", "magento_two", "prestashop", "shopify", "uploaded", "woocommerce"])
       return false unless integration_validator.valid?(@integration)
       true
     end
@@ -144,7 +144,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] integration Object to be assigned
     def integration=(integration)
-      validator = EnumAttributeValidator.new('String', ["shopify", "uploaded"])
+      validator = EnumAttributeValidator.new('String', ["api", "magento_two", "prestashop", "shopify", "uploaded", "woocommerce"])
       unless validator.valid?(integration)
         fail ArgumentError, "invalid value for \"integration\", must be one of #{validator.allowable_values}."
       end

@@ -16,7 +16,7 @@ module KlaviyoAPI
   class ListUpdateActionData
     attr_accessor :name
 
-    # The enum for whether the action will add/remove from the list in the List Update Action.
+    # The enum for whether the action will add/remove from the list in the     List Update Action.
     attr_accessor :on_execution
 
     attr_accessor :list_id

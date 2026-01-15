@@ -30,6 +30,8 @@ module KlaviyoAPI
 
     attr_accessor :placeholder
 
+    attr_accessor :channels
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -62,7 +64,8 @@ module KlaviyoAPI
         :'required' => :'required',
         :'property_name' => :'property_name',
         :'checkbox_text' => :'checkbox_text',
-        :'placeholder' => :'placeholder'
+        :'placeholder' => :'placeholder',
+        :'channels' => :'channels'
       }
     end
 
@@ -81,7 +84,8 @@ module KlaviyoAPI
         :'required' => :'Boolean',
         :'property_name' => :'OptInPromotionalSmsEnum',
         :'checkbox_text' => :'String',
-        :'placeholder' => :'String'
+        :'placeholder' => :'String',
+        :'channels' => :'Array<String>'
       }
     end
 
@@ -144,6 +148,12 @@ module KlaviyoAPI
       if attributes.key?(:'placeholder')
         self.placeholder = attributes[:'placeholder']
       end
+
+      if attributes.key?(:'channels')
+        if (value = attributes[:'channels']).is_a?(Array)
+          self.channels = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -200,7 +210,8 @@ module KlaviyoAPI
           required == o.required &&
           property_name == o.property_name &&
           checkbox_text == o.checkbox_text &&
-          placeholder == o.placeholder
+          placeholder == o.placeholder &&
+          channels == o.channels
     end
 
     # @see the `==` method
@@ -212,7 +223,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, label, show_label, error_messages, required, property_name, checkbox_text, placeholder].hash
+      [display_device, label, show_label, error_messages, required, property_name, checkbox_text, placeholder, channels].hash
     end
 
     # Builds the object from hash
