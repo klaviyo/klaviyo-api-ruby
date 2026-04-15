@@ -63,7 +63,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfileMetricFunnelEnum',
+        :'type' => :'String',
         :'timeframe_filter' => :'SegmentsProfileMetricFunnelConditionTimeframeFilter',
         :'completion_window_seconds' => :'String',
         :'steps' => :'Array<ProfileMetricFunnelSteps>'
@@ -134,11 +134,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-metric-funnel"])
+      return false unless type_validator.valid?(@type)
       return false if @timeframe_filter.nil?
       completion_window_seconds_validator = EnumAttributeValidator.new('String', ["DAYS_1", "DAYS_180", "DAYS_3", "DAYS_30", "DAYS_5", "DAYS_90", "HOURS_1", "WEEKS_1", "YEARS_1"])
       return false unless completion_window_seconds_validator.valid?(@completion_window_seconds)
       return false if @steps.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-metric-funnel"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

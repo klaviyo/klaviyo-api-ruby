@@ -79,8 +79,8 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'DateEnum',
-        :'date_field_type' => :'ProfilePropertyEnum',
+        :'type' => :'String',
+        :'date_field_type' => :'String',
         :'date_profile_property' => :'String',
         :'timedelta_unit_before_date' => :'String',
         :'timedelta_value_before_date' => :'Integer',
@@ -189,7 +189,11 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["date"])
+      return false unless type_validator.valid?(@type)
       return false if @date_field_type.nil?
+      date_field_type_validator = EnumAttributeValidator.new('String', ["profile-property"])
+      return false unless date_field_type_validator.valid?(@date_field_type)
       return false if @date_profile_property.nil?
       timedelta_unit_before_date_validator = EnumAttributeValidator.new('String', ["days", "months", "weeks"])
       return false unless timedelta_unit_before_date_validator.valid?(@timedelta_unit_before_date)
@@ -200,6 +204,26 @@ module KlaviyoAPI
       return false unless timezone_validator.valid?(@timezone)
       return false if @trigger_time.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["date"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] date_field_type Object to be assigned
+    def date_field_type=(date_field_type)
+      validator = EnumAttributeValidator.new('String', ["profile-property"])
+      unless validator.valid?(date_field_type)
+        fail ArgumentError, "invalid value for \"date_field_type\", must be one of #{validator.allowable_values}."
+      end
+      @date_field_type = date_field_type
     end
 
     # Custom attribute writer method checking allowed values (enum).

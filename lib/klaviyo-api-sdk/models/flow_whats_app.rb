@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class FlowWhatsApp
+    # Not allowed on create.
     attr_accessor :id
 
     attr_accessor :name
@@ -23,6 +24,8 @@ module KlaviyoAPI
     attr_accessor :smart_sending_enabled
 
     attr_accessor :transactional
+
+    attr_accessor :add_tracking_params
 
     attr_accessor :additional_filters
 
@@ -34,6 +37,7 @@ module KlaviyoAPI
         :'vendor_id' => :'vendor_id',
         :'smart_sending_enabled' => :'smart_sending_enabled',
         :'transactional' => :'transactional',
+        :'add_tracking_params' => :'add_tracking_params',
         :'additional_filters' => :'additional_filters'
       }
     end
@@ -51,6 +55,7 @@ module KlaviyoAPI
         :'vendor_id' => :'String',
         :'smart_sending_enabled' => :'Boolean',
         :'transactional' => :'Boolean',
+        :'add_tracking_params' => :'Boolean',
         :'additional_filters' => :'ConditionalBranchActionDataProfileFilter'
       }
     end
@@ -104,6 +109,12 @@ module KlaviyoAPI
         self.transactional = false
       end
 
+      if attributes.key?(:'add_tracking_params')
+        self.add_tracking_params = attributes[:'add_tracking_params']
+      else
+        self.add_tracking_params = false
+      end
+
       if attributes.key?(:'additional_filters')
         self.additional_filters = attributes[:'additional_filters']
       end
@@ -132,6 +143,7 @@ module KlaviyoAPI
           vendor_id == o.vendor_id &&
           smart_sending_enabled == o.smart_sending_enabled &&
           transactional == o.transactional &&
+          add_tracking_params == o.add_tracking_params &&
           additional_filters == o.additional_filters
     end
 
@@ -144,7 +156,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, vendor_id, smart_sending_enabled, transactional, additional_filters].hash
+      [id, name, vendor_id, smart_sending_enabled, transactional, add_tracking_params, additional_filters].hash
     end
 
     # Builds the object from hash

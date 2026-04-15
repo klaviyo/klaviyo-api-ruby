@@ -58,7 +58,7 @@ module KlaviyoAPI
         :'padding' => :'Padding',
         :'background_color' => :'String',
         :'slice_styles' => :'Array<SpinToWinSliceStyle>',
-        :'text_styles' => :'TextStyle',
+        :'text_styles' => :'TextStyleV0',
         :'center_color' => :'String',
         :'outline_color' => :'String',
         :'outline_thickness' => :'Integer',

@@ -66,7 +66,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfilePostalCodeDistanceEnum',
+        :'type' => :'String',
         :'country_code' => :'String',
         :'postal_code' => :'String',
         :'unit' => :'String',
@@ -147,6 +147,8 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-postal-code-distance"])
+      return false unless type_validator.valid?(@type)
       return false if @country_code.nil?
       return false if @postal_code.nil?
       return false if @unit.nil?
@@ -154,6 +156,16 @@ module KlaviyoAPI
       return false unless unit_validator.valid?(@unit)
       return false if @filter.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-postal-code-distance"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -73,9 +73,9 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'PriceDropEnum',
+        :'type' => :'String',
         :'trigger_filter' => :'PriceDropConditionFilter',
-        :'price_drop_amount_value' => :'NumericOperatorFilterValue',
+        :'price_drop_amount_value' => :'NumericOperatorNumericFilterValue',
         :'price_drop_amount_unit' => :'String',
         :'audience' => :'Array<String>',
         :'timeframe_days' => :'Integer',
@@ -168,6 +168,8 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["price-drop"])
+      return false unless type_validator.valid?(@type)
       return false if @trigger_filter.nil?
       return false if @price_drop_amount_value.nil?
       price_drop_amount_unit_validator = EnumAttributeValidator.new('String', ["currency", "percent"])
@@ -176,6 +178,16 @@ module KlaviyoAPI
       currency_type_validator = EnumAttributeValidator.new('String', ["usd"])
       return false unless currency_type_validator.valid?(@currency_type)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["price-drop"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

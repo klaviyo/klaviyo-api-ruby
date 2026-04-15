@@ -60,7 +60,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'StringEnum',
+        :'type' => :'String',
         :'operator' => :'ProfilePredictiveAnalyticsStringFilterOperator',
         :'value' => :'String'
       }
@@ -123,11 +123,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["string"])
+      return false unless type_validator.valid?(@type)
       return false if @operator.nil?
       return false if @value.nil?
       value_validator = EnumAttributeValidator.new('String', ["high", "low", "medium"])
       return false unless value_validator.valid?(@value)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["string"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

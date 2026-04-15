@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class Version
+    # Not allowed on create.
     attr_accessor :id
 
     attr_accessor :steps

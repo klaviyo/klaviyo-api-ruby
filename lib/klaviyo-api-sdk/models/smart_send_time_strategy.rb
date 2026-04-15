@@ -19,6 +19,28 @@ module KlaviyoAPI
     # The day to send on
     attr_accessor :date
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -35,7 +57,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'method' => :'SmartSendTimeEnum',
+        :'method' => :'String',
         :'date' => :'Date'
       }
     end
@@ -89,8 +111,20 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @method.nil?
+      method_validator = EnumAttributeValidator.new('String', ["smart_send_time"])
+      return false unless method_validator.valid?(@method)
       return false if @date.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] method Object to be assigned
+    def method=(method)
+      validator = EnumAttributeValidator.new('String', ["smart_send_time"])
+      unless validator.valid?(method)
+        fail ArgumentError, "invalid value for \"method\", must be one of #{validator.allowable_values}."
+      end
+      @method = method
     end
 
     # Checks equality by comparing each attribute.

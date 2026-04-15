@@ -82,7 +82,7 @@ module KlaviyoAPI
         :'show_label' => :'Boolean',
         :'error_messages' => :'ErrorMessages',
         :'required' => :'Boolean',
-        :'property_name' => :'OptInPromotionalSmsEnum',
+        :'property_name' => :'String',
         :'checkbox_text' => :'String',
         :'placeholder' => :'String',
         :'channels' => :'Array<String>'
@@ -139,6 +139,8 @@ module KlaviyoAPI
 
       if attributes.key?(:'property_name')
         self.property_name = attributes[:'property_name']
+      else
+        self.property_name = 'opt_in_promotional_sms'
       end
 
       if attributes.key?(:'checkbox_text')
@@ -172,6 +174,8 @@ module KlaviyoAPI
     def valid?
       required_validator = EnumAttributeValidator.new('Boolean', ["false"])
       return false unless required_validator.valid?(@required)
+      property_name_validator = EnumAttributeValidator.new('String', ["opt_in_promotional_sms"])
+      return false unless property_name_validator.valid?(@property_name)
       return false if @checkbox_text.nil?
       placeholder_validator = EnumAttributeValidator.new('String', ["null"])
       return false unless placeholder_validator.valid?(@placeholder)
@@ -186,6 +190,16 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"required\", must be one of #{validator.allowable_values}."
       end
       @required = required
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] property_name Object to be assigned
+    def property_name=(property_name)
+      validator = EnumAttributeValidator.new('String', ["opt_in_promotional_sms"])
+      unless validator.valid?(property_name)
+        fail ArgumentError, "invalid value for \"property_name\", must be one of #{validator.allowable_values}."
+      end
+      @property_name = property_name
     end
 
     # Custom attribute writer method checking allowed values (enum).

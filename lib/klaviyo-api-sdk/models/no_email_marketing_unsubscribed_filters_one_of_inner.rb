@@ -20,10 +20,15 @@ module KlaviyoAPI
         [
           :'APIMethodFilter',
           :'ConstantContactIntegrationMethodFilter',
+          :'DataWarehouseImportMethodFilter',
           :'InboundMessageMethodFilter',
           :'MailboxProviderMethodFilter',
+          :'ManualImportMethodFilter',
           :'ManualRemoveMethodFilter',
+          :'OneClickUnsubscribeMethodFilter',
           :'PreferencePageMethodFilter',
+          :'ProfileModificationMethodFilter',
+          :'SftpMethodFilter',
           :'SpamComplaintMethodFilter',
           :'StatusDateFilter'
         ]

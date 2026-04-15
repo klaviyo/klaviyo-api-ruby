@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class DynamicButton
+    # Not allowed on create.
     attr_accessor :id
 
     # Dynamic Button type enumeration.

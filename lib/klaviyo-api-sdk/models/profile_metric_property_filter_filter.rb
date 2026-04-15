@@ -19,13 +19,13 @@ module KlaviyoAPI
       def openapi_one_of
         [
           :'BooleanFilter',
-          :'ExistenceOperatorFilter',
+          :'ExistenceOperatorExistenceFilter',
           :'ListLengthFilter',
           :'ListSetFilter',
           :'ListSubstringFilter',
-          :'NumericOperatorFilter',
-          :'StringArrayOperatorFilter',
-          :'StringOperatorFilter'
+          :'NumericOperatorNumericFilter',
+          :'StringArrayOperatorStringArrayFilter',
+          :'StringOperatorStringFilter'
         ]
       end
 

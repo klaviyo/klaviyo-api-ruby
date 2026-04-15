@@ -58,7 +58,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'text_styles' => :'TextStyle',
+        :'text_styles' => :'TextStyleV0',
         :'label_color' => :'String',
         :'text_color' => :'String',
         :'placeholder_color' => :'String',

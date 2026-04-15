@@ -16,6 +16,28 @@ module KlaviyoAPI
   class Increment
     attr_accessor :badge_config
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +53,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'badge_config' => :'IncrementOneEnum'
+        :'badge_config' => :'String'
       }
     end
 
@@ -76,7 +98,19 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @badge_config.nil?
+      badge_config_validator = EnumAttributeValidator.new('String', ["increment_one"])
+      return false unless badge_config_validator.valid?(@badge_config)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] badge_config Object to be assigned
+    def badge_config=(badge_config)
+      validator = EnumAttributeValidator.new('String', ["increment_one"])
+      unless validator.valid?(badge_config)
+        fail ArgumentError, "invalid value for \"badge_config\", must be one of #{validator.allowable_values}."
+      end
+      @badge_config = badge_config
     end
 
     # Checks equality by comparing each attribute.

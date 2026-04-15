@@ -14,10 +14,33 @@ require 'time'
 
 module KlaviyoAPI
   class RejectReasonOther
+    # reject reason is other
     attr_accessor :reason
 
     # If review reject reason is other, we can provide further explanation
     attr_accessor :status_explanation
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -35,7 +58,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'reason' => :'OtherEnum',
+        :'reason' => :'String',
         :'status_explanation' => :'String'
       }
     end
@@ -86,7 +109,19 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @reason.nil?
+      reason_validator = EnumAttributeValidator.new('String', ["other"])
+      return false unless reason_validator.valid?(@reason)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] reason Object to be assigned
+    def reason=(reason)
+      validator = EnumAttributeValidator.new('String', ["other"])
+      unless validator.valid?(reason)
+        fail ArgumentError, "invalid value for \"reason\", must be one of #{validator.allowable_values}."
+      end
+      @reason = reason
     end
 
     # Checks equality by comparing each attribute.

@@ -45,7 +45,7 @@ module KlaviyoAPI
       {
         :'padding' => :'Padding',
         :'background_color' => :'String',
-        :'text_styles' => :'TextStyle',
+        :'text_styles' => :'TextStyleV0',
         :'border_styles' => :'BorderStyle',
         :'coupon_background_color' => :'String'
       }

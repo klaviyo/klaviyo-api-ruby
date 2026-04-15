@@ -67,9 +67,9 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfilePredictiveAnalyticsEnum',
+        :'type' => :'String',
         :'dimension' => :'String',
-        :'measurement' => :'RankEnum',
+        :'measurement' => :'String',
         :'predicted_channel' => :'String',
         :'filter' => :'ProfilePredictiveAnalyticsChannelAffinityRankFilter'
       }
@@ -148,15 +148,29 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-predictive-analytics"])
+      return false unless type_validator.valid?(@type)
       return false if @dimension.nil?
       dimension_validator = EnumAttributeValidator.new('String', ["channel_affinity"])
       return false unless dimension_validator.valid?(@dimension)
       return false if @measurement.nil?
+      measurement_validator = EnumAttributeValidator.new('String', ["rank"])
+      return false unless measurement_validator.valid?(@measurement)
       return false if @predicted_channel.nil?
       predicted_channel_validator = EnumAttributeValidator.new('String', ["email", "push", "sms"])
       return false unless predicted_channel_validator.valid?(@predicted_channel)
       return false if @filter.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-predictive-analytics"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -167,6 +181,16 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"dimension\", must be one of #{validator.allowable_values}."
       end
       @dimension = dimension
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] measurement Object to be assigned
+    def measurement=(measurement)
+      validator = EnumAttributeValidator.new('String', ["rank"])
+      unless validator.valid?(measurement)
+        fail ArgumentError, "invalid value for \"measurement\", must be one of #{validator.allowable_values}."
+      end
+      @measurement = measurement
     end
 
     # Custom attribute writer method checking allowed values (enum).

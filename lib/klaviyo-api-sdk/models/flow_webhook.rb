@@ -22,6 +22,7 @@ module KlaviyoAPI
 
     attr_accessor :name
 
+    # Not allowed on create.
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -55,6 +56,7 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'url',
+        :'headers',
         :'body',
         :'name',
         :'id'

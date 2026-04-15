@@ -16,6 +16,28 @@ module KlaviyoAPI
   class ImplicitlyReachable
     attr_accessor :reachable_status
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +53,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'reachable_status' => :'ImplicitlyReachableEnum'
+        :'reachable_status' => :'String'
       }
     end
 
@@ -76,7 +98,19 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @reachable_status.nil?
+      reachable_status_validator = EnumAttributeValidator.new('String', ["implicitly_reachable"])
+      return false unless reachable_status_validator.valid?(@reachable_status)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] reachable_status Object to be assigned
+    def reachable_status=(reachable_status)
+      validator = EnumAttributeValidator.new('String', ["implicitly_reachable"])
+      unless validator.valid?(reachable_status)
+        fail ArgumentError, "invalid value for \"reachable_status\", must be one of #{validator.allowable_values}."
+      end
+      @reachable_status = reachable_status
     end
 
     # Checks equality by comparing each attribute.

@@ -25,6 +25,7 @@ module KlaviyoAPI
           :'PromotionalSMSSubscription',
           :'Redirect',
           :'ResendOptInCode',
+          :'SkipToSuccess',
           :'SubmitBackInStock',
           :'SubmitOptInCode',
           :'SubscribeViaSMS',

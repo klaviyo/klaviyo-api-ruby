@@ -22,7 +22,7 @@ module KlaviyoAPI
           :'CalendarDateFilter',
           :'IsSetExistenceFilter',
           :'RelativeAnniversaryDateFilter',
-          :'RelativeDateOperatorBaseFilter',
+          :'RelativeDateOperatorBaseRelativeDateFilter',
           :'RelativeDateRangeFilter',
           :'StaticDateFilter',
           :'StaticDateRangeFilter'

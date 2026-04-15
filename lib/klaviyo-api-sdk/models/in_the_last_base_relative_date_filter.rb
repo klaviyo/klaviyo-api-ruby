@@ -63,8 +63,8 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'DateEnum',
-        :'operator' => :'InTheLastEnum',
+        :'type' => :'String',
+        :'operator' => :'String',
         :'unit' => :'String',
         :'quantity' => :'Integer'
       }
@@ -135,12 +135,36 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["date"])
+      return false unless type_validator.valid?(@type)
       return false if @operator.nil?
+      operator_validator = EnumAttributeValidator.new('String', ["in-the-last"])
+      return false unless operator_validator.valid?(@operator)
       return false if @unit.nil?
       unit_validator = EnumAttributeValidator.new('String', ["day", "hour", "week"])
       return false unless unit_validator.valid?(@unit)
       return false if @quantity.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["date"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] operator Object to be assigned
+    def operator=(operator)
+      validator = EnumAttributeValidator.new('String', ["in-the-last"])
+      unless validator.valid?(operator)
+        fail ArgumentError, "invalid value for \"operator\", must be one of #{validator.allowable_values}."
+      end
+      @operator = operator
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -22,10 +22,10 @@ module KlaviyoAPI
     # ID of the metric to be used for conversion statistics
     attr_accessor :conversion_metric_id
 
-    # List of attributes to group the data by. Allowed group-bys are flow_id, flow_message_id, send_channel. If not passed in, the data will be grouped by flow_id, flow_message_id, send_channel. The following group by attributes are required: flow_message_id, flow_id.
+    # List of attributes to group the data by. Allowed group-bys are flow_id, flow_message_id, flow_message_name, flow_name, send_channel, tag_id, tag_name, text_message_format, variation, variation_name. If not passed in, the data will be grouped by flow_id, flow_message_id, send_channel. The following group by attributes are required: flow_message_id, flow_id.
     attr_accessor :group_by
 
-    # API filter string used to filter the query. Allowed filters are flow_id, send_channel, flow_message_id. Allowed operators are equals, contains-any. Only one filter can be used per attribute, only AND can be used as a combination operator. Max of 100 messages per ANY filter. When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.
+    # API filter string used to filter the query. Scalar attributes (flow_id, flow_name, send_channel, flow_message_id, flow_message_name, text_message_format, variation, variation_name): Supported operators: equals, contains-any. List attributes (tag_id, tag_name): Supported operators: contains-any, contains-all. Only one filter can be used per attribute. Only AND can be used as a combination operator. Max of 100 items per list filter. When filtering on send_channel, allowed values are email, sms, push-notification, whatsapp.
     attr_accessor :filter
 
     class EnumAttributeValidator

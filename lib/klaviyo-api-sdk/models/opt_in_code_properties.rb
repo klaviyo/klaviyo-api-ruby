@@ -75,7 +75,7 @@ module KlaviyoAPI
         :'show_label' => :'Boolean',
         :'placeholder' => :'String',
         :'error_messages' => :'ErrorMessages',
-        :'property_name' => :'OptInCodeEnum',
+        :'property_name' => :'String',
         :'required' => :'Boolean',
         :'display_device' => :'Array<String>'
       }
@@ -124,6 +124,8 @@ module KlaviyoAPI
 
       if attributes.key?(:'property_name')
         self.property_name = attributes[:'property_name']
+      else
+        self.property_name = 'opt_in_code'
       end
 
       if attributes.key?(:'required')
@@ -149,9 +151,21 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      property_name_validator = EnumAttributeValidator.new('String', ["opt_in_code"])
+      return false unless property_name_validator.valid?(@property_name)
       required_validator = EnumAttributeValidator.new('Boolean', ["true"])
       return false unless required_validator.valid?(@required)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] property_name Object to be assigned
+    def property_name=(property_name)
+      validator = EnumAttributeValidator.new('String', ["opt_in_code"])
+      unless validator.valid?(property_name)
+        fail ArgumentError, "invalid value for \"property_name\", must be one of #{validator.allowable_values}."
+      end
+      @property_name = property_name
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -14,12 +14,16 @@ require 'time'
 
 module KlaviyoAPI
   class DataSourceCreateQueryResourceObjectAttributes
+    # The title of the data source. Must be between 1 and 255 characters and unique within the namespace.
     attr_accessor :title
 
     # Visibility of data source.
     attr_accessor :visibility
 
     attr_accessor :description
+
+    # The namespace of the data source.
+    attr_accessor :namespace
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -48,7 +52,8 @@ module KlaviyoAPI
       {
         :'title' => :'title',
         :'visibility' => :'visibility',
-        :'description' => :'description'
+        :'description' => :'description',
+        :'namespace' => :'namespace'
       }
     end
 
@@ -62,14 +67,17 @@ module KlaviyoAPI
       {
         :'title' => :'String',
         :'visibility' => :'String',
-        :'description' => :'String'
+        :'description' => :'String',
+        :'namespace' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'description'
+        :'visibility',
+        :'description',
+        :'namespace'
       ])
     end
 
@@ -94,12 +102,20 @@ module KlaviyoAPI
 
       if attributes.key?(:'visibility')
         self.visibility = attributes[:'visibility']
+      else
+        self.visibility = 'private'
       end
 
       if attributes.key?(:'description')
         self.description = attributes[:'description']
       else
         self.description = ''
+      end
+
+      if attributes.key?(:'namespace')
+        self.namespace = attributes[:'namespace']
+      else
+        self.namespace = 'custom-objects'
       end
     end
 
@@ -111,10 +127,6 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "title", title cannot be nil.')
       end
 
-      if @visibility.nil?
-        invalid_properties.push('invalid value for "visibility", visibility cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -122,7 +134,6 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @title.nil?
-      return false if @visibility.nil?
       visibility_validator = EnumAttributeValidator.new('String', ["private", "shared"])
       return false unless visibility_validator.valid?(@visibility)
       true
@@ -145,7 +156,8 @@ module KlaviyoAPI
       self.class == o.class &&
           title == o.title &&
           visibility == o.visibility &&
-          description == o.description
+          description == o.description &&
+          namespace == o.namespace
     end
 
     # @see the `==` method
@@ -157,7 +169,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [title, visibility, description].hash
+      [title, visibility, description, namespace].hash
     end
 
     # Builds the object from hash

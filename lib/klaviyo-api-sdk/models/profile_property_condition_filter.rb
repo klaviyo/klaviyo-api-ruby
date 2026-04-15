@@ -21,18 +21,18 @@ module KlaviyoAPI
           :'AnniversaryDateFilter',
           :'BooleanFilter',
           :'CalendarDateFilter',
-          :'ExistenceOperatorFilter',
-          :'ListContainsOperatorFilter',
+          :'ExistenceOperatorExistenceFilter',
+          :'ListContainsOperatorListContainsFilter',
           :'ListLengthFilter',
-          :'NumericOperatorFilter',
+          :'NumericOperatorNumericFilter',
           :'RelativeAnniversaryDateFilter',
-          :'RelativeDateOperatorBaseFilter',
+          :'RelativeDateOperatorBaseRelativeDateFilter',
           :'RelativeDateRangeFilter',
           :'StaticDateFilter',
           :'StaticDateRangeFilter',
-          :'StringArrayOperatorFilter',
-          :'StringOperatorFilter',
-          :'StringPhoneOperatorArrayFilter'
+          :'StringArrayOperatorStringArrayFilter',
+          :'StringOperatorStringFilter',
+          :'StringPhoneOperatorStringArrayFilter'
         ]
       end
 

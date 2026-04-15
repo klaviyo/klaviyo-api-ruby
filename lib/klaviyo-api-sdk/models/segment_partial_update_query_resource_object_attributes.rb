@@ -20,12 +20,16 @@ module KlaviyoAPI
 
     attr_accessor :is_starred
 
+    # Set to false to deactivate the segment. When deactivating, this must be the only attribute in the request body. Deactivation cannot be combined with other updates. Marking a segment inactive will impact campaigns, flows, ad syncs, forms, helpdesk routing, and other features that reference this segment. Set to true to reactivate a deactivated segment.
+    attr_accessor :is_active
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'definition' => :'definition',
         :'name' => :'name',
-        :'is_starred' => :'is_starred'
+        :'is_starred' => :'is_starred',
+        :'is_active' => :'is_active'
       }
     end
 
@@ -39,7 +43,8 @@ module KlaviyoAPI
       {
         :'definition' => :'SegmentDefinition',
         :'name' => :'String',
-        :'is_starred' => :'Boolean'
+        :'is_starred' => :'Boolean',
+        :'is_active' => :'Boolean'
       }
     end
 
@@ -47,7 +52,8 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'name',
-        :'is_starred'
+        :'is_starred',
+        :'is_active'
       ])
     end
 
@@ -77,6 +83,10 @@ module KlaviyoAPI
       if attributes.key?(:'is_starred')
         self.is_starred = attributes[:'is_starred']
       end
+
+      if attributes.key?(:'is_active')
+        self.is_active = attributes[:'is_active']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -99,7 +109,8 @@ module KlaviyoAPI
       self.class == o.class &&
           definition == o.definition &&
           name == o.name &&
-          is_starred == o.is_starred
+          is_starred == o.is_starred &&
+          is_active == o.is_active
     end
 
     # @see the `==` method
@@ -111,7 +122,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [definition, name, is_starred].hash
+      [definition, name, is_starred, is_active].hash
     end
 
     # Builds the object from hash

@@ -62,7 +62,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfileGroupMembershipEnum',
+        :'type' => :'String',
         :'is_member' => :'Boolean',
         :'group_ids' => :'Array<String>',
         :'timeframe_filter' => :'ProfileHasGroupMembershipConditionTimeframeFilter'
@@ -133,11 +133,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-group-membership"])
+      return false unless type_validator.valid?(@type)
       return false if @is_member.nil?
       is_member_validator = EnumAttributeValidator.new('Boolean', ["true"])
       return false unless is_member_validator.valid?(@is_member)
       return false if @group_ids.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-group-membership"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

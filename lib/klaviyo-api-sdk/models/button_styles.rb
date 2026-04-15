@@ -33,6 +33,8 @@ module KlaviyoAPI
 
     attr_accessor :color
 
+    attr_accessor :drop_shadow
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -66,7 +68,8 @@ module KlaviyoAPI
         :'hover_text_color' => :'hover_text_color',
         :'border_styles' => :'border_styles',
         :'text_styles' => :'text_styles',
-        :'color' => :'color'
+        :'color' => :'color',
+        :'drop_shadow' => :'drop_shadow'
       }
     end
 
@@ -85,8 +88,9 @@ module KlaviyoAPI
         :'hover_background_color' => :'String',
         :'hover_text_color' => :'String',
         :'border_styles' => :'BorderStyle',
-        :'text_styles' => :'TextStyle',
-        :'color' => :'String'
+        :'text_styles' => :'TextStyleV0',
+        :'color' => :'String',
+        :'drop_shadow' => :'ButtonDropShadowStyles'
       }
     end
 
@@ -96,7 +100,7 @@ module KlaviyoAPI
         :'background_color',
         :'hover_background_color',
         :'hover_text_color',
-        :'color'
+        :'color',
       ])
     end
 
@@ -154,6 +158,10 @@ module KlaviyoAPI
       if attributes.key?(:'color')
         self.color = attributes[:'color']
       end
+
+      if attributes.key?(:'drop_shadow')
+        self.drop_shadow = attributes[:'drop_shadow']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -194,7 +202,8 @@ module KlaviyoAPI
           hover_text_color == o.hover_text_color &&
           border_styles == o.border_styles &&
           text_styles == o.text_styles &&
-          color == o.color
+          color == o.color &&
+          drop_shadow == o.drop_shadow
     end
 
     # @see the `==` method
@@ -206,7 +215,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [padding, background_color, width, height, hover_background_color, hover_text_color, border_styles, text_styles, color].hash
+      [padding, background_color, width, height, hover_background_color, hover_text_color, border_styles, text_styles, color, drop_shadow].hash
     end
 
     # Builds the object from hash

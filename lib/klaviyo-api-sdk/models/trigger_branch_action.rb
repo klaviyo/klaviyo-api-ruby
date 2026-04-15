@@ -14,7 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class TriggerBranchAction
-    # The real ID of an action.
+    # The real ID of an action. Not allowed on create.
     attr_accessor :id
 
     # A temporary ID to use only during a create operation. Existing actions should use the id field.
@@ -25,6 +25,28 @@ module KlaviyoAPI
     attr_accessor :links
 
     attr_accessor :data
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -47,7 +69,7 @@ module KlaviyoAPI
       {
         :'id' => :'String',
         :'temporary_id' => :'String',
-        :'type' => :'TriggerSplitEnum',
+        :'type' => :'String',
         :'links' => :'BooleanBranchLinks',
         :'data' => :'TriggerBranchActionData'
       }
@@ -112,7 +134,19 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["trigger-split"])
+      return false unless type_validator.valid?(@type)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["trigger-split"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Checks equality by comparing each attribute.

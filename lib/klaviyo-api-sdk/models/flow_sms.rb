@@ -42,10 +42,13 @@ module KlaviyoAPI
 
     attr_accessor :custom_tracking_params
 
+    attr_accessor :template_id
+
     attr_accessor :additional_filters
 
     attr_accessor :name
 
+    # Not allowed on create.
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -64,6 +67,7 @@ module KlaviyoAPI
         :'transactional' => :'transactional',
         :'add_tracking_params' => :'add_tracking_params',
         :'custom_tracking_params' => :'custom_tracking_params',
+        :'template_id' => :'template_id',
         :'additional_filters' => :'additional_filters',
         :'name' => :'name',
         :'id' => :'id'
@@ -91,6 +95,7 @@ module KlaviyoAPI
         :'transactional' => :'Boolean',
         :'add_tracking_params' => :'Boolean',
         :'custom_tracking_params' => :'Array<UtmParam>',
+        :'template_id' => :'String',
         :'additional_filters' => :'FlowSmsAdditionalFilters',
         :'name' => :'String',
         :'id' => :'String'
@@ -103,6 +108,7 @@ module KlaviyoAPI
         :'image_id',
         :'dynamic_image',
         :'custom_tracking_params',
+        :'template_id',
         :'additional_filters',
         :'name',
         :'id'
@@ -196,6 +202,10 @@ module KlaviyoAPI
         end
       end
 
+      if attributes.key?(:'template_id')
+        self.template_id = attributes[:'template_id']
+      end
+
       if attributes.key?(:'additional_filters')
         self.additional_filters = attributes[:'additional_filters']
       end
@@ -245,6 +255,7 @@ module KlaviyoAPI
           transactional == o.transactional &&
           add_tracking_params == o.add_tracking_params &&
           custom_tracking_params == o.custom_tracking_params &&
+          template_id == o.template_id &&
           additional_filters == o.additional_filters &&
           name == o.name &&
           id == o.id
@@ -259,7 +270,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [body, image_id, dynamic_image, shorten_links, include_contact_card, add_org_prefix, add_info_link, add_opt_out_language, smart_sending_enabled, sms_quiet_hours_enabled, transactional, add_tracking_params, custom_tracking_params, additional_filters, name, id].hash
+      [body, image_id, dynamic_image, shorten_links, include_contact_card, add_org_prefix, add_info_link, add_opt_out_language, smart_sending_enabled, sms_quiet_hours_enabled, transactional, add_tracking_params, custom_tracking_params, template_id, additional_filters, name, id].hash
     end
 
     # Builds the object from hash

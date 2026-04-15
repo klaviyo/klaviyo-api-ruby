@@ -63,10 +63,10 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'NumericEnum',
+        :'type' => :'String',
         :'operator' => :'String',
-        :'start' => :'NumericOperatorFilterValue',
-        :'_end' => :'NumericOperatorFilterValue'
+        :'start' => :'NumericOperatorNumericFilterValue',
+        :'_end' => :'NumericOperatorNumericFilterValue'
       }
     end
 
@@ -135,12 +135,24 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["numeric"])
+      return false unless type_validator.valid?(@type)
       return false if @operator.nil?
       operator_validator = EnumAttributeValidator.new('String', ["between"])
       return false unless operator_validator.valid?(@operator)
       return false if @start.nil?
       return false if @_end.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["numeric"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

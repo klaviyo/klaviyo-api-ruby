@@ -20,7 +20,7 @@ module KlaviyoAPI
         [
           :'AlltimeDateFilter',
           :'RelativeAnniversaryDateFilter',
-          :'RelativeDateOperatorBaseFilter',
+          :'RelativeDateOperatorBaseRelativeDateFilter',
           :'RelativeDateRangeFilter',
           :'StaticDateFilter',
           :'StaticDateRangeFilter'

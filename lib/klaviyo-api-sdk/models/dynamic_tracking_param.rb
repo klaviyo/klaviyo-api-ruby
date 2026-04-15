@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class DynamicTrackingParam
+    # The type of the tracking parameter
     attr_accessor :type
 
     # The value of the tracking parameter
@@ -61,7 +62,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'DynamicEnum',
+        :'type' => :'String',
         :'value' => :'String',
         :'name' => :'String'
       }
@@ -124,11 +125,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["dynamic"])
+      return false unless type_validator.valid?(@type)
       return false if @value.nil?
       value_validator = EnumAttributeValidator.new('String', ["campaign_id", "campaign_name", "campaign_name_id", "campaign_name_send_day", "email_subject", "group_id", "group_name", "group_name_id", "link_alt_text", "message_type", "profile_external_id", "profile_id"])
       return false unless value_validator.valid?(@value)
       return false if @name.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["dynamic"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -59,7 +59,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'channel' => :'EmailEnum',
+        :'channel' => :'String',
         :'can_receive_marketing' => :'Boolean',
         :'consent_status' => :'HasEmailMarketingConsentConsentStatus'
       }
@@ -122,11 +122,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @channel.nil?
+      channel_validator = EnumAttributeValidator.new('String', ["email"])
+      return false unless channel_validator.valid?(@channel)
       return false if @can_receive_marketing.nil?
       can_receive_marketing_validator = EnumAttributeValidator.new('Boolean', ["true"])
       return false unless can_receive_marketing_validator.valid?(@can_receive_marketing)
       return false if @consent_status.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] channel Object to be assigned
+    def channel=(channel)
+      validator = EnumAttributeValidator.new('String', ["email"])
+      unless validator.valid?(channel)
+        fail ArgumentError, "invalid value for \"channel\", must be one of #{validator.allowable_values}."
+      end
+      @channel = channel
     end
 
     # Custom attribute writer method checking allowed values (enum).

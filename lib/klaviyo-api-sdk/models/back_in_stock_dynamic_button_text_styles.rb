@@ -72,7 +72,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'font_family' => :'TextStyleFontFamily',
+        :'font_family' => :'TextStyleV0FontFamily',
         :'font_size' => :'Integer',
         :'font_weight' => :'Integer',
         :'font_color' => :'String',

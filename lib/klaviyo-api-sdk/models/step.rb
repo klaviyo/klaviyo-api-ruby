@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class Step
+    # Not allowed on create.
     attr_accessor :id
 
     attr_accessor :columns
@@ -41,7 +42,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'id' => :'String',
-        :'columns' => :'Array<Column>',
+        :'columns' => :'Array<ColumnV0>',
         :'name' => :'String',
         :'steps' => :'Array<Step>'
       }

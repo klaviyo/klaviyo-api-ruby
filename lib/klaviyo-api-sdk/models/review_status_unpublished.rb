@@ -14,7 +14,30 @@ require 'time'
 
 module KlaviyoAPI
   class ReviewStatusUnpublished
+    # Unpublished review status
     attr_accessor :value
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -31,7 +54,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'value' => :'UnpublishedEnum'
+        :'value' => :'String'
       }
     end
 
@@ -76,7 +99,19 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @value.nil?
+      value_validator = EnumAttributeValidator.new('String', ["unpublished"])
+      return false unless value_validator.valid?(@value)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] value Object to be assigned
+    def value=(value)
+      validator = EnumAttributeValidator.new('String', ["unpublished"])
+      unless validator.valid?(value)
+        fail ArgumentError, "invalid value for \"value\", must be one of #{validator.allowable_values}."
+      end
+      @value = value
     end
 
     # Checks equality by comparing each attribute.
