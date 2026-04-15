@@ -64,7 +64,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'DateEnum',
+        :'type' => :'String',
         :'operator' => :'String',
         :'unit' => :'String',
         :'quantity' => :'Integer'
@@ -136,6 +136,8 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["date"])
+      return false unless type_validator.valid?(@type)
       return false if @operator.nil?
       operator_validator = EnumAttributeValidator.new('String', ["anniversary-last", "anniversary-next"])
       return false unless operator_validator.valid?(@operator)
@@ -144,6 +146,16 @@ module KlaviyoAPI
       return false unless unit_validator.valid?(@unit)
       return false if @quantity.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["date"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

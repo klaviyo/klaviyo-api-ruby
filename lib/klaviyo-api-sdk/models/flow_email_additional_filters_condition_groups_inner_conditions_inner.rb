@@ -19,6 +19,7 @@ module KlaviyoAPI
       def openapi_one_of
         [
           :'FlowsProfileMetricCondition',
+          :'ProfileHasCustomObjectCondition',
           :'ProfileHasGroupMembershipCondition',
           :'ProfileHasNotReceivedEmailMessageCondition',
           :'ProfileMarketingConsentCondition',

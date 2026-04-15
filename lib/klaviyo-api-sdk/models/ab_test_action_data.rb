@@ -17,7 +17,7 @@ module KlaviyoAPI
     # Flow action status.
     attr_accessor :status
 
-    # The status of the A/B test action experiment.
+    # Not allowed on create.
     attr_accessor :experiment_status
 
     attr_accessor :main_action

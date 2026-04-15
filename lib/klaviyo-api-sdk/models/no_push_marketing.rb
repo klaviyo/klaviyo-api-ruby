@@ -16,6 +16,28 @@ module KlaviyoAPI
   class NoPushMarketing
     attr_accessor :subscription
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +53,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'subscription' => :'AnyEnum'
+        :'subscription' => :'String'
       }
     end
 
@@ -76,7 +98,19 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @subscription.nil?
+      subscription_validator = EnumAttributeValidator.new('String', ["any"])
+      return false unless subscription_validator.valid?(@subscription)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] subscription Object to be assigned
+    def subscription=(subscription)
+      validator = EnumAttributeValidator.new('String', ["any"])
+      unless validator.valid?(subscription)
+        fail ArgumentError, "invalid value for \"subscription\", must be one of #{validator.allowable_values}."
+      end
+      @subscription = subscription
     end
 
     # Checks equality by comparing each attribute.

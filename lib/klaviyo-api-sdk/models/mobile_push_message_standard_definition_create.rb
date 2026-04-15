@@ -23,7 +23,30 @@ module KlaviyoAPI
 
     attr_accessor :options
 
+    # The type of notification to send
     attr_accessor :notification_type
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -44,11 +67,11 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'channel' => :'MobilePushEnum',
+        :'channel' => :'String',
         :'content' => :'MobilePushContentCreate',
         :'kv_pairs' => :'Object',
         :'options' => :'MobilePushOptions',
-        :'notification_type' => :'StandardEnum'
+        :'notification_type' => :'String'
       }
     end
 
@@ -92,6 +115,8 @@ module KlaviyoAPI
 
       if attributes.key?(:'notification_type')
         self.notification_type = attributes[:'notification_type']
+      else
+        self.notification_type = 'standard'
       end
     end
 
@@ -114,8 +139,32 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @channel.nil?
+      channel_validator = EnumAttributeValidator.new('String', ["mobile_push"])
+      return false unless channel_validator.valid?(@channel)
       return false if @content.nil?
+      notification_type_validator = EnumAttributeValidator.new('String', ["standard"])
+      return false unless notification_type_validator.valid?(@notification_type)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] channel Object to be assigned
+    def channel=(channel)
+      validator = EnumAttributeValidator.new('String', ["mobile_push"])
+      unless validator.valid?(channel)
+        fail ArgumentError, "invalid value for \"channel\", must be one of #{validator.allowable_values}."
+      end
+      @channel = channel
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] notification_type Object to be assigned
+    def notification_type=(notification_type)
+      validator = EnumAttributeValidator.new('String', ["standard"])
+      unless validator.valid?(notification_type)
+        fail ArgumentError, "invalid value for \"notification_type\", must be one of #{validator.allowable_values}."
+      end
+      @notification_type = notification_type
     end
 
     # Checks equality by comparing each attribute.

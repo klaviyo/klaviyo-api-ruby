@@ -61,7 +61,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'method' => :'ThrottledEnum',
+        :'method' => :'String',
         :'datetime' => :'Time',
         :'throttle_percentage' => :'Integer'
       }
@@ -124,11 +124,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @method.nil?
+      method_validator = EnumAttributeValidator.new('String', ["throttled"])
+      return false unless method_validator.valid?(@method)
       return false if @datetime.nil?
       return false if @throttle_percentage.nil?
       throttle_percentage_validator = EnumAttributeValidator.new('Integer', [10, 11, 13, 14, 17, 20, 25, 33, 50])
       return false unless throttle_percentage_validator.valid?(@throttle_percentage)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] method Object to be assigned
+    def method=(method)
+      validator = EnumAttributeValidator.new('String', ["throttled"])
+      unless validator.valid?(method)
+        fail ArgumentError, "invalid value for \"method\", must be one of #{validator.allowable_values}."
+      end
+      @method = method
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -56,7 +56,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -101,8 +101,8 @@ module KlaviyoAPI
     alias create_profile_bulk_import_job_with_http_info bulk_import_profiles_with_http_info
 
     # Bulk Subscribe Profiles
-    # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a `historical_import` flag. If this flag is set `true`, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \"Added to list\" flows. This is useful for importing historical data where you have already collected consent. If `historical_import` is set to true, the `consented_at` field is required and must be in the past.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
-    # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
+    # Subscribe one or more profiles to email marketing, SMS marketing, WhatsApp, or push. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any `UNSUBSCRIBE`, `SPAM_REPORT` or `USER_SUPPRESSED` suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a `historical_import` flag. If this flag is set `true`, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \"Added to list\" flows. This is useful for importing historical data where you have already collected consent. If `historical_import` is set to true, the `consented_at` field is required and must be in the past.  Push tokens provided in `push_tokens` will be registered for each profile as long as push subscriptions are consented to.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
+    # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing, with support for push channel and push tokens. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def bulk_subscribe_profiles(subscription_create_job_create_query, opts = {})
@@ -117,8 +117,8 @@ module KlaviyoAPI
     alias create_profile_subscription_bulk_create_job bulk_subscribe_profiles
 
     # Bulk Subscribe Profiles
-    # Subscribe one or more profiles to email marketing, SMS marketing, or both. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any &#x60;UNSUBSCRIBE&#x60;, &#x60;SPAM_REPORT&#x60; or &#x60;USER_SUPPRESSED&#x60; suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a &#x60;historical_import&#x60; flag. If this flag is set &#x60;true&#x60;, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \&quot;Added to list\&quot; flows. This is useful for importing historical data where you have already collected consent. If &#x60;historical_import&#x60; is set to true, the &#x60;consented_at&#x60; field is required and must be in the past.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
-    # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing. Currently, supports email and SMS only. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
+    # Subscribe one or more profiles to email marketing, SMS marketing, WhatsApp, or push. If the provided list has double opt-in enabled, profiles will receive a message requiring their confirmation before subscribing. Otherwise, profiles will be immediately subscribed without receiving a confirmation message. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  If a list is not provided, the opt-in process used will be determined by the [account-level default opt-in setting](https://www.klaviyo.com/settings/account/api-keys).  To add someone to a list without changing their subscription status, use [Add Profile to List](https://developers.klaviyo.com/en/reference/create_list_relationships).  This API will remove any &#x60;UNSUBSCRIBE&#x60;, &#x60;SPAM_REPORT&#x60; or &#x60;USER_SUPPRESSED&#x60; suppressions from the provided profiles. Learn more about [suppressed profiles](https://help.klaviyo.com/hc/en-us/articles/115005246108-Understanding-suppressed-email-profiles#what-is-a-suppressed-profile-1).  Maximum number of profiles can be submitted for subscription: 1000  This endpoint now supports a &#x60;historical_import&#x60; flag. If this flag is set &#x60;true&#x60;, profiles being subscribed will bypass double opt-in emails and be subscribed immediately. They will also bypass any associated \&quot;Added to list\&quot; flows. This is useful for importing historical data where you have already collected consent. If &#x60;historical_import&#x60; is set to true, the &#x60;consented_at&#x60; field is required and must be in the past.  Push tokens provided in &#x60;push_tokens&#x60; will be registered for each profile as long as push subscriptions are consented to.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
+    # @param subscription_create_job_create_query [SubscriptionCreateJobCreateQuery] Subscribes one or more profiles to marketing, with support for push channel and push tokens. All profiles will be added to the provided list. Either email or phone number is required. Both may be specified to subscribe to both channels. If a profile cannot be found matching the given identifier(s), a new profile will be created and then subscribed.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def bulk_subscribe_profiles_with_http_info(subscription_create_job_create_query, opts = {})
@@ -138,7 +138,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -183,7 +183,7 @@ module KlaviyoAPI
     alias create_profile_subscription_bulk_create_job_with_http_info bulk_subscribe_profiles_with_http_info
 
     # Bulk Suppress Profiles
-    # Manually suppress profiles by email address or specify a segment/list ID to suppress all current members of a segment/list.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `subscriptions:write`
+    # Manually suppress profiles by email address or specify a segment/list ID to suppress all current members of a segment/list.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `profiles:write` `subscriptions:write`
     # @param suppression_create_job_create_query [SuppressionCreateJobCreateQuery] Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -199,7 +199,7 @@ module KlaviyoAPI
     alias create_profile_suppression_bulk_create_job bulk_suppress_profiles
 
     # Bulk Suppress Profiles
-    # Manually suppress profiles by email address or specify a segment/list ID to suppress all current members of a segment/list.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
+    # Manually suppress profiles by email address or specify a segment/list ID to suppress all current members of a segment/list.  Suppressed profiles cannot receive email marketing, independent of their consent status. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
     # @param suppression_create_job_create_query [SuppressionCreateJobCreateQuery] Suppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, one will be created and immediately suppressed.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -220,7 +220,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -265,8 +265,8 @@ module KlaviyoAPI
     alias create_profile_suppression_bulk_create_job_with_http_info bulk_suppress_profiles_with_http_info
 
     # Bulk Unsubscribe Profiles
-    # > 🚧 > > Profiles not in the specified list will be globally unsubscribed. Always verify profile list membership before calling this endpoint to avoid unintended global unsubscribes.  Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profiles from List](https://developers.klaviyo.com/en/reference/remove_profiles_from_list).  Maximum number of profiles per call: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
-    # @param subscription_delete_job_create_query [SubscriptionDeleteJobCreateQuery] Unsubscribes one or more profiles from marketing. Currently, supports email and SMS only. All profiles will be removed from the provided list. Either email or phone number is required. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
+    # > 🚧 > > Profiles not in the specified list will be globally unsubscribed. Always verify profile list membership before calling this endpoint to avoid unintended global unsubscribes.  Unsubscribe one or more profiles from email marketing, SMS marketing, push marketing, or a combination. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Push tokens provided in `subscriptions.push.tokens` will be removed for the specified profiles.  To remove someone from a list without changing their subscription status, use [Remove Profiles from List](https://developers.klaviyo.com/en/reference/remove_profiles_from_list).  Maximum number of profiles per call: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `lists:write` `profiles:write` `subscriptions:write`
+    # @param subscription_delete_job_create_query [SubscriptionDeleteJobCreateQuery] Unsubscribes one or more profiles from marketing. Supports email, SMS, WhatsApp, and push channels. All profiles will be removed from the provided list. Either email or phone number is required for email/SMS/WhatsApp channels. Push tokens can be removed by providing token strings directly. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
     # @param [Hash] opts the optional parameters
     # @return [nil]
     def bulk_unsubscribe_profiles(subscription_delete_job_create_query, opts = {})
@@ -281,8 +281,8 @@ module KlaviyoAPI
     alias create_profile_subscription_bulk_delete_job bulk_unsubscribe_profiles
 
     # Bulk Unsubscribe Profiles
-    # &gt; 🚧 &gt; &gt; Profiles not in the specified list will be globally unsubscribed. Always verify profile list membership before calling this endpoint to avoid unintended global unsubscribes.  Unsubscribe one or more profiles to email marketing, SMS marketing, or both. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  To remove someone from a list without changing their subscription status, use [Remove Profiles from List](https://developers.klaviyo.com/en/reference/remove_profiles_from_list).  Maximum number of profiles per call: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
-    # @param subscription_delete_job_create_query [SubscriptionDeleteJobCreateQuery] Unsubscribes one or more profiles from marketing. Currently, supports email and SMS only. All profiles will be removed from the provided list. Either email or phone number is required. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
+    # &gt; 🚧 &gt; &gt; Profiles not in the specified list will be globally unsubscribed. Always verify profile list membership before calling this endpoint to avoid unintended global unsubscribes.  Unsubscribe one or more profiles from email marketing, SMS marketing, push marketing, or a combination. Learn more about [consent in this guide](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Push tokens provided in &#x60;subscriptions.push.tokens&#x60; will be removed for the specified profiles.  To remove someone from a list without changing their subscription status, use [Remove Profiles from List](https://developers.klaviyo.com/en/reference/remove_profiles_from_list).  Maximum number of profiles per call: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;profiles:write&#x60; &#x60;subscriptions:write&#x60;
+    # @param subscription_delete_job_create_query [SubscriptionDeleteJobCreateQuery] Unsubscribes one or more profiles from marketing. Supports email, SMS, WhatsApp, and push channels. All profiles will be removed from the provided list. Either email or phone number is required for email/SMS/WhatsApp channels. Push tokens can be removed by providing token strings directly. If a profile cannot be found matching the given identifier(s), a new profile will be created and then unsubscribed.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def bulk_unsubscribe_profiles_with_http_info(subscription_delete_job_create_query, opts = {})
@@ -302,7 +302,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -347,7 +347,7 @@ module KlaviyoAPI
     alias create_profile_subscription_bulk_delete_job_with_http_info bulk_unsubscribe_profiles_with_http_info
 
     # Bulk Unsuppress Profiles
-    # Manually unsuppress profiles by email address or specify a segment/list ID to unsuppress all current members of a segment/list.  This only removes suppressions with reason USER_SUPPRESSED ; unsubscribed profiles and suppressed profiles with reason INVALID_EMAIL or HARD_BOUNCE remain unchanged. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:write`
+    # Manually unsuppress profiles by email address or specify a segment/list ID to unsuppress all current members of a segment/list.  This only removes suppressions with reason USER_SUPPRESSED ; unsubscribed profiles and suppressed profiles with reason INVALID_EMAIL or HARD_BOUNCE remain unchanged. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `subscriptions:write`
     # @param suppression_delete_job_create_query [SuppressionDeleteJobCreateQuery] Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -363,7 +363,7 @@ module KlaviyoAPI
     alias create_profile_suppression_bulk_delete_job bulk_unsuppress_profiles
 
     # Bulk Unsuppress Profiles
-    # Manually unsuppress profiles by email address or specify a segment/list ID to unsuppress all current members of a segment/list.  This only removes suppressions with reason USER_SUPPRESSED ; unsubscribed profiles and suppressed profiles with reason INVALID_EMAIL or HARD_BOUNCE remain unchanged. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;subscriptions:write&#x60;
+    # Manually unsuppress profiles by email address or specify a segment/list ID to unsuppress all current members of a segment/list.  This only removes suppressions with reason USER_SUPPRESSED ; unsubscribed profiles and suppressed profiles with reason INVALID_EMAIL or HARD_BOUNCE remain unchanged. To learn more, see our guides on [email suppressions](https://help.klaviyo.com/hc/en-us/articles/115005246108#what-is-a-suppressed-profile-1) and [collecting consent](https://developers.klaviyo.com/en/docs/collect_email_and_sms_consent_via_api).  Email address per request limit: 100&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;subscriptions:write&#x60;
     # @param suppression_delete_job_create_query [SuppressionDeleteJobCreateQuery] Unsuppresses one or more profiles from receiving marketing. Currently, supports email only. If a profile is not found with the given email, no action will be taken.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -384,7 +384,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -429,7 +429,7 @@ module KlaviyoAPI
     alias create_profile_suppression_bulk_delete_job_with_http_info bulk_unsuppress_profiles_with_http_info
 
     # Create or Update Profile
-    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `profiles:write`
     # @param profile_upsert_query [ProfileUpsertQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -443,7 +443,7 @@ module KlaviyoAPI
     alias create_profile_import create_or_update_profile
 
     # Create or Update Profile
-    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
+    # Given a set of profile attributes and optionally an ID, create or update a profile.  Returns 201 if a new profile was created, 200 if an existing profile was updated.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_upsert_query [ProfileUpsertQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -470,7 +470,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -512,7 +512,7 @@ module KlaviyoAPI
     alias create_profile_import_with_http_info create_or_update_profile_with_http_info
 
     # Create Profile
-    # Create a new profile.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+    # Create a new profile.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `profiles:write`
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -523,7 +523,7 @@ module KlaviyoAPI
     end
 
     # Create Profile
-    # Create a new profile.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
+    # Create a new profile.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param profile_create_query [ProfileCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
@@ -550,7 +550,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -589,7 +589,7 @@ module KlaviyoAPI
     end
 
     # Create or Update Push Token
-    # Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users' devices.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write` `push-tokens:write`
+    # Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users' devices.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `profiles:write` `push-tokens:write`
     # @param push_token_create_query [PushTokenCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -599,7 +599,7 @@ module KlaviyoAPI
     end
 
     # Create or Update Push Token
-    # Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users&#39; devices.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60; &#x60;push-tokens:write&#x60;
+    # Create or update a push token.  This endpoint can be used to migrate push tokens from another platform to Klaviyo. Please use our mobile SDKs ([iOS](https://github.com/klaviyo/klaviyo-swift-sdk) and [Android](https://github.com/klaviyo/klaviyo-android-sdk)) to create push tokens from users&#39; devices.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;profiles:write&#x60; &#x60;push-tokens:write&#x60;
     # @param push_token_create_query [PushTokenCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -620,7 +620,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -690,7 +690,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -727,9 +727,9 @@ module KlaviyoAPI
     # Get a bulk profile import job with the given job ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_import_profiles_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_import_profiles_job_with_http_info(job_id, opts)
@@ -746,9 +746,9 @@ module KlaviyoAPI
     # Get a bulk profile import job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;profiles:read&#x60;
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_import_profiles_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -758,11 +758,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling ProfilesApi.get_bulk_import_profiles_job"
       end
-      allowable_values = ["name", "created", "updated", "opt_in_process"]
+      allowable_values = ["created", "name", "opt_in_process", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_list'] && !opts[:'fields_list'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_list\", must include one of #{allowable_values}"
       end
-      allowable_values = ["status", "created_at", "total_count", "completed_count", "failed_count", "completed_at", "expires_at", "started_at"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "expires_at", "failed_count", "started_at", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_bulk_import_job'] && !opts[:'fields_profile_bulk_import_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_bulk_import_job\", must include one of #{allowable_values}"
       end
@@ -782,7 +782,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -824,11 +824,11 @@ module KlaviyoAPI
     # Get Bulk Import Profiles Jobs
     # Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read` `profiles:read`
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_bulk_import_profiles_jobs(opts = {})
       data, _status_code, _headers = get_bulk_import_profiles_jobs_with_http_info(opts)
@@ -844,17 +844,17 @@ module KlaviyoAPI
     # Get Bulk Import Profiles Jobs
     # Get all bulk profile import jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;profiles:read&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile_bulk_import_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_import_profiles_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ProfilesApi.get_bulk_import_profiles_jobs ...'
       end
-      allowable_values = ["status", "created_at", "total_count", "completed_count", "failed_count", "completed_at", "expires_at", "started_at"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "expires_at", "failed_count", "started_at", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_bulk_import_job'] && !opts[:'fields_profile_bulk_import_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_bulk_import_job\", must include one of #{allowable_values}"
       end
@@ -884,7 +884,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -924,10 +924,10 @@ module KlaviyoAPI
     alias get_profile_bulk_import_jobs_with_http_info get_bulk_import_profiles_jobs_with_http_info
 
     # Get Bulk Suppress Profiles Job
-    # Get the bulk suppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+    # Get the bulk suppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `subscriptions:read`
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_bulk_suppress_profiles_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_suppress_profiles_job_with_http_info(job_id, opts)
@@ -938,10 +938,10 @@ module KlaviyoAPI
     alias get_profile_suppression_bulk_create_job get_bulk_suppress_profiles_job
 
     # Get Bulk Suppress Profiles Job
-    # Get the bulk suppress profiles job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
+    # Get the bulk suppress profiles job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_suppress_profiles_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -951,7 +951,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling ProfilesApi.get_bulk_suppress_profiles_job"
       end
-      allowable_values = ["status", "created_at", "total_count", "completed_count", "completed_at", "skipped_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "skipped_count", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_suppression_bulk_create_job'] && !opts[:'fields_profile_suppression_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_suppression_bulk_create_job\", must include one of #{allowable_values}"
       end
@@ -965,7 +965,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1002,12 +1002,12 @@ module KlaviyoAPI
     alias get_profile_suppression_bulk_create_job_with_http_info get_bulk_suppress_profiles_job_with_http_info
 
     # Get Bulk Suppress Profiles Jobs
-    # Get the status of all bulk profile suppression jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+    # Get the status of all bulk profile suppression jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `subscriptions:read`
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_bulk_suppress_profiles_jobs(opts = {})
       data, _status_code, _headers = get_bulk_suppress_profiles_jobs_with_http_info(opts)
@@ -1018,18 +1018,18 @@ module KlaviyoAPI
     alias get_profile_suppression_bulk_create_jobs get_bulk_suppress_profiles_jobs
 
     # Get Bulk Suppress Profiles Jobs
-    # Get the status of all bulk profile suppression jobs.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
+    # Get the status of all bulk profile suppression jobs.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_suppress_profiles_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ProfilesApi.get_bulk_suppress_profiles_jobs ...'
       end
-      allowable_values = ["status", "created_at", "total_count", "completed_count", "completed_at", "skipped_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "skipped_count", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_suppression_bulk_create_job'] && !opts[:'fields_profile_suppression_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_suppression_bulk_create_job\", must include one of #{allowable_values}"
       end
@@ -1050,7 +1050,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1087,10 +1087,10 @@ module KlaviyoAPI
     alias get_profile_suppression_bulk_create_jobs_with_http_info get_bulk_suppress_profiles_jobs_with_http_info
 
     # Get Bulk Unsuppress Profiles Job
-    # Get the bulk unsuppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+    # Get the bulk unsuppress profiles job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `subscriptions:read`
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_bulk_unsuppress_profiles_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_unsuppress_profiles_job_with_http_info(job_id, opts)
@@ -1101,10 +1101,10 @@ module KlaviyoAPI
     alias get_profile_suppression_bulk_delete_job get_bulk_unsuppress_profiles_job
 
     # Get Bulk Unsuppress Profiles Job
-    # Get the bulk unsuppress profiles job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
+    # Get the bulk unsuppress profiles job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_unsuppress_profiles_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -1114,7 +1114,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling ProfilesApi.get_bulk_unsuppress_profiles_job"
       end
-      allowable_values = ["status", "created_at", "total_count", "completed_count", "completed_at", "skipped_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "skipped_count", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_suppression_bulk_delete_job'] && !opts[:'fields_profile_suppression_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_suppression_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -1128,7 +1128,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1165,12 +1165,12 @@ module KlaviyoAPI
     alias get_profile_suppression_bulk_delete_job_with_http_info get_bulk_unsuppress_profiles_job_with_http_info
 
     # Get Bulk Unsuppress Profiles Jobs
-    # Get all bulk unsuppress profiles jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `subscriptions:read`
+    # Get all bulk unsuppress profiles jobs.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `subscriptions:read`
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_bulk_unsuppress_profiles_jobs(opts = {})
       data, _status_code, _headers = get_bulk_unsuppress_profiles_jobs_with_http_info(opts)
@@ -1181,18 +1181,18 @@ module KlaviyoAPI
     alias get_profile_suppression_bulk_delete_jobs get_bulk_unsuppress_profiles_jobs
 
     # Get Bulk Unsuppress Profiles Jobs
-    # Get all bulk unsuppress profiles jobs.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
+    # Get all bulk unsuppress profiles jobs.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;subscriptions:read&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_profile_suppression_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;segment_id&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_unsuppress_profiles_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ProfilesApi.get_bulk_unsuppress_profiles_jobs ...'
       end
-      allowable_values = ["status", "created_at", "total_count", "completed_count", "completed_at", "skipped_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "skipped_count", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_suppression_bulk_delete_job'] && !opts[:'fields_profile_suppression_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_suppression_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -1213,7 +1213,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1249,12 +1249,154 @@ module KlaviyoAPI
     # alias of `get_bulk_unsuppress_profiles_jobs_with_http_info`
     alias get_profile_suppression_bulk_delete_jobs_with_http_info get_bulk_unsuppress_profiles_jobs_with_http_info
 
+    # Get Conversation for Profile
+    # Get the conversation for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `conversations:read` `profiles:read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_conversation_for_profile(id, opts = {})
+      data, _status_code, _headers = get_conversation_for_profile_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_conversation_for_profile`
+    alias get_profile_conversation get_conversation_for_profile
+
+    # Get Conversation for Profile
+    # Get the conversation for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;conversations:read&#x60; &#x60;profiles:read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_conversation_for_profile_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ProfilesApi.get_conversation_for_profile ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_conversation_for_profile"
+      end
+      # resource path
+      local_var_path = '/api/profiles/{id}/conversation'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"ProfilesApi.get_conversation_for_profile",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ProfilesApi#get_conversation_for_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_conversation_for_profile_with_http_info`
+    alias get_profile_conversation_with_http_info get_conversation_for_profile_with_http_info
+
+    # Get Conversation ID for Profile
+    # Get the conversation relationship for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `conversations:read` `profiles:read`
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_conversation_id_for_profile(id, opts = {})
+      data, _status_code, _headers = get_conversation_id_for_profile_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_conversation_id_for_profile`
+    alias get_profile_relationships_conversation get_conversation_id_for_profile
+
+    # Get Conversation ID for Profile
+    # Get the conversation relationship for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;conversations:read&#x60; &#x60;profiles:read&#x60;
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_conversation_id_for_profile_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ProfilesApi.get_conversation_id_for_profile ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_conversation_id_for_profile"
+      end
+      # resource path
+      local_var_path = '/api/profiles/{id}/relationships/conversation'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"ProfilesApi.get_conversation_id_for_profile",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ProfilesApi#get_conversation_id_for_profile\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_conversation_id_for_profile_with_http_info`
+    alias get_profile_relationships_conversation_with_http_info get_conversation_id_for_profile_with_http_info
+
     # Get Errors for Bulk Import Profiles Job
     # Get import errors for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_import_error For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_import_error For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_errors_for_bulk_import_profiles_job(id, opts = {})
@@ -1275,8 +1417,8 @@ module KlaviyoAPI
     # Get import errors for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_import_error For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_import_error For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_errors_for_bulk_import_profiles_job_with_http_info(id, opts = {})
@@ -1287,7 +1429,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_errors_for_bulk_import_profiles_job"
       end
-      allowable_values = ["code", "title", "detail", "source", "source.pointer", "original_payload"]
+      allowable_values = ["code", "detail", "original_payload", "source", "source.pointer", "title"]
       if @api_client.config.client_side_validation && opts[:'fields_import_error'] && !opts[:'fields_import_error'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_import_error\", must include one of #{allowable_values}"
       end
@@ -1311,7 +1453,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1357,7 +1499,7 @@ module KlaviyoAPI
     # Get list for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `lists:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_list_for_bulk_import_profiles_job(id, opts = {})
       data, _status_code, _headers = get_list_for_bulk_import_profiles_job_with_http_info(id, opts)
@@ -1377,7 +1519,7 @@ module KlaviyoAPI
     # Get list for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;lists:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_list_for_bulk_import_profiles_job_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1387,7 +1529,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_list_for_bulk_import_profiles_job"
       end
-      allowable_values = ["name", "created", "updated", "opt_in_process"]
+      allowable_values = ["created", "name", "opt_in_process", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_list'] && !opts[:'fields_list'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_list\", must include one of #{allowable_values}"
       end
@@ -1401,7 +1543,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1484,7 +1626,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1561,7 +1703,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1601,7 +1743,7 @@ module KlaviyoAPI
     # Get list memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `profiles:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_lists_for_profile(id, opts = {})
       data, _status_code, _headers = get_lists_for_profile_with_http_info(id, opts)
@@ -1615,7 +1757,7 @@ module KlaviyoAPI
     # Get list memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;profiles:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_lists_for_profile_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1625,7 +1767,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_lists_for_profile"
       end
-      allowable_values = ["name", "created", "updated", "opt_in_process"]
+      allowable_values = ["created", "name", "opt_in_process", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_list'] && !opts[:'fields_list'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_list\", must include one of #{allowable_values}"
       end
@@ -1639,7 +1781,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1676,15 +1818,15 @@ module KlaviyoAPI
     alias get_profile_lists_with_http_info get_lists_for_profile_with_http_info
 
     # Get Profile
-    # Get the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-01-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+    # Get the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `include=list` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>Rate limits when using the `include=segment` parameter in your API request:<br>Burst: `1/s`<br>Steady: `15/m`<br><br>To learn more about how the `include` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_profile(id, opts = {})
       data, _status_code, _headers = get_profile_with_http_info(id, opts)
@@ -1692,15 +1834,15 @@ module KlaviyoAPI
     end
 
     # Get Profile
-    # Get the profile with the given profile ID.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;list&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;segment&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;include&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-01-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
+    # Get the profile with the given profile ID.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;list&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;include&#x3D;segment&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;include&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_list For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profile_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1714,23 +1856,23 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["name", "created", "updated", "opt_in_process"]
+      allowable_values = ["created", "name", "opt_in_process", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_list'] && !opts[:'fields_list'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_list\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.sms.transactional.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.whatsapp", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.valid_until", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.conversational.phone_number", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.ranked_channel_affinity"]
+      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "predictive_analytics", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.historic_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_clv", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.ranked_channel_affinity", "predictive_analytics.total_clv", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.suppression", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.last_updated", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.whatsapp", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.phone_number", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.transactional.valid_until", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "token", "enablement_status", "platform", "vendor", "background", "recorded_date", "metadata", "metadata.device_id", "metadata.klaviyo_sdk", "metadata.sdk_version", "metadata.device_model", "metadata.os_name", "metadata.os_version", "metadata.manufacturer", "metadata.app_name", "metadata.app_version", "metadata.app_build", "metadata.app_id", "metadata.environment"]
+      allowable_values = ["background", "created", "enablement_status", "metadata", "metadata.app_build", "metadata.app_id", "metadata.app_name", "metadata.app_version", "metadata.device_id", "metadata.device_model", "metadata.environment", "metadata.klaviyo_sdk", "metadata.manufacturer", "metadata.os_name", "metadata.os_version", "metadata.sdk_version", "platform", "recorded_date", "token", "vendor"]
       if @api_client.config.client_side_validation && opts[:'fields_push_token'] && !opts[:'fields_push_token'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_push_token\", must include one of #{allowable_values}"
       end
-      allowable_values = ["name", "definition", "definition.condition_groups", "created", "updated", "is_active", "is_processing", "is_starred"]
+      allowable_values = ["created", "definition", "definition.condition_groups", "is_active", "is_processing", "is_starred", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_segment'] && !opts[:'fields_segment'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_segment\", must include one of #{allowable_values}"
       end
-      allowable_values = ["lists", "push-tokens", "segments"]
+      allowable_values = ["conversation", "lists", "push-tokens", "segments"]
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
@@ -1749,7 +1891,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1787,7 +1929,7 @@ module KlaviyoAPI
     # @param id [String] The value of the push token
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_profile_for_push_token(id, opts = {})
       data, _status_code, _headers = get_profile_for_push_token_with_http_info(id, opts)
@@ -1802,7 +1944,7 @@ module KlaviyoAPI
     # @param id [String] The value of the push token
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profile_for_push_token_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1816,7 +1958,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.sms.transactional.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.whatsapp", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.valid_until", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.conversational.phone_number", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.ranked_channel_affinity"]
+      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "predictive_analytics", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.historic_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_clv", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.ranked_channel_affinity", "predictive_analytics.total_clv", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.suppression", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.last_updated", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.whatsapp", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.phone_number", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.transactional.valid_until", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -1831,7 +1973,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1902,7 +2044,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1942,7 +2084,7 @@ module KlaviyoAPI
     # Get profile relationships for the bulk profile import job with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_profile_ids_for_bulk_import_profiles_job(id, opts = {})
@@ -1963,7 +2105,7 @@ module KlaviyoAPI
     # Get profile relationships for the bulk profile import job with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profile_ids_for_bulk_import_profiles_job_with_http_info(id, opts = {})
@@ -1993,7 +2135,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2036,15 +2178,16 @@ module KlaviyoAPI
     alias get_profile_ids_for_profile_bulk_import_job_with_http_info get_profile_ids_for_bulk_import_profiles_job_with_http_info
 
     # Get Profiles
-    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-01-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
+    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: `id`, `created`, `updated`, `email`, `subscriptions.email.marketing.suppression.timestamp`, `subscriptions.email.marketing.list_suppressions.timestamp`  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`<br><br>Rate limits when using the `additional-fields[profile]=predictive_analytics` parameter in your API request:<br>Burst: `10/s`<br>Steady: `150/m`<br><br>To learn more about how the `additional-fields` parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** `profiles:read`
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_profiles(opts = {})
       data, _status_code, _headers = get_profiles_with_http_info(opts)
@@ -2052,15 +2195,16 @@ module KlaviyoAPI
     end
 
     # Get Profiles
-    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;email&#x60;, &#x60;subscriptions.email.marketing.suppression.timestamp&#x60;, &#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;additional-fields[profile]&#x3D;predictive_analytics&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;additional-fields&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-01-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
+    # Get all profiles in an account.  Profiles can be sorted by the following fields in ascending and descending order: &#x60;id&#x60;, &#x60;created&#x60;, &#x60;updated&#x60;, &#x60;email&#x60;, &#x60;subscriptions.email.marketing.suppression.timestamp&#x60;, &#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;&lt;br&gt;&lt;br&gt;Rate limits when using the &#x60;additional-fields[profile]&#x3D;predictive_analytics&#x60; parameter in your API request:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;&lt;br&gt;&lt;br&gt;To learn more about how the &#x60;additional-fields&#x60; parameter impacts rate limits, check out our [Rate limits, status codes, and errors](https://developers.klaviyo.com/en/v2026-04-15/docs/rate_limits_and_error_handling) guide.  **Scopes:** &#x60;profiles:read&#x60;
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;email&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;phone_number&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;external_id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;_kx&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-than&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.list_suppressions.list_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.reason&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;subscriptions.email.marketing.suppression.timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profiles_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -2070,11 +2214,15 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.sms.transactional.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.whatsapp", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.valid_until", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.conversational.phone_number", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.ranked_channel_affinity"]
+      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "predictive_analytics", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.historic_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_clv", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.ranked_channel_affinity", "predictive_analytics.total_clv", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.suppression", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.last_updated", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.whatsapp", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.phone_number", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.transactional.valid_until", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["lists", "push-tokens", "segments"]
+      allowable_values = ["background", "created", "enablement_status", "metadata", "metadata.app_build", "metadata.app_id", "metadata.app_name", "metadata.app_version", "metadata.device_id", "metadata.device_model", "metadata.environment", "metadata.klaviyo_sdk", "metadata.manufacturer", "metadata.os_name", "metadata.os_version", "metadata.sdk_version", "platform", "recorded_date", "token", "vendor"]
+      if @api_client.config.client_side_validation && opts[:'fields_push_token'] && !opts[:'fields_push_token'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_push_token\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["conversation", "push-tokens"]
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
@@ -2097,6 +2245,7 @@ module KlaviyoAPI
       query_params = opts[:query_params] || {}
       query_params[:'additional-fields[profile]'] = @api_client.build_collection_param(opts[:'additional_fields_profile'], :csv) if !opts[:'additional_fields_profile'].nil?
       query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
+      query_params[:'fields[push-token]'] = @api_client.build_collection_param(opts[:'fields_push_token'], :csv) if !opts[:'fields_push_token'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
@@ -2106,7 +2255,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2144,8 +2293,8 @@ module KlaviyoAPI
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_profiles_for_bulk_import_profiles_job(id, opts = {})
@@ -2167,8 +2316,8 @@ module KlaviyoAPI
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profiles_for_bulk_import_profiles_job_with_http_info(id, opts = {})
@@ -2183,7 +2332,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.suppression", "subscriptions.email.marketing.list_suppressions", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.sms.transactional.last_updated", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.whatsapp", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.valid_until", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.conversational.phone_number", "predictive_analytics", "predictive_analytics.historic_clv", "predictive_analytics.predicted_clv", "predictive_analytics.total_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.ranked_channel_affinity"]
+      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "predictive_analytics", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.historic_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_clv", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.ranked_channel_affinity", "predictive_analytics.total_clv", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.suppression", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.last_updated", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.whatsapp", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.phone_number", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.transactional.valid_until", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -2208,7 +2357,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2254,9 +2403,9 @@ module KlaviyoAPI
     # Return a specific push token based on its ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read` `push-tokens:read`
     # @param id [String] The value of the push token
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_push_token(id, opts = {})
       data, _status_code, _headers = get_push_token_with_http_info(id, opts)
@@ -2267,9 +2416,9 @@ module KlaviyoAPI
     # Return a specific push token based on its ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60; &#x60;push-tokens:read&#x60;
     # @param id [String] The value of the push token
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_push_token_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -2279,11 +2428,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_push_token"
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties"]
+      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "properties", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "token", "enablement_status", "platform", "vendor", "background", "recorded_date", "metadata", "metadata.device_id", "metadata.klaviyo_sdk", "metadata.sdk_version", "metadata.device_model", "metadata.os_name", "metadata.os_version", "metadata.manufacturer", "metadata.app_name", "metadata.app_version", "metadata.app_build", "metadata.app_id", "metadata.environment"]
+      allowable_values = ["background", "created", "enablement_status", "metadata", "metadata.app_build", "metadata.app_id", "metadata.app_name", "metadata.app_version", "metadata.device_id", "metadata.device_model", "metadata.environment", "metadata.klaviyo_sdk", "metadata.manufacturer", "metadata.os_name", "metadata.os_version", "metadata.sdk_version", "platform", "recorded_date", "token", "vendor"]
       if @api_client.config.client_side_validation && opts[:'fields_push_token'] && !opts[:'fields_push_token'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_push_token\", must include one of #{allowable_values}"
       end
@@ -2303,7 +2452,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2371,7 +2520,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2410,11 +2559,11 @@ module KlaviyoAPI
     # Get Push Tokens
     # Return push tokens associated with company.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read` `push-tokens:read`
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;enablement_status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;platform&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;enablement_status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;platform&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_push_tokens(opts = {})
@@ -2425,22 +2574,22 @@ module KlaviyoAPI
     # Get Push Tokens
     # Return push tokens associated with company.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60; &#x60;push-tokens:read&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;enablement_status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;platform&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;enablement_status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;platform&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_push_tokens_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ProfilesApi.get_push_tokens ...'
       end
-      allowable_values = ["email", "phone_number", "external_id", "first_name", "last_name", "organization", "locale", "title", "image", "created", "updated", "last_event_date", "location", "location.address1", "location.address2", "location.city", "location.country", "location.latitude", "location.longitude", "location.region", "location.zip", "location.timezone", "location.ip", "properties"]
+      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "properties", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "token", "enablement_status", "platform", "vendor", "background", "recorded_date", "metadata", "metadata.device_id", "metadata.klaviyo_sdk", "metadata.sdk_version", "metadata.device_model", "metadata.os_name", "metadata.os_version", "metadata.manufacturer", "metadata.app_name", "metadata.app_version", "metadata.app_build", "metadata.app_id", "metadata.environment"]
+      allowable_values = ["background", "created", "enablement_status", "metadata", "metadata.app_build", "metadata.app_id", "metadata.app_name", "metadata.app_version", "metadata.device_id", "metadata.device_model", "metadata.environment", "metadata.klaviyo_sdk", "metadata.manufacturer", "metadata.os_name", "metadata.os_version", "metadata.sdk_version", "platform", "recorded_date", "token", "vendor"]
       if @api_client.config.client_side_validation && opts[:'fields_push_token'] && !opts[:'fields_push_token'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_push_token\", must include one of #{allowable_values}"
       end
@@ -2471,7 +2620,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2508,7 +2657,7 @@ module KlaviyoAPI
     # Return all push tokens that belong to the given profile.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `profiles:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_push_tokens_for_profile(id, opts = {})
       data, _status_code, _headers = get_push_tokens_for_profile_with_http_info(id, opts)
@@ -2522,7 +2671,7 @@ module KlaviyoAPI
     # Return all push tokens that belong to the given profile.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;profiles:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_push_token For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_push_tokens_for_profile_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -2532,7 +2681,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_push_tokens_for_profile"
       end
-      allowable_values = ["created", "token", "enablement_status", "platform", "vendor", "background", "recorded_date", "metadata", "metadata.device_id", "metadata.klaviyo_sdk", "metadata.sdk_version", "metadata.device_model", "metadata.os_name", "metadata.os_version", "metadata.manufacturer", "metadata.app_name", "metadata.app_version", "metadata.app_build", "metadata.app_id", "metadata.environment"]
+      allowable_values = ["background", "created", "enablement_status", "metadata", "metadata.app_build", "metadata.app_id", "metadata.app_name", "metadata.app_version", "metadata.device_id", "metadata.device_model", "metadata.environment", "metadata.klaviyo_sdk", "metadata.manufacturer", "metadata.os_name", "metadata.os_version", "metadata.sdk_version", "platform", "recorded_date", "token", "vendor"]
       if @api_client.config.client_side_validation && opts[:'fields_push_token'] && !opts[:'fields_push_token'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_push_token\", must include one of #{allowable_values}"
       end
@@ -2546,7 +2695,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2617,7 +2766,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2657,7 +2806,7 @@ module KlaviyoAPI
     # Get segment memberships for a profile with the given profile ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `profiles:read` `segments:read`
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_segments_for_profile(id, opts = {})
       data, _status_code, _headers = get_segments_for_profile_with_http_info(id, opts)
@@ -2671,7 +2820,7 @@ module KlaviyoAPI
     # Get segment memberships for a profile with the given profile ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;profiles:read&#x60; &#x60;segments:read&#x60;
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_segment For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_segments_for_profile_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -2681,7 +2830,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ProfilesApi.get_segments_for_profile"
       end
-      allowable_values = ["name", "definition", "definition.condition_groups", "created", "updated", "is_active", "is_processing", "is_starred"]
+      allowable_values = ["created", "definition", "definition.condition_groups", "is_active", "is_processing", "is_starred", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_segment'] && !opts[:'fields_segment'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_segment\", must include one of #{allowable_values}"
       end
@@ -2695,7 +2844,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2766,7 +2915,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -2808,7 +2957,7 @@ module KlaviyoAPI
     alias create_profile_merge_with_http_info merge_profiles_with_http_info
 
     # Update Profile
-    # Update the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `profiles:write`
+    # Update the profile with the given profile ID.  Use the `additional-fields` parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to `null` will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `profiles:write`
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
@@ -2820,7 +2969,7 @@ module KlaviyoAPI
     end
 
     # Update Profile
-    # Update the profile with the given profile ID.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
+    # Update the profile with the given profile ID.  Use the &#x60;additional-fields&#x60; parameter to include subscriptions and predictive analytics data in your response.  Note that setting a field to &#x60;null&#x60; will clear out the field, whereas not including a field in your request will leave it unchanged.  The maximum allowed payload size is 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;profiles:write&#x60;
     # @param id [String] Primary key that uniquely identifies this profile. Generated by Klaviyo.
     # @param profile_partial_update_query [ProfilePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
@@ -2852,7 +3001,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

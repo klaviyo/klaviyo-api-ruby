@@ -69,7 +69,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'LowInventoryEnum',
+        :'type' => :'String',
         :'product_level' => :'String',
         :'trigger_filter' => :'LowInventoryConditionFilter',
         :'inventory_count' => :'Integer',
@@ -159,6 +159,8 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["low-inventory"])
+      return false unless type_validator.valid?(@type)
       return false if @product_level.nil?
       product_level_validator = EnumAttributeValidator.new('String', ["product", "variant"])
       return false unless product_level_validator.valid?(@product_level)
@@ -166,6 +168,16 @@ module KlaviyoAPI
       return false if @inventory_count.nil?
       return false if @audience.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["low-inventory"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

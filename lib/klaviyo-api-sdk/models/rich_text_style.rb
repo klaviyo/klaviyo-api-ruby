@@ -23,6 +23,10 @@ module KlaviyoAPI
 
     attr_accessor :text_color
 
+    attr_accessor :font_style
+
+    attr_accessor :text_decoration
+
     attr_accessor :line_spacing
 
     attr_accessor :character_spacing
@@ -61,6 +65,8 @@ module KlaviyoAPI
         :'font_size' => :'font_size',
         :'font_weight' => :'font_weight',
         :'text_color' => :'text_color',
+        :'font_style' => :'font_style',
+        :'text_decoration' => :'text_decoration',
         :'line_spacing' => :'line_spacing',
         :'character_spacing' => :'character_spacing',
         :'alignment' => :'alignment',
@@ -76,10 +82,12 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'font_family' => :'TextStyleFontFamily',
+        :'font_family' => :'TextStyleV0FontFamily',
         :'font_size' => :'Integer',
         :'font_weight' => :'Integer',
         :'text_color' => :'String',
+        :'font_style' => :'String',
+        :'text_decoration' => :'String',
         :'line_spacing' => :'Float',
         :'character_spacing' => :'Integer',
         :'alignment' => :'String',
@@ -91,6 +99,8 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'font_weight',
+        :'font_style',
+        :'text_decoration',
         :'character_spacing',
       ])
     end
@@ -130,6 +140,14 @@ module KlaviyoAPI
         self.text_color = attributes[:'text_color']
       else
         self.text_color = '#000000'
+      end
+
+      if attributes.key?(:'font_style')
+        self.font_style = attributes[:'font_style']
+      end
+
+      if attributes.key?(:'text_decoration')
+        self.text_decoration = attributes[:'text_decoration']
       end
 
       if attributes.key?(:'line_spacing')
@@ -201,6 +219,8 @@ module KlaviyoAPI
           font_size == o.font_size &&
           font_weight == o.font_weight &&
           text_color == o.text_color &&
+          font_style == o.font_style &&
+          text_decoration == o.text_decoration &&
           line_spacing == o.line_spacing &&
           character_spacing == o.character_spacing &&
           alignment == o.alignment &&
@@ -216,7 +236,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [font_family, font_size, font_weight, text_color, line_spacing, character_spacing, alignment, margin].hash
+      [font_family, font_size, font_weight, text_color, font_style, text_decoration, line_spacing, character_spacing, alignment, margin].hash
     end
 
     # Builds the object from hash

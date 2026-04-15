@@ -31,7 +31,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'condition_groups' => :'Array<ActionOutputConditionGroup>'
+        :'condition_groups' => :'Array<ActionOutputConditionConditionGroup>'
       }
     end
 

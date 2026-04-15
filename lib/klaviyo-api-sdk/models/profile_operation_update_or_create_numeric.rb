@@ -64,9 +64,9 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'operator' => :'String',
-        :'property_type' => :'NumericEnum',
+        :'property_type' => :'String',
         :'property_key' => :'String',
-        :'property_value' => :'NumericOperatorFilterValue'
+        :'property_value' => :'NumericOperatorNumericFilterValue'
       }
     end
 
@@ -138,6 +138,8 @@ module KlaviyoAPI
       operator_validator = EnumAttributeValidator.new('String', ["create", "update"])
       return false unless operator_validator.valid?(@operator)
       return false if @property_type.nil?
+      property_type_validator = EnumAttributeValidator.new('String', ["numeric"])
+      return false unless property_type_validator.valid?(@property_type)
       return false if @property_key.nil?
       return false if @property_value.nil?
       true
@@ -151,6 +153,16 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"operator\", must be one of #{validator.allowable_values}."
       end
       @operator = operator
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] property_type Object to be assigned
+    def property_type=(property_type)
+      validator = EnumAttributeValidator.new('String', ["numeric"])
+      unless validator.valid?(property_type)
+        fail ArgumentError, "invalid value for \"property_type\", must be one of #{validator.allowable_values}."
+      end
+      @property_type = property_type
     end
 
     # Checks equality by comparing each attribute.

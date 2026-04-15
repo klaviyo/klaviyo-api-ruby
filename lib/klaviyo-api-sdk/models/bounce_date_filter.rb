@@ -18,6 +18,28 @@ module KlaviyoAPI
 
     attr_accessor :filter
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +56,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'field' => :'BounceDateEnum',
+        :'field' => :'String',
         :'filter' => :'BounceDateFilterFilter'
       }
     end
@@ -88,8 +110,20 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @field.nil?
+      field_validator = EnumAttributeValidator.new('String', ["bounce_date"])
+      return false unless field_validator.valid?(@field)
       return false if @filter.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] field Object to be assigned
+    def field=(field)
+      validator = EnumAttributeValidator.new('String', ["bounce_date"])
+      unless validator.valid?(field)
+        fail ArgumentError, "invalid value for \"field\", must be one of #{validator.allowable_values}."
+      end
+      @field = field
     end
 
     # Checks equality by comparing each attribute.

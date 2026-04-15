@@ -21,7 +21,7 @@ module KlaviyoAPI
           :'AnniversaryDateFilter',
           :'CalendarDateFilter',
           :'RelativeAnniversaryDateFilter',
-          :'RelativeDateOperatorBaseFilter',
+          :'RelativeDateOperatorBaseRelativeDateFilter',
           :'RelativeDateRangeFilter',
           :'StaticDateFilter',
           :'StaticDateRangeFilter'

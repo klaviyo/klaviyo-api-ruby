@@ -25,6 +25,10 @@ module KlaviyoAPI
 
     attr_accessor :character_spacing
 
+    attr_accessor :font_style
+
+    attr_accessor :text_decoration
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -54,7 +58,9 @@ module KlaviyoAPI
         :'font_size' => :'font_size',
         :'font_weight' => :'font_weight',
         :'text_color' => :'text_color',
-        :'character_spacing' => :'character_spacing'
+        :'character_spacing' => :'character_spacing',
+        :'font_style' => :'font_style',
+        :'text_decoration' => :'text_decoration'
       }
     end
 
@@ -66,11 +72,13 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'font_family' => :'TextStyleFontFamily',
+        :'font_family' => :'TextStyleV0FontFamily',
         :'font_size' => :'Integer',
         :'font_weight' => :'Integer',
         :'text_color' => :'String',
-        :'character_spacing' => :'Integer'
+        :'character_spacing' => :'Integer',
+        :'font_style' => :'String',
+        :'text_decoration' => :'String'
       }
     end
 
@@ -78,7 +86,9 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'font_weight',
-        :'character_spacing'
+        :'character_spacing',
+        :'font_style',
+        :'text_decoration'
       ])
     end
 
@@ -124,6 +134,14 @@ module KlaviyoAPI
       else
         self.character_spacing = 0
       end
+
+      if attributes.key?(:'font_style')
+        self.font_style = attributes[:'font_style']
+      end
+
+      if attributes.key?(:'text_decoration')
+        self.text_decoration = attributes[:'text_decoration']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -160,7 +178,9 @@ module KlaviyoAPI
           font_size == o.font_size &&
           font_weight == o.font_weight &&
           text_color == o.text_color &&
-          character_spacing == o.character_spacing
+          character_spacing == o.character_spacing &&
+          font_style == o.font_style &&
+          text_decoration == o.text_decoration
     end
 
     # @see the `==` method
@@ -172,7 +192,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [font_family, font_size, font_weight, text_color, character_spacing].hash
+      [font_family, font_size, font_weight, text_color, character_spacing, font_style, text_decoration].hash
     end
 
     # Builds the object from hash

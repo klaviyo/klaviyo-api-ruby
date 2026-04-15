@@ -25,13 +25,16 @@ module KlaviyoAPI
     # The ID of the action that is the entry point of the flow.
     attr_accessor :entry_action_id
 
+    attr_accessor :reentry_criteria
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'triggers' => :'triggers',
         :'profile_filter' => :'profile_filter',
         :'actions' => :'actions',
-        :'entry_action_id' => :'entry_action_id'
+        :'entry_action_id' => :'entry_action_id',
+        :'reentry_criteria' => :'reentry_criteria'
       }
     end
 
@@ -46,7 +49,8 @@ module KlaviyoAPI
         :'triggers' => :'Array<FlowDefinitionTriggersInner>',
         :'profile_filter' => :'FlowDefinitionProfileFilter',
         :'actions' => :'Array<FlowDefinitionActionsInner>',
-        :'entry_action_id' => :'String'
+        :'entry_action_id' => :'String',
+        :'reentry_criteria' => :'ReentryCriteria'
       }
     end
 
@@ -54,7 +58,7 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'profile_filter',
-        :'entry_action_id'
+        :'entry_action_id',
       ])
     end
 
@@ -92,6 +96,10 @@ module KlaviyoAPI
       if attributes.key?(:'entry_action_id')
         self.entry_action_id = attributes[:'entry_action_id']
       end
+
+      if attributes.key?(:'reentry_criteria')
+        self.reentry_criteria = attributes[:'reentry_criteria']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -125,7 +133,8 @@ module KlaviyoAPI
           triggers == o.triggers &&
           profile_filter == o.profile_filter &&
           actions == o.actions &&
-          entry_action_id == o.entry_action_id
+          entry_action_id == o.entry_action_id &&
+          reentry_criteria == o.reentry_criteria
     end
 
     # @see the `==` method
@@ -137,7 +146,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [triggers, profile_filter, actions, entry_action_id].hash
+      [triggers, profile_filter, actions, entry_action_id, reentry_criteria].hash
     end
 
     # Builds the object from hash

@@ -60,7 +60,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfilePermissionsEnum',
+        :'type' => :'String',
         :'permission' => :'ProfilePermissionsConditionPermission',
         :'channel' => :'String'
       }
@@ -123,11 +123,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-permissions"])
+      return false unless type_validator.valid?(@type)
       return false if @permission.nil?
       return false if @channel.nil?
       channel_validator = EnumAttributeValidator.new('String', ["whatsapp_marketing", "whatsapp_transactional"])
       return false unless channel_validator.valid?(@channel)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-permissions"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

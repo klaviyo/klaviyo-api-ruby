@@ -18,11 +18,20 @@ module KlaviyoAPI
 
     attr_accessor :color
 
+    attr_accessor :blur
+
+    attr_accessor :x_offset
+
+    attr_accessor :y_offset
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'enabled' => :'enabled',
-        :'color' => :'color'
+        :'color' => :'color',
+        :'blur' => :'blur',
+        :'x_offset' => :'x_offset',
+        :'y_offset' => :'y_offset'
       }
     end
 
@@ -35,7 +44,10 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'enabled' => :'Boolean',
-        :'color' => :'String'
+        :'color' => :'String',
+        :'blur' => :'Integer',
+        :'x_offset' => :'Integer',
+        :'y_offset' => :'Integer'
       }
     end
 
@@ -71,6 +83,24 @@ module KlaviyoAPI
       else
         self.color = '#000000'
       end
+
+      if attributes.key?(:'blur')
+        self.blur = attributes[:'blur']
+      else
+        self.blur = 15
+      end
+
+      if attributes.key?(:'x_offset')
+        self.x_offset = attributes[:'x_offset']
+      else
+        self.x_offset = 0
+      end
+
+      if attributes.key?(:'y_offset')
+        self.y_offset = attributes[:'y_offset']
+      else
+        self.y_offset = 0
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -92,7 +122,10 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           enabled == o.enabled &&
-          color == o.color
+          color == o.color &&
+          blur == o.blur &&
+          x_offset == o.x_offset &&
+          y_offset == o.y_offset
     end
 
     # @see the `==` method
@@ -104,7 +137,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [enabled, color].hash
+      [enabled, color, blur, x_offset, y_offset].hash
     end
 
     # Builds the object from hash

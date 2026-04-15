@@ -62,7 +62,7 @@ module KlaviyoAPI
       {
         :'dimension' => :'String',
         :'filter' => :'StatusDateFilterFilter',
-        :'type' => :'ProfilePredictiveAnalyticsEnum'
+        :'type' => :'String'
       }
     end
 
@@ -127,6 +127,8 @@ module KlaviyoAPI
       return false unless dimension_validator.valid?(@dimension)
       return false if @filter.nil?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-predictive-analytics"])
+      return false unless type_validator.valid?(@type)
       true
     end
 
@@ -138,6 +140,16 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"dimension\", must be one of #{validator.allowable_values}."
       end
       @dimension = dimension
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-predictive-analytics"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Checks equality by comparing each attribute.

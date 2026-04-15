@@ -83,7 +83,7 @@ module KlaviyoAPI
         :'show_label' => :'Boolean',
         :'placeholder' => :'String',
         :'error_messages' => :'ErrorMessages',
-        :'property_name' => :'DollarSignAgeGatedDateOfBirthEnum',
+        :'property_name' => :'String',
         :'date_format' => :'String',
         :'sms_country_code' => :'String',
         :'required' => :'Boolean'
@@ -139,6 +139,8 @@ module KlaviyoAPI
 
       if attributes.key?(:'property_name')
         self.property_name = attributes[:'property_name']
+      else
+        self.property_name = '$age_gated_date_of_birth'
       end
 
       if attributes.key?(:'date_format')
@@ -170,11 +172,23 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      property_name_validator = EnumAttributeValidator.new('String', ["$age_gated_date_of_birth"])
+      return false unless property_name_validator.valid?(@property_name)
       sms_country_code_validator = EnumAttributeValidator.new('String', ["AT", "AU", "CH", "DE", "ES", "FR", "GB", "IE", "IT", "PT", "US"])
       return false unless sms_country_code_validator.valid?(@sms_country_code)
       required_validator = EnumAttributeValidator.new('Boolean', ["true"])
       return false unless required_validator.valid?(@required)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] property_name Object to be assigned
+    def property_name=(property_name)
+      validator = EnumAttributeValidator.new('String', ["$age_gated_date_of_birth"])
+      unless validator.valid?(property_name)
+        fail ArgumentError, "invalid value for \"property_name\", must be one of #{validator.allowable_values}."
+      end
+      @property_name = property_name
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class SubscribeViaWhatsApp
+    # Not allowed on create.
     attr_accessor :id
 
     attr_accessor :submit
@@ -64,7 +65,7 @@ module KlaviyoAPI
       {
         :'id' => :'String',
         :'submit' => :'Boolean',
-        :'type' => :'SubscribeViaWhatsappEnum',
+        :'type' => :'String',
         :'properties' => :'SubscribeViaWhatsAppProperties'
       }
     end
@@ -131,6 +132,8 @@ module KlaviyoAPI
       submit_validator = EnumAttributeValidator.new('Boolean', ["true"])
       return false unless submit_validator.valid?(@submit)
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["subscribe_via_whatsapp"])
+      return false unless type_validator.valid?(@type)
       return false if @properties.nil?
       true
     end
@@ -143,6 +146,16 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"submit\", must be one of #{validator.allowable_values}."
       end
       @submit = submit
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["subscribe_via_whatsapp"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Checks equality by comparing each attribute.

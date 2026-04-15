@@ -53,7 +53,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -126,7 +126,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -165,7 +165,7 @@ module KlaviyoAPI
     end
 
     # Create Data Source Record
-    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `700/m`  **Scopes:** `custom-objects:write`
+    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `custom-objects:write`
     # @param data_source_record_create_job_create_query [DataSourceRecordCreateJobCreateQuery] Create a data source record job
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -178,7 +178,7 @@ module KlaviyoAPI
     alias create_data_source_record_create_job create_data_source_record
 
     # Create Data Source Record
-    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;700/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;
+    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;
     # @param data_source_record_create_job_create_query [DataSourceRecordCreateJobCreateQuery] Create a data source record job
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -199,7 +199,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -272,7 +272,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -309,7 +309,7 @@ module KlaviyoAPI
     # Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
     # @param id [String] The ID of the data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_data_source(id, opts = {})
       data, _status_code, _headers = get_data_source_with_http_info(id, opts)
@@ -320,7 +320,7 @@ module KlaviyoAPI
     # Retrieve a data source in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;
     # @param id [String] The ID of the data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_data_source_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -330,7 +330,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_data_source"
       end
-      allowable_values = ["title", "visibility", "description"]
+      allowable_values = ["description", "namespace", "title", "visibility"]
       if @api_client.config.client_side_validation && opts[:'fields_data_source'] && !opts[:'fields_data_source'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_data_source\", must include one of #{allowable_values}"
       end
@@ -344,7 +344,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -380,8 +380,8 @@ module KlaviyoAPI
     # Get Data Sources
     # Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_data_sources(opts = {})
@@ -392,15 +392,15 @@ module KlaviyoAPI
     # Get Data Sources
     # Get all data sources in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_data_sources_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_data_sources ...'
       end
-      allowable_values = ["title", "visibility", "description"]
+      allowable_values = ["description", "namespace", "title", "visibility"]
       if @api_client.config.client_side_validation && opts[:'fields_data_source'] && !opts[:'fields_data_source'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_data_source\", must include one of #{allowable_values}"
       end
@@ -424,7 +424,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 

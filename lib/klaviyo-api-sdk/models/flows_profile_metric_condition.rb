@@ -69,10 +69,10 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfileMetricEnum',
+        :'type' => :'String',
         :'metric_id' => :'String',
         :'measurement' => :'String',
-        :'measurement_filter' => :'NumericOperatorFilter',
+        :'measurement_filter' => :'NumericOperatorNumericFilter',
         :'timeframe_filter' => :'FlowsProfileMetricConditionTimeframeFilter',
         :'metric_filters' => :'Array<ProfileMetricPropertyFilter>'
       }
@@ -158,6 +158,8 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-metric"])
+      return false unless type_validator.valid?(@type)
       return false if @metric_id.nil?
       return false if @measurement.nil?
       measurement_validator = EnumAttributeValidator.new('String', ["count", "sum"])
@@ -165,6 +167,16 @@ module KlaviyoAPI
       return false if @measurement_filter.nil?
       return false if @timeframe_filter.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-metric"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

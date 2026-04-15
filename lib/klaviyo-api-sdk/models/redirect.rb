@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class Redirect
+    # Not allowed on create.
     attr_accessor :id
 
     attr_accessor :submit
@@ -21,6 +22,28 @@ module KlaviyoAPI
     attr_accessor :type
 
     attr_accessor :properties
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -42,7 +65,7 @@ module KlaviyoAPI
       {
         :'id' => :'String',
         :'submit' => :'Boolean',
-        :'type' => :'RedirectEnum',
+        :'type' => :'String',
         :'properties' => :'RedirectProperties'
       }
     end
@@ -110,8 +133,20 @@ module KlaviyoAPI
     def valid?
       return false if @submit.nil?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["redirect"])
+      return false unless type_validator.valid?(@type)
       return false if @properties.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["redirect"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Checks equality by comparing each attribute.

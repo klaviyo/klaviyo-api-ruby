@@ -23,6 +23,8 @@ module KlaviyoAPI
 
     attr_accessor :background_color
 
+    attr_accessor :drop_shadow
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -51,7 +53,8 @@ module KlaviyoAPI
         :'horizontal_alignment' => :'horizontal_alignment',
         :'width' => :'width',
         :'padding' => :'padding',
-        :'background_color' => :'background_color'
+        :'background_color' => :'background_color',
+        :'drop_shadow' => :'drop_shadow'
       }
     end
 
@@ -66,7 +69,8 @@ module KlaviyoAPI
         :'horizontal_alignment' => :'String',
         :'width' => :'Integer',
         :'padding' => :'Padding',
-        :'background_color' => :'String'
+        :'background_color' => :'String',
+        :'drop_shadow' => :'ImageDropShadowStyles'
       }
     end
 
@@ -74,7 +78,7 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'width',
-        :'background_color'
+        :'background_color',
       ])
     end
 
@@ -109,6 +113,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'background_color')
         self.background_color = attributes[:'background_color']
+      end
+
+      if attributes.key?(:'drop_shadow')
+        self.drop_shadow = attributes[:'drop_shadow']
       end
     end
 
@@ -145,7 +153,8 @@ module KlaviyoAPI
           horizontal_alignment == o.horizontal_alignment &&
           width == o.width &&
           padding == o.padding &&
-          background_color == o.background_color
+          background_color == o.background_color &&
+          drop_shadow == o.drop_shadow
     end
 
     # @see the `==` method
@@ -157,7 +166,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [horizontal_alignment, width, padding, background_color].hash
+      [horizontal_alignment, width, padding, background_color, drop_shadow].hash
     end
 
     # Builds the object from hash

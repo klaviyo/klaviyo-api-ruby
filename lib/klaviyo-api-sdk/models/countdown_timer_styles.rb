@@ -71,7 +71,7 @@ module KlaviyoAPI
       {
         :'padding' => :'Padding',
         :'background_color' => :'String',
-        :'text_styles' => :'TextStyle',
+        :'text_styles' => :'TextStyleV0',
         :'card_color' => :'String',
         :'label_font_size' => :'Integer',
         :'label_font_weight' => :'Integer'

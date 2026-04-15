@@ -62,7 +62,7 @@ module KlaviyoAPI
       {
         :'show_on' => :'String',
         :'visible_check' => :'String',
-        :'content_repeat' => :'ContentRepeat'
+        :'content_repeat' => :'ContentRepeatV0'
       }
     end
 

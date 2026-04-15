@@ -20,6 +20,28 @@ module KlaviyoAPI
 
     attr_accessor :filter
 
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -37,7 +59,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfilePropertyEnum',
+        :'type' => :'String',
         :'property' => :'String',
         :'filter' => :'ProfilePropertyConditionFilter'
       }
@@ -100,9 +122,21 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-property"])
+      return false unless type_validator.valid?(@type)
       return false if @property.nil?
       return false if @filter.nil?
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-property"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Checks equality by comparing each attribute.

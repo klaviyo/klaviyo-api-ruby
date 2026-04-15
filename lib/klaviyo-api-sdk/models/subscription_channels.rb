@@ -20,12 +20,15 @@ module KlaviyoAPI
 
     attr_accessor :whatsapp
 
+    attr_accessor :push
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'email' => :'email',
         :'sms' => :'sms',
-        :'whatsapp' => :'whatsapp'
+        :'whatsapp' => :'whatsapp',
+        :'push' => :'push'
       }
     end
 
@@ -39,7 +42,8 @@ module KlaviyoAPI
       {
         :'email' => :'EmailSubscriptionParameters',
         :'sms' => :'SMSSubscriptionParameters',
-        :'whatsapp' => :'WhatsAppSubscriptionParameters'
+        :'whatsapp' => :'WhatsAppSubscriptionParameters',
+        :'push' => :'PushSubscriptionParameters'
       }
     end
 
@@ -75,6 +79,10 @@ module KlaviyoAPI
       if attributes.key?(:'whatsapp')
         self.whatsapp = attributes[:'whatsapp']
       end
+
+      if attributes.key?(:'push')
+        self.push = attributes[:'push']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -97,7 +105,8 @@ module KlaviyoAPI
       self.class == o.class &&
           email == o.email &&
           sms == o.sms &&
-          whatsapp == o.whatsapp
+          whatsapp == o.whatsapp &&
+          push == o.push
     end
 
     # @see the `==` method
@@ -109,7 +118,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, sms, whatsapp].hash
+      [email, sms, whatsapp, push].hash
     end
 
     # Builds the object from hash

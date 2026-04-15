@@ -57,7 +57,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'field' => :'SubscribeMethodEnum',
+        :'field' => :'String',
         :'method' => :'String'
       }
     end
@@ -111,10 +111,22 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @field.nil?
+      field_validator = EnumAttributeValidator.new('String', ["subscribe_method"])
+      return false unless field_validator.valid?(@field)
       return false if @method.nil?
       method_validator = EnumAttributeValidator.new('String', ["api", "back_in_stock", "bigcommerce", "bulk_remove", "campaign_monitor", "carrier_deactivation", "checkout", "constant_contact", "exact_target", "facebook", "failed_age_gate", "inbound_message", "integration", "mad_mimi", "magento_two", "mailbox_provider", "manual_add", "manual_import", "manual_remove", "message_blocked", "netsuite", "preference_page", "provided_landline", "provided_no_age", "sftp", "shopify", "social_instagram_message", "spam_complaint", "square", "wix", "woocommerce"])
       return false unless method_validator.valid?(@method)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] field Object to be assigned
+    def field=(field)
+      validator = EnumAttributeValidator.new('String', ["subscribe_method"])
+      unless validator.valid?(field)
+        fail ArgumentError, "invalid value for \"field\", must be one of #{validator.allowable_values}."
+      end
+      @field = field
     end
 
     # Custom attribute writer method checking allowed values (enum).

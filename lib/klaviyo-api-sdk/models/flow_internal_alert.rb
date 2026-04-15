@@ -26,6 +26,7 @@ module KlaviyoAPI
 
     attr_accessor :name
 
+    # Not allowed on create.
     attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.

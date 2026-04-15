@@ -22,7 +22,7 @@ module KlaviyoAPI
     # Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
     # @param id [String] The ID of the account
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_account(id, opts = {})
       data, _status_code, _headers = get_account_with_http_info(id, opts)
@@ -33,7 +33,7 @@ module KlaviyoAPI
     # Retrieve a single account object by its account ID. You can only request the account by which the private API key was generated.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;accounts:read&#x60;
     # @param id [String] The ID of the account
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_account_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -43,7 +43,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling AccountsApi.get_account"
       end
-      allowable_values = ["test_account", "contact_information", "contact_information.default_sender_name", "contact_information.default_sender_email", "contact_information.website_url", "contact_information.organization_name", "contact_information.street_address", "contact_information.street_address.address1", "contact_information.street_address.address2", "contact_information.street_address.city", "contact_information.street_address.region", "contact_information.street_address.country", "contact_information.street_address.zip", "industry", "timezone", "preferred_currency", "public_api_key", "locale"]
+      allowable_values = ["contact_information", "contact_information.default_sender_email", "contact_information.default_sender_name", "contact_information.organization_name", "contact_information.street_address", "contact_information.street_address.address1", "contact_information.street_address.address2", "contact_information.street_address.city", "contact_information.street_address.country", "contact_information.street_address.region", "contact_information.street_address.zip", "contact_information.website_url", "industry", "locale", "preferred_currency", "public_api_key", "test_account", "timezone"]
       if @api_client.config.client_side_validation && opts[:'fields_account'] && !opts[:'fields_account'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_account\", must include one of #{allowable_values}"
       end
@@ -57,7 +57,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -93,7 +93,7 @@ module KlaviyoAPI
     # Get Accounts
     # Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `accounts:read`
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_accounts(opts = {})
       data, _status_code, _headers = get_accounts_with_http_info(opts)
@@ -103,13 +103,13 @@ module KlaviyoAPI
     # Get Accounts
     # Retrieve the account(s) associated with a given private API key. This will return 1 account object within the array.  You can use this to retrieve account-specific data (contact information, timezone, currency, Public API key, etc.) or test if a Private API Key belongs to the correct account prior to performing subsequent actions with the API.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;accounts:read&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-01-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_account For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_accounts_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: AccountsApi.get_accounts ...'
       end
-      allowable_values = ["test_account", "contact_information", "contact_information.default_sender_name", "contact_information.default_sender_email", "contact_information.website_url", "contact_information.organization_name", "contact_information.street_address", "contact_information.street_address.address1", "contact_information.street_address.address2", "contact_information.street_address.city", "contact_information.street_address.region", "contact_information.street_address.country", "contact_information.street_address.zip", "industry", "timezone", "preferred_currency", "public_api_key", "locale"]
+      allowable_values = ["contact_information", "contact_information.default_sender_email", "contact_information.default_sender_name", "contact_information.organization_name", "contact_information.street_address", "contact_information.street_address.address1", "contact_information.street_address.address2", "contact_information.street_address.city", "contact_information.street_address.country", "contact_information.street_address.region", "contact_information.street_address.zip", "contact_information.website_url", "industry", "locale", "preferred_currency", "public_api_key", "test_account", "timezone"]
       if @api_client.config.client_side_validation && opts[:'fields_account'] && !opts[:'fields_account'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_account\", must include one of #{allowable_values}"
       end
@@ -123,7 +123,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-01-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 

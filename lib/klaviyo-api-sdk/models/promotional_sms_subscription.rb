@@ -14,6 +14,7 @@ require 'time'
 
 module KlaviyoAPI
   class PromotionalSMSSubscription
+    # Not allowed on create.
     attr_accessor :id
 
     attr_accessor :submit
@@ -64,7 +65,7 @@ module KlaviyoAPI
       {
         :'id' => :'String',
         :'submit' => :'Boolean',
-        :'type' => :'PromotionalSmsSubscriptionEnum',
+        :'type' => :'String',
         :'properties' => :'String'
       }
     end
@@ -127,6 +128,8 @@ module KlaviyoAPI
       submit_validator = EnumAttributeValidator.new('Boolean', ["true"])
       return false unless submit_validator.valid?(@submit)
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["promotional_sms_subscription"])
+      return false unless type_validator.valid?(@type)
       properties_validator = EnumAttributeValidator.new('String', ["null"])
       return false unless properties_validator.valid?(@properties)
       true
@@ -140,6 +143,16 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"submit\", must be one of #{validator.allowable_values}."
       end
       @submit = submit
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["promotional_sms_subscription"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

@@ -60,7 +60,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'ProfileRegionEnum',
+        :'type' => :'String',
         :'in_region' => :'Boolean',
         :'region' => :'String'
       }
@@ -123,11 +123,23 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
+      type_validator = EnumAttributeValidator.new('String', ["profile-region"])
+      return false unless type_validator.valid?(@type)
       return false if @in_region.nil?
       return false if @region.nil?
       region_validator = EnumAttributeValidator.new('String', ["european_union", "united_states"])
       return false unless region_validator.valid?(@region)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] type Object to be assigned
+    def type=(type)
+      validator = EnumAttributeValidator.new('String', ["profile-region"])
+      unless validator.valid?(type)
+        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
+      end
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).

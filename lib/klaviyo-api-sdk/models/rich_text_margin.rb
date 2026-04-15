@@ -62,9 +62,9 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'left' => :'Float',
-        :'right' => :'Float',
-        :'top' => :'Float',
+        :'left' => :'Integer',
+        :'right' => :'Integer',
+        :'top' => :'Integer',
         :'bottom' => :'Integer'
       }
     end
@@ -125,11 +125,11 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      left_validator = EnumAttributeValidator.new('Float', [0])
+      left_validator = EnumAttributeValidator.new('Integer', [0])
       return false unless left_validator.valid?(@left)
-      right_validator = EnumAttributeValidator.new('Float', [0])
+      right_validator = EnumAttributeValidator.new('Integer', [0])
       return false unless right_validator.valid?(@right)
-      top_validator = EnumAttributeValidator.new('Float', [0])
+      top_validator = EnumAttributeValidator.new('Integer', [0])
       return false unless top_validator.valid?(@top)
       true
     end
@@ -137,7 +137,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] left Object to be assigned
     def left=(left)
-      validator = EnumAttributeValidator.new('Float', [0])
+      validator = EnumAttributeValidator.new('Integer', [0])
       unless validator.valid?(left)
         fail ArgumentError, "invalid value for \"left\", must be one of #{validator.allowable_values}."
       end
@@ -147,7 +147,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] right Object to be assigned
     def right=(right)
-      validator = EnumAttributeValidator.new('Float', [0])
+      validator = EnumAttributeValidator.new('Integer', [0])
       unless validator.valid?(right)
         fail ArgumentError, "invalid value for \"right\", must be one of #{validator.allowable_values}."
       end
@@ -157,7 +157,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] top Object to be assigned
     def top=(top)
-      validator = EnumAttributeValidator.new('Float', [0])
+      validator = EnumAttributeValidator.new('Integer', [0])
       unless validator.valid?(top)
         fail ArgumentError, "invalid value for \"top\", must be one of #{validator.allowable_values}."
       end
