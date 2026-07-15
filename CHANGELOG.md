@@ -7,16 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [18.0.0] - revision 2026-07-15
 ### Added
 - Custom Objects API
-  - Full CRUD support for multiple groups of APIs: Object Types, Object Schemas, Source Mappings, and Object Records.
+  - Full CRUD support across four groups of endpoints:
+    - Object Types: `CustomObjects.create_object_type`, `CustomObjects.get_object_type`, `CustomObjects.get_object_types`, and `CustomObjects.delete_object_type`.
+    - Object Schemas: `CustomObjects.create_object_schema`, `CustomObjects.get_object_schema`, and `CustomObjects.update_object_schema`, plus schema versions via `CustomObjects.get_current_schema_for_object_type`, `CustomObjects.get_draft_schema_for_object_type`, and `CustomObjects.get_schema_versions_for_object_type`.
+    - Source Mappings: `CustomObjects.get_source_mapping`, `CustomObjects.update_source_mapping`, `CustomObjects.get_source_mapping_for_object_schema`, and `CustomObjects.get_source_mapping_id_for_object_schema`.
+    - Object Records: `CustomObjects.get_object_record`, `CustomObjects.get_records_for_object_type`, `CustomObjects.get_record_ids_for_object_type`, and `CustomObjects.bulk_delete_object_records`.
 - Conversations API
-  - Added support for Creating Conversation Messages.
+  - Added support for creating conversation messages with `Conversations.create_conversation_message`.
+- Client API
+  - Added `Client.get_client_ip_allowlist` to retrieve your account's client-side IP allowlist.
+- Flows API
+  - Added `Flows.delete_flow_action` to remove an action from a flow.
 ### Changed
 - **Breaking:** Conversations API
-  - Conversation endpoints are now plural, e.g. `GET /profiles/{id}/conversation/` is now `GET /profiles/{id}/conversations, as well as relevant parameters.
+  - Conversation endpoints are now plural — e.g. `Profiles.get_conversation_for_profile` is now `Profiles.get_conversations_for_profile` (and `Profiles.get_conversation_id_for_profile` is now `Profiles.get_conversation_ids_for_profile`), as well as the relevant relationship methods and parameters.
   - Response shapes are now lists, instead of single objects.
 - Events API
-  - Added new `backfill` flag on `createEvent` & `bulkCreateEvents`, which records historical events without triggering flows.
-  - `getEvents` now returns events with unresolvable metrics by default, matching `getEvent`. Use the new `has(metric)` filter to exclude them.
+  - Added a new `backfill` flag on `Events.create_event` & `Events.bulk_create_events`, which records historical events without triggering flows.
+  - `Events.get_events` now returns events with unresolvable metrics by default, matching `Events.get_event`. Use the new `has(metric)` filter to exclude them.
 
 ## [17.0.0] - revision 2026-04-15
 ### Added
