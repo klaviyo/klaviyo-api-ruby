@@ -16,6 +16,8 @@ module KlaviyoAPI
   class CouponProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     attr_accessor :coupon
 
     attr_accessor :success_message
@@ -46,6 +48,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'coupon' => :'coupon',
         :'success_message' => :'success_message'
       }
@@ -60,6 +63,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'coupon' => :'CouponPropertiesCoupon',
         :'success_message' => :'String'
       }
@@ -68,6 +72,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
         :'success_message'
       ])
     end
@@ -91,6 +96,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'coupon')
@@ -126,6 +135,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           coupon == o.coupon &&
           success_message == o.success_message
     end
@@ -139,7 +149,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, coupon, success_message].hash
+      [display_device, classname, coupon, success_message].hash
     end
 
     # Builds the object from hash

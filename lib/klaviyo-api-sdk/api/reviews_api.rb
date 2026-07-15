@@ -19,12 +19,12 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Get Review
-    # Get the review with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `reviews:read`
+    # Get the review with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `reviews:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_review.json)
     # @param id [String] The ID of the review
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_review(id, opts = {})
       data, _status_code, _headers = get_review_with_http_info(id, opts)
@@ -32,12 +32,12 @@ module KlaviyoAPI
     end
 
     # Get Review
-    # Get the review with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;reviews:read&#x60;
+    # Get the review with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;reviews:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_review.json)
     # @param id [String] The ID of the review
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_review_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -47,11 +47,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ReviewsApi.get_review"
       end
-      allowable_values = ["datetime", "event_properties", "timestamp", "uuid"]
+      allowable_values = ["datetime", "event_properties", "id", "timestamp", "uuid"]
       if @api_client.config.client_side_validation && opts[:'fields_event'] && !opts[:'fields_event'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_event\", must include one of #{allowable_values}"
       end
-      allowable_values = ["author", "content", "created", "email", "images", "product", "product.external_id", "product.image_url", "product.name", "product.url", "public_reply", "public_reply.author", "public_reply.content", "public_reply.updated", "rating", "review_type", "smart_quote", "status", "status.rejection_reason", "status.rejection_reason.reason", "status.rejection_reason.status_explanation", "status.value", "title", "updated", "verified"]
+      allowable_values = ["author", "content", "created", "email", "id", "images", "product", "product.external_id", "product.image_url", "product.name", "product.url", "public_reply", "public_reply.author", "public_reply.content", "public_reply.updated", "rating", "review_type", "smart_quote", "status", "status.rejection_reason", "status.rejection_reason.reason", "status.rejection_reason.status_explanation", "status.value", "title", "updated", "verified"]
       if @api_client.config.client_side_validation && opts[:'fields_review'] && !opts[:'fields_review'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_review\", must include one of #{allowable_values}"
       end
@@ -71,7 +71,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -105,15 +105,15 @@ module KlaviyoAPI
     end
 
     # Get Reviews
-    # Get all reviews.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `reviews:read`
+    # Get all reviews.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `reviews:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_reviews.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;rating&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;content&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;review_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;verified&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;rating&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;content&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;review_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;verified&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_reviews(opts = {})
       data, _status_code, _headers = get_reviews_with_http_info(opts)
@@ -121,25 +121,25 @@ module KlaviyoAPI
     end
 
     # Get Reviews
-    # Get all reviews.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;reviews:read&#x60;
+    # Get all reviews.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;reviews:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_reviews.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;rating&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;content&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;review_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;verified&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;rating&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;less-or-equal&#x60;&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;content&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;review_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;verified&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_reviews_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ReviewsApi.get_reviews ...'
       end
-      allowable_values = ["datetime", "event_properties", "timestamp", "uuid"]
+      allowable_values = ["datetime", "event_properties", "id", "timestamp", "uuid"]
       if @api_client.config.client_side_validation && opts[:'fields_event'] && !opts[:'fields_event'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_event\", must include one of #{allowable_values}"
       end
-      allowable_values = ["author", "content", "created", "email", "images", "product", "product.external_id", "product.image_url", "product.name", "product.url", "public_reply", "public_reply.author", "public_reply.content", "public_reply.updated", "rating", "review_type", "smart_quote", "status", "status.rejection_reason", "status.rejection_reason.reason", "status.rejection_reason.status_explanation", "status.value", "title", "updated", "verified"]
+      allowable_values = ["author", "content", "created", "email", "id", "images", "product", "product.external_id", "product.image_url", "product.name", "product.url", "public_reply", "public_reply.author", "public_reply.content", "public_reply.updated", "rating", "review_type", "smart_quote", "status", "status.rejection_reason", "status.rejection_reason.reason", "status.rejection_reason.status_explanation", "status.value", "title", "updated", "verified"]
       if @api_client.config.client_side_validation && opts[:'fields_review'] && !opts[:'fields_review'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_review\", must include one of #{allowable_values}"
       end
@@ -175,7 +175,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -209,10 +209,11 @@ module KlaviyoAPI
     end
 
     # Update Review
-    # Update a review.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `reviews:write`
+    # Update a review.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `reviews:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_review.json)
     # @param id [String] The id of the review (review ID).
     # @param review_patch_query [ReviewPatchQuery] DTO for updating reviews
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_review(id, review_patch_query, opts = {})
       data, _status_code, _headers = update_review_with_http_info(id, review_patch_query, opts)
@@ -220,10 +221,11 @@ module KlaviyoAPI
     end
 
     # Update Review
-    # Update a review.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;reviews:write&#x60;
+    # Update a review.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;reviews:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_review.json)
     # @param id [String] The id of the review (review ID).
     # @param review_patch_query [ReviewPatchQuery] DTO for updating reviews
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_review For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_review_with_http_info(id, review_patch_query, opts = {})
       if @api_client.config.debugging
@@ -237,16 +239,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && review_patch_query.nil?
         fail ArgumentError, "Missing the required parameter 'review_patch_query' when calling ReviewsApi.update_review"
       end
+      allowable_values = ["author", "content", "created", "email", "id", "images", "product", "product.external_id", "product.image_url", "product.name", "product.url", "public_reply", "public_reply.author", "public_reply.content", "public_reply.updated", "rating", "review_type", "smart_quote", "status", "status.rejection_reason", "status.rejection_reason.reason", "status.rejection_reason.status_explanation", "status.value", "title", "updated", "verified"]
+      if @api_client.config.client_side_validation && opts[:'fields_review'] && !opts[:'fields_review'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_review\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/reviews/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[review]'] = @api_client.build_collection_param(opts[:'fields_review'], :csv) if !opts[:'fields_review'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

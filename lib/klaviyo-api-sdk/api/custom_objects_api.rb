@@ -19,7 +19,7 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Bulk Create Data Source Records
-    # Create a bulk data source record import job to create a batch of records.  Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:write`
+    # Create a bulk data source record import job to create a batch of records.  Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_data_source_records.json)
     # @param data_source_record_bulk_create_job_create_query [DataSourceRecordBulkCreateJobCreateQuery] Create a data source record job
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -32,7 +32,7 @@ module KlaviyoAPI
     alias create_data_source_record_bulk_create_job bulk_create_data_source_records
 
     # Bulk Create Data Source Records
-    # Create a bulk data source record import job to create a batch of records.  Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;
+    # Create a bulk data source record import job to create a batch of records.  Accepts up to 500 records per request. The maximum allowed payload size is 4MB. The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_data_source_records.json)
     # @param data_source_record_bulk_create_job_create_query [DataSourceRecordBulkCreateJobCreateQuery] Create a data source record job
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -53,7 +53,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -94,10 +94,87 @@ module KlaviyoAPI
     # alias of `bulk_create_data_source_records_with_http_info`
     alias create_data_source_record_bulk_create_job_with_http_info bulk_create_data_source_records_with_http_info
 
+    # Bulk Delete Object Records
+    # Delete a batch of object records.  Accepts up to 500 object record IDs per request. The maximum allowed payload size is 5MB.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_object_records.json)
+    # @param object_record_delete_job_create_query [ObjectRecordDeleteJobCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def bulk_delete_object_records(object_record_delete_job_create_query, opts = {})
+      bulk_delete_object_records_with_http_info(object_record_delete_job_create_query, opts)
+      nil
+    end
+
+    # alias of `bulk_delete_object_records`
+    alias create_object_record_bulk_delete_job bulk_delete_object_records
+
+    # Bulk Delete Object Records
+    # Delete a batch of object records.  Accepts up to 500 object record IDs per request. The maximum allowed payload size is 5MB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_object_records.json)
+    # @param object_record_delete_job_create_query [ObjectRecordDeleteJobCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def bulk_delete_object_records_with_http_info(object_record_delete_job_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.bulk_delete_object_records ...'
+      end
+      # verify the required parameter 'object_record_delete_job_create_query' is set
+      if @api_client.config.client_side_validation && object_record_delete_job_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'object_record_delete_job_create_query' when calling CustomObjectsApi.bulk_delete_object_records"
+      end
+      # resource path
+      local_var_path = '/api/object-record-bulk-delete-jobs'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(object_record_delete_job_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.bulk_delete_object_records",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#bulk_delete_object_records\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `bulk_delete_object_records_with_http_info`
+    alias create_object_record_bulk_delete_job_with_http_info bulk_delete_object_records_with_http_info
+
     # Create Data Source
-    # Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`
+    # Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source.json)
     # @param data_source_create_query [DataSourceCreateQuery] Create data source
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_data_source(data_source_create_query, opts = {})
       data, _status_code, _headers = create_data_source_with_http_info(data_source_create_query, opts)
@@ -105,9 +182,10 @@ module KlaviyoAPI
     end
 
     # Create Data Source
-    # Create a new data source in an account&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;
+    # Create a new data source in an account&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source.json)
     # @param data_source_create_query [DataSourceCreateQuery] Create data source
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_data_source_with_http_info(data_source_create_query, opts = {})
       if @api_client.config.debugging
@@ -117,16 +195,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && data_source_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'data_source_create_query' when calling CustomObjectsApi.create_data_source"
       end
+      allowable_values = ["description", "id", "namespace", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_data_source'] && !opts[:'fields_data_source'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_data_source\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/data-sources'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[data-source]'] = @api_client.build_collection_param(opts[:'fields_data_source'], :csv) if !opts[:'fields_data_source'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -165,7 +248,7 @@ module KlaviyoAPI
     end
 
     # Create Data Source Record
-    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `custom-objects:write`
+    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source_record.json)
     # @param data_source_record_create_job_create_query [DataSourceRecordCreateJobCreateQuery] Create a data source record job
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -178,7 +261,7 @@ module KlaviyoAPI
     alias create_data_source_record_create_job create_data_source_record
 
     # Create Data Source Record
-    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;
+    # Create a data source record import job to create a single record.  The maximum allowed payload size per-record is 512KB.  To learn more, see our [Custom Objects API overview](https://developers.klaviyo.com/en/reference/custom_objects_api_overview).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source_record.json)
     # @param data_source_record_create_job_create_query [DataSourceRecordCreateJobCreateQuery] Create a data source record job
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -199,7 +282,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -240,8 +323,338 @@ module KlaviyoAPI
     # alias of `create_data_source_record_with_http_info`
     alias create_data_source_record_create_job_with_http_info create_data_source_record_with_http_info
 
+    # Create Object Schema
+    # Create an object schema.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema.json)
+    # @param object_schema_create_query [ObjectSchemaCreateQuery] Create an object schema
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def create_object_schema(object_schema_create_query, opts = {})
+      data, _status_code, _headers = create_object_schema_with_http_info(object_schema_create_query, opts)
+      data
+    end
+
+    # Create Object Schema
+    # Create an object schema.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema.json)
+    # @param object_schema_create_query [ObjectSchemaCreateQuery] Create an object schema
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def create_object_schema_with_http_info(object_schema_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.create_object_schema ...'
+      end
+      # verify the required parameter 'object_schema_create_query' is set
+      if @api_client.config.client_side_validation && object_schema_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'object_schema_create_query' when calling CustomObjectsApi.create_object_schema"
+      end
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(object_schema_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.create_object_schema",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#create_object_schema\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create Object Schema Relationship
+    # Create a relationship between object schemas.  Note that flow filtering and segmentation are currently not supported for object-to-object relationships.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_relationship_create_query [ObjectSchemaRelationshipCreateQuery] Create a relationship between object schemas
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def create_object_schema_relationship(id, object_schema_relationship_create_query, opts = {})
+      create_object_schema_relationship_with_http_info(id, object_schema_relationship_create_query, opts)
+      nil
+    end
+
+    # alias of `create_object_schema_relationship`
+    alias add_schemas_to_object_schema create_object_schema_relationship
+
+    # alias of `create_object_schema_relationship`
+    alias create_object_schema_relationships_schemas create_object_schema_relationship
+
+    # Create Object Schema Relationship
+    # Create a relationship between object schemas.  Note that flow filtering and segmentation are currently not supported for object-to-object relationships.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_relationship_create_query [ObjectSchemaRelationshipCreateQuery] Create a relationship between object schemas
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def create_object_schema_relationship_with_http_info(id, object_schema_relationship_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.create_object_schema_relationship ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.create_object_schema_relationship"
+      end
+      # verify the required parameter 'object_schema_relationship_create_query' is set
+      if @api_client.config.client_side_validation && object_schema_relationship_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'object_schema_relationship_create_query' when calling CustomObjectsApi.create_object_schema_relationship"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(object_schema_relationship_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.create_object_schema_relationship",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#create_object_schema_relationship\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `create_object_schema_relationship_with_http_info`
+    alias add_schemas_to_object_schema_with_http_info create_object_schema_relationship_with_http_info
+
+    # alias of `create_object_schema_relationship_with_http_info`
+    alias create_object_schema_relationships_schemas_with_http_info create_object_schema_relationship_with_http_info
+
+    # Create Object Type
+    # Create an object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_type.json)
+    # @param object_type_create_query [ObjectTypeCreateQuery] Create an object type
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def create_object_type(object_type_create_query, opts = {})
+      data, _status_code, _headers = create_object_type_with_http_info(object_type_create_query, opts)
+      data
+    end
+
+    # Create Object Type
+    # Create an object type.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_type.json)
+    # @param object_type_create_query [ObjectTypeCreateQuery] Create an object type
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def create_object_type_with_http_info(object_type_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.create_object_type ...'
+      end
+      # verify the required parameter 'object_type_create_query' is set
+      if @api_client.config.client_side_validation && object_type_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'object_type_create_query' when calling CustomObjectsApi.create_object_type"
+      end
+      allowable_values = ["created_at", "description", "id", "namespace", "status", "title", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_type'] && !opts[:'fields_object_type'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_type\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-types'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-type]'] = @api_client.build_collection_param(opts[:'fields_object_type'], :csv) if !opts[:'fields_object_type'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(object_type_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.create_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#create_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create Profile Schema Relationship
+    # Create a relationship between an object schema and a profile<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_profile_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param profile_object_schema_relationship_create_query [ProfileObjectSchemaRelationshipCreateQuery] Create a relationship between an object schema and a profile.
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def create_profile_schema_relationship(id, profile_object_schema_relationship_create_query, opts = {})
+      create_profile_schema_relationship_with_http_info(id, profile_object_schema_relationship_create_query, opts)
+      nil
+    end
+
+    # alias of `create_profile_schema_relationship`
+    alias add_profile_object_schemas_to_object_schema create_profile_schema_relationship
+
+    # alias of `create_profile_schema_relationship`
+    alias create_object_schema_relationships_profile_object_schemas create_profile_schema_relationship
+
+    # Create Profile Schema Relationship
+    # Create a relationship between an object schema and a profile&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_profile_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param profile_object_schema_relationship_create_query [ProfileObjectSchemaRelationshipCreateQuery] Create a relationship between an object schema and a profile.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def create_profile_schema_relationship_with_http_info(id, profile_object_schema_relationship_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.create_profile_schema_relationship ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.create_profile_schema_relationship"
+      end
+      # verify the required parameter 'profile_object_schema_relationship_create_query' is set
+      if @api_client.config.client_side_validation && profile_object_schema_relationship_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'profile_object_schema_relationship_create_query' when calling CustomObjectsApi.create_profile_schema_relationship"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/profile-object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(profile_object_schema_relationship_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.create_profile_schema_relationship",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#create_profile_schema_relationship\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `create_profile_schema_relationship_with_http_info`
+    alias add_profile_object_schemas_to_object_schema_with_http_info create_profile_schema_relationship_with_http_info
+
+    # alias of `create_profile_schema_relationship_with_http_info`
+    alias create_object_schema_relationships_profile_object_schemas_with_http_info create_profile_schema_relationship_with_http_info
+
     # Delete Data Source
-    # Delete a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`
+    # Delete a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_data_source.json)
     # @param id [String] The ID of the data source to delete
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -251,7 +664,7 @@ module KlaviyoAPI
     end
 
     # Delete Data Source
-    # Delete a data source in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;
+    # Delete a data source in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_data_source.json)
     # @param id [String] The ID of the data source to delete
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -272,7 +685,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -305,11 +718,401 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # Delete Object Schema Relationship
+    # Delete a relationship between object schemas<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_object_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_relationship_delete_query [ObjectSchemaRelationshipDeleteQuery] Delete a relationship between object schemas
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_object_schema_relationship(id, object_schema_relationship_delete_query, opts = {})
+      delete_object_schema_relationship_with_http_info(id, object_schema_relationship_delete_query, opts)
+      nil
+    end
+
+    # alias of `delete_object_schema_relationship`
+    alias delete_object_schema_relationships_schemas delete_object_schema_relationship
+
+    # alias of `delete_object_schema_relationship`
+    alias remove_schemas_from_object_schema delete_object_schema_relationship
+
+    # Delete Object Schema Relationship
+    # Delete a relationship between object schemas&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_object_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_relationship_delete_query [ObjectSchemaRelationshipDeleteQuery] Delete a relationship between object schemas
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_object_schema_relationship_with_http_info(id, object_schema_relationship_delete_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.delete_object_schema_relationship ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.delete_object_schema_relationship"
+      end
+      # verify the required parameter 'object_schema_relationship_delete_query' is set
+      if @api_client.config.client_side_validation && object_schema_relationship_delete_query.nil?
+        fail ArgumentError, "Missing the required parameter 'object_schema_relationship_delete_query' when calling CustomObjectsApi.delete_object_schema_relationship"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(object_schema_relationship_delete_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.delete_object_schema_relationship",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#delete_object_schema_relationship\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `delete_object_schema_relationship_with_http_info`
+    alias delete_object_schema_relationships_schemas_with_http_info delete_object_schema_relationship_with_http_info
+
+    # alias of `delete_object_schema_relationship_with_http_info`
+    alias remove_schemas_from_object_schema_with_http_info delete_object_schema_relationship_with_http_info
+
+    # Delete Object Type
+    # Delete the object type with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_object_type(id, opts = {})
+      delete_object_type_with_http_info(id, opts)
+      nil
+    end
+
+    # Delete Object Type
+    # Delete the object type with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.delete_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.delete_object_type"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.delete_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#delete_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete Profile Schema Relationship
+    # Delete a relationship between an object schema and a profile<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_profile_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param profile_object_schema_relationship_delete_query [ProfileObjectSchemaRelationshipDeleteQuery] Delete a relationship between an object schema and a profile
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_profile_schema_relationship(id, profile_object_schema_relationship_delete_query, opts = {})
+      delete_profile_schema_relationship_with_http_info(id, profile_object_schema_relationship_delete_query, opts)
+      nil
+    end
+
+    # alias of `delete_profile_schema_relationship`
+    alias delete_object_schema_relationships_profile_object_schemas delete_profile_schema_relationship
+
+    # alias of `delete_profile_schema_relationship`
+    alias remove_profile_object_schemas_from_object_schema delete_profile_schema_relationship
+
+    # Delete Profile Schema Relationship
+    # Delete a relationship between an object schema and a profile&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_profile_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param profile_object_schema_relationship_delete_query [ProfileObjectSchemaRelationshipDeleteQuery] Delete a relationship between an object schema and a profile
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_profile_schema_relationship_with_http_info(id, profile_object_schema_relationship_delete_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.delete_profile_schema_relationship ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.delete_profile_schema_relationship"
+      end
+      # verify the required parameter 'profile_object_schema_relationship_delete_query' is set
+      if @api_client.config.client_side_validation && profile_object_schema_relationship_delete_query.nil?
+        fail ArgumentError, "Missing the required parameter 'profile_object_schema_relationship_delete_query' when calling CustomObjectsApi.delete_profile_schema_relationship"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/profile-object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(profile_object_schema_relationship_delete_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.delete_profile_schema_relationship",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#delete_profile_schema_relationship\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `delete_profile_schema_relationship_with_http_info`
+    alias delete_object_schema_relationships_profile_object_schemas_with_http_info delete_profile_schema_relationship_with_http_info
+
+    # alias of `delete_profile_schema_relationship_with_http_info`
+    alias remove_profile_object_schemas_from_object_schema_with_http_info delete_profile_schema_relationship_with_http_info
+
+    # Get Current Schema for Object Type
+    # Get current schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_current_schema_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_current_schema_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_current_schema_for_object_type`
+    alias get_object_type_current_schema get_current_schema_for_object_type
+
+    # Get Current Schema for Object Type
+    # Get current schema for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_current_schema_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_current_schema_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_current_schema_for_object_type"
+      end
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/current-schema'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_current_schema_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_current_schema_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_current_schema_for_object_type_with_http_info`
+    alias get_object_type_current_schema_with_http_info get_current_schema_for_object_type_with_http_info
+
+    # Get Current Schema ID for Object Type
+    # Get current schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_id_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_current_schema_id_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_current_schema_id_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_current_schema_id_for_object_type`
+    alias get_object_type_relationships_current_schema get_current_schema_id_for_object_type
+
+    # Get Current Schema ID for Object Type
+    # Get current schema for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_id_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_current_schema_id_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_current_schema_id_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_current_schema_id_for_object_type"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/relationships/current-schema'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_current_schema_id_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_current_schema_id_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_current_schema_id_for_object_type_with_http_info`
+    alias get_object_type_relationships_current_schema_with_http_info get_current_schema_id_for_object_type_with_http_info
+
     # Get Data Source
-    # Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
+    # Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_source.json)
     # @param id [String] The ID of the data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_data_source(id, opts = {})
       data, _status_code, _headers = get_data_source_with_http_info(id, opts)
@@ -317,10 +1120,10 @@ module KlaviyoAPI
     end
 
     # Get Data Source
-    # Retrieve a data source in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;
+    # Retrieve a data source in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_source.json)
     # @param id [String] The ID of the data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_data_source_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -330,7 +1133,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_data_source"
       end
-      allowable_values = ["description", "namespace", "title", "visibility"]
+      allowable_values = ["description", "id", "namespace", "title", "visibility"]
       if @api_client.config.client_side_validation && opts[:'fields_data_source'] && !opts[:'fields_data_source'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_data_source\", must include one of #{allowable_values}"
       end
@@ -344,7 +1147,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -378,10 +1181,10 @@ module KlaviyoAPI
     end
 
     # Get Data Sources
-    # Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`
+    # Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_sources.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_data_sources(opts = {})
@@ -390,17 +1193,17 @@ module KlaviyoAPI
     end
 
     # Get Data Sources
-    # Get all data sources in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;
+    # Get all data sources in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_sources.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_data_sources_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_data_sources ...'
       end
-      allowable_values = ["description", "namespace", "title", "visibility"]
+      allowable_values = ["description", "id", "namespace", "title", "visibility"]
       if @api_client.config.client_side_validation && opts[:'fields_data_source'] && !opts[:'fields_data_source'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_data_source\", must include one of #{allowable_values}"
       end
@@ -424,7 +1227,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -453,6 +1256,1875 @@ module KlaviyoAPI
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: CustomObjectsApi#get_data_sources\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Draft Schema for Object Type
+    # Get draft schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_draft_schema_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_draft_schema_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_draft_schema_for_object_type`
+    alias get_object_type_draft_schema get_draft_schema_for_object_type
+
+    # Get Draft Schema for Object Type
+    # Get draft schema for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_draft_schema_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_draft_schema_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_draft_schema_for_object_type"
+      end
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/draft-schema'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_draft_schema_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_draft_schema_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_draft_schema_for_object_type_with_http_info`
+    alias get_object_type_draft_schema_with_http_info get_draft_schema_for_object_type_with_http_info
+
+    # Get Draft Schema ID for Object Type
+    # Get draft schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_id_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_draft_schema_id_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_draft_schema_id_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_draft_schema_id_for_object_type`
+    alias get_object_type_relationships_draft_schema get_draft_schema_id_for_object_type
+
+    # Get Draft Schema ID for Object Type
+    # Get draft schema for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_id_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_draft_schema_id_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_draft_schema_id_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_draft_schema_id_for_object_type"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/relationships/draft-schema'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_draft_schema_id_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_draft_schema_id_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_draft_schema_id_for_object_type_with_http_info`
+    alias get_object_type_relationships_draft_schema_with_http_info get_draft_schema_id_for_object_type_with_http_info
+
+    # Get Ingestion Log IDs for Object Type
+    # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_log_ids_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @return [Hash<String, Object>]
+    def get_ingestion_log_ids_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_ingestion_log_ids_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_ingestion_log_ids_for_object_type`
+    alias get_object_type_relationships_ingestion_logs get_ingestion_log_ids_for_object_type
+
+    # Get Ingestion Log IDs for Object Type
+    # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_log_ids_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_ingestion_log_ids_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_ingestion_log_ids_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_ingestion_log_ids_for_object_type"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/relationships/object-ingestion-logs'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_ingestion_log_ids_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_ingestion_log_ids_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_ingestion_log_ids_for_object_type_with_http_info`
+    alias get_object_type_relationships_ingestion_logs_with_http_info get_ingestion_log_ids_for_object_type_with_http_info
+
+    # Get Ingestion Logs for Object Type
+    # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_logs_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_ingestion_log For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @return [Hash<String, Object>]
+    def get_ingestion_logs_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_ingestion_logs_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_ingestion_logs_for_object_type`
+    alias get_object_type_ingestion_logs get_ingestion_logs_for_object_type
+
+    # Get Ingestion Logs for Object Type
+    # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_logs_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_ingestion_log For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_ingestion_logs_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_ingestion_logs_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_ingestion_logs_for_object_type"
+      end
+      allowable_values = ["errors", "event_type", "id", "status", "summary", "timestamp"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_ingestion_log'] && !opts[:'fields_object_ingestion_log'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_ingestion_log\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["id", "record_properties"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_record'] && !opts[:'fields_object_record'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_record\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "description", "id", "namespace", "status", "title", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_type'] && !opts[:'fields_object_type'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_type\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["object-record", "object-type"]
+      if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/object-ingestion-logs'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-ingestion-log]'] = @api_client.build_collection_param(opts[:'fields_object_ingestion_log'], :csv) if !opts[:'fields_object_ingestion_log'].nil?
+      query_params[:'fields[object-record]'] = @api_client.build_collection_param(opts[:'fields_object_record'], :csv) if !opts[:'fields_object_record'].nil?
+      query_params[:'fields[object-type]'] = @api_client.build_collection_param(opts[:'fields_object_type'], :csv) if !opts[:'fields_object_type'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
+      query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_ingestion_logs_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_ingestion_logs_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_ingestion_logs_for_object_type_with_http_info`
+    alias get_object_type_ingestion_logs_with_http_info get_ingestion_logs_for_object_type_with_http_info
+
+    # Get Object Record
+    # Get the object record with the given compound ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_record.json)
+    # @param id [String] The compound ID of the object record, formatted as object_type_id:::object_record_id
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_object_record(id, opts = {})
+      data, _status_code, _headers = get_object_record_with_http_info(id, opts)
+      data
+    end
+
+    # Get Object Record
+    # Get the object record with the given compound ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_record.json)
+    # @param id [String] The compound ID of the object record, formatted as object_type_id:::object_record_id
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_object_record_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_object_record ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_object_record"
+      end
+      allowable_values = ["id", "record_properties"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_record'] && !opts[:'fields_object_record'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_record\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-records/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-record]'] = @api_client.build_collection_param(opts[:'fields_object_record'], :csv) if !opts[:'fields_object_record'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_object_record",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_object_record\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Object Schema
+    # Get the object schema with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @return [Hash<String, Object>]
+    def get_object_schema(id, opts = {})
+      data, _status_code, _headers = get_object_schema_with_http_info(id, opts)
+      data
+    end
+
+    # Get Object Schema
+    # Get the object schema with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_object_schema_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_object_schema ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_object_schema"
+      end
+      allowable_values = ["description", "id", "meta", "meta.description", "meta.name", "meta.relationship_id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["id", "meta", "meta.description", "meta.name", "meta.relationship_id"]
+      if @api_client.config.client_side_validation && opts[:'fields_profile_object_schema'] && !opts[:'fields_profile_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_profile_object_schema\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["id", "property_mappings", "relationship_mappings"]
+      if @api_client.config.client_side_validation && opts[:'fields_source_mapping'] && !opts[:'fields_source_mapping'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_source_mapping\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["object-schemas", "profile-object-schemas", "source-mapping"]
+      if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+      query_params[:'fields[profile-object-schema]'] = @api_client.build_collection_param(opts[:'fields_profile_object_schema'], :csv) if !opts[:'fields_profile_object_schema'].nil?
+      query_params[:'fields[source-mapping]'] = @api_client.build_collection_param(opts[:'fields_source_mapping'], :csv) if !opts[:'fields_source_mapping'].nil?
+      query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_object_schema",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_object_schema\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Object Schema Relationships
+    # Get related object schemas for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema_relationships.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_object_schema_relationships(id, opts = {})
+      data, _status_code, _headers = get_object_schema_relationships_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_object_schema_relationships`
+    alias get_object_schema_relationships_schemas get_object_schema_relationships
+
+    # alias of `get_object_schema_relationships`
+    alias get_schema_ids_for_object_schema get_object_schema_relationships
+
+    # Get Object Schema Relationships
+    # Get related object schemas for an object schema&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema_relationships.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_object_schema_relationships_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_object_schema_relationships ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_object_schema_relationships"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_object_schema_relationships",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_object_schema_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_object_schema_relationships_with_http_info`
+    alias get_object_schema_relationships_schemas_with_http_info get_object_schema_relationships_with_http_info
+
+    # alias of `get_object_schema_relationships_with_http_info`
+    alias get_schema_ids_for_object_schema_with_http_info get_object_schema_relationships_with_http_info
+
+    # Get Object Type
+    # Get the object type with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @return [Hash<String, Object>]
+    def get_object_type(id, opts = {})
+      data, _status_code, _headers = get_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # Get Object Type
+    # Get the object type with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_object_type"
+      end
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "description", "id", "meta", "meta.description", "meta.name", "meta.relationship_id", "namespace", "status", "title", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_type'] && !opts[:'fields_object_type'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_type\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["id", "meta", "meta.description", "meta.name", "meta.relationship_id"]
+      if @api_client.config.client_side_validation && opts[:'fields_profile_object_type'] && !opts[:'fields_profile_object_type'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_profile_object_type\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["current-schema", "draft-schema", "object-types", "profile-object-types", "schema-versions"]
+      if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+      query_params[:'fields[object-type]'] = @api_client.build_collection_param(opts[:'fields_object_type'], :csv) if !opts[:'fields_object_type'].nil?
+      query_params[:'fields[profile-object-type]'] = @api_client.build_collection_param(opts[:'fields_profile_object_type'], :csv) if !opts[:'fields_profile_object_type'].nil?
+      query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Object Type Relationships
+    # Get related object types for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type_relationships.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_object_type_relationships(id, opts = {})
+      data, _status_code, _headers = get_object_type_relationships_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_object_type_relationships`
+    alias get_object_type_relationships_types get_object_type_relationships
+
+    # alias of `get_object_type_relationships`
+    alias get_type_ids_for_object_type get_object_type_relationships
+
+    # Get Object Type Relationships
+    # Get related object types for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type_relationships.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_object_type_relationships_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_object_type_relationships ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_object_type_relationships"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/relationships/object-types'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_object_type_relationships",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_object_type_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_object_type_relationships_with_http_info`
+    alias get_object_type_relationships_types_with_http_info get_object_type_relationships_with_http_info
+
+    # alias of `get_object_type_relationships_with_http_info`
+    alias get_type_ids_for_object_type_with_http_info get_object_type_relationships_with_http_info
+
+    # Get Object Types
+    # Get all object types in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_types.json)
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @return [Hash<String, Object>]
+    def get_object_types(opts = {})
+      data, _status_code, _headers = get_object_types_with_http_info(opts)
+      data
+    end
+
+    # Get Object Types
+    # Get all object types in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_types.json)
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_object_types_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_object_types ...'
+      end
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "description", "id", "namespace", "status", "title", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_type'] && !opts[:'fields_object_type'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_type\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["current-schema", "draft-schema"]
+      if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-types'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+      query_params[:'fields[object-type]'] = @api_client.build_collection_param(opts[:'fields_object_type'], :csv) if !opts[:'fields_object_type'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
+      query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_object_types",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_object_types\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Profile Schema Relationships
+    # Get related profile object schemas for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_schema_relationships.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_profile_schema_relationships(id, opts = {})
+      data, _status_code, _headers = get_profile_schema_relationships_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_profile_schema_relationships`
+    alias get_object_schema_relationships_profile_object_schemas get_profile_schema_relationships
+
+    # alias of `get_profile_schema_relationships`
+    alias get_profile_object_schema_ids_for_object_schema get_profile_schema_relationships
+
+    # Get Profile Schema Relationships
+    # Get related profile object schemas for an object schema&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_schema_relationships.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_profile_schema_relationships_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_profile_schema_relationships ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_profile_schema_relationships"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/profile-object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_profile_schema_relationships",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_profile_schema_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_profile_schema_relationships_with_http_info`
+    alias get_object_schema_relationships_profile_object_schemas_with_http_info get_profile_schema_relationships_with_http_info
+
+    # alias of `get_profile_schema_relationships_with_http_info`
+    alias get_profile_object_schema_ids_for_object_schema_with_http_info get_profile_schema_relationships_with_http_info
+
+    # Get Profile Type Relationships
+    # Get related profile object types for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_type_relationships.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_profile_type_relationships(id, opts = {})
+      data, _status_code, _headers = get_profile_type_relationships_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_profile_type_relationships`
+    alias get_object_type_relationships_profile_object_types get_profile_type_relationships
+
+    # alias of `get_profile_type_relationships`
+    alias get_profile_object_type_ids_for_object_type get_profile_type_relationships
+
+    # Get Profile Type Relationships
+    # Get related profile object types for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_type_relationships.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_profile_type_relationships_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_profile_type_relationships ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_profile_type_relationships"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/relationships/profile-object-types'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_profile_type_relationships",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_profile_type_relationships\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_profile_type_relationships_with_http_info`
+    alias get_object_type_relationships_profile_object_types_with_http_info get_profile_type_relationships_with_http_info
+
+    # alias of `get_profile_type_relationships_with_http_info`
+    alias get_profile_object_type_ids_for_object_type_with_http_info get_profile_type_relationships_with_http_info
+
+    # Get Record IDs for Object Type
+    # Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_record_ids_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
+    # @return [Hash<String, Object>]
+    def get_record_ids_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_record_ids_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_record_ids_for_object_type`
+    alias get_object_type_relationships_records get_record_ids_for_object_type
+
+    # Get Record IDs for Object Type
+    # Get all object records for a given object type.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_record_ids_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_record_ids_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_record_ids_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_record_ids_for_object_type"
+      end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CustomObjectsApi.get_record_ids_for_object_type, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CustomObjectsApi.get_record_ids_for_object_type, must be greater than or equal to 1.'
+      end
+
+      # resource path
+      local_var_path = '/api/object-types/{id}/relationships/object-records'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_record_ids_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_record_ids_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_record_ids_for_object_type_with_http_info`
+    alias get_object_type_relationships_records_with_http_info get_record_ids_for_object_type_with_http_info
+
+    # Get Records for Object Type
+    # Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_records_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
+    # @return [Hash<String, Object>]
+    def get_records_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_records_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_records_for_object_type`
+    alias get_object_type_records get_records_for_object_type
+
+    # Get Records for Object Type
+    # Get all object records for a given object type.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_records_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_records_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_records_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_records_for_object_type"
+      end
+      allowable_values = ["id", "record_properties"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_record'] && !opts[:'fields_object_record'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_record\", must include one of #{allowable_values}"
+      end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CustomObjectsApi.get_records_for_object_type, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CustomObjectsApi.get_records_for_object_type, must be greater than or equal to 1.'
+      end
+
+      # resource path
+      local_var_path = '/api/object-types/{id}/object-records'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-record]'] = @api_client.build_collection_param(opts[:'fields_object_record'], :csv) if !opts[:'fields_object_record'].nil?
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_records_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_records_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_records_for_object_type_with_http_info`
+    alias get_object_type_records_with_http_info get_records_for_object_type_with_http_info
+
+    # Get Schema Version IDs for Object Type
+    # Get all schema versions for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_version_ids_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_schema_version_ids_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_schema_version_ids_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_schema_version_ids_for_object_type`
+    alias get_object_type_relationships_schema_versions get_schema_version_ids_for_object_type
+
+    # Get Schema Version IDs for Object Type
+    # Get all schema versions for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_version_ids_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_schema_version_ids_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_schema_version_ids_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_schema_version_ids_for_object_type"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/relationships/schema-versions'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_schema_version_ids_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_schema_version_ids_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_schema_version_ids_for_object_type_with_http_info`
+    alias get_object_type_relationships_schema_versions_with_http_info get_schema_version_ids_for_object_type_with_http_info
+
+    # Get Schema Versions for Object Type
+    # Get all schema versions for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_versions_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_schema_versions_for_object_type(id, opts = {})
+      data, _status_code, _headers = get_schema_versions_for_object_type_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_schema_versions_for_object_type`
+    alias get_object_type_schema_versions get_schema_versions_for_object_type
+
+    # Get Schema Versions for Object Type
+    # Get all schema versions for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_versions_for_object_type.json)
+    # @param id [String] The ULID ID of the object type.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_schema_versions_for_object_type_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_schema_versions_for_object_type ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_schema_versions_for_object_type"
+      end
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-types/{id}/schema-versions'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_schema_versions_for_object_type",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_schema_versions_for_object_type\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_schema_versions_for_object_type_with_http_info`
+    alias get_object_type_schema_versions_with_http_info get_schema_versions_for_object_type_with_http_info
+
+    # Get Source Mapping
+    # Get the source mapping with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping.json)
+    # @param id [String] The ID of the source mapping
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_source_mapping(id, opts = {})
+      data, _status_code, _headers = get_source_mapping_with_http_info(id, opts)
+      data
+    end
+
+    # Get Source Mapping
+    # Get the source mapping with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping.json)
+    # @param id [String] The ID of the source mapping
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_source_mapping_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_source_mapping ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_source_mapping"
+      end
+      allowable_values = ["id", "property_mappings", "relationship_mappings"]
+      if @api_client.config.client_side_validation && opts[:'fields_source_mapping'] && !opts[:'fields_source_mapping'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_source_mapping\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/source-mappings/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[source-mapping]'] = @api_client.build_collection_param(opts[:'fields_source_mapping'], :csv) if !opts[:'fields_source_mapping'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_source_mapping",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_source_mapping\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Source Mapping for Object Schema
+    # Get source mapping for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_for_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_source_mapping_for_object_schema(id, opts = {})
+      data, _status_code, _headers = get_source_mapping_for_object_schema_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_source_mapping_for_object_schema`
+    alias get_object_schema_source_mapping get_source_mapping_for_object_schema
+
+    # Get Source Mapping for Object Schema
+    # Get source mapping for an object schema&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_for_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_source_mapping_for_object_schema_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_source_mapping_for_object_schema ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_source_mapping_for_object_schema"
+      end
+      allowable_values = ["id", "property_mappings", "relationship_mappings"]
+      if @api_client.config.client_side_validation && opts[:'fields_source_mapping'] && !opts[:'fields_source_mapping'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_source_mapping\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/source-mapping'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[source-mapping]'] = @api_client.build_collection_param(opts[:'fields_source_mapping'], :csv) if !opts[:'fields_source_mapping'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_source_mapping_for_object_schema",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_source_mapping_for_object_schema\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_source_mapping_for_object_schema_with_http_info`
+    alias get_object_schema_source_mapping_with_http_info get_source_mapping_for_object_schema_with_http_info
+
+    # Get Source Mapping ID for Object Schema
+    # Get source mapping for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_id_for_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_source_mapping_id_for_object_schema(id, opts = {})
+      data, _status_code, _headers = get_source_mapping_id_for_object_schema_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_source_mapping_id_for_object_schema`
+    alias get_object_schema_relationships_source_mapping get_source_mapping_id_for_object_schema
+
+    # Get Source Mapping ID for Object Schema
+    # Get source mapping for an object schema&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_id_for_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_source_mapping_id_for_object_schema_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.get_source_mapping_id_for_object_schema ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_source_mapping_id_for_object_schema"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/source-mapping'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.get_source_mapping_id_for_object_schema",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#get_source_mapping_id_for_object_schema\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_source_mapping_id_for_object_schema_with_http_info`
+    alias get_object_schema_relationships_source_mapping_with_http_info get_source_mapping_id_for_object_schema_with_http_info
+
+    # Update Object Schema
+    # Update the object schema with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_partial_update_query [ObjectSchemaPartialUpdateQuery] Update a object schema by ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def update_object_schema(id, object_schema_partial_update_query, opts = {})
+      data, _status_code, _headers = update_object_schema_with_http_info(id, object_schema_partial_update_query, opts)
+      data
+    end
+
+    # Update Object Schema
+    # Update the object schema with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_object_schema.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_partial_update_query [ObjectSchemaPartialUpdateQuery] Update a object schema by ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def update_object_schema_with_http_info(id, object_schema_partial_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.update_object_schema ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.update_object_schema"
+      end
+      # verify the required parameter 'object_schema_partial_update_query' is set
+      if @api_client.config.client_side_validation && object_schema_partial_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'object_schema_partial_update_query' when calling CustomObjectsApi.update_object_schema"
+      end
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
+      if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[object-schema]'] = @api_client.build_collection_param(opts[:'fields_object_schema'], :csv) if !opts[:'fields_object_schema'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(object_schema_partial_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.update_object_schema",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#update_object_schema\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update Object Schema Relationship
+    # Update a relationship between object schemas<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_object_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_relationship_partial_update_query [ObjectSchemaRelationshipPartialUpdateQuery] Update a relationship between object schemas
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def update_object_schema_relationship(id, object_schema_relationship_partial_update_query, opts = {})
+      update_object_schema_relationship_with_http_info(id, object_schema_relationship_partial_update_query, opts)
+      nil
+    end
+
+    # alias of `update_object_schema_relationship`
+    alias update_object_schema_relationships_schemas update_object_schema_relationship
+
+    # alias of `update_object_schema_relationship`
+    alias update_schemas_for_object_schema update_object_schema_relationship
+
+    # Update Object Schema Relationship
+    # Update a relationship between object schemas&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_object_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param object_schema_relationship_partial_update_query [ObjectSchemaRelationshipPartialUpdateQuery] Update a relationship between object schemas
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def update_object_schema_relationship_with_http_info(id, object_schema_relationship_partial_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.update_object_schema_relationship ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.update_object_schema_relationship"
+      end
+      # verify the required parameter 'object_schema_relationship_partial_update_query' is set
+      if @api_client.config.client_side_validation && object_schema_relationship_partial_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'object_schema_relationship_partial_update_query' when calling CustomObjectsApi.update_object_schema_relationship"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(object_schema_relationship_partial_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.update_object_schema_relationship",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#update_object_schema_relationship\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `update_object_schema_relationship_with_http_info`
+    alias update_object_schema_relationships_schemas_with_http_info update_object_schema_relationship_with_http_info
+
+    # alias of `update_object_schema_relationship_with_http_info`
+    alias update_schemas_for_object_schema_with_http_info update_object_schema_relationship_with_http_info
+
+    # Update Profile Schema Relationship
+    # Update a relationship between an object schema and a profile<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_profile_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param profile_object_schema_relationship_partial_update_query [ProfileObjectSchemaRelationshipPartialUpdateQuery] Update a relationship between an object schema and a profile
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def update_profile_schema_relationship(id, profile_object_schema_relationship_partial_update_query, opts = {})
+      update_profile_schema_relationship_with_http_info(id, profile_object_schema_relationship_partial_update_query, opts)
+      nil
+    end
+
+    # alias of `update_profile_schema_relationship`
+    alias update_object_schema_relationships_profile_object_schemas update_profile_schema_relationship
+
+    # alias of `update_profile_schema_relationship`
+    alias update_profile_object_schemas_for_object_schema update_profile_schema_relationship
+
+    # Update Profile Schema Relationship
+    # Update a relationship between an object schema and a profile&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_profile_schema_relationship.json)
+    # @param id [String] The ULID ID of the object schema.
+    # @param profile_object_schema_relationship_partial_update_query [ProfileObjectSchemaRelationshipPartialUpdateQuery] Update a relationship between an object schema and a profile
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def update_profile_schema_relationship_with_http_info(id, profile_object_schema_relationship_partial_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.update_profile_schema_relationship ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.update_profile_schema_relationship"
+      end
+      # verify the required parameter 'profile_object_schema_relationship_partial_update_query' is set
+      if @api_client.config.client_side_validation && profile_object_schema_relationship_partial_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'profile_object_schema_relationship_partial_update_query' when calling CustomObjectsApi.update_profile_schema_relationship"
+      end
+      # resource path
+      local_var_path = '/api/object-schemas/{id}/relationships/profile-object-schemas'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(profile_object_schema_relationship_partial_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.update_profile_schema_relationship",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#update_profile_schema_relationship\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `update_profile_schema_relationship_with_http_info`
+    alias update_object_schema_relationships_profile_object_schemas_with_http_info update_profile_schema_relationship_with_http_info
+
+    # alias of `update_profile_schema_relationship_with_http_info`
+    alias update_profile_object_schemas_for_object_schema_with_http_info update_profile_schema_relationship_with_http_info
+
+    # Update Source Mapping
+    # Update the source mapping with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_source_mapping.json)
+    # @param id [String] The ULID ID of the source mapping
+    # @param source_mapping_partial_update_query [SourceMappingPartialUpdateQuery] Update a source mapping by ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def update_source_mapping(id, source_mapping_partial_update_query, opts = {})
+      data, _status_code, _headers = update_source_mapping_with_http_info(id, source_mapping_partial_update_query, opts)
+      data
+    end
+
+    # Update Source Mapping
+    # Update the source mapping with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_source_mapping.json)
+    # @param id [String] The ULID ID of the source mapping
+    # @param source_mapping_partial_update_query [SourceMappingPartialUpdateQuery] Update a source mapping by ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def update_source_mapping_with_http_info(id, source_mapping_partial_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CustomObjectsApi.update_source_mapping ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.update_source_mapping"
+      end
+      # verify the required parameter 'source_mapping_partial_update_query' is set
+      if @api_client.config.client_side_validation && source_mapping_partial_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'source_mapping_partial_update_query' when calling CustomObjectsApi.update_source_mapping"
+      end
+      allowable_values = ["id", "property_mappings", "relationship_mappings"]
+      if @api_client.config.client_side_validation && opts[:'fields_source_mapping'] && !opts[:'fields_source_mapping'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_source_mapping\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/source-mappings/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[source-mapping]'] = @api_client.build_collection_param(opts[:'fields_source_mapping'], :csv) if !opts[:'fields_source_mapping'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(source_mapping_partial_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CustomObjectsApi.update_source_mapping",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CustomObjectsApi#update_source_mapping\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

@@ -14,7 +14,6 @@ require 'time'
 
 module KlaviyoAPI
   class ImageBlockCroppingProperties
-    # Aspect ratio options.
     attr_accessor :aspect_ratio
 
     attr_accessor :asset_id
@@ -28,28 +27,6 @@ module KlaviyoAPI
     attr_accessor :x
 
     attr_accessor :y
-
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
-
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
-
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -149,19 +126,7 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      aspect_ratio_validator = EnumAttributeValidator.new('String', ["16:9", "1:1", "2:3", "3:4", "4:3", "circle", "custom", "original"])
-      return false unless aspect_ratio_validator.valid?(@aspect_ratio)
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] aspect_ratio Object to be assigned
-    def aspect_ratio=(aspect_ratio)
-      validator = EnumAttributeValidator.new('String', ["16:9", "1:1", "2:3", "3:4", "4:3", "circle", "custom", "original"])
-      unless validator.valid?(aspect_ratio)
-        fail ArgumentError, "invalid value for \"aspect_ratio\", must be one of #{validator.allowable_values}."
-      end
-      @aspect_ratio = aspect_ratio
     end
 
     # Checks equality by comparing each attribute.

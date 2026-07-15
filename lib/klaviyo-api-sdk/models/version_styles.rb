@@ -47,6 +47,8 @@ module KlaviyoAPI
 
     attr_accessor :banner_styles
 
+    attr_accessor :custom_css
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -87,7 +89,8 @@ module KlaviyoAPI
         :'overlay_color' => :'overlay_color',
         :'rich_text_styles' => :'rich_text_styles',
         :'mobile_overlay' => :'mobile_overlay',
-        :'banner_styles' => :'banner_styles'
+        :'banner_styles' => :'banner_styles',
+        :'custom_css' => :'custom_css'
       }
     end
 
@@ -114,7 +117,8 @@ module KlaviyoAPI
         :'overlay_color' => :'String',
         :'rich_text_styles' => :'RichTextStyles',
         :'mobile_overlay' => :'MobileOverlay',
-        :'banner_styles' => :'BannerStyles'
+        :'banner_styles' => :'BannerStyles',
+        :'custom_css' => :'CustomCss'
       }
     end
 
@@ -214,6 +218,10 @@ module KlaviyoAPI
       if attributes.key?(:'banner_styles')
         self.banner_styles = attributes[:'banner_styles']
       end
+
+      if attributes.key?(:'custom_css')
+        self.custom_css = attributes[:'custom_css']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -228,7 +236,7 @@ module KlaviyoAPI
     def valid?
       wrap_content_validator = EnumAttributeValidator.new('Boolean', ["false"])
       return false unless wrap_content_validator.valid?(@wrap_content)
-      width_validator = EnumAttributeValidator.new('String', ["custom", "large", "medium", "small"])
+      width_validator = EnumAttributeValidator.new('String', ["custom", "full", "large", "medium", "small"])
       return false unless width_validator.valid?(@width)
       true
     end
@@ -246,7 +254,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] width Object to be assigned
     def width=(width)
-      validator = EnumAttributeValidator.new('String', ["custom", "large", "medium", "small"])
+      validator = EnumAttributeValidator.new('String', ["custom", "full", "large", "medium", "small"])
       unless validator.valid?(width)
         fail ArgumentError, "invalid value for \"width\", must be one of #{validator.allowable_values}."
       end
@@ -273,7 +281,8 @@ module KlaviyoAPI
           overlay_color == o.overlay_color &&
           rich_text_styles == o.rich_text_styles &&
           mobile_overlay == o.mobile_overlay &&
-          banner_styles == o.banner_styles
+          banner_styles == o.banner_styles &&
+          custom_css == o.custom_css
     end
 
     # @see the `==` method
@@ -285,7 +294,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [wrap_content, border_styles, close_button, margin, padding, minimum_height, width, custom_width, background_image, background_color, input_styles, drop_shadow, overlay_color, rich_text_styles, mobile_overlay, banner_styles].hash
+      [wrap_content, border_styles, close_button, margin, padding, minimum_height, width, custom_width, background_image, background_color, input_styles, drop_shadow, overlay_color, rich_text_styles, mobile_overlay, banner_styles, custom_css].hash
     end
 
     # Builds the object from hash

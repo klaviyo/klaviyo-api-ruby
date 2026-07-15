@@ -81,6 +81,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'position',
         :'url',
         :'icon',
         :'custom_action_id'
@@ -139,10 +140,6 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "action_type", action_type cannot be nil.')
       end
 
-      if @position.nil?
-        invalid_properties.push('invalid value for "position", position cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -153,7 +150,6 @@ module KlaviyoAPI
       return false if @action_type.nil?
       action_type_validator = EnumAttributeValidator.new('String', ["deep_link", "dismiss", "open_app", "open_url"])
       return false unless action_type_validator.valid?(@action_type)
-      return false if @position.nil?
       true
     end
 

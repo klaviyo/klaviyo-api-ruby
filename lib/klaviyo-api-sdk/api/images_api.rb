@@ -19,10 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Get Image
-    # Get the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:read`
+    # Get the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image.json)
     # @param id [String] The ID of the image
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_image(id, opts = {})
       data, _status_code, _headers = get_image_with_http_info(id, opts)
@@ -30,10 +30,10 @@ module KlaviyoAPI
     end
 
     # Get Image
-    # Get the image with the given image ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;images:read&#x60;
+    # Get the image with the given image ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;images:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image.json)
     # @param id [String] The ID of the image
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_image_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -43,7 +43,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ImagesApi.get_image"
       end
-      allowable_values = ["format", "hidden", "image_url", "name", "size", "updated_at"]
+      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
       end
@@ -57,7 +57,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -91,13 +91,13 @@ module KlaviyoAPI
     end
 
     # Get Images
-    # Get all images in an account.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:read`
+    # Get all images in an account.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_images.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;format&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;size&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;hidden&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;format&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;size&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;hidden&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_images(opts = {})
       data, _status_code, _headers = get_images_with_http_info(opts)
@@ -105,19 +105,19 @@ module KlaviyoAPI
     end
 
     # Get Images
-    # Get all images in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;images:read&#x60;
+    # Get all images in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;images:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_images.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;format&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;size&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;hidden&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;format&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;size&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;hidden&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_images_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ImagesApi.get_images ...'
       end
-      allowable_values = ["format", "hidden", "image_url", "name", "size", "updated_at"]
+      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
       end
@@ -147,7 +147,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -181,10 +181,11 @@ module KlaviyoAPI
     end
 
     # Update Image
-    # Update the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:write`
+    # Update the image with the given image ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `images:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_image.json)
     # @param id [String] The ID of the image
     # @param image_partial_update_query [ImagePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_image(id, image_partial_update_query, opts = {})
       data, _status_code, _headers = update_image_with_http_info(id, image_partial_update_query, opts)
@@ -192,10 +193,11 @@ module KlaviyoAPI
     end
 
     # Update Image
-    # Update the image with the given image ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;images:write&#x60;
+    # Update the image with the given image ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;images:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_image.json)
     # @param id [String] The ID of the image
     # @param image_partial_update_query [ImagePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_image_with_http_info(id, image_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -209,16 +211,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && image_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'image_partial_update_query' when calling ImagesApi.update_image"
       end
+      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/images/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[image]'] = @api_client.build_collection_param(opts[:'fields_image'], :csv) if !opts[:'fields_image'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -257,9 +264,10 @@ module KlaviyoAPI
     end
 
     # Upload Image From File
-    # Upload an image from a file.  If you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`  **Scopes:** `images:write`
+    # Upload an image from a file.  If you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`  **Scopes:** `images:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/upload_image_from_url.json)
     # @param file [File] The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @option opts [String] :name A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
     # @option opts [Boolean] :hidden If true, this image is not shown in the asset library. (default to false)
     # @return [Hash<String, Object>]
@@ -272,9 +280,10 @@ module KlaviyoAPI
     alias create_image_upload upload_image_from_file
 
     # Upload Image From File
-    # Upload an image from a file.  If you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;100/m&#x60;&lt;br&gt;Daily: &#x60;100/d&#x60;  **Scopes:** &#x60;images:write&#x60;
+    # Upload an image from a file.  If you want to import an image from an existing url or a data uri, use the Upload Image From URL endpoint instead.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;100/m&#x60;&lt;br&gt;Daily: &#x60;100/d&#x60;  **Scopes:** &#x60;images:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/upload_image_from_url.json)
     # @param file [File] The image file to upload. Supported image formats: jpeg,png,gif. Maximum image size: 5MB.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @option opts [String] :name A name for the image.  Defaults to the filename if not provided.  If the name matches an existing image, a suffix will be added.
     # @option opts [Boolean] :hidden If true, this image is not shown in the asset library. (default to false)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -286,16 +295,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && file.nil?
         fail ArgumentError, "Missing the required parameter 'file' when calling ImagesApi.upload_image_from_file"
       end
+      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/image-upload'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[image]'] = @api_client.build_collection_param(opts[:'fields_image'], :csv) if !opts[:'fields_image'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -340,9 +354,10 @@ module KlaviyoAPI
     alias create_image_upload_with_http_info upload_image_from_file_with_http_info
 
     # Upload Image From URL
-    # Import an image from a url or data uri.  If you want to upload an image from a file, use the Upload Image From File endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`  **Scopes:** `images:write`
+    # Import an image from a url or data uri.  If you want to upload an image from a file, use the Upload Image From File endpoint instead.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `100/m`<br>Daily: `100/d`  **Scopes:** `images:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/upload_image_from_url.json)
     # @param image_create_query [ImageCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def upload_image_from_url(image_create_query, opts = {})
       data, _status_code, _headers = upload_image_from_url_with_http_info(image_create_query, opts)
@@ -353,9 +368,10 @@ module KlaviyoAPI
     alias create_image upload_image_from_url
 
     # Upload Image From URL
-    # Import an image from a url or data uri.  If you want to upload an image from a file, use the Upload Image From File endpoint instead.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;100/m&#x60;&lt;br&gt;Daily: &#x60;100/d&#x60;  **Scopes:** &#x60;images:write&#x60;
+    # Import an image from a url or data uri.  If you want to upload an image from a file, use the Upload Image From File endpoint instead.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;100/m&#x60;&lt;br&gt;Daily: &#x60;100/d&#x60;  **Scopes:** &#x60;images:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/upload_image_from_url.json)
     # @param image_create_query [ImageCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def upload_image_from_url_with_http_info(image_create_query, opts = {})
       if @api_client.config.debugging
@@ -365,16 +381,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && image_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'image_create_query' when calling ImagesApi.upload_image_from_url"
       end
+      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/images'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[image]'] = @api_client.build_collection_param(opts[:'fields_image'], :csv) if !opts[:'fields_image'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

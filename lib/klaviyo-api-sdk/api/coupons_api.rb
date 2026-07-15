@@ -19,9 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Bulk Create Coupon Codes
-    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:write`
+    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_coupon_codes.json)
     # @param coupon_code_create_job_create_query [CouponCodeCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_create_coupon_codes(coupon_code_create_job_create_query, opts = {})
       data, _status_code, _headers = bulk_create_coupon_codes_with_http_info(coupon_code_create_job_create_query, opts)
@@ -35,9 +36,10 @@ module KlaviyoAPI
     alias create_coupon_code_bulk_create_job bulk_create_coupon_codes
 
     # Bulk Create Coupon Codes
-    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;
+    # Create a coupon-code-bulk-create-job to bulk create a list of coupon codes.  Max number of coupon codes per job we allow for is 1000. Max number of jobs queued at once we allow for is 100.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_coupon_codes.json)
     # @param coupon_code_create_job_create_query [CouponCodeCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_create_coupon_codes_with_http_info(coupon_code_create_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -47,16 +49,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && coupon_code_create_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'coupon_code_create_job_create_query' when calling CouponsApi.bulk_create_coupon_codes"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_coupon_code_bulk_create_job'] && !opts[:'fields_coupon_code_bulk_create_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_coupon_code_bulk_create_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/coupon-code-bulk-create-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[coupon-code-bulk-create-job]'] = @api_client.build_collection_param(opts[:'fields_coupon_code_bulk_create_job'], :csv) if !opts[:'fields_coupon_code_bulk_create_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -101,9 +108,10 @@ module KlaviyoAPI
     alias create_coupon_code_bulk_create_job_with_http_info bulk_create_coupon_codes_with_http_info
 
     # Create Coupon
-    # Creates a new coupon.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
+    # Creates a new coupon.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_coupon.json)
     # @param coupon_create_query [CouponCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_coupon(coupon_create_query, opts = {})
       data, _status_code, _headers = create_coupon_with_http_info(coupon_create_query, opts)
@@ -111,9 +119,10 @@ module KlaviyoAPI
     end
 
     # Create Coupon
-    # Creates a new coupon.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;coupons:write&#x60;
+    # Creates a new coupon.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;coupons:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_coupon.json)
     # @param coupon_create_query [CouponCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_coupon_with_http_info(coupon_create_query, opts = {})
       if @api_client.config.debugging
@@ -123,16 +132,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && coupon_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'coupon_create_query' when calling CouponsApi.create_coupon"
       end
+      allowable_values = ["description", "external_id", "id", "monitor_configuration"]
+      if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/coupons'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[coupon]'] = @api_client.build_collection_param(opts[:'fields_coupon'], :csv) if !opts[:'fields_coupon'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -171,9 +185,10 @@ module KlaviyoAPI
     end
 
     # Create Coupon Code
-    # Synchronously creates a coupon code for the given coupon.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`
+    # Synchronously creates a coupon code for the given coupon.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_coupon_code.json)
     # @param coupon_code_create_query [CouponCodeCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_coupon_code(coupon_code_create_query, opts = {})
       data, _status_code, _headers = create_coupon_code_with_http_info(coupon_code_create_query, opts)
@@ -181,9 +196,10 @@ module KlaviyoAPI
     end
 
     # Create Coupon Code
-    # Synchronously creates a coupon code for the given coupon.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;
+    # Synchronously creates a coupon code for the given coupon.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_coupon_code.json)
     # @param coupon_code_create_query [CouponCodeCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_coupon_code_with_http_info(coupon_code_create_query, opts = {})
       if @api_client.config.debugging
@@ -193,16 +209,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && coupon_code_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'coupon_code_create_query' when calling CouponsApi.create_coupon_code"
       end
+      allowable_values = ["expires_at", "id", "status", "unique_code"]
+      if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/coupon-codes'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[coupon-code]'] = @api_client.build_collection_param(opts[:'fields_coupon_code'], :csv) if !opts[:'fields_coupon_code'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -241,7 +262,7 @@ module KlaviyoAPI
     end
 
     # Delete Coupon
-    # Delete the coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
+    # Delete the coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_coupon.json)
     # @param id [String] The internal id of a Coupon is equivalent to its external id stored within an integration.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -251,7 +272,7 @@ module KlaviyoAPI
     end
 
     # Delete Coupon
-    # Delete the coupon with the given coupon ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;coupons:write&#x60;
+    # Delete the coupon with the given coupon ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;coupons:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_coupon.json)
     # @param id [String] The internal id of a Coupon is equivalent to its external id stored within an integration.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -272,7 +293,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -306,7 +327,7 @@ module KlaviyoAPI
     end
 
     # Delete Coupon Code
-    # Deletes a coupon code specified by the given identifier synchronously. If a profile has been assigned to the coupon code, an exception will be raised<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`
+    # Deletes a coupon code specified by the given identifier synchronously. If a profile has been assigned to the coupon code, an exception will be raised<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_coupon_code.json)
     # @param id [String] The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -316,7 +337,7 @@ module KlaviyoAPI
     end
 
     # Delete Coupon Code
-    # Deletes a coupon code specified by the given identifier synchronously. If a profile has been assigned to the coupon code, an exception will be raised&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;
+    # Deletes a coupon code specified by the given identifier synchronously. If a profile has been assigned to the coupon code, an exception will be raised&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_coupon_code.json)
     # @param id [String] The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -337,7 +358,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -371,11 +392,11 @@ module KlaviyoAPI
     end
 
     # Get Bulk Create Coupon Code Jobs
-    # Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`
+    # Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_coupon_code_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_create_coupon_code_jobs(opts = {})
       data, _status_code, _headers = get_bulk_create_coupon_code_jobs_with_http_info(opts)
@@ -386,17 +407,17 @@ module KlaviyoAPI
     alias get_coupon_code_bulk_create_jobs get_bulk_create_coupon_code_jobs
 
     # Get Bulk Create Coupon Code Jobs
-    # Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
+    # Get all coupon code bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_coupon_code_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_coupon_code_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CouponsApi.get_bulk_create_coupon_code_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code_bulk_create_job'] && !opts[:'fields_coupon_code_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code_bulk_create_job\", must include one of #{allowable_values}"
       end
@@ -412,7 +433,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -449,12 +470,12 @@ module KlaviyoAPI
     alias get_coupon_code_bulk_create_jobs_with_http_info get_bulk_create_coupon_code_jobs_with_http_info
 
     # Get Bulk Create Coupon Codes Job
-    # Get a coupon code bulk create job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`
+    # Get a coupon code bulk create job with the given job ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_coupon_codes_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_create_coupon_codes_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_create_coupon_codes_job_with_http_info(job_id, opts)
@@ -465,12 +486,12 @@ module KlaviyoAPI
     alias get_coupon_code_bulk_create_job get_bulk_create_coupon_codes_job
 
     # Get Bulk Create Coupon Codes Job
-    # Get a coupon code bulk create job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
+    # Get a coupon code bulk create job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_coupon_codes_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_coupon_code_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_coupon_codes_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -480,11 +501,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CouponsApi.get_bulk_create_coupon_codes_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code_bulk_create_job'] && !opts[:'fields_coupon_code_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code_bulk_create_job\", must include one of #{allowable_values}"
       end
-      allowable_values = ["expires_at", "status", "unique_code"]
+      allowable_values = ["expires_at", "id", "status", "unique_code"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
       end
@@ -504,7 +525,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -541,10 +562,10 @@ module KlaviyoAPI
     alias get_coupon_code_bulk_create_job_with_http_info get_bulk_create_coupon_codes_job_with_http_info
 
     # Get Coupon
-    # Get a specific coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`
+    # Get a specific coupon with the given coupon ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon.json)
     # @param id [String] The internal id of a Coupon is equivalent to its external id stored within an integration.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_coupon(id, opts = {})
       data, _status_code, _headers = get_coupon_with_http_info(id, opts)
@@ -552,10 +573,10 @@ module KlaviyoAPI
     end
 
     # Get Coupon
-    # Get a specific coupon with the given coupon ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;
+    # Get a specific coupon with the given coupon ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon.json)
     # @param id [String] The internal id of a Coupon is equivalent to its external id stored within an integration.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupon_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -565,7 +586,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon"
       end
-      allowable_values = ["description", "external_id", "monitor_configuration"]
+      allowable_values = ["description", "external_id", "id", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -579,7 +600,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -613,12 +634,12 @@ module KlaviyoAPI
     end
 
     # Get Coupon Code
-    # Returns a Coupon Code specified by the given identifier.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
+    # Returns a Coupon Code specified by the given identifier.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_code.json)
     # @param id [String] The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_coupon_code(id, opts = {})
       data, _status_code, _headers = get_coupon_code_with_http_info(id, opts)
@@ -626,12 +647,12 @@ module KlaviyoAPI
     end
 
     # Get Coupon Code
-    # Returns a Coupon Code specified by the given identifier.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
+    # Returns a Coupon Code specified by the given identifier.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_code.json)
     # @param id [String] The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupon_code_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -641,11 +662,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon_code"
       end
-      allowable_values = ["expires_at", "status", "unique_code"]
+      allowable_values = ["expires_at", "id", "status", "unique_code"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
       end
-      allowable_values = ["description", "external_id", "monitor_configuration"]
+      allowable_values = ["description", "external_id", "id", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -665,7 +686,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -699,11 +720,12 @@ module KlaviyoAPI
     end
 
     # Get Coupon Code IDs for Coupon
-    # Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`
+    # Gets a list of coupon code relationships associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_code_ids_for_coupon.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Hash<String, Object>]
     def get_coupon_code_ids_for_coupon(id, opts = {})
       data, _status_code, _headers = get_coupon_code_ids_for_coupon_with_http_info(id, opts)
@@ -720,11 +742,12 @@ module KlaviyoAPI
     alias get_coupon_relationships_codes get_coupon_code_ids_for_coupon
 
     # Get Coupon Code IDs for Coupon
-    # Gets a list of coupon code relationships associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
+    # Gets a list of coupon code relationships associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_code_ids_for_coupon.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupon_code_ids_for_coupon_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -734,6 +757,14 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon_code_ids_for_coupon"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupon_code_ids_for_coupon, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupon_code_ids_for_coupon, must be greater than or equal to 1.'
+      end
+
       # resource path
       local_var_path = '/api/coupons/{id}/relationships/coupon-codes'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
@@ -741,11 +772,12 @@ module KlaviyoAPI
       query_params = opts[:query_params] || {}
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -788,13 +820,14 @@ module KlaviyoAPI
     alias get_coupon_relationships_codes_with_http_info get_coupon_code_ids_for_coupon_with_http_info
 
     # Get Coupon Codes
-    # Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`
-    # @param filter [String] For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_codes.json)
+    # @param filter [String] For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Hash<String, Object>]
     def get_coupon_codes(filter, opts = {})
       data, _status_code, _headers = get_coupon_codes_with_http_info(filter, opts)
@@ -802,13 +835,14 @@ module KlaviyoAPI
     end
 
     # Get Coupon Codes
-    # Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
-    # @param filter [String] For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # Gets a list of coupon codes associated with a coupon/coupons or a profile/profiles.  A coupon/coupons or a profile/profiles must be provided as required filter params.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_codes.json)
+    # @param filter [String] For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupon_codes_with_http_info(filter, opts = {})
       if @api_client.config.debugging
@@ -818,11 +852,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && filter.nil?
         fail ArgumentError, "Missing the required parameter 'filter' when calling CouponsApi.get_coupon_codes"
       end
-      allowable_values = ["expires_at", "status", "unique_code"]
+      allowable_values = ["expires_at", "id", "status", "unique_code"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
       end
-      allowable_values = ["description", "external_id", "monitor_configuration"]
+      allowable_values = ["description", "external_id", "id", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -830,6 +864,14 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupon_codes, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupon_codes, must be greater than or equal to 1.'
+      end
+
       # resource path
       local_var_path = '/api/coupon-codes'
 
@@ -840,11 +882,12 @@ module KlaviyoAPI
       query_params[:'fields[coupon]'] = @api_client.build_collection_param(opts[:'fields_coupon'], :csv) if !opts[:'fields_coupon'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -878,12 +921,13 @@ module KlaviyoAPI
     end
 
     # Get Coupon Codes for Coupon
-    # Gets a list of coupon codes associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`
+    # Gets a list of coupon codes associated with the given coupon id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupon-codes:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_codes_for_coupon.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Hash<String, Object>]
     def get_coupon_codes_for_coupon(id, opts = {})
       data, _status_code, _headers = get_coupon_codes_for_coupon_with_http_info(id, opts)
@@ -897,12 +941,13 @@ module KlaviyoAPI
     alias get_codes_for_coupon get_coupon_codes_for_coupon
 
     # Get Coupon Codes for Coupon
-    # Gets a list of coupon codes associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;
+    # Gets a list of coupon codes associated with the given coupon id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupon-codes:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_codes_for_coupon.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;expires_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;coupon.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;profile.id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupon_codes_for_coupon_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -912,10 +957,18 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon_codes_for_coupon"
       end
-      allowable_values = ["expires_at", "status", "unique_code"]
+      allowable_values = ["expires_at", "id", "status", "unique_code"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupon_codes_for_coupon, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupon_codes_for_coupon, must be greater than or equal to 1.'
+      end
+
       # resource path
       local_var_path = '/api/coupons/{id}/coupon-codes'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
@@ -924,11 +977,12 @@ module KlaviyoAPI
       query_params[:'fields[coupon-code]'] = @api_client.build_collection_param(opts[:'fields_coupon_code'], :csv) if !opts[:'fields_coupon_code'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -968,10 +1022,10 @@ module KlaviyoAPI
     alias get_codes_for_coupon_with_http_info get_coupon_codes_for_coupon_with_http_info
 
     # Get Coupon For Coupon Code
-    # Get the coupon associated with a given coupon code ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`
+    # Get the coupon associated with a given coupon code ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_for_coupon_code.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_coupon_for_coupon_code(id, opts = {})
       data, _status_code, _headers = get_coupon_for_coupon_code_with_http_info(id, opts)
@@ -982,10 +1036,10 @@ module KlaviyoAPI
     alias get_coupon_code_coupon get_coupon_for_coupon_code
 
     # Get Coupon For Coupon Code
-    # Get the coupon associated with a given coupon code ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;
+    # Get the coupon associated with a given coupon code ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_for_coupon_code.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupon_for_coupon_code_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -995,7 +1049,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CouponsApi.get_coupon_for_coupon_code"
       end
-      allowable_values = ["description", "external_id", "monitor_configuration"]
+      allowable_values = ["description", "external_id", "id", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
@@ -1009,7 +1063,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1046,7 +1100,7 @@ module KlaviyoAPI
     alias get_coupon_code_coupon_with_http_info get_coupon_for_coupon_code_with_http_info
 
     # Get Coupon ID for Coupon Code
-    # Gets the coupon relationship associated with the given coupon code id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`
+    # Gets the coupon relationship associated with the given coupon code id<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_id_for_coupon_code.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -1059,7 +1113,7 @@ module KlaviyoAPI
     alias get_coupon_relationships_coupon_codes get_coupon_id_for_coupon_code
 
     # Get Coupon ID for Coupon Code
-    # Gets the coupon relationship associated with the given coupon code id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;
+    # Gets the coupon relationship associated with the given coupon code id&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupon_id_for_coupon_code.json)
     # @param id [String] The ID of the coupon to look up the relationship of.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1080,7 +1134,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1117,10 +1171,11 @@ module KlaviyoAPI
     alias get_coupon_relationships_coupon_codes_with_http_info get_coupon_id_for_coupon_code_with_http_info
 
     # Get Coupons
-    # Get all coupons in an account.  To learn more, see our [Coupons API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_coupons_api).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`
+    # Get all coupons in an account.  To learn more, see our [Coupons API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_coupons_api).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `coupons:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupons.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Hash<String, Object>]
     def get_coupons(opts = {})
       data, _status_code, _headers = get_coupons_with_http_info(opts)
@@ -1128,19 +1183,28 @@ module KlaviyoAPI
     end
 
     # Get Coupons
-    # Get all coupons in an account.  To learn more, see our [Coupons API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_coupons_api).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;
+    # Get all coupons in an account.  To learn more, see our [Coupons API guide](https://developers.klaviyo.com/en/docs/use_klaviyos_coupons_api).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;coupons:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_coupons.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_coupons_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CouponsApi.get_coupons ...'
       end
-      allowable_values = ["description", "external_id", "monitor_configuration"]
+      allowable_values = ["description", "external_id", "id", "monitor_configuration"]
       if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupons, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CouponsApi.get_coupons, must be greater than or equal to 1.'
+      end
+
       # resource path
       local_var_path = '/api/coupons'
 
@@ -1148,11 +1212,12 @@ module KlaviyoAPI
       query_params = opts[:query_params] || {}
       query_params[:'fields[coupon]'] = @api_client.build_collection_param(opts[:'fields_coupon'], :csv) if !opts[:'fields_coupon'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1186,10 +1251,11 @@ module KlaviyoAPI
     end
 
     # Update Coupon
-    # *Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`
+    # *Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `coupons:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_coupon.json)
     # @param id [String] The internal id of a Coupon is equivalent to its external id stored within an integration.
     # @param coupon_update_query [CouponUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_coupon(id, coupon_update_query, opts = {})
       data, _status_code, _headers = update_coupon_with_http_info(id, coupon_update_query, opts)
@@ -1197,10 +1263,11 @@ module KlaviyoAPI
     end
 
     # Update Coupon
-    # *Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;coupons:write&#x60;
+    # *Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;coupons:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_coupon.json)
     # @param id [String] The internal id of a Coupon is equivalent to its external id stored within an integration.
     # @param coupon_update_query [CouponUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_coupon_with_http_info(id, coupon_update_query, opts = {})
       if @api_client.config.debugging
@@ -1214,16 +1281,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && coupon_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'coupon_update_query' when calling CouponsApi.update_coupon"
       end
+      allowable_values = ["description", "external_id", "id", "monitor_configuration"]
+      if @api_client.config.client_side_validation && opts[:'fields_coupon'] && !opts[:'fields_coupon'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_coupon\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/coupons/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[coupon]'] = @api_client.build_collection_param(opts[:'fields_coupon'], :csv) if !opts[:'fields_coupon'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1262,10 +1334,11 @@ module KlaviyoAPI
     end
 
     # Update Coupon Code
-    # Updates a coupon code specified by the given identifier synchronously. We allow updating the 'status' and 'expires_at' of coupon codes.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`
+    # Updates a coupon code specified by the given identifier synchronously. We allow updating the 'status' and 'expires_at' of coupon codes.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `coupon-codes:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_coupon_code.json)
     # @param id [String] The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     # @param coupon_code_update_query [CouponCodeUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_coupon_code(id, coupon_code_update_query, opts = {})
       data, _status_code, _headers = update_coupon_code_with_http_info(id, coupon_code_update_query, opts)
@@ -1273,10 +1346,11 @@ module KlaviyoAPI
     end
 
     # Update Coupon Code
-    # Updates a coupon code specified by the given identifier synchronously. We allow updating the &#39;status&#39; and &#39;expires_at&#39; of coupon codes.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;
+    # Updates a coupon code specified by the given identifier synchronously. We allow updating the &#39;status&#39; and &#39;expires_at&#39; of coupon codes.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;coupon-codes:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_coupon_code.json)
     # @param id [String] The id of a coupon code is a combination of its unique code and the id of the coupon it is associated with.
     # @param coupon_code_update_query [CouponCodeUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_coupon_code For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_coupon_code_with_http_info(id, coupon_code_update_query, opts = {})
       if @api_client.config.debugging
@@ -1290,16 +1364,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && coupon_code_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'coupon_code_update_query' when calling CouponsApi.update_coupon_code"
       end
+      allowable_values = ["expires_at", "id", "status", "unique_code"]
+      if @api_client.config.client_side_validation && opts[:'fields_coupon_code'] && !opts[:'fields_coupon_code'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_coupon_code\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/coupon-codes/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[coupon-code]'] = @api_client.build_collection_param(opts[:'fields_coupon_code'], :csv) if !opts[:'fields_coupon_code'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

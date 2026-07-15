@@ -25,6 +25,8 @@ module KlaviyoAPI
 
     attr_accessor :show_close_button
 
+    attr_accessor :accessible_name
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -54,7 +56,8 @@ module KlaviyoAPI
         :'click_outside_to_close' => :'click_outside_to_close',
         :'rule_based_trigger_evaluation' => :'rule_based_trigger_evaluation',
         :'record_utm_params_on_submit' => :'record_utm_params_on_submit',
-        :'show_close_button' => :'show_close_button'
+        :'show_close_button' => :'show_close_button',
+        :'accessible_name' => :'accessible_name'
       }
     end
 
@@ -70,7 +73,8 @@ module KlaviyoAPI
         :'click_outside_to_close' => :'Array<String>',
         :'rule_based_trigger_evaluation' => :'String',
         :'record_utm_params_on_submit' => :'Boolean',
-        :'show_close_button' => :'Boolean'
+        :'show_close_button' => :'Boolean',
+        :'accessible_name' => :'String'
       }
     end
 
@@ -79,6 +83,7 @@ module KlaviyoAPI
       Set.new([
         :'click_outside_to_close',
         :'rule_based_trigger_evaluation',
+        :'accessible_name'
       ])
     end
 
@@ -124,6 +129,10 @@ module KlaviyoAPI
       else
         self.show_close_button = true
       end
+
+      if attributes.key?(:'accessible_name')
+        self.accessible_name = attributes[:'accessible_name']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -160,7 +169,8 @@ module KlaviyoAPI
           click_outside_to_close == o.click_outside_to_close &&
           rule_based_trigger_evaluation == o.rule_based_trigger_evaluation &&
           record_utm_params_on_submit == o.record_utm_params_on_submit &&
-          show_close_button == o.show_close_button
+          show_close_button == o.show_close_button &&
+          accessible_name == o.accessible_name
     end
 
     # @see the `==` method
@@ -172,7 +182,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [side_image_settings, click_outside_to_close, rule_based_trigger_evaluation, record_utm_params_on_submit, show_close_button].hash
+      [side_image_settings, click_outside_to_close, rule_based_trigger_evaluation, record_utm_params_on_submit, show_close_button, accessible_name].hash
     end
 
     # Builds the object from hash

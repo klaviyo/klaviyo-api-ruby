@@ -19,10 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Get Tracking Setting
-    # Get the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:read`
+    # Get the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_setting.json)
     # @param id [String] The id of the tracking setting (account ID).
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_tracking_setting(id, opts = {})
       data, _status_code, _headers = get_tracking_setting_with_http_info(id, opts)
@@ -30,10 +30,10 @@ module KlaviyoAPI
     end
 
     # Get Tracking Setting
-    # Get the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:read&#x60;
+    # Get the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_setting.json)
     # @param id [String] The id of the tracking setting (account ID).
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tracking_setting_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -43,7 +43,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TrackingSettingsApi.get_tracking_setting"
       end
-      allowable_values = ["auto_add_parameters", "custom_parameters", "utm_campaign", "utm_campaign.campaign", "utm_campaign.campaign.type", "utm_campaign.campaign.value", "utm_campaign.flow", "utm_campaign.flow.type", "utm_campaign.flow.value", "utm_id", "utm_id.campaign", "utm_id.campaign.type", "utm_id.campaign.value", "utm_id.flow", "utm_id.flow.type", "utm_id.flow.value", "utm_medium", "utm_medium.campaign", "utm_medium.campaign.type", "utm_medium.campaign.value", "utm_medium.flow", "utm_medium.flow.type", "utm_medium.flow.value", "utm_source", "utm_source.campaign", "utm_source.campaign.type", "utm_source.campaign.value", "utm_source.flow", "utm_source.flow.type", "utm_source.flow.value", "utm_term", "utm_term.campaign", "utm_term.campaign.type", "utm_term.campaign.value", "utm_term.flow", "utm_term.flow.type", "utm_term.flow.value"]
+      allowable_values = ["auto_add_parameters", "custom_parameters", "id", "utm_campaign", "utm_campaign.campaign", "utm_campaign.campaign.type", "utm_campaign.campaign.value", "utm_campaign.flow", "utm_campaign.flow.type", "utm_campaign.flow.value", "utm_id", "utm_id.campaign", "utm_id.campaign.type", "utm_id.campaign.value", "utm_id.flow", "utm_id.flow.type", "utm_id.flow.value", "utm_medium", "utm_medium.campaign", "utm_medium.campaign.type", "utm_medium.campaign.value", "utm_medium.flow", "utm_medium.flow.type", "utm_medium.flow.value", "utm_source", "utm_source.campaign", "utm_source.campaign.type", "utm_source.campaign.value", "utm_source.flow", "utm_source.flow.type", "utm_source.flow.value", "utm_term", "utm_term.campaign", "utm_term.campaign.type", "utm_term.campaign.value", "utm_term.flow", "utm_term.flow.type", "utm_term.flow.value"]
       if @api_client.config.client_side_validation && opts[:'fields_tracking_setting'] && !opts[:'fields_tracking_setting'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tracking_setting\", must include one of #{allowable_values}"
       end
@@ -57,7 +57,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -91,10 +91,10 @@ module KlaviyoAPI
     end
 
     # Get Tracking Settings
-    # Get all UTM tracking settings in an account. Returns an array with a single tracking setting.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:read`
+    # Get all UTM tracking settings in an account. Returns an array with a single tracking setting.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_settings.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 1. Min: 1. Max: 1. (default to 1)
     # @return [Hash<String, Object>]
     def get_tracking_settings(opts = {})
@@ -103,17 +103,17 @@ module KlaviyoAPI
     end
 
     # Get Tracking Settings
-    # Get all UTM tracking settings in an account. Returns an array with a single tracking setting.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:read&#x60;
+    # Get all UTM tracking settings in an account. Returns an array with a single tracking setting.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_settings.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 1. Min: 1. Max: 1. (default to 1)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tracking_settings_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TrackingSettingsApi.get_tracking_settings ...'
       end
-      allowable_values = ["auto_add_parameters", "custom_parameters", "utm_campaign", "utm_campaign.campaign", "utm_campaign.campaign.type", "utm_campaign.campaign.value", "utm_campaign.flow", "utm_campaign.flow.type", "utm_campaign.flow.value", "utm_id", "utm_id.campaign", "utm_id.campaign.type", "utm_id.campaign.value", "utm_id.flow", "utm_id.flow.type", "utm_id.flow.value", "utm_medium", "utm_medium.campaign", "utm_medium.campaign.type", "utm_medium.campaign.value", "utm_medium.flow", "utm_medium.flow.type", "utm_medium.flow.value", "utm_source", "utm_source.campaign", "utm_source.campaign.type", "utm_source.campaign.value", "utm_source.flow", "utm_source.flow.type", "utm_source.flow.value", "utm_term", "utm_term.campaign", "utm_term.campaign.type", "utm_term.campaign.value", "utm_term.flow", "utm_term.flow.type", "utm_term.flow.value"]
+      allowable_values = ["auto_add_parameters", "custom_parameters", "id", "utm_campaign", "utm_campaign.campaign", "utm_campaign.campaign.type", "utm_campaign.campaign.value", "utm_campaign.flow", "utm_campaign.flow.type", "utm_campaign.flow.value", "utm_id", "utm_id.campaign", "utm_id.campaign.type", "utm_id.campaign.value", "utm_id.flow", "utm_id.flow.type", "utm_id.flow.value", "utm_medium", "utm_medium.campaign", "utm_medium.campaign.type", "utm_medium.campaign.value", "utm_medium.flow", "utm_medium.flow.type", "utm_medium.flow.value", "utm_source", "utm_source.campaign", "utm_source.campaign.type", "utm_source.campaign.value", "utm_source.flow", "utm_source.flow.type", "utm_source.flow.value", "utm_term", "utm_term.campaign", "utm_term.campaign.type", "utm_term.campaign.value", "utm_term.flow", "utm_term.flow.type", "utm_term.flow.value"]
       if @api_client.config.client_side_validation && opts[:'fields_tracking_setting'] && !opts[:'fields_tracking_setting'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tracking_setting\", must include one of #{allowable_values}"
       end
@@ -137,7 +137,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -171,10 +171,11 @@ module KlaviyoAPI
     end
 
     # Update Tracking Setting
-    # Update the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:write`
+    # Update the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tracking_setting.json)
     # @param id [String] The id of the tracking setting (account ID).
     # @param tracking_setting_partial_update_query [TrackingSettingPartialUpdateQuery] DTO for updating tracking settings
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_tracking_setting(id, tracking_setting_partial_update_query, opts = {})
       data, _status_code, _headers = update_tracking_setting_with_http_info(id, tracking_setting_partial_update_query, opts)
@@ -182,10 +183,11 @@ module KlaviyoAPI
     end
 
     # Update Tracking Setting
-    # Update the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:write&#x60;
+    # Update the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tracking_setting.json)
     # @param id [String] The id of the tracking setting (account ID).
     # @param tracking_setting_partial_update_query [TrackingSettingPartialUpdateQuery] DTO for updating tracking settings
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_tracking_setting_with_http_info(id, tracking_setting_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -199,16 +201,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && tracking_setting_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'tracking_setting_partial_update_query' when calling TrackingSettingsApi.update_tracking_setting"
       end
+      allowable_values = ["auto_add_parameters", "custom_parameters", "id", "utm_campaign", "utm_campaign.campaign", "utm_campaign.campaign.type", "utm_campaign.campaign.value", "utm_campaign.flow", "utm_campaign.flow.type", "utm_campaign.flow.value", "utm_id", "utm_id.campaign", "utm_id.campaign.type", "utm_id.campaign.value", "utm_id.flow", "utm_id.flow.type", "utm_id.flow.value", "utm_medium", "utm_medium.campaign", "utm_medium.campaign.type", "utm_medium.campaign.value", "utm_medium.flow", "utm_medium.flow.type", "utm_medium.flow.value", "utm_source", "utm_source.campaign", "utm_source.campaign.type", "utm_source.campaign.value", "utm_source.flow", "utm_source.flow.type", "utm_source.flow.value", "utm_term", "utm_term.campaign", "utm_term.campaign.type", "utm_term.campaign.value", "utm_term.flow", "utm_term.flow.type", "utm_term.flow.value"]
+      if @api_client.config.client_side_validation && opts[:'fields_tracking_setting'] && !opts[:'fields_tracking_setting'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_tracking_setting\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/tracking-settings/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[tracking-setting]'] = @api_client.build_collection_param(opts[:'fields_tracking_setting'], :csv) if !opts[:'fields_tracking_setting'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

@@ -14,6 +14,9 @@ require 'time'
 
 module KlaviyoAPI
   class EventsBulkCreateQueryResourceObjectAttributes
+    # When true, the event is recorded but does NOT trigger flows. Use this when backfilling historical events so existing flow definitions do not re-fire on events that already fired in the past.
+    attr_accessor :backfill
+
     attr_accessor :profile
 
     attr_accessor :events
@@ -21,6 +24,7 @@ module KlaviyoAPI
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'backfill' => :'backfill',
         :'profile' => :'profile',
         :'events' => :'events'
       }
@@ -34,6 +38,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'backfill' => :'Boolean',
         :'profile' => :'EventsBulkCreateQueryResourceObjectAttributesProfile',
         :'events' => :'EventsBulkCreateQueryResourceObjectAttributesEvents'
       }
@@ -42,6 +47,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'backfill',
       ])
     end
 
@@ -59,6 +65,12 @@ module KlaviyoAPI
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'backfill')
+        self.backfill = attributes[:'backfill']
+      else
+        self.backfill = false
+      end
 
       if attributes.key?(:'profile')
         self.profile = attributes[:'profile']
@@ -97,6 +109,7 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          backfill == o.backfill &&
           profile == o.profile &&
           events == o.events
     end
@@ -110,7 +123,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [profile, events].hash
+      [backfill, profile, events].hash
     end
 
     # Builds the object from hash

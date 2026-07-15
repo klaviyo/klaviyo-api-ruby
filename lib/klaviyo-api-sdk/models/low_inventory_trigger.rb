@@ -71,7 +71,7 @@ module KlaviyoAPI
       {
         :'type' => :'String',
         :'product_level' => :'String',
-        :'trigger_filter' => :'LowInventoryConditionFilter',
+        :'trigger_filter' => :'LowInventoryTriggerTriggerFilter',
         :'inventory_count' => :'Integer',
         :'audience' => :'Array<String>',
         :'timeframe_days' => :'Integer'
@@ -81,6 +81,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'trigger_filter',
       ])
     end
 
@@ -140,10 +141,6 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "product_level", product_level cannot be nil.')
       end
 
-      if @trigger_filter.nil?
-        invalid_properties.push('invalid value for "trigger_filter", trigger_filter cannot be nil.')
-      end
-
       if @inventory_count.nil?
         invalid_properties.push('invalid value for "inventory_count", inventory_count cannot be nil.')
       end
@@ -164,7 +161,6 @@ module KlaviyoAPI
       return false if @product_level.nil?
       product_level_validator = EnumAttributeValidator.new('String', ["product", "variant"])
       return false unless product_level_validator.valid?(@product_level)
-      return false if @trigger_filter.nil?
       return false if @inventory_count.nil?
       return false if @audience.nil?
       true

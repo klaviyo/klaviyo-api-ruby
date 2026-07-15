@@ -23,12 +23,16 @@ module KlaviyoAPI
     # The dynamic image to be used in the push notification
     attr_accessor :dynamic_image
 
+    # Action buttons for the push notification (max 3, positions 0-indexed with no gaps)
+    attr_accessor :action_buttons
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'title' => :'title',
         :'body' => :'body',
-        :'dynamic_image' => :'dynamic_image'
+        :'dynamic_image' => :'dynamic_image',
+        :'action_buttons' => :'action_buttons'
       }
     end
 
@@ -42,7 +46,8 @@ module KlaviyoAPI
       {
         :'title' => :'String',
         :'body' => :'String',
-        :'dynamic_image' => :'String'
+        :'dynamic_image' => :'String',
+        :'action_buttons' => :'Array<PushActionButtonDefinition>'
       }
     end
 
@@ -50,7 +55,8 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'title',
-        :'dynamic_image'
+        :'dynamic_image',
+        :'action_buttons'
       ])
     end
 
@@ -80,6 +86,12 @@ module KlaviyoAPI
       if attributes.key?(:'dynamic_image')
         self.dynamic_image = attributes[:'dynamic_image']
       end
+
+      if attributes.key?(:'action_buttons')
+        if (value = attributes[:'action_buttons']).is_a?(Array)
+          self.action_buttons = value
+        end
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -107,7 +119,8 @@ module KlaviyoAPI
       self.class == o.class &&
           title == o.title &&
           body == o.body &&
-          dynamic_image == o.dynamic_image
+          dynamic_image == o.dynamic_image &&
+          action_buttons == o.action_buttons
     end
 
     # @see the `==` method
@@ -119,7 +132,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [title, body, dynamic_image].hash
+      [title, body, dynamic_image, action_buttons].hash
     end
 
     # Builds the object from hash

@@ -20,6 +20,7 @@ module KlaviyoAPI
         [
           :'AfterCloseTimeout',
           :'BackInStock',
+          :'CartContent',
           :'CartItemCount',
           :'CartProduct',
           :'CartValue',

@@ -42,7 +42,7 @@ module KlaviyoAPI
       {
         :'padding' => :'Padding',
         :'background_color' => :'String',
-        :'link_styles' => :'SMSDisclosureTextStyle',
+        :'link_styles' => :'SMSDisclosureLinkTextStyle',
         :'text_styles' => :'SMSDisclosureTextStyle'
       }
     end

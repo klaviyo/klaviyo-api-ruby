@@ -19,7 +19,7 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Add Categories to Catalog Item
-    # Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a new catalog category relationship for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/add_categories_to_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
@@ -39,7 +39,7 @@ module KlaviyoAPI
     alias create_catalog_item_relationships_categories add_categories_to_catalog_item
 
     # Add Categories to Catalog Item
-    # Create a new catalog category relationship for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a new catalog category relationship for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/add_categories_to_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
@@ -65,7 +65,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -113,7 +113,7 @@ module KlaviyoAPI
     alias create_catalog_item_relationships_categories_with_http_info add_categories_to_catalog_item_with_http_info
 
     # Add Items to Catalog Category
-    # Create a new item relationship for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a new item relationship for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/add_items_to_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
@@ -130,7 +130,7 @@ module KlaviyoAPI
     alias create_catalog_category_relationships_items add_items_to_catalog_category
 
     # Add Items to Catalog Category
-    # Create a new item relationship for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a new item relationship for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/add_items_to_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
@@ -156,7 +156,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -201,9 +201,10 @@ module KlaviyoAPI
     alias create_catalog_category_relationships_items_with_http_info add_items_to_catalog_category_with_http_info
 
     # Bulk Create Catalog Categories
-    # Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_catalog_categories.json)
     # @param catalog_category_create_job_create_query [CatalogCategoryCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_create_catalog_categories(catalog_category_create_job_create_query, opts = {})
       data, _status_code, _headers = bulk_create_catalog_categories_with_http_info(catalog_category_create_job_create_query, opts)
@@ -217,9 +218,10 @@ module KlaviyoAPI
     alias create_catalog_category_bulk_create_job bulk_create_catalog_categories
 
     # Bulk Create Catalog Categories
-    # Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog category bulk create job to create a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_catalog_categories.json)
     # @param catalog_category_create_job_create_query [CatalogCategoryCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_create_catalog_categories_with_http_info(catalog_category_create_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -229,16 +231,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_category_create_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_category_create_job_create_query' when calling CatalogsApi.bulk_create_catalog_categories"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_create_job'] && !opts[:'fields_catalog_category_bulk_create_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_create_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-category-bulk-create-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-category-bulk-create-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_category_bulk_create_job'], :csv) if !opts[:'fields_catalog_category_bulk_create_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -283,9 +290,10 @@ module KlaviyoAPI
     alias create_catalog_category_bulk_create_job_with_http_info bulk_create_catalog_categories_with_http_info
 
     # Bulk Create Catalog Items
-    # Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_catalog_items.json)
     # @param catalog_item_create_job_create_query [CatalogItemCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_create_catalog_items(catalog_item_create_job_create_query, opts = {})
       data, _status_code, _headers = bulk_create_catalog_items_with_http_info(catalog_item_create_job_create_query, opts)
@@ -299,9 +307,10 @@ module KlaviyoAPI
     alias create_catalog_item_bulk_create_job bulk_create_catalog_items
 
     # Bulk Create Catalog Items
-    # Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog item bulk create job to create a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_catalog_items.json)
     # @param catalog_item_create_job_create_query [CatalogItemCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_create_catalog_items_with_http_info(catalog_item_create_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -311,16 +320,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_item_create_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_item_create_job_create_query' when calling CatalogsApi.bulk_create_catalog_items"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_create_job'] && !opts[:'fields_catalog_item_bulk_create_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_create_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-item-bulk-create-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-item-bulk-create-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_item_bulk_create_job'], :csv) if !opts[:'fields_catalog_item_bulk_create_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -365,9 +379,10 @@ module KlaviyoAPI
     alias create_catalog_item_bulk_create_job_with_http_info bulk_create_catalog_items_with_http_info
 
     # Bulk Create Catalog Variants
-    # Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_catalog_variants.json)
     # @param catalog_variant_create_job_create_query [CatalogVariantCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_create_catalog_variants(catalog_variant_create_job_create_query, opts = {})
       data, _status_code, _headers = bulk_create_catalog_variants_with_http_info(catalog_variant_create_job_create_query, opts)
@@ -381,9 +396,10 @@ module KlaviyoAPI
     alias create_catalog_variant_bulk_create_job bulk_create_catalog_variants
 
     # Bulk Create Catalog Variants
-    # Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog variant bulk create job to create a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_catalog_variants.json)
     # @param catalog_variant_create_job_create_query [CatalogVariantCreateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_create_catalog_variants_with_http_info(catalog_variant_create_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -393,16 +409,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_variant_create_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_variant_create_job_create_query' when calling CatalogsApi.bulk_create_catalog_variants"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_create_job'] && !opts[:'fields_catalog_variant_bulk_create_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_create_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-variant-bulk-create-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-variant-bulk-create-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_variant_bulk_create_job'], :csv) if !opts[:'fields_catalog_variant_bulk_create_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -447,9 +468,10 @@ module KlaviyoAPI
     alias create_catalog_variant_bulk_create_job_with_http_info bulk_create_catalog_variants_with_http_info
 
     # Bulk Delete Catalog Categories
-    # Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_catalog_categories.json)
     # @param catalog_category_delete_job_create_query [CatalogCategoryDeleteJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_delete_catalog_categories(catalog_category_delete_job_create_query, opts = {})
       data, _status_code, _headers = bulk_delete_catalog_categories_with_http_info(catalog_category_delete_job_create_query, opts)
@@ -463,9 +485,10 @@ module KlaviyoAPI
     alias create_catalog_category_bulk_delete_job bulk_delete_catalog_categories
 
     # Bulk Delete Catalog Categories
-    # Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog category bulk delete job to delete a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_catalog_categories.json)
     # @param catalog_category_delete_job_create_query [CatalogCategoryDeleteJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_delete_catalog_categories_with_http_info(catalog_category_delete_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -475,16 +498,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_category_delete_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_category_delete_job_create_query' when calling CatalogsApi.bulk_delete_catalog_categories"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_delete_job'] && !opts[:'fields_catalog_category_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_delete_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-category-bulk-delete-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-category-bulk-delete-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_category_bulk_delete_job'], :csv) if !opts[:'fields_catalog_category_bulk_delete_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -529,9 +557,10 @@ module KlaviyoAPI
     alias create_catalog_category_bulk_delete_job_with_http_info bulk_delete_catalog_categories_with_http_info
 
     # Bulk Delete Catalog Items
-    # Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_catalog_items.json)
     # @param catalog_item_delete_job_create_query [CatalogItemDeleteJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_delete_catalog_items(catalog_item_delete_job_create_query, opts = {})
       data, _status_code, _headers = bulk_delete_catalog_items_with_http_info(catalog_item_delete_job_create_query, opts)
@@ -545,9 +574,10 @@ module KlaviyoAPI
     alias create_catalog_item_bulk_delete_job bulk_delete_catalog_items
 
     # Bulk Delete Catalog Items
-    # Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog item bulk delete job to delete a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_catalog_items.json)
     # @param catalog_item_delete_job_create_query [CatalogItemDeleteJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_delete_catalog_items_with_http_info(catalog_item_delete_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -557,16 +587,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_item_delete_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_item_delete_job_create_query' when calling CatalogsApi.bulk_delete_catalog_items"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_delete_job'] && !opts[:'fields_catalog_item_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_delete_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-item-bulk-delete-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-item-bulk-delete-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_item_bulk_delete_job'], :csv) if !opts[:'fields_catalog_item_bulk_delete_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -611,9 +646,10 @@ module KlaviyoAPI
     alias create_catalog_item_bulk_delete_job_with_http_info bulk_delete_catalog_items_with_http_info
 
     # Bulk Delete Catalog Variants
-    # Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_catalog_variants.json)
     # @param catalog_variant_delete_job_create_query [CatalogVariantDeleteJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_delete_catalog_variants(catalog_variant_delete_job_create_query, opts = {})
       data, _status_code, _headers = bulk_delete_catalog_variants_with_http_info(catalog_variant_delete_job_create_query, opts)
@@ -627,9 +663,10 @@ module KlaviyoAPI
     alias create_catalog_variant_bulk_delete_job bulk_delete_catalog_variants
 
     # Bulk Delete Catalog Variants
-    # Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog variant bulk delete job to delete a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_delete_catalog_variants.json)
     # @param catalog_variant_delete_job_create_query [CatalogVariantDeleteJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_delete_catalog_variants_with_http_info(catalog_variant_delete_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -639,16 +676,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_variant_delete_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_variant_delete_job_create_query' when calling CatalogsApi.bulk_delete_catalog_variants"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_delete_job'] && !opts[:'fields_catalog_variant_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_delete_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-variant-bulk-delete-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-variant-bulk-delete-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_variant_bulk_delete_job'], :csv) if !opts[:'fields_catalog_variant_bulk_delete_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -693,9 +735,10 @@ module KlaviyoAPI
     alias create_catalog_variant_bulk_delete_job_with_http_info bulk_delete_catalog_variants_with_http_info
 
     # Bulk Update Catalog Categories
-    # Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_update_catalog_categories.json)
     # @param catalog_category_update_job_create_query [CatalogCategoryUpdateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_update_catalog_categories(catalog_category_update_job_create_query, opts = {})
       data, _status_code, _headers = bulk_update_catalog_categories_with_http_info(catalog_category_update_job_create_query, opts)
@@ -709,9 +752,10 @@ module KlaviyoAPI
     alias create_catalog_category_bulk_update_job bulk_update_catalog_categories
 
     # Bulk Update Catalog Categories
-    # Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog category bulk update job to update a batch of catalog categories.  Accepts up to 100 catalog categories per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_update_catalog_categories.json)
     # @param catalog_category_update_job_create_query [CatalogCategoryUpdateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_update_catalog_categories_with_http_info(catalog_category_update_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -721,16 +765,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_category_update_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_category_update_job_create_query' when calling CatalogsApi.bulk_update_catalog_categories"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_update_job'] && !opts[:'fields_catalog_category_bulk_update_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_update_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-category-bulk-update-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-category-bulk-update-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_category_bulk_update_job'], :csv) if !opts[:'fields_catalog_category_bulk_update_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -775,9 +824,10 @@ module KlaviyoAPI
     alias create_catalog_category_bulk_update_job_with_http_info bulk_update_catalog_categories_with_http_info
 
     # Bulk Update Catalog Items
-    # Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_update_catalog_items.json)
     # @param catalog_item_update_job_create_query [CatalogItemUpdateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_update_catalog_items(catalog_item_update_job_create_query, opts = {})
       data, _status_code, _headers = bulk_update_catalog_items_with_http_info(catalog_item_update_job_create_query, opts)
@@ -791,9 +841,10 @@ module KlaviyoAPI
     alias create_catalog_item_bulk_update_job bulk_update_catalog_items
 
     # Bulk Update Catalog Items
-    # Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog item bulk update job to update a batch of catalog items.  Accepts up to 100 catalog items per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_update_catalog_items.json)
     # @param catalog_item_update_job_create_query [CatalogItemUpdateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_update_catalog_items_with_http_info(catalog_item_update_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -803,16 +854,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_item_update_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_item_update_job_create_query' when calling CatalogsApi.bulk_update_catalog_items"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_update_job'] && !opts[:'fields_catalog_item_bulk_update_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_update_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-item-bulk-update-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-item-bulk-update-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_item_bulk_update_job'], :csv) if !opts[:'fields_catalog_item_bulk_update_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -857,9 +913,10 @@ module KlaviyoAPI
     alias create_catalog_item_bulk_update_job_with_http_info bulk_update_catalog_items_with_http_info
 
     # Bulk Update Catalog Variants
-    # Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_update_catalog_variants.json)
     # @param catalog_variant_update_job_create_query [CatalogVariantUpdateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def bulk_update_catalog_variants(catalog_variant_update_job_create_query, opts = {})
       data, _status_code, _headers = bulk_update_catalog_variants_with_http_info(catalog_variant_update_job_create_query, opts)
@@ -873,9 +930,10 @@ module KlaviyoAPI
     alias create_catalog_variant_bulk_update_job bulk_update_catalog_variants
 
     # Bulk Update Catalog Variants
-    # Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a catalog variant bulk update job to update a batch of catalog variants.  Accepts up to 100 catalog variants per request. The maximum allowed payload size is 5MB. The maximum number of jobs in progress at one time is 500.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_update_catalog_variants.json)
     # @param catalog_variant_update_job_create_query [CatalogVariantUpdateJobCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def bulk_update_catalog_variants_with_http_info(catalog_variant_update_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -885,16 +943,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_variant_update_job_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_variant_update_job_create_query' when calling CatalogsApi.bulk_update_catalog_variants"
       end
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_update_job'] && !opts[:'fields_catalog_variant_bulk_update_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_update_job\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-variant-bulk-update-jobs'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-variant-bulk-update-job]'] = @api_client.build_collection_param(opts[:'fields_catalog_variant_bulk_update_job'], :csv) if !opts[:'fields_catalog_variant_bulk_update_job'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -939,7 +1002,7 @@ module KlaviyoAPI
     alias create_catalog_variant_bulk_update_job_with_http_info bulk_update_catalog_variants_with_http_info
 
     # Create Back In Stock Subscription
-    # Subscribe a profile to receive back in stock notifications. Check out [our Back in Stock API guide](https://developers.klaviyo.com/en/docs/how_to_set_up_custom_back_in_stock) for more details.  This endpoint is specifically designed to be called from server-side applications. To create subscriptions from client-side contexts, use [POST /client/back-in-stock-subscriptions](https://developers.klaviyo.com/en/reference/create_client_back_in_stock_subscription).<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:write` `profiles:write`
+    # Subscribe a profile to receive back in stock notifications. Check out [our Back in Stock API guide](https://developers.klaviyo.com/en/docs/how_to_set_up_custom_back_in_stock) for more details.  This endpoint is specifically designed to be called from server-side applications. To create subscriptions from client-side contexts, use [POST /client/back-in-stock-subscriptions](https://developers.klaviyo.com/en/reference/create_client_back_in_stock_subscription).<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:write` `profiles:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_back_in_stock_subscription.json)
     # @param server_bis_subscription_create_query [ServerBISSubscriptionCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -949,7 +1012,7 @@ module KlaviyoAPI
     end
 
     # Create Back In Stock Subscription
-    # Subscribe a profile to receive back in stock notifications. Check out [our Back in Stock API guide](https://developers.klaviyo.com/en/docs/how_to_set_up_custom_back_in_stock) for more details.  This endpoint is specifically designed to be called from server-side applications. To create subscriptions from client-side contexts, use [POST /client/back-in-stock-subscriptions](https://developers.klaviyo.com/en/reference/create_client_back_in_stock_subscription).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60; &#x60;profiles:write&#x60;
+    # Subscribe a profile to receive back in stock notifications. Check out [our Back in Stock API guide](https://developers.klaviyo.com/en/docs/how_to_set_up_custom_back_in_stock) for more details.  This endpoint is specifically designed to be called from server-side applications. To create subscriptions from client-side contexts, use [POST /client/back-in-stock-subscriptions](https://developers.klaviyo.com/en/reference/create_client_back_in_stock_subscription).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60; &#x60;profiles:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_back_in_stock_subscription.json)
     # @param server_bis_subscription_create_query [ServerBISSubscriptionCreateQuery] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -970,7 +1033,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1009,9 +1072,10 @@ module KlaviyoAPI
     end
 
     # Create Catalog Category
-    # Create a new catalog category.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a new catalog category.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_catalog_category.json)
     # @param catalog_category_create_query [CatalogCategoryCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_catalog_category(catalog_category_create_query, opts = {})
       data, _status_code, _headers = create_catalog_category_with_http_info(catalog_category_create_query, opts)
@@ -1019,9 +1083,10 @@ module KlaviyoAPI
     end
 
     # Create Catalog Category
-    # Create a new catalog category.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a new catalog category.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_catalog_category.json)
     # @param catalog_category_create_query [CatalogCategoryCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_catalog_category_with_http_info(catalog_category_create_query, opts = {})
       if @api_client.config.debugging
@@ -1031,16 +1096,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_category_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_category_create_query' when calling CatalogsApi.create_catalog_category"
       end
+      allowable_values = ["external_id", "id", "name", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_category'] && !opts[:'fields_catalog_category'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_category\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-categories'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-category]'] = @api_client.build_collection_param(opts[:'fields_catalog_category'], :csv) if !opts[:'fields_catalog_category'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1079,9 +1149,10 @@ module KlaviyoAPI
     end
 
     # Create Catalog Item
-    # Create a new catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a new catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_catalog_item.json)
     # @param catalog_item_create_query [CatalogItemCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_catalog_item(catalog_item_create_query, opts = {})
       data, _status_code, _headers = create_catalog_item_with_http_info(catalog_item_create_query, opts)
@@ -1089,9 +1160,10 @@ module KlaviyoAPI
     end
 
     # Create Catalog Item
-    # Create a new catalog item.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a new catalog item.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_catalog_item.json)
     # @param catalog_item_create_query [CatalogItemCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_catalog_item_with_http_info(catalog_item_create_query, opts = {})
       if @api_client.config.debugging
@@ -1101,16 +1173,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_item_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_item_create_query' when calling CatalogsApi.create_catalog_item"
       end
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_item'] && !opts[:'fields_catalog_item'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_item\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-items'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-item]'] = @api_client.build_collection_param(opts[:'fields_catalog_item'], :csv) if !opts[:'fields_catalog_item'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1149,9 +1226,10 @@ module KlaviyoAPI
     end
 
     # Create Catalog Variant
-    # Create a new variant for a related catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Create a new variant for a related catalog item.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_catalog_variant.json)
     # @param catalog_variant_create_query [CatalogVariantCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_catalog_variant(catalog_variant_create_query, opts = {})
       data, _status_code, _headers = create_catalog_variant_with_http_info(catalog_variant_create_query, opts)
@@ -1159,9 +1237,10 @@ module KlaviyoAPI
     end
 
     # Create Catalog Variant
-    # Create a new variant for a related catalog item.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Create a new variant for a related catalog item.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_catalog_variant.json)
     # @param catalog_variant_create_query [CatalogVariantCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_catalog_variant_with_http_info(catalog_variant_create_query, opts = {})
       if @api_client.config.debugging
@@ -1171,16 +1250,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_variant_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_variant_create_query' when calling CatalogsApi.create_catalog_variant"
       end
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-variants'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-variant]'] = @api_client.build_collection_param(opts[:'fields_catalog_variant'], :csv) if !opts[:'fields_catalog_variant'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1219,7 +1303,7 @@ module KlaviyoAPI
     end
 
     # Delete Catalog Category
-    # Delete a catalog category using the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Delete a catalog category using the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -1229,7 +1313,7 @@ module KlaviyoAPI
     end
 
     # Delete Catalog Category
-    # Delete a catalog category using the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Delete a catalog category using the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -1250,7 +1334,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1284,7 +1368,7 @@ module KlaviyoAPI
     end
 
     # Delete Catalog Item
-    # Delete a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Delete a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -1294,7 +1378,7 @@ module KlaviyoAPI
     end
 
     # Delete Catalog Item
-    # Delete a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Delete a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -1315,7 +1399,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1349,7 +1433,7 @@ module KlaviyoAPI
     end
 
     # Delete Catalog Variant
-    # Delete a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Delete a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_catalog_variant.json)
     # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -1359,7 +1443,7 @@ module KlaviyoAPI
     end
 
     # Delete Catalog Variant
-    # Delete a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Delete a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_catalog_variant.json)
     # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -1380,7 +1464,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1414,12 +1498,12 @@ module KlaviyoAPI
     end
 
     # Get Bulk Create Catalog Items Job
-    # Get a catalog item bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog item bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_catalog_items_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_create_catalog_items_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_create_catalog_items_job_with_http_info(job_id, opts)
@@ -1433,12 +1517,12 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_create_job get_bulk_create_catalog_items_job
 
     # Get Bulk Create Catalog Items Job
-    # Get a catalog item bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog item bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_catalog_items_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_catalog_items_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -1448,11 +1532,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_create_catalog_items_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_create_job'] && !opts[:'fields_catalog_item_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_create_job\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item'] && !opts[:'fields_catalog_item'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item\", must include one of #{allowable_values}"
       end
@@ -1472,7 +1556,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1512,11 +1596,11 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_create_job_with_http_info get_bulk_create_catalog_items_job_with_http_info
 
     # Get Bulk Create Catalog Items Jobs
-    # Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_catalog_items_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_create_catalog_items_jobs(opts = {})
       data, _status_code, _headers = get_bulk_create_catalog_items_jobs_with_http_info(opts)
@@ -1530,17 +1614,17 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_create_jobs get_bulk_create_catalog_items_jobs
 
     # Get Bulk Create Catalog Items Jobs
-    # Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog item bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_catalog_items_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_item_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_catalog_items_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_create_catalog_items_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_create_job'] && !opts[:'fields_catalog_item_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_create_job\", must include one of #{allowable_values}"
       end
@@ -1556,7 +1640,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1596,12 +1680,12 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_create_jobs_with_http_info get_bulk_create_catalog_items_jobs_with_http_info
 
     # Get Bulk Create Categories Job
-    # Get a catalog category bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog category bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_categories_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_create_categories_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_create_categories_job_with_http_info(job_id, opts)
@@ -1615,12 +1699,12 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_create_job get_bulk_create_categories_job
 
     # Get Bulk Create Categories Job
-    # Get a catalog category bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog category bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_categories_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_categories_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -1630,11 +1714,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_create_categories_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_create_job'] && !opts[:'fields_catalog_category_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_create_job\", must include one of #{allowable_values}"
       end
-      allowable_values = ["external_id", "name", "updated"]
+      allowable_values = ["external_id", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category'] && !opts[:'fields_catalog_category'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category\", must include one of #{allowable_values}"
       end
@@ -1654,7 +1738,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1694,11 +1778,11 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_create_job_with_http_info get_bulk_create_categories_job_with_http_info
 
     # Get Bulk Create Categories Jobs
-    # Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_categories_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_create_categories_jobs(opts = {})
       data, _status_code, _headers = get_bulk_create_categories_jobs_with_http_info(opts)
@@ -1712,17 +1796,17 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_create_jobs get_bulk_create_categories_jobs
 
     # Get Bulk Create Categories Jobs
-    # Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog category bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_categories_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_category_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_categories_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_create_categories_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_create_job'] && !opts[:'fields_catalog_category_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_create_job\", must include one of #{allowable_values}"
       end
@@ -1738,7 +1822,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1778,12 +1862,12 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_create_jobs_with_http_info get_bulk_create_categories_jobs_with_http_info
 
     # Get Bulk Create Variants Job
-    # Get a catalog variant bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog variant bulk create job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_variants_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_create_variants_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_create_variants_job_with_http_info(job_id, opts)
@@ -1797,12 +1881,12 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_create_job get_bulk_create_variants_job
 
     # Get Bulk Create Variants Job
-    # Get a catalog variant bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog variant bulk create job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_variants_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_variants_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -1812,11 +1896,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_create_variants_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_create_job'] && !opts[:'fields_catalog_variant_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_create_job\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
@@ -1836,7 +1920,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1876,11 +1960,11 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_create_job_with_http_info get_bulk_create_variants_job_with_http_info
 
     # Get Bulk Create Variants Jobs
-    # Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_variants_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_create_variants_jobs(opts = {})
       data, _status_code, _headers = get_bulk_create_variants_jobs_with_http_info(opts)
@@ -1894,17 +1978,17 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_create_jobs get_bulk_create_variants_jobs
 
     # Get Bulk Create Variants Jobs
-    # Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog variant bulk create jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_create_variants_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_create_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_create_variants_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_create_variants_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_create_job'] && !opts[:'fields_catalog_variant_bulk_create_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_create_job\", must include one of #{allowable_values}"
       end
@@ -1920,7 +2004,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1960,10 +2044,10 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_create_jobs_with_http_info get_bulk_create_variants_jobs_with_http_info
 
     # Get Bulk Delete Catalog Items Job
-    # Get a catalog item bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog item bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_catalog_items_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_bulk_delete_catalog_items_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_delete_catalog_items_job_with_http_info(job_id, opts)
@@ -1977,10 +2061,10 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_delete_job get_bulk_delete_catalog_items_job
 
     # Get Bulk Delete Catalog Items Job
-    # Get a catalog item bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog item bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_catalog_items_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_delete_catalog_items_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -1990,7 +2074,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_delete_catalog_items_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_delete_job'] && !opts[:'fields_catalog_item_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -2004,7 +2088,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2044,11 +2128,11 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_delete_job_with_http_info get_bulk_delete_catalog_items_job_with_http_info
 
     # Get Bulk Delete Catalog Items Jobs
-    # Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_catalog_items_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_delete_catalog_items_jobs(opts = {})
       data, _status_code, _headers = get_bulk_delete_catalog_items_jobs_with_http_info(opts)
@@ -2062,17 +2146,17 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_delete_jobs get_bulk_delete_catalog_items_jobs
 
     # Get Bulk Delete Catalog Items Jobs
-    # Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog item bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_catalog_items_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_item_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_delete_catalog_items_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_delete_catalog_items_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_delete_job'] && !opts[:'fields_catalog_item_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -2088,7 +2172,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2128,10 +2212,10 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_delete_jobs_with_http_info get_bulk_delete_catalog_items_jobs_with_http_info
 
     # Get Bulk Delete Categories Job
-    # Get a catalog category bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog category bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_categories_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_bulk_delete_categories_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_delete_categories_job_with_http_info(job_id, opts)
@@ -2145,10 +2229,10 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_delete_job get_bulk_delete_categories_job
 
     # Get Bulk Delete Categories Job
-    # Get a catalog category bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog category bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_categories_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_delete_categories_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -2158,7 +2242,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_delete_categories_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_delete_job'] && !opts[:'fields_catalog_category_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -2172,7 +2256,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2212,11 +2296,11 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_delete_job_with_http_info get_bulk_delete_categories_job_with_http_info
 
     # Get Bulk Delete Categories Jobs
-    # Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_categories_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_delete_categories_jobs(opts = {})
       data, _status_code, _headers = get_bulk_delete_categories_jobs_with_http_info(opts)
@@ -2230,17 +2314,17 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_delete_jobs get_bulk_delete_categories_jobs
 
     # Get Bulk Delete Categories Jobs
-    # Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog category bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_categories_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_category_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_delete_categories_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_delete_categories_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_delete_job'] && !opts[:'fields_catalog_category_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -2256,7 +2340,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2296,10 +2380,10 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_delete_jobs_with_http_info get_bulk_delete_categories_jobs_with_http_info
 
     # Get Bulk Delete Variants Job
-    # Get a catalog variant bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog variant bulk delete job with the given job ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_variants_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_bulk_delete_variants_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_delete_variants_job_with_http_info(job_id, opts)
@@ -2313,10 +2397,10 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_delete_job get_bulk_delete_variants_job
 
     # Get Bulk Delete Variants Job
-    # Get a catalog variant bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog variant bulk delete job with the given job ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_variants_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_delete_variants_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -2326,7 +2410,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_delete_variants_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_delete_job'] && !opts[:'fields_catalog_variant_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -2340,7 +2424,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2380,11 +2464,11 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_delete_job_with_http_info get_bulk_delete_variants_job_with_http_info
 
     # Get Bulk Delete Variants Jobs
-    # Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_variants_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_delete_variants_jobs(opts = {})
       data, _status_code, _headers = get_bulk_delete_variants_jobs_with_http_info(opts)
@@ -2398,17 +2482,17 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_delete_jobs get_bulk_delete_variants_jobs
 
     # Get Bulk Delete Variants Jobs
-    # Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog variant bulk delete jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_delete_variants_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_delete_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_delete_variants_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_delete_variants_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_delete_job'] && !opts[:'fields_catalog_variant_bulk_delete_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_delete_job\", must include one of #{allowable_values}"
       end
@@ -2424,7 +2508,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2464,12 +2548,12 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_delete_jobs_with_http_info get_bulk_delete_variants_jobs_with_http_info
 
     # Get Bulk Update Catalog Items Job
-    # Get a catalog item bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog item bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `items`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_catalog_items_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_update_catalog_items_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_update_catalog_items_job_with_http_info(job_id, opts)
@@ -2483,12 +2567,12 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_update_job get_bulk_update_catalog_items_job
 
     # Get Bulk Update Catalog Items Job
-    # Get a catalog item bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog item bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;items&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_catalog_items_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_update_catalog_items_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -2498,11 +2582,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_update_catalog_items_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_update_job'] && !opts[:'fields_catalog_item_bulk_update_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_update_job\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item'] && !opts[:'fields_catalog_item'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item\", must include one of #{allowable_values}"
       end
@@ -2522,7 +2606,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2562,11 +2646,11 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_update_job_with_http_info get_bulk_update_catalog_items_job_with_http_info
 
     # Get Bulk Update Catalog Items Jobs
-    # Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_catalog_items_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_update_catalog_items_jobs(opts = {})
       data, _status_code, _headers = get_bulk_update_catalog_items_jobs_with_http_info(opts)
@@ -2580,17 +2664,17 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_update_jobs get_bulk_update_catalog_items_jobs
 
     # Get Bulk Update Catalog Items Jobs
-    # Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog item bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_catalog_items_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_item_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_update_catalog_items_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_update_catalog_items_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item_bulk_update_job'] && !opts[:'fields_catalog_item_bulk_update_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item_bulk_update_job\", must include one of #{allowable_values}"
       end
@@ -2606,7 +2690,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2646,12 +2730,12 @@ module KlaviyoAPI
     alias get_catalog_item_bulk_update_jobs_with_http_info get_bulk_update_catalog_items_jobs_with_http_info
 
     # Get Bulk Update Categories Job
-    # Get a catalog category bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog category bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `categories`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_categories_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_update_categories_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_update_categories_job_with_http_info(job_id, opts)
@@ -2665,12 +2749,12 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_update_job get_bulk_update_categories_job
 
     # Get Bulk Update Categories Job
-    # Get a catalog category bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog category bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;categories&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_categories_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_update_categories_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -2680,11 +2764,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_update_categories_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_update_job'] && !opts[:'fields_catalog_category_bulk_update_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_update_job\", must include one of #{allowable_values}"
       end
-      allowable_values = ["external_id", "name", "updated"]
+      allowable_values = ["external_id", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category'] && !opts[:'fields_catalog_category'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category\", must include one of #{allowable_values}"
       end
@@ -2704,7 +2788,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2744,11 +2828,11 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_update_job_with_http_info get_bulk_update_categories_job_with_http_info
 
     # Get Bulk Update Categories Jobs
-    # Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_categories_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_update_categories_jobs(opts = {})
       data, _status_code, _headers = get_bulk_update_categories_jobs_with_http_info(opts)
@@ -2762,17 +2846,17 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_update_jobs get_bulk_update_categories_jobs
 
     # Get Bulk Update Categories Jobs
-    # Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog category bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_categories_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_category_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_update_categories_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_update_categories_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category_bulk_update_job'] && !opts[:'fields_catalog_category_bulk_update_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category_bulk_update_job\", must include one of #{allowable_values}"
       end
@@ -2788,7 +2872,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2828,12 +2912,12 @@ module KlaviyoAPI
     alias get_catalog_category_bulk_update_jobs_with_http_info get_bulk_update_categories_jobs_with_http_info
 
     # Get Bulk Update Variants Job
-    # Get a catalog variate bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog variate bulk update job with the given job ID.  An `include` parameter can be provided to get the following related resource data: `variants`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_variants_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_bulk_update_variants_job(job_id, opts = {})
       data, _status_code, _headers = get_bulk_update_variants_job_with_http_info(job_id, opts)
@@ -2847,12 +2931,12 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_update_job get_bulk_update_variants_job
 
     # Get Bulk Update Variants Job
-    # Get a catalog variate bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog variate bulk update job with the given job ID.  An &#x60;include&#x60; parameter can be provided to get the following related resource data: &#x60;variants&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_variants_job.json)
     # @param job_id [String] ID of the job to retrieve.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_update_variants_job_with_http_info(job_id, opts = {})
       if @api_client.config.debugging
@@ -2862,11 +2946,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && job_id.nil?
         fail ArgumentError, "Missing the required parameter 'job_id' when calling CatalogsApi.get_bulk_update_variants_job"
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_update_job'] && !opts[:'fields_catalog_variant_bulk_update_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_update_job\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
@@ -2886,7 +2970,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2926,11 +3010,11 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_update_job_with_http_info get_bulk_update_variants_job_with_http_info
 
     # Get Bulk Update Variants Jobs
-    # Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_variants_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_bulk_update_variants_jobs(opts = {})
       data, _status_code, _headers = get_bulk_update_variants_jobs_with_http_info(opts)
@@ -2944,17 +3028,17 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_update_jobs get_bulk_update_variants_jobs
 
     # Get Bulk Update Variants Jobs
-    # Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog variant bulk update jobs.  Returns a maximum of 100 jobs per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_bulk_update_variants_jobs.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_catalog_variant_bulk_update_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_bulk_update_variants_jobs_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_bulk_update_variants_jobs ...'
       end
-      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "status", "total_count"]
+      allowable_values = ["completed_at", "completed_count", "created_at", "errors", "expires_at", "failed_count", "id", "status", "total_count"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant_bulk_update_job'] && !opts[:'fields_catalog_variant_bulk_update_job'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant_bulk_update_job\", must include one of #{allowable_values}"
       end
@@ -2970,7 +3054,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3010,12 +3094,13 @@ module KlaviyoAPI
     alias get_catalog_variant_bulk_update_jobs_with_http_info get_bulk_update_variants_jobs_with_http_info
 
     # Get Catalog Categories
-    # Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_categories.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_catalog_categories(opts = {})
       data, _status_code, _headers = get_catalog_categories_with_http_info(opts)
@@ -3023,21 +3108,30 @@ module KlaviyoAPI
     end
 
     # Get Catalog Categories
-    # Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog type is &#x60;$default&#x60;.  Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog categories in an account.  Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog type is &#x60;$default&#x60;.  Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_categories.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_catalog_categories_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_catalog_categories ...'
       end
-      allowable_values = ["external_id", "name", "updated"]
+      allowable_values = ["external_id", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category'] && !opts[:'fields_catalog_category'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_catalog_categories, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_catalog_categories, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3050,12 +3144,13 @@ module KlaviyoAPI
       query_params[:'fields[catalog-category]'] = @api_client.build_collection_param(opts[:'fields_catalog_category'], :csv) if !opts[:'fields_catalog_category'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3089,10 +3184,10 @@ module KlaviyoAPI
     end
 
     # Get Catalog Category
-    # Get a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_catalog_category(id, opts = {})
       data, _status_code, _headers = get_catalog_category_with_http_info(id, opts)
@@ -3100,10 +3195,10 @@ module KlaviyoAPI
     end
 
     # Get Catalog Category
-    # Get a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_catalog_category_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -3113,7 +3208,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.get_catalog_category"
       end
-      allowable_values = ["external_id", "name", "updated"]
+      allowable_values = ["external_id", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category'] && !opts[:'fields_catalog_category'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category\", must include one of #{allowable_values}"
       end
@@ -3127,7 +3222,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3161,12 +3256,12 @@ module KlaviyoAPI
     end
 
     # Get Catalog Item
-    # Get a specific catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a specific catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_catalog_item(id, opts = {})
       data, _status_code, _headers = get_catalog_item_with_http_info(id, opts)
@@ -3174,12 +3269,12 @@ module KlaviyoAPI
     end
 
     # Get Catalog Item
-    # Get a specific catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a specific catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_catalog_item_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -3189,11 +3284,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.get_catalog_item"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item'] && !opts[:'fields_catalog_item'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
@@ -3213,7 +3308,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3247,14 +3342,15 @@ module KlaviyoAPI
     end
 
     # Get Catalog Items
-    # Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_items.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_catalog_items(opts = {})
       data, _status_code, _headers = get_catalog_items_with_http_info(opts)
@@ -3262,24 +3358,25 @@ module KlaviyoAPI
     end
 
     # Get Catalog Items
-    # Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog type is &#x60;$default&#x60;.  Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog items in an account.  Catalog items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog type is &#x60;$default&#x60;.  Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_items.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_catalog_items_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_catalog_items ...'
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item'] && !opts[:'fields_catalog_item'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
@@ -3287,6 +3384,14 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_catalog_items, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_catalog_items, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3301,12 +3406,13 @@ module KlaviyoAPI
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3340,10 +3446,10 @@ module KlaviyoAPI
     end
 
     # Get Catalog Variant
-    # Get a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_variant.json)
     # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_catalog_variant(id, opts = {})
       data, _status_code, _headers = get_catalog_variant_with_http_info(id, opts)
@@ -3351,10 +3457,10 @@ module KlaviyoAPI
     end
 
     # Get Catalog Variant
-    # Get a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_variant.json)
     # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_catalog_variant_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -3364,7 +3470,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CatalogsApi.get_catalog_variant"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
@@ -3378,7 +3484,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3412,12 +3518,13 @@ module KlaviyoAPI
     end
 
     # Get Catalog Variants
-    # Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Currently, the only supported integration type is `$custom`, and the only supported catalog type is `$default`.  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_variants.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_catalog_variants(opts = {})
       data, _status_code, _headers = get_catalog_variants_with_http_info(opts)
@@ -3425,21 +3532,30 @@ module KlaviyoAPI
     end
 
     # Get Catalog Variants
-    # Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog type is &#x60;$default&#x60;.  Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all variants in an account.  Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog type is &#x60;$default&#x60;.  Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_catalog_variants.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_catalog_variants_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_catalog_variants ...'
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_catalog_variants, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_catalog_variants, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3452,12 +3568,13 @@ module KlaviyoAPI
       query_params[:'fields[catalog-variant]'] = @api_client.build_collection_param(opts[:'fields_catalog_variant'], :csv) if !opts[:'fields_catalog_variant'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3491,13 +3608,14 @@ module KlaviyoAPI
     end
 
     # Get Categories for Catalog Item
-    # Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_categories_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_categories_for_catalog_item(id, opts = {})
       data, _status_code, _headers = get_categories_for_catalog_item_with_http_info(id, opts)
@@ -3508,22 +3626,31 @@ module KlaviyoAPI
     alias get_catalog_item_categories get_categories_for_catalog_item
 
     # Get Categories for Catalog Item
-    # Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog categories that an item with the given item ID is in.  Catalog categories can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_categories_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_categories_for_catalog_item_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_categories_for_catalog_item ...'
       end
-      allowable_values = ["external_id", "name", "updated"]
+      allowable_values = ["external_id", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_category'] && !opts[:'fields_catalog_category'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_category\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_categories_for_catalog_item, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_categories_for_catalog_item, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3536,12 +3663,13 @@ module KlaviyoAPI
       query_params[:'fields[catalog-category]'] = @api_client.build_collection_param(opts[:'fields_catalog_category'], :csv) if !opts[:'fields_catalog_category'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3578,12 +3706,13 @@ module KlaviyoAPI
     alias get_catalog_item_categories_with_http_info get_categories_for_catalog_item_with_http_info
 
     # Get Category IDs for Catalog Item
-    # Get all catalog categories that a particular item is in. Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all catalog categories that a particular item is in. Returns a maximum of 100 categories per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_category_ids_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_category_ids_for_catalog_item(id, opts = {})
       data, _status_code, _headers = get_category_ids_for_catalog_item_with_http_info(id, opts)
@@ -3594,17 +3723,26 @@ module KlaviyoAPI
     alias get_catalog_item_relationships_categories get_category_ids_for_catalog_item
 
     # Get Category IDs for Catalog Item
-    # Get all catalog categories that a particular item is in. Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all catalog categories that a particular item is in. Returns a maximum of 100 categories per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_category_ids_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_category_ids_for_catalog_item_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_category_ids_for_catalog_item ...'
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_category_ids_for_catalog_item, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_category_ids_for_catalog_item, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3616,12 +3754,13 @@ module KlaviyoAPI
       query_params = opts[:query_params] || {}
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3658,12 +3797,13 @@ module KlaviyoAPI
     alias get_catalog_item_relationships_categories_with_http_info get_category_ids_for_catalog_item_with_http_info
 
     # Get Item IDs for Catalog Category
-    # Get all items in the given category ID. Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all items in the given category ID. Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_item_ids_for_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_item_ids_for_catalog_category(id, opts = {})
       data, _status_code, _headers = get_item_ids_for_catalog_category_with_http_info(id, opts)
@@ -3674,17 +3814,26 @@ module KlaviyoAPI
     alias get_catalog_category_relationships_items get_item_ids_for_catalog_category
 
     # Get Item IDs for Catalog Category
-    # Get all items in the given category ID. Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all items in the given category ID. Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_item_ids_for_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_item_ids_for_catalog_category_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_item_ids_for_catalog_category ...'
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_item_ids_for_catalog_category, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_item_ids_for_catalog_category, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3696,12 +3845,13 @@ module KlaviyoAPI
       query_params = opts[:query_params] || {}
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3738,15 +3888,16 @@ module KlaviyoAPI
     alias get_catalog_category_relationships_items_with_http_info get_item_ids_for_catalog_category_with_http_info
 
     # Get Items for Catalog Category
-    # Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 items per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_items_for_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_items_for_catalog_category(id, opts = {})
       data, _status_code, _headers = get_items_for_catalog_category_with_http_info(id, opts)
@@ -3757,25 +3908,26 @@ module KlaviyoAPI
     alias get_catalog_category_items get_items_for_catalog_category
 
     # Get Items for Catalog Category
-    # Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all items in a category with the given category ID.  Items can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 items per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_items_for_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;category.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_items_for_catalog_category_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_items_for_catalog_category ...'
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_item'] && !opts[:'fields_catalog_item'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_item\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
@@ -3783,6 +3935,14 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_items_for_catalog_category, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_items_for_catalog_category, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3797,12 +3957,13 @@ module KlaviyoAPI
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3839,12 +4000,13 @@ module KlaviyoAPI
     alias get_catalog_category_items_with_http_info get_items_for_catalog_category_with_http_info
 
     # Get Variant IDs for Catalog Item
-    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variant_ids_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_variant_ids_for_catalog_item(id, opts = {})
       data, _status_code, _headers = get_variant_ids_for_catalog_item_with_http_info(id, opts)
@@ -3855,17 +4017,26 @@ module KlaviyoAPI
     alias get_catalog_item_relationships_variants get_variant_ids_for_catalog_item
 
     # Get Variant IDs for Catalog Item
-    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variant_ids_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_variant_ids_for_catalog_item_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_variant_ids_for_catalog_item ...'
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_variant_ids_for_catalog_item, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_variant_ids_for_catalog_item, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3877,12 +4048,13 @@ module KlaviyoAPI
       query_params = opts[:query_params] || {}
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -3919,13 +4091,14 @@ module KlaviyoAPI
     alias get_catalog_item_relationships_variants_with_http_info get_variant_ids_for_catalog_item_with_http_info
 
     # Get Variants for Catalog Item
-    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`
+    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: `created`  Returns a maximum of 100 variants per request.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `catalogs:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variants_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_variants_for_catalog_item(id, opts = {})
       data, _status_code, _headers = get_variants_for_catalog_item_with_http_info(id, opts)
@@ -3936,22 +4109,31 @@ module KlaviyoAPI
     alias get_catalog_item_variants get_variants_for_catalog_item
 
     # Get Variants for Catalog Item
-    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;
+    # Get all variants related to the given item ID.  Variants can be sorted by the following fields, in ascending and descending order: &#x60;created&#x60;  Returns a maximum of 100 variants per request.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;catalogs:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variants_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;ids&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;item.id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;sku&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;title&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;published&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_variants_for_catalog_item_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CatalogsApi.get_variants_for_catalog_item ...'
       end
-      allowable_values = ["created", "custom_metadata", "description", "external_id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_variants_for_catalog_item, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CatalogsApi.get_variants_for_catalog_item, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -3964,12 +4146,13 @@ module KlaviyoAPI
       query_params[:'fields[catalog-variant]'] = @api_client.build_collection_param(opts[:'fields_catalog_variant'], :csv) if !opts[:'fields_catalog_variant'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -4006,7 +4189,7 @@ module KlaviyoAPI
     alias get_catalog_item_variants_with_http_info get_variants_for_catalog_item_with_http_info
 
     # Remove Categories from Catalog Item
-    # Delete catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Delete catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_categories_from_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
@@ -4020,7 +4203,7 @@ module KlaviyoAPI
     alias delete_catalog_item_relationships_categories remove_categories_from_catalog_item
 
     # Remove Categories from Catalog Item
-    # Delete catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Delete catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_categories_from_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
@@ -4046,7 +4229,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -4088,7 +4271,7 @@ module KlaviyoAPI
     alias delete_catalog_item_relationships_categories_with_http_info remove_categories_from_catalog_item_with_http_info
 
     # Remove Items from Catalog Category
-    # Delete item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Delete item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_items_from_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
@@ -4102,7 +4285,7 @@ module KlaviyoAPI
     alias delete_catalog_category_relationships_items remove_items_from_catalog_category
 
     # Remove Items from Catalog Category
-    # Delete item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Delete item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_items_from_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
@@ -4128,7 +4311,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -4170,10 +4353,11 @@ module KlaviyoAPI
     alias delete_catalog_category_relationships_items_with_http_info remove_items_from_catalog_category_with_http_info
 
     # Update Catalog Category
-    # Update a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Update a catalog category with the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_update_query [CatalogCategoryUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_catalog_category(id, catalog_category_update_query, opts = {})
       data, _status_code, _headers = update_catalog_category_with_http_info(id, catalog_category_update_query, opts)
@@ -4181,10 +4365,11 @@ module KlaviyoAPI
     end
 
     # Update Catalog Category
-    # Update a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Update a catalog category with the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_update_query [CatalogCategoryUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_category For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_catalog_category_with_http_info(id, catalog_category_update_query, opts = {})
       if @api_client.config.debugging
@@ -4198,16 +4383,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_category_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_category_update_query' when calling CatalogsApi.update_catalog_category"
       end
+      allowable_values = ["external_id", "id", "name", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_category'] && !opts[:'fields_catalog_category'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_category\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-categories/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-category]'] = @api_client.build_collection_param(opts[:'fields_catalog_category'], :csv) if !opts[:'fields_catalog_category'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -4246,10 +4436,11 @@ module KlaviyoAPI
     end
 
     # Update Catalog Item
-    # Update a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Update a catalog item with the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_update_query [CatalogItemUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_catalog_item(id, catalog_item_update_query, opts = {})
       data, _status_code, _headers = update_catalog_item_with_http_info(id, catalog_item_update_query, opts)
@@ -4257,10 +4448,11 @@ module KlaviyoAPI
     end
 
     # Update Catalog Item
-    # Update a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Update a catalog item with the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_update_query [CatalogItemUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_item For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_catalog_item_with_http_info(id, catalog_item_update_query, opts = {})
       if @api_client.config.debugging
@@ -4274,16 +4466,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_item_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_item_update_query' when calling CatalogsApi.update_catalog_item"
       end
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "price", "published", "title", "updated", "url"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_item'] && !opts[:'fields_catalog_item'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_item\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-items/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-item]'] = @api_client.build_collection_param(opts[:'fields_catalog_item'], :csv) if !opts[:'fields_catalog_item'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -4322,10 +4519,11 @@ module KlaviyoAPI
     end
 
     # Update Catalog Variant
-    # Update a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Update a catalog item variant with the given variant ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_catalog_variant.json)
     # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_variant_update_query [CatalogVariantUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_catalog_variant(id, catalog_variant_update_query, opts = {})
       data, _status_code, _headers = update_catalog_variant_with_http_info(id, catalog_variant_update_query, opts)
@@ -4333,10 +4531,11 @@ module KlaviyoAPI
     end
 
     # Update Catalog Variant
-    # Update a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Update a catalog item variant with the given variant ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_catalog_variant.json)
     # @param id [String] The catalog variant ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_variant_update_query [CatalogVariantUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_catalog_variant For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_catalog_variant_with_http_info(id, catalog_variant_update_query, opts = {})
       if @api_client.config.debugging
@@ -4350,16 +4549,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && catalog_variant_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'catalog_variant_update_query' when calling CatalogsApi.update_catalog_variant"
       end
+      allowable_values = ["created", "custom_metadata", "description", "external_id", "id", "image_full_url", "image_thumbnail_url", "images", "inventory_policy", "inventory_quantity", "price", "published", "sku", "title", "updated", "url"]
+      if @api_client.config.client_side_validation && opts[:'fields_catalog_variant'] && !opts[:'fields_catalog_variant'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_catalog_variant\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/catalog-variants/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[catalog-variant]'] = @api_client.build_collection_param(opts[:'fields_catalog_variant'], :csv) if !opts[:'fields_catalog_variant'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -4398,7 +4602,7 @@ module KlaviyoAPI
     end
 
     # Update Categories for Catalog Item
-    # Update catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Update catalog category relationships for the given item ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_categories_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
@@ -4412,7 +4616,7 @@ module KlaviyoAPI
     alias update_catalog_item_relationships_categories update_categories_for_catalog_item
 
     # Update Categories for Catalog Item
-    # Update catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Update catalog category relationships for the given item ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_categories_for_catalog_item.json)
     # @param id [String] The catalog item ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_item_category_op [CatalogItemCategoryOp] 
     # @param [Hash] opts the optional parameters
@@ -4438,7 +4642,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -4480,7 +4684,7 @@ module KlaviyoAPI
     alias update_catalog_item_relationships_categories_with_http_info update_categories_for_catalog_item_with_http_info
 
     # Update Items for Catalog Category
-    # Update item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`
+    # Update item relationships for the given category ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `catalogs:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_items_for_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
@@ -4494,7 +4698,7 @@ module KlaviyoAPI
     alias update_catalog_category_relationships_items update_items_for_catalog_category
 
     # Update Items for Catalog Category
-    # Update item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;
+    # Update item relationships for the given category ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;catalogs:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_items_for_catalog_category.json)
     # @param id [String] The catalog category ID is a compound ID (string), with format: &#x60;{integration}:::{catalog}:::{external_id}&#x60;. Currently, the only supported integration type is &#x60;$custom&#x60;, and the only supported catalog is &#x60;$default&#x60;.
     # @param catalog_category_item_op [CatalogCategoryItemOp] 
     # @param [Hash] opts the optional parameters
@@ -4520,7 +4724,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

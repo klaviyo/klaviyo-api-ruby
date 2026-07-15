@@ -65,7 +65,7 @@ module KlaviyoAPI
         :'type' => :'String',
         :'metric_id' => :'String',
         :'field' => :'String',
-        :'filter' => :'LowInventoryConditionFilter2'
+        :'filter' => :'MetricPropertyConditionFilter'
       }
     end
 

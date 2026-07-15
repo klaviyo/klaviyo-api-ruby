@@ -16,6 +16,8 @@ module KlaviyoAPI
   class AgeGateProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     attr_accessor :label
 
     attr_accessor :show_label
@@ -59,6 +61,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'label' => :'label',
         :'show_label' => :'show_label',
         :'placeholder' => :'placeholder',
@@ -79,6 +82,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'label' => :'String',
         :'show_label' => :'Boolean',
         :'placeholder' => :'String',
@@ -93,6 +97,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
         :'label',
         :'placeholder',
       ])
@@ -117,6 +122,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'label')
@@ -217,6 +226,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           label == o.label &&
           show_label == o.show_label &&
           placeholder == o.placeholder &&
@@ -236,7 +246,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, label, show_label, placeholder, error_messages, property_name, date_format, sms_country_code, required].hash
+      [display_device, classname, label, show_label, placeholder, error_messages, property_name, date_format, sms_country_code, required].hash
     end
 
     # Builds the object from hash

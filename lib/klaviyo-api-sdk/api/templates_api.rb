@@ -19,9 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Clone Template
-    # Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+    # Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_template.json)
     # @param template_clone_query [TemplateCloneQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def clone_template(template_clone_query, opts = {})
       data, _status_code, _headers = clone_template_with_http_info(template_clone_query, opts)
@@ -32,9 +33,10 @@ module KlaviyoAPI
     alias create_template_clone clone_template
 
     # Clone Template
-    # Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
+    # Create a clone of a template with the given template ID.  If there are 1,000 or more templates in an account, cloning will fail as there is a limit of 1,000 templates that can be created via the API.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_template.json)
     # @param template_clone_query [TemplateCloneQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def clone_template_with_http_info(template_clone_query, opts = {})
       if @api_client.config.debugging
@@ -44,16 +46,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && template_clone_query.nil?
         fail ArgumentError, "Missing the required parameter 'template_clone_query' when calling TemplatesApi.clone_template"
       end
+      allowable_values = ["amp", "created", "editor_type", "html", "id", "name", "text", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/template-clone'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[template]'] = @api_client.build_collection_param(opts[:'fields_template'], :csv) if !opts[:'fields_template'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -95,10 +102,11 @@ module KlaviyoAPI
     alias create_template_clone_with_http_info clone_template_with_http_info
 
     # Create Template
-    # Create a new HTML or drag-and-drop template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+    # Create a new HTML or drag-and-drop template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_template.json)
     # @param template_create_html_or_dnd_query [TemplateCreateHtmlOrDndQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_template(template_create_html_or_dnd_query, opts = {})
       data, _status_code, _headers = create_template_with_http_info(template_create_html_or_dnd_query, opts)
@@ -106,10 +114,11 @@ module KlaviyoAPI
     end
 
     # Create Template
-    # Create a new HTML or drag-and-drop template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
+    # Create a new HTML or drag-and-drop template.  If there are 1,000 or more templates in an account, creation will fail as there is a limit of 1,000 templates that can be created via the API.  Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_template.json)
     # @param template_create_html_or_dnd_query [TemplateCreateHtmlOrDndQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_template_with_http_info(template_create_html_or_dnd_query, opts = {})
       if @api_client.config.debugging
@@ -123,17 +132,22 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_template'] && !opts[:'additional_fields_template'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_template\", must include one of #{allowable_values}"
       end
+      allowable_values = ["amp", "created", "definition", "definition.body", "definition.body.id", "definition.body.properties", "definition.body.properties.css_class", "definition.body.properties.id", "definition.body.sections", "definition.body.styles", "definition.body.styles.background_color", "definition.body.styles.width", "definition.id", "definition.styles", "definition.template_id", "editor_type", "html", "id", "name", "text", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/templates'
 
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'additional-fields[template]'] = @api_client.build_collection_param(opts[:'additional_fields_template'], :csv) if !opts[:'additional_fields_template'].nil?
+      query_params[:'fields[template]'] = @api_client.build_collection_param(opts[:'fields_template'], :csv) if !opts[:'fields_template'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -172,9 +186,10 @@ module KlaviyoAPI
     end
 
     # Create Universal Content
-    # Create universal content. Currently supported block types are: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+    # Create universal content. Currently supported block types are: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_universal_content.json)
     # @param universal_content_create_query [UniversalContentCreateQuery] Create a template universal content
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_universal_content(universal_content_create_query, opts = {})
       data, _status_code, _headers = create_universal_content_with_http_info(universal_content_create_query, opts)
@@ -185,9 +200,10 @@ module KlaviyoAPI
     alias create_template_universal_content create_universal_content
 
     # Create Universal Content
-    # Create universal content. Currently supported block types are: &#x60;button&#x60;, &#x60;drop_shadow&#x60;, &#x60;horizontal_rule&#x60;, &#x60;html&#x60;, &#x60;image&#x60;, &#x60;spacer&#x60;, and &#x60;text&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
+    # Create universal content. Currently supported block types are: &#x60;button&#x60;, &#x60;drop_shadow&#x60;, &#x60;horizontal_rule&#x60;, &#x60;html&#x60;, &#x60;image&#x60;, &#x60;spacer&#x60;, and &#x60;text&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_universal_content.json)
     # @param universal_content_create_query [UniversalContentCreateQuery] Create a template universal content
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_universal_content_with_http_info(universal_content_create_query, opts = {})
       if @api_client.config.debugging
@@ -197,16 +213,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && universal_content_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'universal_content_create_query' when calling TemplatesApi.create_universal_content"
       end
+      allowable_values = ["created", "definition", "definition.content_type", "definition.data", "definition.data.content", "definition.data.display_options", "definition.data.display_options.content_repeat", "definition.data.display_options.content_repeat.item_alias", "definition.data.display_options.content_repeat.repeat_for", "definition.data.display_options.show_on", "definition.data.display_options.visible_check", "definition.data.styles", "definition.data.styles.background_color", "definition.data.styles.block_background_color", "definition.data.styles.block_border_color", "definition.data.styles.block_border_style", "definition.data.styles.block_border_width", "definition.data.styles.block_padding_bottom", "definition.data.styles.block_padding_left", "definition.data.styles.block_padding_right", "definition.data.styles.block_padding_top", "definition.data.styles.color", "definition.data.styles.extra_css_class", "definition.data.styles.font_family", "definition.data.styles.font_size", "definition.data.styles.font_style", "definition.data.styles.font_weight", "definition.data.styles.inner_padding_bottom", "definition.data.styles.inner_padding_left", "definition.data.styles.inner_padding_right", "definition.data.styles.inner_padding_top", "definition.data.styles.letter_spacing", "definition.data.styles.line_height", "definition.data.styles.mobile_stretch_content", "definition.data.styles.text_align", "definition.data.styles.text_decoration", "definition.data.styles.text_table_layout", "definition.type", "id", "name", "screenshot_status", "screenshot_url", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_template_universal_content'] && !opts[:'fields_template_universal_content'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_template_universal_content\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/template-universal-content'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[template-universal-content]'] = @api_client.build_collection_param(opts[:'fields_template_universal_content'], :csv) if !opts[:'fields_template_universal_content'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -248,7 +269,7 @@ module KlaviyoAPI
     alias create_template_universal_content_with_http_info create_universal_content_with_http_info
 
     # Delete Template
-    # Delete a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+    # Delete a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_template.json)
     # @param id [String] The ID of template
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -258,7 +279,7 @@ module KlaviyoAPI
     end
 
     # Delete Template
-    # Delete a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
+    # Delete a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_template.json)
     # @param id [String] The ID of template
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -279,7 +300,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -313,7 +334,7 @@ module KlaviyoAPI
     end
 
     # Delete Universal Content
-    # Delete the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+    # Delete the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_universal_content.json)
     # @param id [String] The ID of the template universal content
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -326,7 +347,7 @@ module KlaviyoAPI
     alias delete_template_universal_content delete_universal_content
 
     # Delete Universal Content
-    # Delete the universal content with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
+    # Delete the universal content with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_universal_content.json)
     # @param id [String] The ID of the template universal content
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -347,7 +368,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -384,13 +405,13 @@ module KlaviyoAPI
     alias delete_template_universal_content_with_http_info delete_universal_content_with_http_info
 
     # Get All Universal Content
-    # Get all universal content in an account.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+    # Get all universal content in an account.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_all_universal_content.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;definition.content_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;definition.type&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;definition.content_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;definition.type&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_all_universal_content(opts = {})
       data, _status_code, _headers = get_all_universal_content_with_http_info(opts)
@@ -401,19 +422,19 @@ module KlaviyoAPI
     alias get_template_universal_content get_all_universal_content
 
     # Get All Universal Content
-    # Get all universal content in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;
+    # Get all universal content in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_all_universal_content.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;definition.content_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;definition.type&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;definition.content_type&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;definition.type&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_all_universal_content_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TemplatesApi.get_all_universal_content ...'
       end
-      allowable_values = ["created", "definition", "definition.content_type", "definition.data", "definition.data.content", "definition.data.display_options", "definition.data.display_options.content_repeat", "definition.data.display_options.content_repeat.item_alias", "definition.data.display_options.content_repeat.repeat_for", "definition.data.display_options.show_on", "definition.data.display_options.visible_check", "definition.data.styles", "definition.data.styles.background_color", "definition.data.styles.block_background_color", "definition.data.styles.block_border_color", "definition.data.styles.block_border_style", "definition.data.styles.block_border_width", "definition.data.styles.block_padding_bottom", "definition.data.styles.block_padding_left", "definition.data.styles.block_padding_right", "definition.data.styles.block_padding_top", "definition.data.styles.color", "definition.data.styles.extra_css_class", "definition.data.styles.font_family", "definition.data.styles.font_size", "definition.data.styles.font_style", "definition.data.styles.font_weight", "definition.data.styles.inner_padding_bottom", "definition.data.styles.inner_padding_left", "definition.data.styles.inner_padding_right", "definition.data.styles.inner_padding_top", "definition.data.styles.letter_spacing", "definition.data.styles.line_height", "definition.data.styles.mobile_stretch_content", "definition.data.styles.text_align", "definition.data.styles.text_decoration", "definition.data.styles.text_table_layout", "definition.type", "name", "screenshot_status", "screenshot_url", "updated"]
+      allowable_values = ["created", "definition", "definition.content_type", "definition.data", "definition.data.content", "definition.data.display_options", "definition.data.display_options.content_repeat", "definition.data.display_options.content_repeat.item_alias", "definition.data.display_options.content_repeat.repeat_for", "definition.data.display_options.show_on", "definition.data.display_options.visible_check", "definition.data.styles", "definition.data.styles.background_color", "definition.data.styles.block_background_color", "definition.data.styles.block_border_color", "definition.data.styles.block_border_style", "definition.data.styles.block_border_width", "definition.data.styles.block_padding_bottom", "definition.data.styles.block_padding_left", "definition.data.styles.block_padding_right", "definition.data.styles.block_padding_top", "definition.data.styles.color", "definition.data.styles.extra_css_class", "definition.data.styles.font_family", "definition.data.styles.font_size", "definition.data.styles.font_style", "definition.data.styles.font_weight", "definition.data.styles.inner_padding_bottom", "definition.data.styles.inner_padding_left", "definition.data.styles.inner_padding_right", "definition.data.styles.inner_padding_top", "definition.data.styles.letter_spacing", "definition.data.styles.line_height", "definition.data.styles.mobile_stretch_content", "definition.data.styles.text_align", "definition.data.styles.text_decoration", "definition.data.styles.text_table_layout", "definition.type", "id", "name", "screenshot_status", "screenshot_url", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_template_universal_content'] && !opts[:'fields_template_universal_content'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_template_universal_content\", must include one of #{allowable_values}"
       end
@@ -443,7 +464,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -480,11 +501,11 @@ module KlaviyoAPI
     alias get_template_universal_content_with_http_info get_all_universal_content_with_http_info
 
     # Get Template
-    # Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+    # Get a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_template.json)
     # @param id [String] The ID of template
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_template(id, opts = {})
       data, _status_code, _headers = get_template_with_http_info(id, opts)
@@ -492,11 +513,11 @@ module KlaviyoAPI
     end
 
     # Get Template
-    # Get a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;
+    # Get a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_template.json)
     # @param id [String] The ID of template
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_template_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -510,7 +531,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_template'] && !opts[:'additional_fields_template'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_template\", must include one of #{allowable_values}"
       end
-      allowable_values = ["amp", "created", "definition", "definition.body", "definition.body.id", "definition.body.properties", "definition.body.properties.css_class", "definition.body.properties.id", "definition.body.sections", "definition.body.styles", "definition.body.styles.background_color", "definition.body.styles.width", "definition.id", "definition.styles", "definition.template_id", "editor_type", "html", "name", "text", "updated"]
+      allowable_values = ["amp", "created", "definition", "definition.body", "definition.body.id", "definition.body.properties", "definition.body.properties.css_class", "definition.body.properties.id", "definition.body.sections", "definition.body.styles", "definition.body.styles.background_color", "definition.body.styles.width", "definition.id", "definition.styles", "definition.template_id", "editor_type", "html", "id", "name", "text", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
       end
@@ -525,7 +546,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -559,13 +580,14 @@ module KlaviyoAPI
     end
 
     # Get Templates
-    # Get all templates in an account.  Use `additional-fields[template]=definition` to include the full template definition for SYSTEM_DRAGGABLE templates.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+    # Get all templates in an account.  Use `additional-fields[template]=definition` to include the full template definition for SYSTEM_DRAGGABLE templates.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_templates.json)
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 10. Min: 1. Max: 10. (default to 10)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_templates(opts = {})
       data, _status_code, _headers = get_templates_with_http_info(opts)
@@ -573,13 +595,14 @@ module KlaviyoAPI
     end
 
     # Get Templates
-    # Get all templates in an account.  Use &#x60;additional-fields[template]&#x3D;definition&#x60; to include the full template definition for SYSTEM_DRAGGABLE templates.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;
+    # Get all templates in an account.  Use &#x60;additional-fields[template]&#x3D;definition&#x60; to include the full template definition for SYSTEM_DRAGGABLE templates.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_templates.json)
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;equals&#x60;, &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 10. Min: 1. Max: 10. (default to 10)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_templates_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -589,10 +612,18 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_template'] && !opts[:'additional_fields_template'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_template\", must include one of #{allowable_values}"
       end
-      allowable_values = ["amp", "created", "definition", "definition.body", "definition.body.id", "definition.body.properties", "definition.body.properties.css_class", "definition.body.properties.id", "definition.body.sections", "definition.body.styles", "definition.body.styles.background_color", "definition.body.styles.width", "definition.id", "definition.styles", "definition.template_id", "editor_type", "html", "name", "text", "updated"]
+      allowable_values = ["amp", "created", "definition", "definition.body", "definition.body.id", "definition.body.properties", "definition.body.properties.css_class", "definition.body.properties.id", "definition.body.sections", "definition.body.styles", "definition.body.styles.background_color", "definition.body.styles.width", "definition.id", "definition.styles", "definition.template_id", "editor_type", "html", "id", "name", "text", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 10
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling TemplatesApi.get_templates, must be smaller than or equal to 10.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling TemplatesApi.get_templates, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["created", "-created", "id", "-id", "name", "-name", "updated", "-updated"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -606,12 +637,13 @@ module KlaviyoAPI
       query_params[:'fields[template]'] = @api_client.build_collection_param(opts[:'fields_template'], :csv) if !opts[:'fields_template'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -645,10 +677,10 @@ module KlaviyoAPI
     end
 
     # Get Universal Content
-    # Get the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`
+    # Get the universal content with the given ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_universal_content.json)
     # @param id [String] The ID of the universal content
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_universal_content(id, opts = {})
       data, _status_code, _headers = get_universal_content_with_http_info(id, opts)
@@ -656,10 +688,10 @@ module KlaviyoAPI
     end
 
     # Get Universal Content
-    # Get the universal content with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;
+    # Get the universal content with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_universal_content.json)
     # @param id [String] The ID of the universal content
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_universal_content_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -669,7 +701,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TemplatesApi.get_universal_content"
       end
-      allowable_values = ["created", "definition", "definition.content_type", "definition.data", "definition.data.content", "definition.data.display_options", "definition.data.display_options.content_repeat", "definition.data.display_options.content_repeat.item_alias", "definition.data.display_options.content_repeat.repeat_for", "definition.data.display_options.show_on", "definition.data.display_options.visible_check", "definition.data.styles", "definition.data.styles.background_color", "definition.data.styles.block_background_color", "definition.data.styles.block_border_color", "definition.data.styles.block_border_style", "definition.data.styles.block_border_width", "definition.data.styles.block_padding_bottom", "definition.data.styles.block_padding_left", "definition.data.styles.block_padding_right", "definition.data.styles.block_padding_top", "definition.data.styles.color", "definition.data.styles.extra_css_class", "definition.data.styles.font_family", "definition.data.styles.font_size", "definition.data.styles.font_style", "definition.data.styles.font_weight", "definition.data.styles.inner_padding_bottom", "definition.data.styles.inner_padding_left", "definition.data.styles.inner_padding_right", "definition.data.styles.inner_padding_top", "definition.data.styles.letter_spacing", "definition.data.styles.line_height", "definition.data.styles.mobile_stretch_content", "definition.data.styles.text_align", "definition.data.styles.text_decoration", "definition.data.styles.text_table_layout", "definition.type", "name", "screenshot_status", "screenshot_url", "updated"]
+      allowable_values = ["created", "definition", "definition.content_type", "definition.data", "definition.data.content", "definition.data.display_options", "definition.data.display_options.content_repeat", "definition.data.display_options.content_repeat.item_alias", "definition.data.display_options.content_repeat.repeat_for", "definition.data.display_options.show_on", "definition.data.display_options.visible_check", "definition.data.styles", "definition.data.styles.background_color", "definition.data.styles.block_background_color", "definition.data.styles.block_border_color", "definition.data.styles.block_border_style", "definition.data.styles.block_border_width", "definition.data.styles.block_padding_bottom", "definition.data.styles.block_padding_left", "definition.data.styles.block_padding_right", "definition.data.styles.block_padding_top", "definition.data.styles.color", "definition.data.styles.extra_css_class", "definition.data.styles.font_family", "definition.data.styles.font_size", "definition.data.styles.font_style", "definition.data.styles.font_weight", "definition.data.styles.inner_padding_bottom", "definition.data.styles.inner_padding_left", "definition.data.styles.inner_padding_right", "definition.data.styles.inner_padding_top", "definition.data.styles.letter_spacing", "definition.data.styles.line_height", "definition.data.styles.mobile_stretch_content", "definition.data.styles.text_align", "definition.data.styles.text_decoration", "definition.data.styles.text_table_layout", "definition.type", "id", "name", "screenshot_status", "screenshot_url", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_template_universal_content'] && !opts[:'fields_template_universal_content'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_template_universal_content\", must include one of #{allowable_values}"
       end
@@ -683,7 +715,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -717,9 +749,10 @@ module KlaviyoAPI
     end
 
     # Render Template
-    # Render a template with the given template ID and context attribute. Returns the AMP, HTML, and plain text versions of the email template.  **Request body parameters** (nested under `attributes`):  * `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding `context` values are treated as `FALSE` and output nothing.  Ex. `{ \"name\" : \"George Washington\", \"state\" : \"VA\" }`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`
+    # Render a template with the given template ID and context attribute. Returns the AMP, HTML, and plain text versions of the email template.  **Request body parameters** (nested under `attributes`):  * `return_fields`: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * `context`: This is the context your email template will be rendered with. You must pass in a `context` object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding `context` values are treated as `FALSE` and output nothing.  Ex. `{ \"name\" : \"George Washington\", \"state\" : \"VA\" }`<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/render_template.json)
     # @param template_render_query [TemplateRenderQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def render_template(template_render_query, opts = {})
       data, _status_code, _headers = render_template_with_http_info(template_render_query, opts)
@@ -730,9 +763,10 @@ module KlaviyoAPI
     alias create_template_render render_template
 
     # Render Template
-    # Render a template with the given template ID and context attribute. Returns the AMP, HTML, and plain text versions of the email template.  **Request body parameters** (nested under &#x60;attributes&#x60;):  * &#x60;return_fields&#x60;: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * &#x60;context&#x60;: This is the context your email template will be rendered with. You must pass in a &#x60;context&#x60; object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding &#x60;context&#x60; values are treated as &#x60;FALSE&#x60; and output nothing.  Ex. &#x60;{ \&quot;name\&quot; : \&quot;George Washington\&quot;, \&quot;state\&quot; : \&quot;VA\&quot; }&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;templates:read&#x60;
+    # Render a template with the given template ID and context attribute. Returns the AMP, HTML, and plain text versions of the email template.  **Request body parameters** (nested under &#x60;attributes&#x60;):  * &#x60;return_fields&#x60;: Request specific fields using [sparse fieldsets](https://developers.klaviyo.com/en/reference/api_overview#sparse-fieldsets).  * &#x60;context&#x60;: This is the context your email template will be rendered with. You must pass in a &#x60;context&#x60; object as a JSON object.  Email templates are rendered with contexts in a similar manner to Django templates. Nested template variables can be referenced via dot notation. Template variables without corresponding &#x60;context&#x60; values are treated as &#x60;FALSE&#x60; and output nothing.  Ex. &#x60;{ \&quot;name\&quot; : \&quot;George Washington\&quot;, \&quot;state\&quot; : \&quot;VA\&quot; }&#x60;&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;templates:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/render_template.json)
     # @param template_render_query [TemplateRenderQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def render_template_with_http_info(template_render_query, opts = {})
       if @api_client.config.debugging
@@ -742,16 +776,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && template_render_query.nil?
         fail ArgumentError, "Missing the required parameter 'template_render_query' when calling TemplatesApi.render_template"
       end
+      allowable_values = ["amp", "created", "editor_type", "html", "id", "name", "text", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/template-render'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[template]'] = @api_client.build_collection_param(opts[:'fields_template'], :csv) if !opts[:'fields_template'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -793,11 +832,12 @@ module KlaviyoAPI
     alias create_template_render_with_http_info render_template_with_http_info
 
     # Update Template
-    # Update a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+    # Update a template with the given template ID.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_template.json)
     # @param id [String] The ID of template
     # @param template_update_html_or_dnd_query [TemplateUpdateHtmlOrDndQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_template(id, template_update_html_or_dnd_query, opts = {})
       data, _status_code, _headers = update_template_with_http_info(id, template_update_html_or_dnd_query, opts)
@@ -805,11 +845,12 @@ module KlaviyoAPI
     end
 
     # Update Template
-    # Update a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
+    # Update a template with the given template ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_template.json)
     # @param id [String] The ID of template
     # @param template_update_html_or_dnd_query [TemplateUpdateHtmlOrDndQuery] 
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_template Request additional fields not included by default in the response. Supported values: &#39;definition&#39;
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_template_with_http_info(id, template_update_html_or_dnd_query, opts = {})
       if @api_client.config.debugging
@@ -827,17 +868,22 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_template'] && !opts[:'additional_fields_template'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_template\", must include one of #{allowable_values}"
       end
+      allowable_values = ["amp", "created", "definition", "definition.body", "definition.body.id", "definition.body.properties", "definition.body.properties.css_class", "definition.body.properties.id", "definition.body.sections", "definition.body.styles", "definition.body.styles.background_color", "definition.body.styles.width", "definition.id", "definition.styles", "definition.template_id", "editor_type", "html", "id", "name", "text", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/templates/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'additional-fields[template]'] = @api_client.build_collection_param(opts[:'additional_fields_template'], :csv) if !opts[:'additional_fields_template'].nil?
+      query_params[:'fields[template]'] = @api_client.build_collection_param(opts[:'fields_template'], :csv) if !opts[:'fields_template'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -876,10 +922,11 @@ module KlaviyoAPI
     end
 
     # Update Universal Content
-    # Update universal content. The `definition` field can only be updated on the following block types at this time: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`
+    # Update universal content. The `definition` field can only be updated on the following block types at this time: `button`, `drop_shadow`, `horizontal_rule`, `html`, `image`, `spacer`, and `text`.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  **Scopes:** `templates:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_universal_content.json)
     # @param id [String] The ID of the template universal content
     # @param universal_content_partial_update_query [UniversalContentPartialUpdateQuery] Update a universal content by ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_universal_content(id, universal_content_partial_update_query, opts = {})
       data, _status_code, _headers = update_universal_content_with_http_info(id, universal_content_partial_update_query, opts)
@@ -890,10 +937,11 @@ module KlaviyoAPI
     alias update_template_universal_content update_universal_content
 
     # Update Universal Content
-    # Update universal content. The &#x60;definition&#x60; field can only be updated on the following block types at this time: &#x60;button&#x60;, &#x60;drop_shadow&#x60;, &#x60;horizontal_rule&#x60;, &#x60;html&#x60;, &#x60;image&#x60;, &#x60;spacer&#x60;, and &#x60;text&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;
+    # Update universal content. The &#x60;definition&#x60; field can only be updated on the following block types at this time: &#x60;button&#x60;, &#x60;drop_shadow&#x60;, &#x60;horizontal_rule&#x60;, &#x60;html&#x60;, &#x60;image&#x60;, &#x60;spacer&#x60;, and &#x60;text&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  **Scopes:** &#x60;templates:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_universal_content.json)
     # @param id [String] The ID of the template universal content
     # @param universal_content_partial_update_query [UniversalContentPartialUpdateQuery] Update a universal content by ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_template_universal_content For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_universal_content_with_http_info(id, universal_content_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -907,16 +955,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && universal_content_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'universal_content_partial_update_query' when calling TemplatesApi.update_universal_content"
       end
+      allowable_values = ["created", "definition", "definition.content_type", "definition.data", "definition.data.content", "definition.data.display_options", "definition.data.display_options.content_repeat", "definition.data.display_options.content_repeat.item_alias", "definition.data.display_options.content_repeat.repeat_for", "definition.data.display_options.show_on", "definition.data.display_options.visible_check", "definition.data.styles", "definition.data.styles.background_color", "definition.data.styles.block_background_color", "definition.data.styles.block_border_color", "definition.data.styles.block_border_style", "definition.data.styles.block_border_width", "definition.data.styles.block_padding_bottom", "definition.data.styles.block_padding_left", "definition.data.styles.block_padding_right", "definition.data.styles.block_padding_top", "definition.data.styles.color", "definition.data.styles.extra_css_class", "definition.data.styles.font_family", "definition.data.styles.font_size", "definition.data.styles.font_style", "definition.data.styles.font_weight", "definition.data.styles.inner_padding_bottom", "definition.data.styles.inner_padding_left", "definition.data.styles.inner_padding_right", "definition.data.styles.inner_padding_top", "definition.data.styles.letter_spacing", "definition.data.styles.line_height", "definition.data.styles.mobile_stretch_content", "definition.data.styles.text_align", "definition.data.styles.text_decoration", "definition.data.styles.text_table_layout", "definition.type", "id", "name", "screenshot_status", "screenshot_url", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_template_universal_content'] && !opts[:'fields_template_universal_content'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_template_universal_content\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/template-universal-content/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[template-universal-content]'] = @api_client.build_collection_param(opts[:'fields_template_universal_content'], :csv) if !opts[:'fields_template_universal_content'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

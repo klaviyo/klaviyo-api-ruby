@@ -16,6 +16,8 @@ module KlaviyoAPI
   class ButtonProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     attr_accessor :label
 
     attr_accessor :additional_fields
@@ -46,6 +48,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'label' => :'label',
         :'additional_fields' => :'additional_fields'
       }
@@ -60,6 +63,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'label' => :'String',
         :'additional_fields' => :'Array<AdditionalField>'
       }
@@ -68,6 +72,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
         :'additional_fields'
       ])
     end
@@ -91,6 +96,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'label')
@@ -128,6 +137,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           label == o.label &&
           additional_fields == o.additional_fields
     end
@@ -141,7 +151,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, label, additional_fields].hash
+      [display_device, classname, label, additional_fields].hash
     end
 
     # Builds the object from hash

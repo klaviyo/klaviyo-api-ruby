@@ -14,6 +14,8 @@ require 'time'
 
 module KlaviyoAPI
   class OptInCodeProperties
+    attr_accessor :classname
+
     attr_accessor :label
 
     attr_accessor :show_label
@@ -53,6 +55,7 @@ module KlaviyoAPI
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'classname' => :'classname',
         :'label' => :'label',
         :'show_label' => :'show_label',
         :'placeholder' => :'placeholder',
@@ -71,6 +74,7 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
+        :'classname' => :'String',
         :'label' => :'String',
         :'show_label' => :'Boolean',
         :'placeholder' => :'String',
@@ -84,6 +88,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
         :'label',
         :'placeholder',
       ])
@@ -103,6 +108,10 @@ module KlaviyoAPI
         end
         h[k.to_sym] = v
       }
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
+      end
 
       if attributes.key?(:'label')
         self.label = attributes[:'label']
@@ -183,6 +192,7 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          classname == o.classname &&
           label == o.label &&
           show_label == o.show_label &&
           placeholder == o.placeholder &&
@@ -201,7 +211,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [label, show_label, placeholder, error_messages, property_name, required, display_device].hash
+      [classname, label, show_label, placeholder, error_messages, property_name, required, display_device].hash
     end
 
     # Builds the object from hash

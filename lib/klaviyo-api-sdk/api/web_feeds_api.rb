@@ -19,9 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Create Web Feed
-    # Create a web feed.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`
+    # Create a web feed.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_web_feed.json)
     # @param web_feed_create_query [WebFeedCreateQuery] Create a web feed
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_web_feed(web_feed_create_query, opts = {})
       data, _status_code, _headers = create_web_feed_with_http_info(web_feed_create_query, opts)
@@ -29,9 +30,10 @@ module KlaviyoAPI
     end
 
     # Create Web Feed
-    # Create a web feed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:write&#x60;
+    # Create a web feed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_web_feed.json)
     # @param web_feed_create_query [WebFeedCreateQuery] Create a web feed
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_web_feed_with_http_info(web_feed_create_query, opts = {})
       if @api_client.config.debugging
@@ -41,16 +43,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && web_feed_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'web_feed_create_query' when calling WebFeedsApi.create_web_feed"
       end
+      allowable_values = ["content_type", "created", "id", "name", "request_method", "status", "updated", "url"]
+      if @api_client.config.client_side_validation && opts[:'fields_web_feed'] && !opts[:'fields_web_feed'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_web_feed\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/web-feeds'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[web-feed]'] = @api_client.build_collection_param(opts[:'fields_web_feed'], :csv) if !opts[:'fields_web_feed'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -89,7 +96,7 @@ module KlaviyoAPI
     end
 
     # Delete Web Feed
-    # Delete the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`
+    # Delete the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_web_feed.json)
     # @param id [String] The ID of the web feed
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -99,7 +106,7 @@ module KlaviyoAPI
     end
 
     # Delete Web Feed
-    # Delete the web feed with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:write&#x60;
+    # Delete the web feed with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_web_feed.json)
     # @param id [String] The ID of the web feed
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -120,7 +127,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -154,10 +161,10 @@ module KlaviyoAPI
     end
 
     # Get Web Feed
-    # Get the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`
+    # Get the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feed.json)
     # @param id [String] The ID of the web feed
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_web_feed(id, opts = {})
       data, _status_code, _headers = get_web_feed_with_http_info(id, opts)
@@ -165,10 +172,10 @@ module KlaviyoAPI
     end
 
     # Get Web Feed
-    # Get the web feed with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:read&#x60;
+    # Get the web feed with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feed.json)
     # @param id [String] The ID of the web feed
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_web_feed_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -178,7 +185,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling WebFeedsApi.get_web_feed"
       end
-      allowable_values = ["content_type", "created", "name", "request_method", "status", "updated", "url"]
+      allowable_values = ["content_type", "created", "id", "name", "request_method", "status", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_web_feed'] && !opts[:'fields_web_feed'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_web_feed\", must include one of #{allowable_values}"
       end
@@ -192,7 +199,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -226,13 +233,13 @@ module KlaviyoAPI
     end
 
     # Get Web Feeds
-    # Get all web feeds for an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`
+    # Get all web feeds for an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feeds.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 5. Min: 1. Max: 20. (default to 5)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_web_feeds(opts = {})
       data, _status_code, _headers = get_web_feeds_with_http_info(opts)
@@ -240,19 +247,19 @@ module KlaviyoAPI
     end
 
     # Get Web Feeds
-    # Get all web feeds for an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:read&#x60;
+    # Get all web feeds for an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_web_feeds.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 5. Min: 1. Max: 20. (default to 5)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_web_feeds_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: WebFeedsApi.get_web_feeds ...'
       end
-      allowable_values = ["content_type", "created", "name", "request_method", "status", "updated", "url"]
+      allowable_values = ["content_type", "created", "id", "name", "request_method", "status", "updated", "url"]
       if @api_client.config.client_side_validation && opts[:'fields_web_feed'] && !opts[:'fields_web_feed'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_web_feed\", must include one of #{allowable_values}"
       end
@@ -282,7 +289,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -316,10 +323,11 @@ module KlaviyoAPI
     end
 
     # Update Web Feed
-    # Update the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`
+    # Update the web feed with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `web-feeds:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_web_feed.json)
     # @param id [String] The ID of the web feed
     # @param web_feed_partial_update_query [WebFeedPartialUpdateQuery] Update a web feed by ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_web_feed(id, web_feed_partial_update_query, opts = {})
       data, _status_code, _headers = update_web_feed_with_http_info(id, web_feed_partial_update_query, opts)
@@ -327,10 +335,11 @@ module KlaviyoAPI
     end
 
     # Update Web Feed
-    # Update the web feed with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:write&#x60;
+    # Update the web feed with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;web-feeds:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_web_feed.json)
     # @param id [String] The ID of the web feed
     # @param web_feed_partial_update_query [WebFeedPartialUpdateQuery] Update a web feed by ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_web_feed For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_web_feed_with_http_info(id, web_feed_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -344,16 +353,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && web_feed_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'web_feed_partial_update_query' when calling WebFeedsApi.update_web_feed"
       end
+      allowable_values = ["content_type", "created", "id", "name", "request_method", "status", "updated", "url"]
+      if @api_client.config.client_side_validation && opts[:'fields_web_feed'] && !opts[:'fields_web_feed'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_web_feed\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/web-feeds/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[web-feed]'] = @api_client.build_collection_param(opts[:'fields_web_feed'], :csv) if !opts[:'fields_web_feed'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

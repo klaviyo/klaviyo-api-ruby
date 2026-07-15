@@ -16,6 +16,8 @@ module KlaviyoAPI
   class TextProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     attr_accessor :property_name
 
     attr_accessor :label
@@ -54,6 +56,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'property_name' => :'property_name',
         :'label' => :'label',
         :'show_label' => :'show_label',
@@ -72,6 +75,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'property_name' => :'String',
         :'label' => :'String',
         :'show_label' => :'Boolean',
@@ -84,6 +88,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
         :'label',
         :'placeholder',
         :'required',
@@ -109,6 +114,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'property_name')
@@ -164,6 +173,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           property_name == o.property_name &&
           label == o.label &&
           show_label == o.show_label &&
@@ -181,7 +191,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, property_name, label, show_label, placeholder, required, error_messages].hash
+      [display_device, classname, property_name, label, show_label, placeholder, required, error_messages].hash
     end
 
     # Builds the object from hash

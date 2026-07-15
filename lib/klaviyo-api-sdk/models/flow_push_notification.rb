@@ -40,6 +40,8 @@ module KlaviyoAPI
 
     attr_accessor :android_link
 
+    attr_accessor :web_url
+
     # The type of push notification to send.
     attr_accessor :push_type
 
@@ -94,6 +96,7 @@ module KlaviyoAPI
         :'on_open' => :'on_open',
         :'ios_link' => :'ios_link',
         :'android_link' => :'android_link',
+        :'web_url' => :'web_url',
         :'push_type' => :'push_type',
         :'kv_pairs' => :'kv_pairs',
         :'conversion_metric_id' => :'conversion_metric_id',
@@ -124,11 +127,12 @@ module KlaviyoAPI
         :'on_open' => :'String',
         :'ios_link' => :'String',
         :'android_link' => :'String',
+        :'web_url' => :'String',
         :'push_type' => :'String',
         :'kv_pairs' => :'Object',
         :'conversion_metric_id' => :'String',
         :'smart_sending_enabled' => :'Boolean',
-        :'additional_filters' => :'FlowPushNotificationAdditionalFilters',
+        :'additional_filters' => :'ConditionalBranchActionDataProfileFilter',
         :'action_buttons' => :'Array<PushActionButton>',
         :'name' => :'String',
         :'id' => :'String'
@@ -144,6 +148,7 @@ module KlaviyoAPI
         :'video_asset_id',
         :'ios_link',
         :'android_link',
+        :'web_url',
         :'push_type',
         :'kv_pairs',
         :'conversion_metric_id',
@@ -219,6 +224,10 @@ module KlaviyoAPI
         self.android_link = attributes[:'android_link']
       end
 
+      if attributes.key?(:'web_url')
+        self.web_url = attributes[:'web_url']
+      end
+
       if attributes.key?(:'push_type')
         self.push_type = attributes[:'push_type']
       end
@@ -271,7 +280,7 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @body.nil?
-      on_open_validator = EnumAttributeValidator.new('String', ["home", "link"])
+      on_open_validator = EnumAttributeValidator.new('String', ["home", "link", "open_url"])
       return false unless on_open_validator.valid?(@on_open)
       push_type_validator = EnumAttributeValidator.new('String', ["silent", "standard"])
       return false unless push_type_validator.valid?(@push_type)
@@ -281,7 +290,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] on_open Object to be assigned
     def on_open=(on_open)
-      validator = EnumAttributeValidator.new('String', ["home", "link"])
+      validator = EnumAttributeValidator.new('String', ["home", "link", "open_url"])
       unless validator.valid?(on_open)
         fail ArgumentError, "invalid value for \"on_open\", must be one of #{validator.allowable_values}."
       end
@@ -314,6 +323,7 @@ module KlaviyoAPI
           on_open == o.on_open &&
           ios_link == o.ios_link &&
           android_link == o.android_link &&
+          web_url == o.web_url &&
           push_type == o.push_type &&
           kv_pairs == o.kv_pairs &&
           conversion_metric_id == o.conversion_metric_id &&
@@ -333,7 +343,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [title, body, sound, badge, badge_options, image_id, dynamic_image, video_asset_id, on_open, ios_link, android_link, push_type, kv_pairs, conversion_metric_id, smart_sending_enabled, additional_filters, action_buttons, name, id].hash
+      [title, body, sound, badge, badge_options, image_id, dynamic_image, video_asset_id, on_open, ios_link, android_link, web_url, push_type, kv_pairs, conversion_metric_id, smart_sending_enabled, additional_filters, action_buttons, name, id].hash
     end
 
     # Builds the object from hash
