@@ -16,7 +16,7 @@ module KlaviyoAPI
   class StringPhoneOperatorStringArrayFilter
     attr_accessor :type
 
-    # Operators for phone string array filters.  Example condition using this filter:         {
+    # Operators for phone string array filters.  Example condition using this filter:         {             \"type\": \"profile-property\",             \"field\": \"phone\",             \"filter\": {                 \"type\": \"string\",                 \"operator\": \"phone-country-code-in\",                 \"value\": [\"US\", \"GB\"]             }         }
     attr_accessor :operator
 
     attr_accessor :value

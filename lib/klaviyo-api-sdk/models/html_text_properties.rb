@@ -16,6 +16,8 @@ module KlaviyoAPI
   class HTMLTextProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     attr_accessor :content
 
     class EnumAttributeValidator
@@ -44,6 +46,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'content' => :'content'
       }
     end
@@ -57,6 +60,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'content' => :'String'
       }
     end
@@ -64,6 +68,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
       ])
     end
 
@@ -86,6 +91,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'content')
@@ -114,6 +123,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           content == o.content
     end
 
@@ -126,7 +136,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, content].hash
+      [display_device, classname, content].hash
     end
 
     # Builds the object from hash

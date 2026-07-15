@@ -31,13 +31,14 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'action_output_filter' => :'ActionOutputConditionFilter'
+        :'action_output_filter' => :'ActionOutputSplitActionDataActionOutputFilter'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'action_output_filter'
       ])
     end
 
@@ -65,17 +66,12 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @action_output_filter.nil?
-        invalid_properties.push('invalid value for "action_output_filter", action_output_filter cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @action_output_filter.nil?
       true
     end
 

@@ -16,10 +16,13 @@ module KlaviyoAPI
   class EmailSubscriptionParameters
     attr_accessor :marketing
 
+    attr_accessor :open_tracking
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'marketing' => :'marketing'
+        :'marketing' => :'marketing',
+        :'open_tracking' => :'open_tracking'
       }
     end
 
@@ -31,7 +34,8 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'marketing' => :'SubscriptionParameters'
+        :'marketing' => :'SubscriptionParameters',
+        :'open_tracking' => :'OpenTrackingSubscriptionParameters'
       }
     end
 
@@ -59,23 +63,22 @@ module KlaviyoAPI
       if attributes.key?(:'marketing')
         self.marketing = attributes[:'marketing']
       end
+
+      if attributes.key?(:'open_tracking')
+        self.open_tracking = attributes[:'open_tracking']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @marketing.nil?
-        invalid_properties.push('invalid value for "marketing", marketing cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @marketing.nil?
       true
     end
 
@@ -84,7 +87,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          marketing == o.marketing
+          marketing == o.marketing &&
+          open_tracking == o.open_tracking
     end
 
     # @see the `==` method
@@ -96,7 +100,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [marketing].hash
+      [marketing, open_tracking].hash
     end
 
     # Builds the object from hash

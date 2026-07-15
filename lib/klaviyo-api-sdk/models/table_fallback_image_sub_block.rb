@@ -45,7 +45,6 @@ module KlaviyoAPI
 
     attr_accessor :cropped_src
 
-    # Aspect ratio options.
     attr_accessor :cropping_aspect_ratio
 
     attr_accessor :cropping_height
@@ -287,8 +286,6 @@ module KlaviyoAPI
       return false unless show_on_validator.valid?(@show_on)
       cell_text_align_validator = EnumAttributeValidator.new('String', ["center", "left", "right"])
       return false unless cell_text_align_validator.valid?(@cell_text_align)
-      cropping_aspect_ratio_validator = EnumAttributeValidator.new('String', ["16:9", "1:1", "2:3", "3:4", "4:3", "circle", "custom", "original"])
-      return false unless cropping_aspect_ratio_validator.valid?(@cropping_aspect_ratio)
       return false if @type.nil?
       type_validator = EnumAttributeValidator.new('String', ["table_fallback_image"])
       return false unless type_validator.valid?(@type)
@@ -323,16 +320,6 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"cell_text_align\", must be one of #{validator.allowable_values}."
       end
       @cell_text_align = cell_text_align
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] cropping_aspect_ratio Object to be assigned
-    def cropping_aspect_ratio=(cropping_aspect_ratio)
-      validator = EnumAttributeValidator.new('String', ["16:9", "1:1", "2:3", "3:4", "4:3", "circle", "custom", "original"])
-      unless validator.valid?(cropping_aspect_ratio)
-        fail ArgumentError, "invalid value for \"cropping_aspect_ratio\", must be one of #{validator.allowable_values}."
-      end
-      @cropping_aspect_ratio = cropping_aspect_ratio
     end
 
     # Custom attribute writer method checking allowed values (enum).

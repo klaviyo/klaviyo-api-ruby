@@ -16,6 +16,8 @@ module KlaviyoAPI
   class ReviewProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     attr_accessor :author
 
     attr_accessor :content
@@ -58,6 +60,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'author' => :'author',
         :'content' => :'content',
         :'rating' => :'rating',
@@ -78,6 +81,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'author' => :'String',
         :'content' => :'String',
         :'rating' => :'Integer',
@@ -92,6 +96,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
         :'author',
         :'content',
         :'review_id',
@@ -117,6 +122,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'author')
@@ -181,6 +190,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           author == o.author &&
           content == o.content &&
           rating == o.rating &&
@@ -200,7 +210,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, author, content, rating, verified, review_id, show_rating, show_author, show_verified].hash
+      [display_device, classname, author, content, rating, verified, review_id, show_rating, show_author, show_verified].hash
     end
 
     # Builds the object from hash

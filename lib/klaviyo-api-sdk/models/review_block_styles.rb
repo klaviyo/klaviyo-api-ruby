@@ -95,7 +95,6 @@ module KlaviyoAPI
 
     attr_accessor :quote_text_decoration
 
-    # Shadow color.
     attr_accessor :shadow_color
 
     attr_accessor :star_color
@@ -130,6 +129,7 @@ module KlaviyoAPI
 
     attr_accessor :verified_text_decoration
 
+    # Review block verified badge color.
     attr_accessor :verified_badge_color
 
     attr_accessor :verified_badge_size
@@ -604,8 +604,6 @@ module KlaviyoAPI
       return false unless quote_font_style_validator.valid?(@quote_font_style)
       quote_style_validator = EnumAttributeValidator.new('String', ["line", "square", "standard"])
       return false unless quote_style_validator.valid?(@quote_style)
-      shadow_color_validator = EnumAttributeValidator.new('String', ["dark", "light", "medium"])
-      return false unless shadow_color_validator.valid?(@shadow_color)
       star_size_validator = EnumAttributeValidator.new('String', ["large", "medium", "small"])
       return false unless star_size_validator.valid?(@star_size)
       star_rating_shape_validator = EnumAttributeValidator.new('String', ["circle", "heart", "star"])
@@ -614,6 +612,8 @@ module KlaviyoAPI
       return false unless star_alignment_validator.valid?(@star_alignment)
       verified_font_style_validator = EnumAttributeValidator.new('String', ["italic", "normal"])
       return false unless verified_font_style_validator.valid?(@verified_font_style)
+      verified_badge_color_validator = EnumAttributeValidator.new('String', ["dark", "default", "light"])
+      return false unless verified_badge_color_validator.valid?(@verified_badge_color)
       verified_badge_style_validator = EnumAttributeValidator.new('String', ["badge-and-text", "badge-only", "text-only"])
       return false unless verified_badge_style_validator.valid?(@verified_badge_style)
       true
@@ -710,16 +710,6 @@ module KlaviyoAPI
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] shadow_color Object to be assigned
-    def shadow_color=(shadow_color)
-      validator = EnumAttributeValidator.new('String', ["dark", "light", "medium"])
-      unless validator.valid?(shadow_color)
-        fail ArgumentError, "invalid value for \"shadow_color\", must be one of #{validator.allowable_values}."
-      end
-      @shadow_color = shadow_color
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
     # @param [Object] star_size Object to be assigned
     def star_size=(star_size)
       validator = EnumAttributeValidator.new('String', ["large", "medium", "small"])
@@ -757,6 +747,16 @@ module KlaviyoAPI
         fail ArgumentError, "invalid value for \"verified_font_style\", must be one of #{validator.allowable_values}."
       end
       @verified_font_style = verified_font_style
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] verified_badge_color Object to be assigned
+    def verified_badge_color=(verified_badge_color)
+      validator = EnumAttributeValidator.new('String', ["dark", "default", "light"])
+      unless validator.valid?(verified_badge_color)
+        fail ArgumentError, "invalid value for \"verified_badge_color\", must be one of #{validator.allowable_values}."
+      end
+      @verified_badge_color = verified_badge_color
     end
 
     # Custom attribute writer method checking allowed values (enum).

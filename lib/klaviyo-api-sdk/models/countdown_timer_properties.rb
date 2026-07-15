@@ -16,6 +16,8 @@ module KlaviyoAPI
   class CountdownTimerProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     # Options for displaying a timer.
     attr_accessor :clock_face
 
@@ -50,6 +52,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'clock_face' => :'clock_face',
         :'animation' => :'animation',
         :'configuration' => :'configuration'
@@ -65,6 +68,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'clock_face' => :'String',
         :'animation' => :'String',
         :'configuration' => :'CountdownTimerPropertiesConfiguration'
@@ -74,6 +78,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
         :'animation',
       ])
     end
@@ -97,6 +102,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'clock_face')
@@ -164,6 +173,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           clock_face == o.clock_face &&
           animation == o.animation &&
           configuration == o.configuration
@@ -178,7 +188,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, clock_face, animation, configuration].hash
+      [display_device, classname, clock_face, animation, configuration].hash
     end
 
     # Builds the object from hash

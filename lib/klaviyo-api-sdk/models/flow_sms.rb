@@ -22,6 +22,9 @@ module KlaviyoAPI
     # A dynamic image asset to include in the SMS message.
     attr_accessor :dynamic_image
 
+    # The RCS/SMS message hierarchy (fallback chain). Each item contains a message_format ('RCS' or 'SMS'), message body, and optional rich content.
+    attr_accessor :message_hierarchy
+
     attr_accessor :shorten_links
 
     attr_accessor :include_contact_card
@@ -57,6 +60,7 @@ module KlaviyoAPI
         :'body' => :'body',
         :'image_id' => :'image_id',
         :'dynamic_image' => :'dynamic_image',
+        :'message_hierarchy' => :'message_hierarchy',
         :'shorten_links' => :'shorten_links',
         :'include_contact_card' => :'include_contact_card',
         :'add_org_prefix' => :'add_org_prefix',
@@ -85,6 +89,7 @@ module KlaviyoAPI
         :'body' => :'String',
         :'image_id' => :'String',
         :'dynamic_image' => :'String',
+        :'message_hierarchy' => :'Array<Object>',
         :'shorten_links' => :'Boolean',
         :'include_contact_card' => :'Boolean',
         :'add_org_prefix' => :'Boolean',
@@ -96,7 +101,7 @@ module KlaviyoAPI
         :'add_tracking_params' => :'Boolean',
         :'custom_tracking_params' => :'Array<UtmParam>',
         :'template_id' => :'String',
-        :'additional_filters' => :'FlowSmsAdditionalFilters',
+        :'additional_filters' => :'ConditionalBranchActionDataProfileFilter',
         :'name' => :'String',
         :'id' => :'String'
       }
@@ -107,6 +112,7 @@ module KlaviyoAPI
       Set.new([
         :'image_id',
         :'dynamic_image',
+        :'message_hierarchy',
         :'custom_tracking_params',
         :'template_id',
         :'additional_filters',
@@ -140,6 +146,12 @@ module KlaviyoAPI
 
       if attributes.key?(:'dynamic_image')
         self.dynamic_image = attributes[:'dynamic_image']
+      end
+
+      if attributes.key?(:'message_hierarchy')
+        if (value = attributes[:'message_hierarchy']).is_a?(Array)
+          self.message_hierarchy = value
+        end
       end
 
       if attributes.key?(:'shorten_links')
@@ -245,6 +257,7 @@ module KlaviyoAPI
           body == o.body &&
           image_id == o.image_id &&
           dynamic_image == o.dynamic_image &&
+          message_hierarchy == o.message_hierarchy &&
           shorten_links == o.shorten_links &&
           include_contact_card == o.include_contact_card &&
           add_org_prefix == o.add_org_prefix &&
@@ -270,7 +283,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [body, image_id, dynamic_image, shorten_links, include_contact_card, add_org_prefix, add_info_link, add_opt_out_language, smart_sending_enabled, sms_quiet_hours_enabled, transactional, add_tracking_params, custom_tracking_params, template_id, additional_filters, name, id].hash
+      [body, image_id, dynamic_image, message_hierarchy, shorten_links, include_contact_card, add_org_prefix, add_info_link, add_opt_out_language, smart_sending_enabled, sms_quiet_hours_enabled, transactional, add_tracking_params, custom_tracking_params, template_id, additional_filters, name, id].hash
     end
 
     # Builds the object from hash

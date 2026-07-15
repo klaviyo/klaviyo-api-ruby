@@ -44,6 +44,11 @@ module KlaviyoAPI
 
     attr_accessor :specialties
 
+    # Form channel type enumeration.
+    attr_accessor :channel
+
+    attr_accessor :message_priority
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -81,7 +86,9 @@ module KlaviyoAPI
         :'location' => :'location',
         :'status' => :'status',
         :'ab_test' => :'ab_test',
-        :'specialties' => :'specialties'
+        :'specialties' => :'specialties',
+        :'channel' => :'channel',
+        :'message_priority' => :'message_priority'
       }
     end
 
@@ -105,7 +112,9 @@ module KlaviyoAPI
         :'location' => :'String',
         :'status' => :'String',
         :'ab_test' => :'Boolean',
-        :'specialties' => :'Array<String>'
+        :'specialties' => :'Array<String>',
+        :'channel' => :'String',
+        :'message_priority' => :'Integer'
       }
     end
 
@@ -198,6 +207,18 @@ module KlaviyoAPI
           self.specialties = value
         end
       end
+
+      if attributes.key?(:'channel')
+        self.channel = attributes[:'channel']
+      else
+        self.channel = 'WEB'
+      end
+
+      if attributes.key?(:'message_priority')
+        self.message_priority = attributes[:'message_priority']
+      else
+        self.message_priority = 50
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -221,6 +242,8 @@ module KlaviyoAPI
       return false unless location_validator.valid?(@location)
       status_validator = EnumAttributeValidator.new('String', ["draft", "live"])
       return false unless status_validator.valid?(@status)
+      channel_validator = EnumAttributeValidator.new('String', ["IN_APP", "WEB"])
+      return false unless channel_validator.valid?(@channel)
       true
     end
 
@@ -254,6 +277,16 @@ module KlaviyoAPI
       @status = status
     end
 
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] channel Object to be assigned
+    def channel=(channel)
+      validator = EnumAttributeValidator.new('String', ["IN_APP", "WEB"])
+      unless validator.valid?(channel)
+        fail ArgumentError, "invalid value for \"channel\", must be one of #{validator.allowable_values}."
+      end
+      @channel = channel
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -271,7 +304,9 @@ module KlaviyoAPI
           location == o.location &&
           status == o.status &&
           ab_test == o.ab_test &&
-          specialties == o.specialties
+          specialties == o.specialties &&
+          channel == o.channel &&
+          message_priority == o.message_priority
     end
 
     # @see the `==` method
@@ -283,7 +318,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, steps, triggers, teasers, dynamic_button, name, styles, properties, type, location, status, ab_test, specialties].hash
+      [id, steps, triggers, teasers, dynamic_button, name, styles, properties, type, location, status, ab_test, specialties, channel, message_priority].hash
     end
 
     # Builds the object from hash

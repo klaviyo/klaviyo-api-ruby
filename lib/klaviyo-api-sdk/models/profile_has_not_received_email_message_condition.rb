@@ -57,7 +57,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'type' => :'String',
-        :'timeframe_filter' => :'ProfileHasNotReceivedPushMessageConditionTimeframeFilter'
+        :'timeframe_filter' => :'ProfileHasNotReceivedEmailMessageConditionTimeframeFilter'
       }
     end
 

@@ -86,7 +86,7 @@ module KlaviyoAPI
         :'transactional' => :'Boolean',
         :'add_tracking_params' => :'Boolean',
         :'custom_tracking_params' => :'Array<UtmParam>',
-        :'additional_filters' => :'FlowEmailAdditionalFilters',
+        :'additional_filters' => :'ConditionalBranchActionDataProfileFilter',
         :'name' => :'String',
         :'id' => :'String'
       }

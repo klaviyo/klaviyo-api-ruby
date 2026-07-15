@@ -16,6 +16,8 @@ module KlaviyoAPI
   class SpinToWinProperties
     attr_accessor :display_device
 
+    attr_accessor :classname
+
     attr_accessor :duplicate_slices
 
     attr_accessor :slices
@@ -46,6 +48,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'display_device' => :'display_device',
+        :'classname' => :'classname',
         :'duplicate_slices' => :'duplicate_slices',
         :'slices' => :'slices'
       }
@@ -60,6 +63,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'display_device' => :'Array<String>',
+        :'classname' => :'String',
         :'duplicate_slices' => :'Boolean',
         :'slices' => :'Array<SpinToWinSliceConfig>'
       }
@@ -68,6 +72,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'classname',
       ])
     end
 
@@ -90,6 +95,10 @@ module KlaviyoAPI
         if (value = attributes[:'display_device']).is_a?(Array)
           self.display_device = value
         end
+      end
+
+      if attributes.key?(:'classname')
+        self.classname = attributes[:'classname']
       end
 
       if attributes.key?(:'duplicate_slices')
@@ -129,6 +138,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           display_device == o.display_device &&
+          classname == o.classname &&
           duplicate_slices == o.duplicate_slices &&
           slices == o.slices
     end
@@ -142,7 +152,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, duplicate_slices, slices].hash
+      [display_device, classname, duplicate_slices, slices].hash
     end
 
     # Builds the object from hash

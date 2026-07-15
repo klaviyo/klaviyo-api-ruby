@@ -19,7 +19,8 @@ module KlaviyoAPI
       def openapi_one_of
         [
           :'PushOnOpenApp',
-          :'PushOnOpenDeepLink'
+          :'PushOnOpenDeepLink',
+          :'PushOnOpenWebUrl'
         ]
       end
 

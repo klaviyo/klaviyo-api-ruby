@@ -71,7 +71,7 @@ module KlaviyoAPI
         :'temporary_id' => :'String',
         :'type' => :'String',
         :'links' => :'Link',
-        :'data' => :'SendPushNotificationActionContentExperimentActionData'
+        :'data' => :'ContentExperimentActionData'
       }
     end
 

@@ -65,7 +65,7 @@ module KlaviyoAPI
         :'type' => :'String',
         :'custom_object_label' => :'String',
         :'field' => :'String',
-        :'filter' => :'CustomObjectPropertyConditionFilter'
+        :'filter' => :'MetricPropertyConditionFilter'
       }
     end
 

@@ -65,7 +65,7 @@ module KlaviyoAPI
         :'type' => :'String',
         :'output_config_id' => :'Integer',
         :'field' => :'String',
-        :'filter' => :'ActionOutputConditionFilter2'
+        :'filter' => :'ActionOutputConditionFilter'
       }
     end
 

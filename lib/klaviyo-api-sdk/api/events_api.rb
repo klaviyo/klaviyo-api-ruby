@@ -19,7 +19,7 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Bulk Create Events
-    # Create a batch of events for one or more profiles.  Note that this endpoint allows you to create new profiles or update existing profile properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.  Accepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `events:write`
+    # Create a batch of events for one or more profiles.  Note that this endpoint allows you to create new profiles or update existing profile properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.  Accepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `events:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_events.json)
     # @param events_bulk_create_job [EventsBulkCreateJob] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -32,7 +32,7 @@ module KlaviyoAPI
     alias create_event_bulk_create_job bulk_create_events
 
     # Bulk Create Events
-    # Create a batch of events for one or more profiles.  Note that this endpoint allows you to create new profiles or update existing profile properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., &#x60;id&#x60;, &#x60;email&#x60;, or &#x60;phone_number&#x60;) and the metric &#x60;name&#x60;, respectively.  Accepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;events:write&#x60;
+    # Create a batch of events for one or more profiles.  Note that this endpoint allows you to create new profiles or update existing profile properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., &#x60;id&#x60;, &#x60;email&#x60;, or &#x60;phone_number&#x60;) and the metric &#x60;name&#x60;, respectively.  Accepts up to 1,000 events per request. The maximum allowed payload size is 5MB. A single string cannot exceed 100KB.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;events:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/bulk_create_events.json)
     # @param events_bulk_create_job [EventsBulkCreateJob] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -53,7 +53,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -95,7 +95,7 @@ module KlaviyoAPI
     alias create_event_bulk_create_job_with_http_info bulk_create_events_with_http_info
 
     # Create Event
-    # Create a new event to track a profile's activity.  Note that this endpoint allows you to create a new profile or update an existing profile's properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.  Successful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:write`
+    # Create a new event to track a profile's activity.  Note that this endpoint allows you to create a new profile or update an existing profile's properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., `id`, `email`, or `phone_number`) and the metric `name`, respectively.  Successful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_event.json)
     # @param event_create_query_v2 [EventCreateQueryV2] 
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -105,7 +105,7 @@ module KlaviyoAPI
     end
 
     # Create Event
-    # Create a new event to track a profile&#39;s activity.  Note that this endpoint allows you to create a new profile or update an existing profile&#39;s properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., &#x60;id&#x60;, &#x60;email&#x60;, or &#x60;phone_number&#x60;) and the metric &#x60;name&#x60;, respectively.  Successful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:write&#x60;
+    # Create a new event to track a profile&#39;s activity.  Note that this endpoint allows you to create a new profile or update an existing profile&#39;s properties.  At a minimum, profile and metric objects should include at least one profile identifier (e.g., &#x60;id&#x60;, &#x60;email&#x60;, or &#x60;phone_number&#x60;) and the metric &#x60;name&#x60;, respectively.  Successful response indicates that the event was validated and submitted for processing, but does not guarantee that processing is complete.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_event.json)
     # @param event_create_query_v2 [EventCreateQueryV2] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -126,7 +126,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -165,13 +165,14 @@ module KlaviyoAPI
     end
 
     # Get Event
-    # Get an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `events:read`
+    # Get an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `events:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_attribution For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_event(id, opts = {})
       data, _status_code, _headers = get_event_with_http_info(id, opts)
@@ -179,13 +180,14 @@ module KlaviyoAPI
     end
 
     # Get Event
-    # Get an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;events:read&#x60;
+    # Get an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;events:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_attribution For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_event_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -195,15 +197,19 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_event"
       end
-      allowable_values = ["datetime", "event_properties", "timestamp", "uuid"]
+      allowable_values = ["id"]
+      if @api_client.config.client_side_validation && opts[:'fields_attribution'] && !opts[:'fields_attribution'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_attribution\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["datetime", "event_properties", "id", "timestamp", "uuid"]
       if @api_client.config.client_side_validation && opts[:'fields_event'] && !opts[:'fields_event'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_event\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "properties", "title", "updated"]
+      allowable_values = ["created", "email", "external_id", "first_name", "id", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "properties", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -216,6 +222,7 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[attribution]'] = @api_client.build_collection_param(opts[:'fields_attribution'], :csv) if !opts[:'fields_attribution'].nil?
       query_params[:'fields[event]'] = @api_client.build_collection_param(opts[:'fields_event'], :csv) if !opts[:'fields_event'].nil?
       query_params[:'fields[metric]'] = @api_client.build_collection_param(opts[:'fields_metric'], :csv) if !opts[:'fields_metric'].nil?
       query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
@@ -224,7 +231,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -258,16 +265,17 @@ module KlaviyoAPI
     end
 
     # Get Events
-    # Get all events in an account  Requests can be sorted by the following fields: `datetime`, `timestamp`  [Custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview) are not supported in the `metric_id` filter.  Returns a maximum of 200 events per page.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read`
+    # Get all events in an account  Requests can be sorted by the following fields: `datetime`, `timestamp`  [Custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview) are not supported in the `metric_id` filter.  Returns a maximum of 200 events per page.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_events.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_attribution For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;metric&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 200. Min: 1. Max: 1000. (default to 200)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_events(opts = {})
       data, _status_code, _headers = get_events_with_http_info(opts)
@@ -275,30 +283,35 @@ module KlaviyoAPI
     end
 
     # Get Events
-    # Get all events in an account  Requests can be sorted by the following fields: &#x60;datetime&#x60;, &#x60;timestamp&#x60;  [Custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview) are not supported in the &#x60;metric_id&#x60; filter.  Returns a maximum of 200 events per page.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60;
+    # Get all events in an account  Requests can be sorted by the following fields: &#x60;datetime&#x60;, &#x60;timestamp&#x60;  [Custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview) are not supported in the &#x60;metric_id&#x60; filter.  Returns a maximum of 200 events per page.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_events.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_attribution For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_event For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;metric_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;profile&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;metric&#x60;: &#x60;has&#x60;&lt;br&gt;&#x60;datetime&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 200. Min: 1. Max: 1000. (default to 200)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_events_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: EventsApi.get_events ...'
       end
-      allowable_values = ["datetime", "event_properties", "timestamp", "uuid"]
+      allowable_values = ["id"]
+      if @api_client.config.client_side_validation && opts[:'fields_attribution'] && !opts[:'fields_attribution'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_attribution\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["datetime", "event_properties", "id", "timestamp", "uuid"]
       if @api_client.config.client_side_validation && opts[:'fields_event'] && !opts[:'fields_event'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_event\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "properties", "title", "updated"]
+      allowable_values = ["created", "email", "external_id", "first_name", "id", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "properties", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -323,6 +336,7 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[attribution]'] = @api_client.build_collection_param(opts[:'fields_attribution'], :csv) if !opts[:'fields_attribution'].nil?
       query_params[:'fields[event]'] = @api_client.build_collection_param(opts[:'fields_event'], :csv) if !opts[:'fields_event'].nil?
       query_params[:'fields[metric]'] = @api_client.build_collection_param(opts[:'fields_metric'], :csv) if !opts[:'fields_metric'].nil?
       query_params[:'fields[profile]'] = @api_client.build_collection_param(opts[:'fields_profile'], :csv) if !opts[:'fields_profile'].nil?
@@ -335,7 +349,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -369,10 +383,10 @@ module KlaviyoAPI
     end
 
     # Get Metric for Event
-    # Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`
+    # Get the metric for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_metric_for_event(id, opts = {})
       data, _status_code, _headers = get_metric_for_event_with_http_info(id, opts)
@@ -383,10 +397,10 @@ module KlaviyoAPI
     alias get_event_metric get_metric_for_event
 
     # Get Metric for Event
-    # Get the metric for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;metrics:read&#x60;
+    # Get the metric for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_metric_for_event_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -396,7 +410,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling EventsApi.get_metric_for_event"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -410,7 +424,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -447,7 +461,7 @@ module KlaviyoAPI
     alias get_event_metric_with_http_info get_metric_for_event_with_http_info
 
     # Get Metric ID for Event
-    # Get a list of related Metrics for an Event<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`
+    # Get a list of related Metrics for an Event<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_id_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -460,7 +474,7 @@ module KlaviyoAPI
     alias get_event_relationships_metric get_metric_id_for_event
 
     # Get Metric ID for Event
-    # Get a list of related Metrics for an Event&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;metrics:read&#x60;
+    # Get a list of related Metrics for an Event&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_id_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -481,7 +495,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -518,11 +532,11 @@ module KlaviyoAPI
     alias get_event_relationships_metric_with_http_info get_metric_id_for_event_with_http_info
 
     # Get Profile for Event
-    # Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`
+    # Get the profile associated with an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_profile_for_event(id, opts = {})
       data, _status_code, _headers = get_profile_for_event_with_http_info(id, opts)
@@ -533,11 +547,11 @@ module KlaviyoAPI
     alias get_event_profile get_profile_for_event
 
     # Get Profile for Event
-    # Get the profile associated with an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;profiles:read&#x60;
+    # Get the profile associated with an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;profiles:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_profile Request additional fields not included by default in the response. Supported values: &#39;subscriptions&#39;, &#39;predictive_analytics&#39;
-    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_profile_for_event_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -551,7 +565,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_profile'] && !opts[:'additional_fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_profile\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "email", "external_id", "first_name", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "predictive_analytics", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.historic_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_clv", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.ranked_channel_affinity", "predictive_analytics.total_clv", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.suppression", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.last_updated", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.whatsapp", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.phone_number", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.transactional.valid_until", "title", "updated"]
+      allowable_values = ["created", "email", "external_id", "first_name", "id", "image", "last_event_date", "last_name", "locale", "location", "location.address1", "location.address2", "location.city", "location.country", "location.ip", "location.latitude", "location.longitude", "location.region", "location.timezone", "location.zip", "organization", "phone_number", "predictive_analytics", "predictive_analytics.average_days_between_orders", "predictive_analytics.average_order_value", "predictive_analytics.churn_probability", "predictive_analytics.expected_date_of_next_order", "predictive_analytics.historic_clv", "predictive_analytics.historic_number_of_orders", "predictive_analytics.predicted_clv", "predictive_analytics.predicted_number_of_orders", "predictive_analytics.ranked_channel_affinity", "predictive_analytics.total_clv", "properties", "subscriptions", "subscriptions.email", "subscriptions.email.marketing", "subscriptions.email.marketing.can_receive_email_marketing", "subscriptions.email.marketing.consent", "subscriptions.email.marketing.consent_timestamp", "subscriptions.email.marketing.custom_method_detail", "subscriptions.email.marketing.double_optin", "subscriptions.email.marketing.last_updated", "subscriptions.email.marketing.list_suppressions", "subscriptions.email.marketing.method", "subscriptions.email.marketing.method_detail", "subscriptions.email.marketing.suppression", "subscriptions.email.open_tracking", "subscriptions.email.open_tracking.can_receive", "subscriptions.email.open_tracking.consent", "subscriptions.email.open_tracking.consent_timestamp", "subscriptions.email.open_tracking.created_timestamp", "subscriptions.email.open_tracking.last_updated", "subscriptions.email.open_tracking.metadata", "subscriptions.email.open_tracking.valid_until", "subscriptions.mobile_push", "subscriptions.mobile_push.marketing", "subscriptions.mobile_push.marketing.can_receive_push_marketing", "subscriptions.mobile_push.marketing.consent", "subscriptions.mobile_push.marketing.consent_timestamp", "subscriptions.sms", "subscriptions.sms.marketing", "subscriptions.sms.marketing.can_receive_sms_marketing", "subscriptions.sms.marketing.consent", "subscriptions.sms.marketing.consent_timestamp", "subscriptions.sms.marketing.last_updated", "subscriptions.sms.marketing.method", "subscriptions.sms.marketing.method_detail", "subscriptions.sms.transactional", "subscriptions.sms.transactional.can_receive_sms_transactional", "subscriptions.sms.transactional.consent", "subscriptions.sms.transactional.consent_timestamp", "subscriptions.sms.transactional.last_updated", "subscriptions.sms.transactional.method", "subscriptions.sms.transactional.method_detail", "subscriptions.whatsapp", "subscriptions.whatsapp.conversational", "subscriptions.whatsapp.conversational.can_receive", "subscriptions.whatsapp.conversational.consent", "subscriptions.whatsapp.conversational.consent_timestamp", "subscriptions.whatsapp.conversational.created_timestamp", "subscriptions.whatsapp.conversational.last_updated", "subscriptions.whatsapp.conversational.metadata", "subscriptions.whatsapp.conversational.phone_number", "subscriptions.whatsapp.conversational.valid_until", "subscriptions.whatsapp.marketing", "subscriptions.whatsapp.marketing.can_receive", "subscriptions.whatsapp.marketing.consent", "subscriptions.whatsapp.marketing.consent_timestamp", "subscriptions.whatsapp.marketing.created_timestamp", "subscriptions.whatsapp.marketing.last_updated", "subscriptions.whatsapp.marketing.metadata", "subscriptions.whatsapp.marketing.phone_number", "subscriptions.whatsapp.marketing.valid_until", "subscriptions.whatsapp.transactional", "subscriptions.whatsapp.transactional.can_receive", "subscriptions.whatsapp.transactional.consent", "subscriptions.whatsapp.transactional.consent_timestamp", "subscriptions.whatsapp.transactional.created_timestamp", "subscriptions.whatsapp.transactional.last_updated", "subscriptions.whatsapp.transactional.metadata", "subscriptions.whatsapp.transactional.phone_number", "subscriptions.whatsapp.transactional.valid_until", "title", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_profile'] && !opts[:'fields_profile'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile\", must include one of #{allowable_values}"
       end
@@ -566,7 +580,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -603,7 +617,7 @@ module KlaviyoAPI
     alias get_event_profile_with_http_info get_profile_for_event_with_http_info
 
     # Get Profile ID for Event
-    # Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`
+    # Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.<br><br>*Rate limits*:<br>Burst: `350/s`<br>Steady: `3500/m`  **Scopes:** `events:read` `profiles:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_id_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -616,7 +630,7 @@ module KlaviyoAPI
     alias get_event_relationships_profile get_profile_id_for_event
 
     # Get Profile ID for Event
-    # Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;profiles:read&#x60;
+    # Get profile [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for an event with the given event ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;350/s&#x60;&lt;br&gt;Steady: &#x60;3500/m&#x60;  **Scopes:** &#x60;events:read&#x60; &#x60;profiles:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_profile_id_for_event.json)
     # @param id [String] ID of the event
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -637,7 +651,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 

@@ -19,9 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Create Custom Metric
-    # Create a new custom metric.  Custom metric objects must include a `name` and `definition`.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `15/d`  **Scopes:** `metrics:write`
+    # Create a new custom metric.  Custom metric objects must include a `name` and `definition`.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `15/d`  **Scopes:** `metrics:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_custom_metric.json)
     # @param custom_metric_create_query [CustomMetricCreateQuery] Create a custom metric.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_custom_metric(custom_metric_create_query, opts = {})
       data, _status_code, _headers = create_custom_metric_with_http_info(custom_metric_create_query, opts)
@@ -29,9 +30,10 @@ module KlaviyoAPI
     end
 
     # Create Custom Metric
-    # Create a new custom metric.  Custom metric objects must include a &#x60;name&#x60; and &#x60;definition&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;Daily: &#x60;15/d&#x60;  **Scopes:** &#x60;metrics:write&#x60;
+    # Create a new custom metric.  Custom metric objects must include a &#x60;name&#x60; and &#x60;definition&#x60;.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;Daily: &#x60;15/d&#x60;  **Scopes:** &#x60;metrics:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_custom_metric.json)
     # @param custom_metric_create_query [CustomMetricCreateQuery] Create a custom metric.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_custom_metric_with_http_info(custom_metric_create_query, opts = {})
       if @api_client.config.debugging
@@ -41,16 +43,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && custom_metric_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'custom_metric_create_query' when calling MetricsApi.create_custom_metric"
       end
+      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "id", "name", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_custom_metric'] && !opts[:'fields_custom_metric'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_custom_metric\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/custom-metrics'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[custom-metric]'] = @api_client.build_collection_param(opts[:'fields_custom_metric'], :csv) if !opts[:'fields_custom_metric'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -89,7 +96,7 @@ module KlaviyoAPI
     end
 
     # Delete Custom Metric
-    # Delete a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:write`
+    # Delete a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -99,7 +106,7 @@ module KlaviyoAPI
     end
 
     # Delete Custom Metric
-    # Delete a custom metric with the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:write&#x60;
+    # Delete a custom metric with the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -120,7 +127,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -154,12 +161,12 @@ module KlaviyoAPI
     end
 
     # Get Custom Metric
-    # Get a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_custom_metric(id, opts = {})
       data, _status_code, _headers = get_custom_metric_with_http_info(id, opts)
@@ -167,12 +174,12 @@ module KlaviyoAPI
     end
 
     # Get Custom Metric
-    # Get a custom metric with the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get a custom metric with the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_custom_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -182,11 +189,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_custom_metric"
       end
-      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "name", "updated"]
+      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_custom_metric'] && !opts[:'fields_custom_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_custom_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -206,7 +213,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -240,10 +247,10 @@ module KlaviyoAPI
     end
 
     # Get Custom Metric for Mapped Metric
-    # Get the custom metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get the custom metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metric_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_custom_metric_for_mapped_metric(id, opts = {})
       data, _status_code, _headers = get_custom_metric_for_mapped_metric_with_http_info(id, opts)
@@ -254,10 +261,10 @@ module KlaviyoAPI
     alias get_mapped_metric_custom_metric get_custom_metric_for_mapped_metric
 
     # Get Custom Metric for Mapped Metric
-    # Get the custom metric for the given mapped metric ID (if applicable).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the custom metric for the given mapped metric ID (if applicable).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metric_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_custom_metric_for_mapped_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -272,7 +279,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && !allowable_values.include?(id)
         fail ArgumentError, "invalid value for \"id\", must be one of #{allowable_values}"
       end
-      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "name", "updated"]
+      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_custom_metric'] && !opts[:'fields_custom_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_custom_metric\", must include one of #{allowable_values}"
       end
@@ -286,7 +293,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -323,7 +330,7 @@ module KlaviyoAPI
     alias get_mapped_metric_custom_metric_with_http_info get_custom_metric_for_mapped_metric_with_http_info
 
     # Get Custom Metric ID for Mapped Metric
-    # Get the ID of the custom metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get the ID of the custom metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metric_id_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -336,7 +343,7 @@ module KlaviyoAPI
     alias get_mapped_metric_relationships_custom_metric get_custom_metric_id_for_mapped_metric
 
     # Get Custom Metric ID for Mapped Metric
-    # Get the ID of the custom metric for the given mapped metric.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the ID of the custom metric for the given mapped metric.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metric_id_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -362,7 +369,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -399,11 +406,11 @@ module KlaviyoAPI
     alias get_mapped_metric_relationships_custom_metric_with_http_info get_custom_metric_id_for_mapped_metric_with_http_info
 
     # Get Custom Metrics
-    # Get all custom metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get all custom metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metrics.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_custom_metrics(opts = {})
       data, _status_code, _headers = get_custom_metrics_with_http_info(opts)
@@ -411,21 +418,21 @@ module KlaviyoAPI
     end
 
     # Get Custom Metrics
-    # Get all custom metrics in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get all custom metrics in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_custom_metrics.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_custom_metrics_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: MetricsApi.get_custom_metrics ...'
       end
-      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "name", "updated"]
+      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_custom_metric'] && !opts[:'fields_custom_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_custom_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -445,7 +452,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -479,10 +486,10 @@ module KlaviyoAPI
     end
 
     # Get Flows Triggered by Metric
-    # Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
+    # Get all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_flows_triggered_by_metric.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_flows_triggered_by_metric(id, opts = {})
       data, _status_code, _headers = get_flows_triggered_by_metric_with_http_info(id, opts)
@@ -496,10 +503,10 @@ module KlaviyoAPI
     alias get_metric_flow_triggers get_flows_triggered_by_metric
 
     # Get Flows Triggered by Metric
-    # Get all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;
+    # Get all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_flows_triggered_by_metric.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_flows_triggered_by_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -509,7 +516,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_flows_triggered_by_metric"
       end
-      allowable_values = ["archived", "created", "name", "status", "trigger_type", "updated"]
+      allowable_values = ["archived", "created", "id", "name", "status", "trigger_type", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_flow'] && !opts[:'fields_flow'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow\", must include one of #{allowable_values}"
       end
@@ -523,7 +530,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -563,7 +570,7 @@ module KlaviyoAPI
     alias get_metric_flow_triggers_with_http_info get_flows_triggered_by_metric_with_http_info
 
     # Get IDs for Flows Triggered by Metric
-    # Get the IDs of all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`
+    # Get the IDs of all flows where the given metric is being used as the trigger.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `flows:read` `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ids_for_flows_triggered_by_metric.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -579,7 +586,7 @@ module KlaviyoAPI
     alias get_metric_relationships_flow_triggers get_ids_for_flows_triggered_by_metric
 
     # Get IDs for Flows Triggered by Metric
-    # Get the IDs of all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;
+    # Get the IDs of all flows where the given metric is being used as the trigger.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ids_for_flows_triggered_by_metric.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -600,7 +607,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -640,13 +647,13 @@ module KlaviyoAPI
     alias get_metric_relationships_flow_triggers_with_http_info get_ids_for_flows_triggered_by_metric_with_http_info
 
     # Get Mapped Metric
-    # Get the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_mapped_metric(id, opts = {})
       data, _status_code, _headers = get_mapped_metric_with_http_info(id, opts)
@@ -654,13 +661,13 @@ module KlaviyoAPI
     end
 
     # Get Mapped Metric
-    # Get the mapped metric with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the mapped metric with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_mapped_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -675,15 +682,15 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && !allowable_values.include?(id)
         fail ArgumentError, "invalid value for \"id\", must be one of #{allowable_values}"
       end
-      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "name", "updated"]
+      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_custom_metric'] && !opts[:'fields_custom_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_custom_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["updated"]
+      allowable_values = ["id", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_mapped_metric'] && !opts[:'fields_mapped_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_mapped_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -704,7 +711,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -738,12 +745,12 @@ module KlaviyoAPI
     end
 
     # Get Mapped Metrics
-    # Get all mapped metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get all mapped metrics in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_mapped_metrics.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_mapped_metrics(opts = {})
       data, _status_code, _headers = get_mapped_metrics_with_http_info(opts)
@@ -751,26 +758,26 @@ module KlaviyoAPI
     end
 
     # Get Mapped Metrics
-    # Get all mapped metrics in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get all mapped metrics in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_mapped_metrics.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_mapped_metrics_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: MetricsApi.get_mapped_metrics ...'
       end
-      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "name", "updated"]
+      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "id", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_custom_metric'] && !opts[:'fields_custom_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_custom_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["updated"]
+      allowable_values = ["id", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_mapped_metric'] && !opts[:'fields_mapped_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_mapped_metric\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -791,7 +798,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -825,12 +832,12 @@ module KlaviyoAPI
     end
 
     # Get Metric
-    # Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
+    # Get a metric with the given metric ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric.json)
     # @param id [String] Metric ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_metric(id, opts = {})
       data, _status_code, _headers = get_metric_with_http_info(id, opts)
@@ -838,12 +845,12 @@ module KlaviyoAPI
     end
 
     # Get Metric
-    # Get a metric with the given metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get a metric with the given metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric.json)
     # @param id [String] Metric ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -853,11 +860,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_metric"
       end
-      allowable_values = ["archived", "created", "name", "status", "trigger_type", "updated"]
+      allowable_values = ["archived", "created", "id", "name", "status", "trigger_type", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_flow'] && !opts[:'fields_flow'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -877,7 +884,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -911,10 +918,10 @@ module KlaviyoAPI
     end
 
     # Get Metric for Mapped Metric
-    # Get the metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get the metric for the given mapped metric ID (if applicable).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_metric_for_mapped_metric(id, opts = {})
       data, _status_code, _headers = get_metric_for_mapped_metric_with_http_info(id, opts)
@@ -925,10 +932,10 @@ module KlaviyoAPI
     alias get_mapped_metric_metric get_metric_for_mapped_metric
 
     # Get Metric for Mapped Metric
-    # Get the metric for the given mapped metric ID (if applicable).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the metric for the given mapped metric ID (if applicable).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_metric_for_mapped_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -943,7 +950,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && !allowable_values.include?(id)
         fail ArgumentError, "invalid value for \"id\", must be one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -957,7 +964,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -994,10 +1001,10 @@ module KlaviyoAPI
     alias get_mapped_metric_metric_with_http_info get_metric_for_mapped_metric_with_http_info
 
     # Get Metric for Metric Property
-    # Get the metric for the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
+    # Get the metric for the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_for_metric_property.json)
     # @param id [String] The ID of the metric property
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_metric_for_metric_property(id, opts = {})
       data, _status_code, _headers = get_metric_for_metric_property_with_http_info(id, opts)
@@ -1008,10 +1015,10 @@ module KlaviyoAPI
     alias get_metric_property_metric get_metric_for_metric_property
 
     # Get Metric for Metric Property
-    # Get the metric for the given metric property ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the metric for the given metric property ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_for_metric_property.json)
     # @param id [String] The ID of the metric property
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_metric_for_metric_property_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1021,7 +1028,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_metric_for_metric_property"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -1035,7 +1042,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1072,7 +1079,7 @@ module KlaviyoAPI
     alias get_metric_property_metric_with_http_info get_metric_for_metric_property_with_http_info
 
     # Get Metric ID for Mapped Metric
-    # Get the ID of the metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get the ID of the metric for the given mapped metric.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_id_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -1085,7 +1092,7 @@ module KlaviyoAPI
     alias get_mapped_metric_relationships_metric get_metric_id_for_mapped_metric
 
     # Get Metric ID for Mapped Metric
-    # Get the ID of the metric for the given mapped metric.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the ID of the metric for the given mapped metric.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_id_for_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1111,7 +1118,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1148,7 +1155,7 @@ module KlaviyoAPI
     alias get_mapped_metric_relationships_metric_with_http_info get_metric_id_for_mapped_metric_with_http_info
 
     # Get Metric ID for Metric Property
-    # Get the ID of the metric for the given metric property.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
+    # Get the ID of the metric for the given metric property.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_id_for_metric_property.json)
     # @param id [String] The ID of the metric property
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -1161,7 +1168,7 @@ module KlaviyoAPI
     alias get_metric_property_relationships_metric get_metric_id_for_metric_property
 
     # Get Metric ID for Metric Property
-    # Get the ID of the metric for the given metric property.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the ID of the metric for the given metric property.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_id_for_metric_property.json)
     # @param id [String] The ID of the metric property
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1182,7 +1189,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1219,7 +1226,7 @@ module KlaviyoAPI
     alias get_metric_property_relationships_metric_with_http_info get_metric_id_for_metric_property_with_http_info
 
     # Get Metric IDs for Custom Metric
-    # Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_ids_for_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -1232,7 +1239,7 @@ module KlaviyoAPI
     alias get_custom_metric_relationships_metrics get_metric_ids_for_custom_metric
 
     # Get Metric IDs for Custom Metric
-    # Get all metrics for the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get all metrics for the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_ids_for_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1253,7 +1260,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1290,13 +1297,13 @@ module KlaviyoAPI
     alias get_custom_metric_relationships_metrics_with_http_info get_metric_ids_for_custom_metric_with_http_info
 
     # Get Metric Property
-    # Get a metric property with the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
+    # Get a metric property with the given metric property ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_property.json)
     # @param id [String] The ID of the metric property
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_metric_property Request additional fields not included by default in the response. Supported values: &#39;sample_values&#39;
-    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_metric_property(id, opts = {})
       data, _status_code, _headers = get_metric_property_with_http_info(id, opts)
@@ -1304,13 +1311,13 @@ module KlaviyoAPI
     end
 
     # Get Metric Property
-    # Get a metric property with the given metric property ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get a metric property with the given metric property ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metric_property.json)
     # @param id [String] The ID of the metric property
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_metric_property Request additional fields not included by default in the response. Supported values: &#39;sample_values&#39;
-    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_metric_property_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1324,11 +1331,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_metric_property'] && !opts[:'additional_fields_metric_property'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_metric_property\", must include one of #{allowable_values}"
       end
-      allowable_values = ["inferred_type", "label", "property", "sample_values"]
+      allowable_values = ["id", "inferred_type", "label", "property", "sample_values"]
       if @api_client.config.client_side_validation && opts[:'fields_metric_property'] && !opts[:'fields_metric_property'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric_property\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -1349,7 +1356,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1383,13 +1390,13 @@ module KlaviyoAPI
     end
 
     # Get Metrics
-    # Get all metrics in an account.  Requests can be filtered by the following fields: integration `name`, integration `category`  Returns a maximum of 200 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`
+    # Get all metrics in an account.  Requests can be filtered by the following fields: integration `name`, integration `category`  Returns a maximum of 200 results per page.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metrics.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_metrics(opts = {})
       data, _status_code, _headers = get_metrics_with_http_info(opts)
@@ -1397,23 +1404,23 @@ module KlaviyoAPI
     end
 
     # Get Metrics
-    # Get all metrics in an account.  Requests can be filtered by the following fields: integration &#x60;name&#x60;, integration &#x60;category&#x60;  Returns a maximum of 200 results per page.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get all metrics in an account.  Requests can be filtered by the following fields: integration &#x60;name&#x60;, integration &#x60;category&#x60;  Returns a maximum of 200 results per page.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metrics.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_flow For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;integration.name&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;integration.category&#x60;: &#x60;equals&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_metrics_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: MetricsApi.get_metrics ...'
       end
-      allowable_values = ["archived", "created", "name", "status", "trigger_type", "updated"]
+      allowable_values = ["archived", "created", "id", "name", "status", "trigger_type", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_flow'] && !opts[:'fields_flow'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_flow\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -1435,7 +1442,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1469,10 +1476,10 @@ module KlaviyoAPI
     end
 
     # Get Metrics for Custom Metric
-    # Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Get all metrics for the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metrics_for_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_metrics_for_custom_metric(id, opts = {})
       data, _status_code, _headers = get_metrics_for_custom_metric_with_http_info(id, opts)
@@ -1483,10 +1490,10 @@ module KlaviyoAPI
     alias get_custom_metric_metrics get_metrics_for_custom_metric
 
     # Get Metrics for Custom Metric
-    # Get all metrics for the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get all metrics for the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_metrics_for_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_metrics_for_custom_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1496,7 +1503,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling MetricsApi.get_metrics_for_custom_metric"
       end
-      allowable_values = ["created", "integration", "name", "updated"]
+      allowable_values = ["created", "id", "integration", "name", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_metric'] && !opts[:'fields_metric'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric\", must include one of #{allowable_values}"
       end
@@ -1510,7 +1517,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1547,11 +1554,11 @@ module KlaviyoAPI
     alias get_custom_metric_metrics_with_http_info get_metrics_for_custom_metric_with_http_info
 
     # Get Properties for Metric
-    # Get the metric properties for the given metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
+    # Get the metric properties for the given metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_properties_for_metric.json)
     # @param id [String] The ID of the metric
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_metric_property Request additional fields not included by default in the response. Supported values: &#39;sample_values&#39;
-    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_properties_for_metric(id, opts = {})
       data, _status_code, _headers = get_properties_for_metric_with_http_info(id, opts)
@@ -1565,11 +1572,11 @@ module KlaviyoAPI
     alias get_metric_properties get_properties_for_metric
 
     # Get Properties for Metric
-    # Get the metric properties for the given metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the metric properties for the given metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_properties_for_metric.json)
     # @param id [String] The ID of the metric
     # @param [Hash] opts the optional parameters
     # @option opts [Array<String>] :additional_fields_metric_property Request additional fields not included by default in the response. Supported values: &#39;sample_values&#39;
-    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_metric_property For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_properties_for_metric_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1583,7 +1590,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'additional_fields_metric_property'] && !opts[:'additional_fields_metric_property'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"additional_fields_metric_property\", must include one of #{allowable_values}"
       end
-      allowable_values = ["inferred_type", "label", "property", "sample_values"]
+      allowable_values = ["id", "inferred_type", "label", "property", "sample_values"]
       if @api_client.config.client_side_validation && opts[:'fields_metric_property'] && !opts[:'fields_metric_property'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_metric_property\", must include one of #{allowable_values}"
       end
@@ -1598,7 +1605,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1638,7 +1645,7 @@ module KlaviyoAPI
     alias get_metric_properties_with_http_info get_properties_for_metric_with_http_info
 
     # Get Property IDs for Metric
-    # Get the IDs of metric properties for the given metric.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`
+    # Get the IDs of metric properties for the given metric.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_property_ids_for_metric.json)
     # @param id [String] The ID of the metric
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -1654,7 +1661,7 @@ module KlaviyoAPI
     alias get_metric_relationships_properties get_property_ids_for_metric
 
     # Get Property IDs for Metric
-    # Get the IDs of metric properties for the given metric.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Get the IDs of metric properties for the given metric.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_property_ids_for_metric.json)
     # @param id [String] The ID of the metric
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1675,7 +1682,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1715,9 +1722,10 @@ module KlaviyoAPI
     alias get_metric_relationships_properties_with_http_info get_property_ids_for_metric_with_http_info
 
     # Query Metric Aggregates
-    # Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events (not to be confused with [custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview), which are not supported at this time). Queries must be passed in the JSON body of your `POST` request.  To request campaign and flow performance data that matches the data shown in Klaviyo's UI, we recommend the [Reporting API](https://developers.klaviyo.com/en/reference/reporting_api_overview).  Results can be filtered and grouped by time, event, or profile dimensions.  To learn more about how to use this endpoint, check out our new [Using the Query Metric Aggregates Endpoint guide](https://developers.klaviyo.com/en/docs/using-the-query-metric-aggregates-endpoint).  For a comprehensive list of request body parameters, native Klaviyo metrics, and their associated attributes for grouping and filtering, please refer to the [metrics attributes guide](https://developers.klaviyo.com/en/docs/supported_metrics_and_attributes).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`
+    # Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events (not to be confused with [custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview), which are not supported at this time). Queries must be passed in the JSON body of your `POST` request.  To request campaign and flow performance data that matches the data shown in Klaviyo's UI, we recommend the [Reporting API](https://developers.klaviyo.com/en/reference/reporting_api_overview).  Results can be filtered and grouped by time, event, or profile dimensions.  To learn more about how to use this endpoint, check out our new [Using the Query Metric Aggregates Endpoint guide](https://developers.klaviyo.com/en/docs/using-the-query-metric-aggregates-endpoint).  For a comprehensive list of request body parameters, native Klaviyo metrics, and their associated attributes for grouping and filtering, please refer to the [metrics attributes guide](https://developers.klaviyo.com/en/docs/supported_metrics_and_attributes).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `metrics:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_metric_aggregates.json)
     # @param metric_aggregate_query [MetricAggregateQuery] Retrieve Metric Aggregations
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_metric_aggregate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def query_metric_aggregates(metric_aggregate_query, opts = {})
       data, _status_code, _headers = query_metric_aggregates_with_http_info(metric_aggregate_query, opts)
@@ -1728,9 +1736,10 @@ module KlaviyoAPI
     alias create_metric_aggregate query_metric_aggregates
 
     # Query Metric Aggregates
-    # Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events (not to be confused with [custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview), which are not supported at this time). Queries must be passed in the JSON body of your &#x60;POST&#x60; request.  To request campaign and flow performance data that matches the data shown in Klaviyo&#39;s UI, we recommend the [Reporting API](https://developers.klaviyo.com/en/reference/reporting_api_overview).  Results can be filtered and grouped by time, event, or profile dimensions.  To learn more about how to use this endpoint, check out our new [Using the Query Metric Aggregates Endpoint guide](https://developers.klaviyo.com/en/docs/using-the-query-metric-aggregates-endpoint).  For a comprehensive list of request body parameters, native Klaviyo metrics, and their associated attributes for grouping and filtering, please refer to the [metrics attributes guide](https://developers.klaviyo.com/en/docs/supported_metrics_and_attributes).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;
+    # Query and aggregate event data associated with a metric, including native Klaviyo metrics, integration-specific metrics, and custom events (not to be confused with [custom metrics](https://developers.klaviyo.com/en/reference/custom_metrics_api_overview), which are not supported at this time). Queries must be passed in the JSON body of your &#x60;POST&#x60; request.  To request campaign and flow performance data that matches the data shown in Klaviyo&#39;s UI, we recommend the [Reporting API](https://developers.klaviyo.com/en/reference/reporting_api_overview).  Results can be filtered and grouped by time, event, or profile dimensions.  To learn more about how to use this endpoint, check out our new [Using the Query Metric Aggregates Endpoint guide](https://developers.klaviyo.com/en/docs/using-the-query-metric-aggregates-endpoint).  For a comprehensive list of request body parameters, native Klaviyo metrics, and their associated attributes for grouping and filtering, please refer to the [metrics attributes guide](https://developers.klaviyo.com/en/docs/supported_metrics_and_attributes).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;metrics:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/query_metric_aggregates.json)
     # @param metric_aggregate_query [MetricAggregateQuery] Retrieve Metric Aggregations
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_metric_aggregate For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def query_metric_aggregates_with_http_info(metric_aggregate_query, opts = {})
       if @api_client.config.debugging
@@ -1740,16 +1749,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && metric_aggregate_query.nil?
         fail ArgumentError, "Missing the required parameter 'metric_aggregate_query' when calling MetricsApi.query_metric_aggregates"
       end
+      allowable_values = ["data", "dates", "id"]
+      if @api_client.config.client_side_validation && opts[:'fields_metric_aggregate'] && !opts[:'fields_metric_aggregate'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_metric_aggregate\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/metric-aggregates'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[metric-aggregate]'] = @api_client.build_collection_param(opts[:'fields_metric_aggregate'], :csv) if !opts[:'fields_metric_aggregate'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1791,10 +1805,11 @@ module KlaviyoAPI
     alias create_metric_aggregate_with_http_info query_metric_aggregates_with_http_info
 
     # Update Custom Metric
-    # Update a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `15/d`  **Scopes:** `metrics:write`
+    # Update a custom metric with the given custom metric ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `15/d`  **Scopes:** `metrics:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param custom_metric_partial_update_query [CustomMetricPartialUpdateQuery] Update a custom metric by ID.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_custom_metric(id, custom_metric_partial_update_query, opts = {})
       data, _status_code, _headers = update_custom_metric_with_http_info(id, custom_metric_partial_update_query, opts)
@@ -1802,10 +1817,11 @@ module KlaviyoAPI
     end
 
     # Update Custom Metric
-    # Update a custom metric with the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;Daily: &#x60;15/d&#x60;  **Scopes:** &#x60;metrics:write&#x60;
+    # Update a custom metric with the given custom metric ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;Daily: &#x60;15/d&#x60;  **Scopes:** &#x60;metrics:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_custom_metric.json)
     # @param id [String] The ID of the custom metric
     # @param custom_metric_partial_update_query [CustomMetricPartialUpdateQuery] Update a custom metric by ID.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_custom_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_custom_metric_with_http_info(id, custom_metric_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -1819,16 +1835,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && custom_metric_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'custom_metric_partial_update_query' when calling MetricsApi.update_custom_metric"
       end
+      allowable_values = ["created", "definition", "definition.aggregation_method", "definition.metric_groups", "id", "name", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_custom_metric'] && !opts[:'fields_custom_metric'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_custom_metric\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/custom-metrics/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[custom-metric]'] = @api_client.build_collection_param(opts[:'fields_custom_metric'], :csv) if !opts[:'fields_custom_metric'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1867,10 +1888,11 @@ module KlaviyoAPI
     end
 
     # Update Mapped Metric
-    # Update the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `30/d`  **Scopes:** `metrics:write`
+    # Update the mapped metric with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`<br>Daily: `30/d`  **Scopes:** `metrics:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param mapped_metric_partial_update_query [MappedMetricPartialUpdateQuery] Update a mapped metric by ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_mapped_metric(id, mapped_metric_partial_update_query, opts = {})
       data, _status_code, _headers = update_mapped_metric_with_http_info(id, mapped_metric_partial_update_query, opts)
@@ -1878,10 +1900,11 @@ module KlaviyoAPI
     end
 
     # Update Mapped Metric
-    # Update the mapped metric with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;Daily: &#x60;30/d&#x60;  **Scopes:** &#x60;metrics:write&#x60;
+    # Update the mapped metric with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;&lt;br&gt;Daily: &#x60;30/d&#x60;  **Scopes:** &#x60;metrics:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_mapped_metric.json)
     # @param id [String] The type of mapping.
     # @param mapped_metric_partial_update_query [MappedMetricPartialUpdateQuery] Update a mapped metric by ID
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_mapped_metric For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_mapped_metric_with_http_info(id, mapped_metric_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -1900,16 +1923,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && mapped_metric_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'mapped_metric_partial_update_query' when calling MetricsApi.update_mapped_metric"
       end
+      allowable_values = ["id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_mapped_metric'] && !opts[:'fields_mapped_metric'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_mapped_metric\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/mapped-metrics/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[mapped-metric]'] = @api_client.build_collection_param(opts[:'fields_mapped_metric'], :csv) if !opts[:'fields_mapped_metric'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

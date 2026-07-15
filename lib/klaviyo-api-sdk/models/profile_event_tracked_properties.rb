@@ -16,10 +16,13 @@ module KlaviyoAPI
   class ProfileEventTrackedProperties
     attr_accessor :metric
 
+    attr_accessor :property_filters
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'metric' => :'metric'
+        :'metric' => :'metric',
+        :'property_filters' => :'property_filters'
       }
     end
 
@@ -31,13 +34,16 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'metric' => :'String'
+        :'metric' => :'String',
+        :'property_filters' => :'Array<PropertyFilter>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'metric',
+        :'property_filters'
       ])
     end
 
@@ -58,6 +64,14 @@ module KlaviyoAPI
 
       if attributes.key?(:'metric')
         self.metric = attributes[:'metric']
+      else
+        self.metric = ''
+      end
+
+      if attributes.key?(:'property_filters')
+        if (value = attributes[:'property_filters']).is_a?(Array)
+          self.property_filters = value
+        end
       end
     end
 
@@ -65,17 +79,12 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @metric.nil?
-        invalid_properties.push('invalid value for "metric", metric cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @metric.nil?
       true
     end
 
@@ -84,7 +93,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          metric == o.metric
+          metric == o.metric &&
+          property_filters == o.property_filters
     end
 
     # @see the `==` method
@@ -96,7 +106,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [metric].hash
+      [metric, property_filters].hash
     end
 
     # Builds the object from hash

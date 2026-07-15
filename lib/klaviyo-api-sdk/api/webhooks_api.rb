@@ -19,9 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Create Webhook
-    # Create a new Webhook<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
+    # Create a new Webhook<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_webhook.json)
     # @param webhook_create_query [WebhookCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_webhook(webhook_create_query, opts = {})
       data, _status_code, _headers = create_webhook_with_http_info(webhook_create_query, opts)
@@ -29,9 +30,10 @@ module KlaviyoAPI
     end
 
     # Create Webhook
-    # Create a new Webhook&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:write&#x60;
+    # Create a new Webhook&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_webhook.json)
     # @param webhook_create_query [WebhookCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_webhook_with_http_info(webhook_create_query, opts = {})
       if @api_client.config.debugging
@@ -41,16 +43,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && webhook_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'webhook_create_query' when calling WebhooksApi.create_webhook"
       end
+      allowable_values = ["created_at", "description", "enabled", "endpoint_url", "id", "name", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_webhook'] && !opts[:'fields_webhook'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_webhook\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/webhooks'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[webhook]'] = @api_client.build_collection_param(opts[:'fields_webhook'], :csv) if !opts[:'fields_webhook'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -89,7 +96,7 @@ module KlaviyoAPI
     end
 
     # Delete Webhook
-    # Delete a webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
+    # Delete a webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_webhook.json)
     # @param id [String] The ID of the webhook.
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -99,7 +106,7 @@ module KlaviyoAPI
     end
 
     # Delete Webhook
-    # Delete a webhook with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:write&#x60;
+    # Delete a webhook with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_webhook.json)
     # @param id [String] The ID of the webhook.
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -120,7 +127,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -154,11 +161,12 @@ module KlaviyoAPI
     end
 
     # Get Webhook
-    # Get the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+    # Get the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook.json)
     # @param id [String] The ID of the webhook.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_webhook(id, opts = {})
       data, _status_code, _headers = get_webhook_with_http_info(id, opts)
@@ -166,11 +174,12 @@ module KlaviyoAPI
     end
 
     # Get Webhook
-    # Get the webhook with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;
+    # Get the webhook with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook.json)
     # @param id [String] The ID of the webhook.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_webhook_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -180,7 +189,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling WebhooksApi.get_webhook"
       end
-      allowable_values = ["created_at", "description", "enabled", "endpoint_url", "name", "updated_at"]
+      allowable_values = ["id"]
+      if @api_client.config.client_side_validation && opts[:'fields_webhook_topic'] && !opts[:'fields_webhook_topic'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_webhook_topic\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "description", "enabled", "endpoint_url", "id", "name", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_webhook'] && !opts[:'fields_webhook'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_webhook\", must include one of #{allowable_values}"
       end
@@ -193,13 +206,14 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[webhook-topic]'] = @api_client.build_collection_param(opts[:'fields_webhook_topic'], :csv) if !opts[:'fields_webhook_topic'].nil?
       query_params[:'fields[webhook]'] = @api_client.build_collection_param(opts[:'fields_webhook'], :csv) if !opts[:'fields_webhook'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -233,9 +247,10 @@ module KlaviyoAPI
     end
 
     # Get Webhook Topic
-    # Get the webhook topic with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+    # Get the webhook topic with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topic.json)
     # @param id [String] The ID of the webhook topic.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_webhook_topic(id, opts = {})
       data, _status_code, _headers = get_webhook_topic_with_http_info(id, opts)
@@ -243,9 +258,10 @@ module KlaviyoAPI
     end
 
     # Get Webhook Topic
-    # Get the webhook topic with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;
+    # Get the webhook topic with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topic.json)
     # @param id [String] The ID of the webhook topic.
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_webhook_topic_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -255,16 +271,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling WebhooksApi.get_webhook_topic"
       end
+      allowable_values = ["id"]
+      if @api_client.config.client_side_validation && opts[:'fields_webhook_topic'] && !opts[:'fields_webhook_topic'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_webhook_topic\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/webhook-topics/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[webhook-topic]'] = @api_client.build_collection_param(opts[:'fields_webhook_topic'], :csv) if !opts[:'fields_webhook_topic'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -298,8 +319,9 @@ module KlaviyoAPI
     end
 
     # Get Webhook Topics
-    # Get all webhook topics in a Klaviyo account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+    # Get all webhook topics in a Klaviyo account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topics.json)
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_webhook_topics(opts = {})
       data, _status_code, _headers = get_webhook_topics_with_http_info(opts)
@@ -307,23 +329,29 @@ module KlaviyoAPI
     end
 
     # Get Webhook Topics
-    # Get all webhook topics in a Klaviyo account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;
+    # Get all webhook topics in a Klaviyo account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhook_topics.json)
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_webhook_topics_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: WebhooksApi.get_webhook_topics ...'
+      end
+      allowable_values = ["id"]
+      if @api_client.config.client_side_validation && opts[:'fields_webhook_topic'] && !opts[:'fields_webhook_topic'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_webhook_topic\", must include one of #{allowable_values}"
       end
       # resource path
       local_var_path = '/api/webhook-topics'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[webhook-topic]'] = @api_client.build_collection_param(opts[:'fields_webhook_topic'], :csv) if !opts[:'fields_webhook_topic'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -357,10 +385,11 @@ module KlaviyoAPI
     end
 
     # Get Webhooks
-    # Get all webhooks in an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`
+    # Get all webhooks in an account.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhooks.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_webhooks(opts = {})
       data, _status_code, _headers = get_webhooks_with_http_info(opts)
@@ -368,16 +397,21 @@ module KlaviyoAPI
     end
 
     # Get Webhooks
-    # Get all webhooks in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;
+    # Get all webhooks in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_webhooks.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_webhook_topic For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_webhooks_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: WebhooksApi.get_webhooks ...'
       end
-      allowable_values = ["created_at", "description", "enabled", "endpoint_url", "name", "updated_at"]
+      allowable_values = ["id"]
+      if @api_client.config.client_side_validation && opts[:'fields_webhook_topic'] && !opts[:'fields_webhook_topic'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_webhook_topic\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "description", "enabled", "endpoint_url", "id", "name", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_webhook'] && !opts[:'fields_webhook'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_webhook\", must include one of #{allowable_values}"
       end
@@ -390,13 +424,14 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[webhook-topic]'] = @api_client.build_collection_param(opts[:'fields_webhook_topic'], :csv) if !opts[:'fields_webhook_topic'].nil?
       query_params[:'fields[webhook]'] = @api_client.build_collection_param(opts[:'fields_webhook'], :csv) if !opts[:'fields_webhook'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -430,10 +465,11 @@ module KlaviyoAPI
     end
 
     # Update Webhook
-    # Update the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`
+    # Update the webhook with the given ID.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `webhooks:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_webhook.json)
     # @param id [String] The ID of the webhook.
     # @param webhook_partial_update_query [WebhookPartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_webhook(id, webhook_partial_update_query, opts = {})
       data, _status_code, _headers = update_webhook_with_http_info(id, webhook_partial_update_query, opts)
@@ -441,10 +477,11 @@ module KlaviyoAPI
     end
 
     # Update Webhook
-    # Update the webhook with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:write&#x60;
+    # Update the webhook with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;webhooks:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_webhook.json)
     # @param id [String] The ID of the webhook.
     # @param webhook_partial_update_query [WebhookPartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_webhook For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_webhook_with_http_info(id, webhook_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -458,16 +495,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && webhook_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'webhook_partial_update_query' when calling WebhooksApi.update_webhook"
       end
+      allowable_values = ["created_at", "description", "enabled", "endpoint_url", "id", "name", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_webhook'] && !opts[:'fields_webhook'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_webhook\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/webhooks/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[webhook]'] = @api_client.build_collection_param(opts[:'fields_webhook'], :csv) if !opts[:'fields_webhook'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

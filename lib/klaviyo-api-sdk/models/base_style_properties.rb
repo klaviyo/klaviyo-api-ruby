@@ -24,6 +24,8 @@ module KlaviyoAPI
 
     attr_accessor :mobile_optimizations
 
+    attr_accessor :tip_tap_enabled
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -31,7 +33,8 @@ module KlaviyoAPI
         :'currency_set_on_template' => :'currency_set_on_template',
         :'disable_websafe_fonts' => :'disable_websafe_fonts',
         :'is_user_draggable' => :'is_user_draggable',
-        :'mobile_optimizations' => :'mobile_optimizations'
+        :'mobile_optimizations' => :'mobile_optimizations',
+        :'tip_tap_enabled' => :'tip_tap_enabled'
       }
     end
 
@@ -47,7 +50,8 @@ module KlaviyoAPI
         :'currency_set_on_template' => :'Boolean',
         :'disable_websafe_fonts' => :'Boolean',
         :'is_user_draggable' => :'Boolean',
-        :'mobile_optimizations' => :'Boolean'
+        :'mobile_optimizations' => :'Boolean',
+        :'tip_tap_enabled' => :'Boolean'
       }
     end
 
@@ -58,7 +62,8 @@ module KlaviyoAPI
         :'currency_set_on_template',
         :'disable_websafe_fonts',
         :'is_user_draggable',
-        :'mobile_optimizations'
+        :'mobile_optimizations',
+        :'tip_tap_enabled'
       ])
     end
 
@@ -96,6 +101,10 @@ module KlaviyoAPI
       if attributes.key?(:'mobile_optimizations')
         self.mobile_optimizations = attributes[:'mobile_optimizations']
       end
+
+      if attributes.key?(:'tip_tap_enabled')
+        self.tip_tap_enabled = attributes[:'tip_tap_enabled']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -120,7 +129,8 @@ module KlaviyoAPI
           currency_set_on_template == o.currency_set_on_template &&
           disable_websafe_fonts == o.disable_websafe_fonts &&
           is_user_draggable == o.is_user_draggable &&
-          mobile_optimizations == o.mobile_optimizations
+          mobile_optimizations == o.mobile_optimizations &&
+          tip_tap_enabled == o.tip_tap_enabled
     end
 
     # @see the `==` method
@@ -132,7 +142,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [currency, currency_set_on_template, disable_websafe_fonts, is_user_draggable, mobile_optimizations].hash
+      [currency, currency_set_on_template, disable_websafe_fonts, is_user_draggable, mobile_optimizations, tip_tap_enabled].hash
     end
 
     # Builds the object from hash

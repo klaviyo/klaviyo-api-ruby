@@ -23,6 +23,9 @@ module KlaviyoAPI
 
     attr_accessor :height
 
+    # Horizontal alignment enumeration.
+    attr_accessor :alignment
+
     attr_accessor :hover_background_color
 
     attr_accessor :hover_text_color
@@ -64,6 +67,7 @@ module KlaviyoAPI
         :'background_color' => :'background_color',
         :'width' => :'width',
         :'height' => :'height',
+        :'alignment' => :'alignment',
         :'hover_background_color' => :'hover_background_color',
         :'hover_text_color' => :'hover_text_color',
         :'border_styles' => :'border_styles',
@@ -84,7 +88,8 @@ module KlaviyoAPI
         :'padding' => :'Padding',
         :'background_color' => :'String',
         :'width' => :'String',
-        :'height' => :'Integer',
+        :'height' => :'ButtonStylesHeight',
+        :'alignment' => :'String',
         :'hover_background_color' => :'String',
         :'hover_text_color' => :'String',
         :'border_styles' => :'BorderStyle',
@@ -135,8 +140,12 @@ module KlaviyoAPI
 
       if attributes.key?(:'height')
         self.height = attributes[:'height']
+      end
+
+      if attributes.key?(:'alignment')
+        self.alignment = attributes[:'alignment']
       else
-        self.height = 50
+        self.alignment = 'center'
       end
 
       if attributes.key?(:'hover_background_color')
@@ -176,6 +185,8 @@ module KlaviyoAPI
     def valid?
       width_validator = EnumAttributeValidator.new('String', ["fill", "fit"])
       return false unless width_validator.valid?(@width)
+      alignment_validator = EnumAttributeValidator.new('String', ["center", "left", "right"])
+      return false unless alignment_validator.valid?(@alignment)
       true
     end
 
@@ -189,6 +200,16 @@ module KlaviyoAPI
       @width = width
     end
 
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] alignment Object to be assigned
+    def alignment=(alignment)
+      validator = EnumAttributeValidator.new('String', ["center", "left", "right"])
+      unless validator.valid?(alignment)
+        fail ArgumentError, "invalid value for \"alignment\", must be one of #{validator.allowable_values}."
+      end
+      @alignment = alignment
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -198,6 +219,7 @@ module KlaviyoAPI
           background_color == o.background_color &&
           width == o.width &&
           height == o.height &&
+          alignment == o.alignment &&
           hover_background_color == o.hover_background_color &&
           hover_text_color == o.hover_text_color &&
           border_styles == o.border_styles &&
@@ -215,7 +237,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [padding, background_color, width, height, hover_background_color, hover_text_color, border_styles, text_styles, color, drop_shadow].hash
+      [padding, background_color, width, height, alignment, hover_background_color, hover_text_color, border_styles, text_styles, color, drop_shadow].hash
     end
 
     # Builds the object from hash

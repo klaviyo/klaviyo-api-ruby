@@ -16,10 +16,13 @@ module KlaviyoAPI
   class ProfileMeta
     attr_accessor :patch_properties
 
+    attr_accessor :patch_identifiers
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'patch_properties' => :'patch_properties'
+        :'patch_properties' => :'patch_properties',
+        :'patch_identifiers' => :'patch_identifiers'
       }
     end
 
@@ -31,7 +34,8 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'patch_properties' => :'ProfileMetaPatchProperties'
+        :'patch_properties' => :'ProfileMetaPatchProperties',
+        :'patch_identifiers' => :'PatchIdentifiers'
       }
     end
 
@@ -59,6 +63,10 @@ module KlaviyoAPI
       if attributes.key?(:'patch_properties')
         self.patch_properties = attributes[:'patch_properties']
       end
+
+      if attributes.key?(:'patch_identifiers')
+        self.patch_identifiers = attributes[:'patch_identifiers']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -79,7 +87,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          patch_properties == o.patch_properties
+          patch_properties == o.patch_properties &&
+          patch_identifiers == o.patch_identifiers
     end
 
     # @see the `==` method
@@ -91,7 +100,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [patch_properties].hash
+      [patch_properties, patch_identifiers].hash
     end
 
     # Builds the object from hash

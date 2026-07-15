@@ -61,7 +61,7 @@ module KlaviyoAPI
       {
         :'type' => :'String',
         :'id' => :'String',
-        :'trigger_filter' => :'MetricPropertyConditionFilter'
+        :'trigger_filter' => :'MetricTriggerTriggerFilter'
       }
     end
 
@@ -69,6 +69,7 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'id',
+        :'trigger_filter'
       ])
     end
 

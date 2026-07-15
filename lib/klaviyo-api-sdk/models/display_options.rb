@@ -21,6 +21,10 @@ module KlaviyoAPI
 
     attr_accessor :visibility
 
+    attr_accessor :layout_type
+
+    attr_accessor :layout_config
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -48,7 +52,9 @@ module KlaviyoAPI
       {
         :'show_on' => :'show_on',
         :'content_repeat' => :'content_repeat',
-        :'visibility' => :'visibility'
+        :'visibility' => :'visibility',
+        :'layout_type' => :'layout_type',
+        :'layout_config' => :'layout_config'
       }
     end
 
@@ -62,7 +68,9 @@ module KlaviyoAPI
       {
         :'show_on' => :'String',
         :'content_repeat' => :'ContentRepeatV1',
-        :'visibility' => :'Visibility'
+        :'visibility' => :'Visibility',
+        :'layout_type' => :'String',
+        :'layout_config' => :'Object'
       }
     end
 
@@ -70,6 +78,8 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'show_on',
+        :'layout_type',
+        :'layout_config'
       ])
     end
 
@@ -98,6 +108,14 @@ module KlaviyoAPI
 
       if attributes.key?(:'visibility')
         self.visibility = attributes[:'visibility']
+      end
+
+      if attributes.key?(:'layout_type')
+        self.layout_type = attributes[:'layout_type']
+      end
+
+      if attributes.key?(:'layout_config')
+        self.layout_config = attributes[:'layout_config']
       end
     end
 
@@ -133,7 +151,9 @@ module KlaviyoAPI
       self.class == o.class &&
           show_on == o.show_on &&
           content_repeat == o.content_repeat &&
-          visibility == o.visibility
+          visibility == o.visibility &&
+          layout_type == o.layout_type &&
+          layout_config == o.layout_config
     end
 
     # @see the `==` method
@@ -145,7 +165,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [show_on, content_repeat, visibility].hash
+      [show_on, content_repeat, visibility, layout_type, layout_config].hash
     end
 
     # Builds the object from hash

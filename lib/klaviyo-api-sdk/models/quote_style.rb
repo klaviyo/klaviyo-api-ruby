@@ -24,6 +24,10 @@ module KlaviyoAPI
 
     attr_accessor :font_weight
 
+    attr_accessor :font_style
+
+    attr_accessor :text_decoration
+
     # Horizontal alignment enumeration.
     attr_accessor :alignment
 
@@ -59,6 +63,8 @@ module KlaviyoAPI
         :'text_color' => :'text_color',
         :'character_spacing' => :'character_spacing',
         :'font_weight' => :'font_weight',
+        :'font_style' => :'font_style',
+        :'text_decoration' => :'text_decoration',
         :'alignment' => :'alignment',
         :'line_height' => :'line_height'
       }
@@ -77,6 +83,8 @@ module KlaviyoAPI
         :'text_color' => :'String',
         :'character_spacing' => :'Integer',
         :'font_weight' => :'Integer',
+        :'font_style' => :'String',
+        :'text_decoration' => :'String',
         :'alignment' => :'String',
         :'line_height' => :'Float'
       }
@@ -85,6 +93,8 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'font_style',
+        :'text_decoration',
       ])
     end
 
@@ -131,6 +141,14 @@ module KlaviyoAPI
         self.font_weight = attributes[:'font_weight']
       else
         self.font_weight = 400
+      end
+
+      if attributes.key?(:'font_style')
+        self.font_style = attributes[:'font_style']
+      end
+
+      if attributes.key?(:'text_decoration')
+        self.text_decoration = attributes[:'text_decoration']
       end
 
       if attributes.key?(:'alignment')
@@ -181,6 +199,8 @@ module KlaviyoAPI
           text_color == o.text_color &&
           character_spacing == o.character_spacing &&
           font_weight == o.font_weight &&
+          font_style == o.font_style &&
+          text_decoration == o.text_decoration &&
           alignment == o.alignment &&
           line_height == o.line_height
     end
@@ -194,7 +214,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [font_family, font_size, text_color, character_spacing, font_weight, alignment, line_height].hash
+      [font_family, font_size, text_color, character_spacing, font_weight, font_style, text_decoration, alignment, line_height].hash
     end
 
     # Builds the object from hash

@@ -19,7 +19,7 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Create Conversation Message
-    # Send an outbound message to a conversation.  Requires OAuth authentication and account-level enablement. To request access, reach out in the [developer community](https://community.klaviyo.com/groups/developer-group-64).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `conversations:write`
+    # Send an outbound message to a conversation.  Requires account-level enablement. To request access, reach out in the [developer community](https://community.klaviyo.com/groups/developer-group-64).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `conversations:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_conversation_message.json)
     # @param conversation_message_create_query [ConversationMessageCreateQuery] Create a conversation message
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -29,7 +29,7 @@ module KlaviyoAPI
     end
 
     # Create Conversation Message
-    # Send an outbound message to a conversation.  Requires OAuth authentication and account-level enablement. To request access, reach out in the [developer community](https://community.klaviyo.com/groups/developer-group-64).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;conversations:write&#x60;
+    # Send an outbound message to a conversation.  Requires account-level enablement. To request access, reach out in the [developer community](https://community.klaviyo.com/groups/developer-group-64).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;conversations:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_conversation_message.json)
     # @param conversation_message_create_query [ConversationMessageCreateQuery] Create a conversation message
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -50,7 +50,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

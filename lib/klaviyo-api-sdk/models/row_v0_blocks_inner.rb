@@ -24,6 +24,7 @@ module KlaviyoAPI
           :'Checkboxes',
           :'CountdownTimer',
           :'Coupon',
+          :'CustomHTML',
           :'Date',
           :'Dropdown',
           :'Email',

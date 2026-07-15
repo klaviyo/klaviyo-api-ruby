@@ -20,6 +20,7 @@ module KlaviyoAPI
 
     attr_accessor :body
 
+    # When present, must contain exactly one of each style type.
     attr_accessor :styles
 
     # Attribute mapping from ruby-style variable name to JSON key.

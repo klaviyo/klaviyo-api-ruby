@@ -19,9 +19,10 @@ module KlaviyoAPI
       @api_client = api_client
     end
     # Create Tag
-    # Create a tag. An account cannot have more than **500** unique tags.  A tag belongs to a single tag group. If `relationships.tag-group.data.id` is not specified, the tag is added to the account's default tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+    # Create a tag. An account cannot have more than **500** unique tags.  A tag belongs to a single tag group. If `relationships.tag-group.data.id` is not specified, the tag is added to the account's default tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_tag.json)
     # @param tag_create_query [TagCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_tag(tag_create_query, opts = {})
       data, _status_code, _headers = create_tag_with_http_info(tag_create_query, opts)
@@ -29,9 +30,10 @@ module KlaviyoAPI
     end
 
     # Create Tag
-    # Create a tag. An account cannot have more than **500** unique tags.  A tag belongs to a single tag group. If &#x60;relationships.tag-group.data.id&#x60; is not specified, the tag is added to the account&#39;s default tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;
+    # Create a tag. An account cannot have more than **500** unique tags.  A tag belongs to a single tag group. If &#x60;relationships.tag-group.data.id&#x60; is not specified, the tag is added to the account&#39;s default tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_tag.json)
     # @param tag_create_query [TagCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_tag_with_http_info(tag_create_query, opts = {})
       if @api_client.config.debugging
@@ -41,16 +43,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && tag_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'tag_create_query' when calling TagsApi.create_tag"
       end
+      allowable_values = ["id", "name"]
+      if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/tags'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[tag]'] = @api_client.build_collection_param(opts[:'fields_tag'], :csv) if !opts[:'fields_tag'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -89,9 +96,10 @@ module KlaviyoAPI
     end
 
     # Create Tag Group
-    # Create a tag group. An account cannot have more than **50** unique tag groups.  If `exclusive` is not specified `true` or `false`, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+    # Create a tag group. An account cannot have more than **50** unique tag groups.  If `exclusive` is not specified `true` or `false`, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_tag_group.json)
     # @param tag_group_create_query [TagGroupCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_tag_group(tag_group_create_query, opts = {})
       data, _status_code, _headers = create_tag_group_with_http_info(tag_group_create_query, opts)
@@ -99,9 +107,10 @@ module KlaviyoAPI
     end
 
     # Create Tag Group
-    # Create a tag group. An account cannot have more than **50** unique tag groups.  If &#x60;exclusive&#x60; is not specified &#x60;true&#x60; or &#x60;false&#x60;, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;
+    # Create a tag group. An account cannot have more than **50** unique tag groups.  If &#x60;exclusive&#x60; is not specified &#x60;true&#x60; or &#x60;false&#x60;, the tag group defaults to non-exclusive.  If a tag group is non-exclusive, any given related resource (campaign, flow, etc.) can be linked to multiple tags from that tag group. If a tag group is exclusive, any given related resource can only be linked to one tag from that tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_tag_group.json)
     # @param tag_group_create_query [TagGroupCreateQuery] 
     # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_tag_group_with_http_info(tag_group_create_query, opts = {})
       if @api_client.config.debugging
@@ -111,16 +120,21 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && tag_group_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'tag_group_create_query' when calling TagsApi.create_tag_group"
       end
+      allowable_values = ["default", "exclusive", "id", "name"]
+      if @api_client.config.client_side_validation && opts[:'fields_tag_group'] && !opts[:'fields_tag_group'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_tag_group\", must include one of #{allowable_values}"
+      end
       # resource path
       local_var_path = '/api/tag-groups'
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[tag-group]'] = @api_client.build_collection_param(opts[:'fields_tag_group'], :csv) if !opts[:'fields_tag_group'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -159,7 +173,7 @@ module KlaviyoAPI
     end
 
     # Delete Tag
-    # Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+    # Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -169,7 +183,7 @@ module KlaviyoAPI
     end
 
     # Delete Tag
-    # Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;
+    # Delete the tag with the given tag ID. Any associations between the tag and other resources will also be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
@@ -190,7 +204,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -224,20 +238,20 @@ module KlaviyoAPI
     end
 
     # Delete Tag Group
-    # Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+    # Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
-    # @return [Hash<String, Object>]
+    # @return [nil]
     def delete_tag_group(id, opts = {})
-      data, _status_code, _headers = delete_tag_group_with_http_info(id, opts)
-      data
+      delete_tag_group_with_http_info(id, opts)
+      nil
     end
 
     # Delete Tag Group
-    # Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;
+    # Delete the tag group with the given tag group ID.  Any tags inside that tag group, and any associations between those tags and other resources, will also be removed. The default tag group cannot be deleted.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def delete_tag_group_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TagsApi.delete_tag_group ...'
@@ -255,7 +269,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -266,7 +280,7 @@ module KlaviyoAPI
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+      return_type = opts[:debug_return_type]
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
@@ -289,7 +303,7 @@ module KlaviyoAPI
     end
 
     # Get Campaign IDs for Tag
-    # Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`
+    # Returns the IDs of all campaigns associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -302,7 +316,7 @@ module KlaviyoAPI
     alias get_tag_relationships_campaigns get_campaign_ids_for_tag
 
     # Get Campaign IDs for Tag
-    # Returns the IDs of all campaigns associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;tags:read&#x60;
+    # Returns the IDs of all campaigns associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -323,7 +337,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -360,7 +374,7 @@ module KlaviyoAPI
     alias get_tag_relationships_campaigns_with_http_info get_campaign_ids_for_tag_with_http_info
 
     # Get Flow IDs for Tag
-    # Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`
+    # Returns the IDs of all flows associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_flow_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -373,7 +387,7 @@ module KlaviyoAPI
     alias get_tag_relationships_flows get_flow_ids_for_tag
 
     # Get Flow IDs for Tag
-    # Returns the IDs of all flows associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;tags:read&#x60;
+    # Returns the IDs of all flows associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:read&#x60; &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_flow_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -394,7 +408,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -431,7 +445,7 @@ module KlaviyoAPI
     alias get_tag_relationships_flows_with_http_info get_flow_ids_for_tag_with_http_info
 
     # Get List IDs for Tag
-    # Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`
+    # Returns the IDs of all lists associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_list_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -444,7 +458,7 @@ module KlaviyoAPI
     alias get_tag_relationships_lists get_list_ids_for_tag
 
     # Get List IDs for Tag
-    # Returns the IDs of all lists associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;tags:read&#x60;
+    # Returns the IDs of all lists associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:read&#x60; &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_list_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -465,7 +479,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -502,7 +516,7 @@ module KlaviyoAPI
     alias get_tag_relationships_lists_with_http_info get_list_ids_for_tag_with_http_info
 
     # Get Segment IDs for Tag
-    # Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`
+    # Returns the IDs of all segments associated with the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_segment_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -515,7 +529,7 @@ module KlaviyoAPI
     alias get_tag_relationships_segments get_segment_ids_for_tag
 
     # Get Segment IDs for Tag
-    # Returns the IDs of all segments associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:read&#x60; &#x60;tags:read&#x60;
+    # Returns the IDs of all segments associated with the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:read&#x60; &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_segment_ids_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -536,7 +550,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -573,12 +587,12 @@ module KlaviyoAPI
     alias get_tag_relationships_segments_with_http_info get_segment_ids_for_tag_with_http_info
 
     # Get Tag
-    # Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # Retrieve the tag with the given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_tag(id, opts = {})
       data, _status_code, _headers = get_tag_with_http_info(id, opts)
@@ -586,12 +600,12 @@ module KlaviyoAPI
     end
 
     # Get Tag
-    # Retrieve the tag with the given tag ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # Retrieve the tag with the given tag ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tag_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -601,11 +615,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag"
       end
-      allowable_values = ["default", "exclusive", "name"]
+      allowable_values = ["default", "exclusive", "id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag_group'] && !opts[:'fields_tag_group'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag_group\", must include one of #{allowable_values}"
       end
-      allowable_values = ["name"]
+      allowable_values = ["id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
       end
@@ -625,7 +639,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -659,10 +673,10 @@ module KlaviyoAPI
     end
 
     # Get Tag Group
-    # Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # Retrieve the tag group with the given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_tag_group(id, opts = {})
       data, _status_code, _headers = get_tag_group_with_http_info(id, opts)
@@ -670,10 +684,10 @@ module KlaviyoAPI
     end
 
     # Get Tag Group
-    # Retrieve the tag group with the given tag group ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # Retrieve the tag group with the given tag group ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tag_group_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -683,7 +697,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_group"
       end
-      allowable_values = ["default", "exclusive", "name"]
+      allowable_values = ["default", "exclusive", "id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag_group'] && !opts[:'fields_tag_group'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag_group\", must include one of #{allowable_values}"
       end
@@ -697,7 +711,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -731,10 +745,10 @@ module KlaviyoAPI
     end
 
     # Get Tag Group for Tag
-    # Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # Returns the tag group resource for a given tag ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_tag_group_for_tag(id, opts = {})
       data, _status_code, _headers = get_tag_group_for_tag_with_http_info(id, opts)
@@ -748,10 +762,10 @@ module KlaviyoAPI
     alias get_group_for_tag get_tag_group_for_tag
 
     # Get Tag Group for Tag
-    # Returns the tag group resource for a given tag ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # Returns the tag group resource for a given tag ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tag_group_for_tag_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -761,7 +775,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tag_group_for_tag"
       end
-      allowable_values = ["default", "exclusive", "name"]
+      allowable_values = ["default", "exclusive", "id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag_group'] && !opts[:'fields_tag_group'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag_group\", must include one of #{allowable_values}"
       end
@@ -775,7 +789,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -815,7 +829,7 @@ module KlaviyoAPI
     alias get_group_for_tag_with_http_info get_tag_group_for_tag_with_http_info
 
     # Get Tag Group ID for Tag
-    # Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # Returns the id of the tag group related to the given tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group_id_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -834,7 +848,7 @@ module KlaviyoAPI
     alias get_tag_relationships_group get_tag_group_id_for_tag
 
     # Get Tag Group ID for Tag
-    # Returns the id of the tag group related to the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # Returns the id of the tag group related to the given tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_group_id_for_tag.json)
     # @param id [String] The Tag ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -855,7 +869,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -898,12 +912,13 @@ module KlaviyoAPI
     alias get_tag_relationships_group_with_http_info get_tag_group_id_for_tag_with_http_info
 
     # Get Tag Groups
-    # List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by `name`, `exclusive`, and `default`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_groups.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 25. Min: 1. Max: 25. (default to 25)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_tag_groups(opts = {})
       data, _status_code, _headers = get_tag_groups_with_http_info(opts)
@@ -911,21 +926,30 @@ module KlaviyoAPI
     end
 
     # Get Tag Groups
-    # List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by &#x60;name&#x60;, &#x60;exclusive&#x60;, and &#x60;default&#x60;, and sorted by &#x60;name&#x60; or &#x60;id&#x60; in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # List all tag groups in an account. Every account has one default tag group.  Tag groups can be filtered by &#x60;name&#x60;, &#x60;exclusive&#x60;, and &#x60;default&#x60;, and sorted by &#x60;name&#x60; or &#x60;id&#x60; in ascending or descending order.  Returns a maximum of 25 tag groups per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_groups.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;&lt;br&gt;&#x60;exclusive&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;default&#x60;: &#x60;equals&#x60;
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 25. Min: 1. Max: 25. (default to 25)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tag_groups_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TagsApi.get_tag_groups ...'
       end
-      allowable_values = ["default", "exclusive", "name"]
+      allowable_values = ["default", "exclusive", "id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag_group'] && !opts[:'fields_tag_group'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag_group\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 25
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling TagsApi.get_tag_groups, must be smaller than or equal to 25.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling TagsApi.get_tag_groups, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["id", "-id", "name", "-name"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -938,12 +962,13 @@ module KlaviyoAPI
       query_params[:'fields[tag-group]'] = @api_client.build_collection_param(opts[:'fields_tag_group'], :csv) if !opts[:'fields_tag_group'].nil?
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -977,7 +1002,7 @@ module KlaviyoAPI
     end
 
     # Get Tag IDs for Tag Group
-    # Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # Returns the tag IDs of all tags inside the given tag group.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_ids_for_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
@@ -990,7 +1015,7 @@ module KlaviyoAPI
     alias get_tag_group_relationships_tags get_tag_ids_for_tag_group
 
     # Get Tag IDs for Tag Group
-    # Returns the tag IDs of all tags inside the given tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # Returns the tag IDs of all tags inside the given tag group.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_ids_for_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
@@ -1011,7 +1036,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1048,14 +1073,15 @@ module KlaviyoAPI
     alias get_tag_group_relationships_tags_with_http_info get_tag_ids_for_tag_group_with_http_info
 
     # Get Tags
-    # List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # List all tags in an account.  Tags can be filtered by `name`, and sorted by `name` or `id` in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_tags(opts = {})
       data, _status_code, _headers = get_tags_with_http_info(opts)
@@ -1063,24 +1089,25 @@ module KlaviyoAPI
     end
 
     # Get Tags
-    # List all tags in an account.  Tags can be filtered by &#x60;name&#x60;, and sorted by &#x60;name&#x60; or &#x60;id&#x60; in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # List all tags in an account.  Tags can be filtered by &#x60;name&#x60;, and sorted by &#x60;name&#x60; or &#x60;id&#x60; in ascending or descending order.  Returns a maximum of 50 tags per request, which can be paginated with [cursor-based pagination](https://developers.klaviyo.com/en/v2022-10-17/reference/api_overview#pagination).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#pagination
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_tag_group For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;, &#x60;ends-with&#x60;, &#x60;equals&#x60;, &#x60;starts-with&#x60;
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 50. Min: 1. Max: 50. (default to 50)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tags_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TagsApi.get_tags ...'
       end
-      allowable_values = ["default", "exclusive", "name"]
+      allowable_values = ["default", "exclusive", "id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag_group'] && !opts[:'fields_tag_group'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag_group\", must include one of #{allowable_values}"
       end
-      allowable_values = ["name"]
+      allowable_values = ["id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
       end
@@ -1088,6 +1115,14 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 50
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling TagsApi.get_tags, must be smaller than or equal to 50.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling TagsApi.get_tags, must be greater than or equal to 1.'
+      end
+
       allowable_values = ["id", "-id", "name", "-name"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
@@ -1102,12 +1137,13 @@ module KlaviyoAPI
       query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
       query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1141,10 +1177,10 @@ module KlaviyoAPI
     end
 
     # Get Tags for Tag Group
-    # Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`
+    # Return the tags for a given tag group ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags_for_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_tags_for_tag_group(id, opts = {})
       data, _status_code, _headers = get_tags_for_tag_group_with_http_info(id, opts)
@@ -1155,10 +1191,10 @@ module KlaviyoAPI
     alias get_tag_group_tags get_tags_for_tag_group
 
     # Get Tags for Tag Group
-    # Return the tags for a given tag group ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;
+    # Return the tags for a given tag group ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags_for_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-04-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tags_for_tag_group_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1168,7 +1204,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling TagsApi.get_tags_for_tag_group"
       end
-      allowable_values = ["name"]
+      allowable_values = ["id", "name"]
       if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
       end
@@ -1182,7 +1218,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1219,7 +1255,7 @@ module KlaviyoAPI
     alias get_tag_group_tags_with_http_info get_tags_for_tag_group_with_http_info
 
     # Remove Tag from Campaigns
-    # Remove a tag's association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
+    # Remove a tag's association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_campaigns.json)
     # @param id [String] The Tag ID
     # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
@@ -1236,7 +1272,7 @@ module KlaviyoAPI
     alias remove_campaigns_from_tag remove_tag_from_campaigns
 
     # Remove Tag from Campaigns
-    # Remove a tag&#39;s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60; &#x60;tags:write&#x60;
+    # Remove a tag&#39;s association with one or more campaigns.   Use the request body to pass in the ID(s) of the campaign(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_campaigns.json)
     # @param id [String] The Tag ID
     # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
@@ -1262,7 +1298,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1307,7 +1343,7 @@ module KlaviyoAPI
     alias remove_campaigns_from_tag_with_http_info remove_tag_from_campaigns_with_http_info
 
     # Remove Tag from Flows
-    # Remove a tag's association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
+    # Remove a tag's association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_flows.json)
     # @param id [String] The Tag ID
     # @param tag_flow_op [TagFlowOp] 
     # @param [Hash] opts the optional parameters
@@ -1324,7 +1360,7 @@ module KlaviyoAPI
     alias remove_flows_from_tag remove_tag_from_flows
 
     # Remove Tag from Flows
-    # Remove a tag&#39;s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60; &#x60;tags:write&#x60;
+    # Remove a tag&#39;s association with one or more flows.   Use the request body to pass in the ID(s) of the flows(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_flows.json)
     # @param id [String] The Tag ID
     # @param tag_flow_op [TagFlowOp] 
     # @param [Hash] opts the optional parameters
@@ -1350,7 +1386,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1395,7 +1431,7 @@ module KlaviyoAPI
     alias remove_flows_from_tag_with_http_info remove_tag_from_flows_with_http_info
 
     # Remove Tag from Lists
-    # Remove a tag's association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
+    # Remove a tag's association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_lists.json)
     # @param id [String] The Tag ID
     # @param tag_list_op [TagListOp] 
     # @param [Hash] opts the optional parameters
@@ -1412,7 +1448,7 @@ module KlaviyoAPI
     alias remove_lists_from_tag remove_tag_from_lists
 
     # Remove Tag from Lists
-    # Remove a tag&#39;s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;tags:write&#x60;
+    # Remove a tag&#39;s association with one or more lists.   Use the request body to pass in the ID(s) of the list(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_lists.json)
     # @param id [String] The Tag ID
     # @param tag_list_op [TagListOp] 
     # @param [Hash] opts the optional parameters
@@ -1438,7 +1474,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1483,7 +1519,7 @@ module KlaviyoAPI
     alias remove_lists_from_tag_with_http_info remove_tag_from_lists_with_http_info
 
     # Remove Tag from Segments
-    # Remove a tag's association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
+    # Remove a tag's association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_segments.json)
     # @param id [String] The Tag ID
     # @param tag_segment_op [TagSegmentOp] 
     # @param [Hash] opts the optional parameters
@@ -1500,7 +1536,7 @@ module KlaviyoAPI
     alias remove_segments_from_tag remove_tag_from_segments
 
     # Remove Tag from Segments
-    # Remove a tag&#39;s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:write&#x60; &#x60;tags:write&#x60;
+    # Remove a tag&#39;s association with one or more segments.   Use the request body to pass in the ID(s) of the segments(s) whose association with the tag will be removed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/remove_tag_from_segments.json)
     # @param id [String] The Tag ID
     # @param tag_segment_op [TagSegmentOp] 
     # @param [Hash] opts the optional parameters
@@ -1526,7 +1562,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1571,7 +1607,7 @@ module KlaviyoAPI
     alias remove_segments_from_tag_with_http_info remove_tag_from_segments_with_http_info
 
     # Tag Campaigns
-    # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`
+    # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_campaigns.json)
     # @param id [String] The Tag ID
     # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
@@ -1591,7 +1627,7 @@ module KlaviyoAPI
     alias create_tag_relationships_campaigns tag_campaigns
 
     # Tag Campaigns
-    # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60; &#x60;tags:write&#x60;
+    # Associate a tag with one or more campaigns. Any campaign cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the campaign(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_campaigns.json)
     # @param id [String] The Tag ID
     # @param tag_campaign_op [TagCampaignOp] 
     # @param [Hash] opts the optional parameters
@@ -1617,7 +1653,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1665,7 +1701,7 @@ module KlaviyoAPI
     alias create_tag_relationships_campaigns_with_http_info tag_campaigns_with_http_info
 
     # Tag Flows
-    # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`
+    # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `flows:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_flows.json)
     # @param id [String] The Tag ID
     # @param tag_flow_op [TagFlowOp] 
     # @param [Hash] opts the optional parameters
@@ -1685,7 +1721,7 @@ module KlaviyoAPI
     alias create_tag_relationships_flows tag_flows
 
     # Tag Flows
-    # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60; &#x60;tags:write&#x60;
+    # Associate a tag with one or more flows. Any flow cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the flow(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;flows:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_flows.json)
     # @param id [String] The Tag ID
     # @param tag_flow_op [TagFlowOp] 
     # @param [Hash] opts the optional parameters
@@ -1711,7 +1747,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1759,7 +1795,7 @@ module KlaviyoAPI
     alias create_tag_relationships_flows_with_http_info tag_flows_with_http_info
 
     # Tag Lists
-    # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`
+    # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `lists:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_lists.json)
     # @param id [String] The Tag ID
     # @param tag_list_op [TagListOp] 
     # @param [Hash] opts the optional parameters
@@ -1779,7 +1815,7 @@ module KlaviyoAPI
     alias create_tag_relationships_lists tag_lists
 
     # Tag Lists
-    # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;tags:write&#x60;
+    # Associate a tag with one or more lists. Any list cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the lists(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;lists:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_lists.json)
     # @param id [String] The Tag ID
     # @param tag_list_op [TagListOp] 
     # @param [Hash] opts the optional parameters
@@ -1805,7 +1841,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1853,7 +1889,7 @@ module KlaviyoAPI
     alias create_tag_relationships_lists_with_http_info tag_lists_with_http_info
 
     # Tag Segments
-    # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`
+    # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `segments:write` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_segments.json)
     # @param id [String] The Tag ID
     # @param tag_segment_op [TagSegmentOp] 
     # @param [Hash] opts the optional parameters
@@ -1873,7 +1909,7 @@ module KlaviyoAPI
     alias create_tag_relationships_segments tag_segments
 
     # Tag Segments
-    # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:write&#x60; &#x60;tags:write&#x60;
+    # Associate a tag with one or more segments. Any segment cannot be associated with more than **100** tags.   Use the request body to pass in the ID(s) of the segments(s) that will be associated with the tag.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;segments:write&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/tag_segments.json)
     # @param id [String] The Tag ID
     # @param tag_segment_op [TagSegmentOp] 
     # @param [Hash] opts the optional parameters
@@ -1899,7 +1935,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1947,7 +1983,7 @@ module KlaviyoAPI
     alias create_tag_relationships_segments_with_http_info tag_segments_with_http_info
 
     # Update Tag
-    # Update the tag with the given tag ID.  Only a tag's `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+    # Update the tag with the given tag ID.  Only a tag's `name` can be changed. A tag cannot be moved from one tag group to another.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tag.json)
     # @param id [String] The Tag ID
     # @param tag_update_query [TagUpdateQuery] 
     # @param [Hash] opts the optional parameters
@@ -1958,7 +1994,7 @@ module KlaviyoAPI
     end
 
     # Update Tag
-    # Update the tag with the given tag ID.  Only a tag&#39;s &#x60;name&#x60; can be changed. A tag cannot be moved from one tag group to another.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;
+    # Update the tag with the given tag ID.  Only a tag&#39;s &#x60;name&#x60; can be changed. A tag cannot be moved from one tag group to another.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tag.json)
     # @param id [String] The Tag ID
     # @param tag_update_query [TagUpdateQuery] 
     # @param [Hash] opts the optional parameters
@@ -1984,7 +2020,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -2023,22 +2059,22 @@ module KlaviyoAPI
     end
 
     # Update Tag Group
-    # Update the tag group with the given tag group ID.  Only a tag group's `name` can be changed. A tag group's `exclusive` or `default` value cannot be changed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`
+    # Update the tag group with the given tag group ID.  Only a tag group's `name` can be changed. A tag group's `exclusive` or `default` value cannot be changed.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `tags:read` `tags:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param tag_group_update_query [TagGroupUpdateQuery] 
     # @param [Hash] opts the optional parameters
-    # @return [Hash<String, Object>]
+    # @return [nil]
     def update_tag_group(id, tag_group_update_query, opts = {})
-      data, _status_code, _headers = update_tag_group_with_http_info(id, tag_group_update_query, opts)
-      data
+      update_tag_group_with_http_info(id, tag_group_update_query, opts)
+      nil
     end
 
     # Update Tag Group
-    # Update the tag group with the given tag group ID.  Only a tag group&#39;s &#x60;name&#x60; can be changed. A tag group&#39;s &#x60;exclusive&#x60; or &#x60;default&#x60; value cannot be changed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;
+    # Update the tag group with the given tag group ID.  Only a tag group&#39;s &#x60;name&#x60; can be changed. A tag group&#39;s &#x60;exclusive&#x60; or &#x60;default&#x60; value cannot be changed.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;tags:read&#x60; &#x60;tags:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_tag_group.json)
     # @param id [String] The Tag Group ID
     # @param tag_group_update_query [TagGroupUpdateQuery] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
     def update_tag_group_with_http_info(id, tag_group_update_query, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: TagsApi.update_tag_group ...'
@@ -2060,7 +2096,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-04-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -2076,7 +2112,7 @@ module KlaviyoAPI
       post_body = opts[:debug_body] || @api_client.object_to_http_body(tag_group_update_query)
 
       # return_type
-      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+      return_type = opts[:debug_return_type]
 
       # auth_names
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']

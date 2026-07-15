@@ -17,7 +17,7 @@ module KlaviyoAPI
     # Properties of this event (must not exceed 400 properties). The size of the event payload must not exceed 5 MB, and each string cannot be larger than 100 KB. For a full list of data limits on event payloads, see [Limitations](https://developers.klaviyo.com/en/reference/events_api_overview#limitations).  Note any top-level property that is not an object can be used to create segments. The `$extra` property records any non-segmentable values that can be referenced later, e.g., HTML templates are useful on a segment but are not used to create a segment.
     attr_accessor :properties
 
-    # When this event occurred. By default, the time the request was received will be used. The time is truncated to the second. The time must be after the year 2000 and can only be up to 1 year in the future.
+    # When this event occurred. By default, the time the request was received will be used. The time is truncated to the second. The time must be after the year 1990 and can only be up to 1 year in the future.
     attr_accessor :time
 
     # A numeric, monetary value to associate with this event. For example, the dollar amount of a purchase.
@@ -28,6 +28,9 @@ module KlaviyoAPI
 
     # A unique identifier for an event. If the unique_id is repeated for the same profile and metric, only the first processed event will be recorded. If this is not present, this will use the time to the second. Using the default, this limits only one event per profile per second.
     attr_accessor :unique_id
+
+    # When true, the event is recorded but does NOT trigger flows. Use this when backfilling historical events so existing flow definitions do not re-fire on events that already fired in the past.
+    attr_accessor :backfill
 
     attr_accessor :metric
 
@@ -41,6 +44,7 @@ module KlaviyoAPI
         :'value' => :'value',
         :'value_currency' => :'value_currency',
         :'unique_id' => :'unique_id',
+        :'backfill' => :'backfill',
         :'metric' => :'metric',
         :'profile' => :'profile'
       }
@@ -59,6 +63,7 @@ module KlaviyoAPI
         :'value' => :'Float',
         :'value_currency' => :'String',
         :'unique_id' => :'String',
+        :'backfill' => :'Boolean',
         :'metric' => :'EventCreateQueryV2ResourceObjectAttributesMetric',
         :'profile' => :'EventCreateQueryV2ResourceObjectAttributesProfile'
       }
@@ -71,6 +76,7 @@ module KlaviyoAPI
         :'value',
         :'value_currency',
         :'unique_id',
+        :'backfill',
       ])
     end
 
@@ -107,6 +113,12 @@ module KlaviyoAPI
 
       if attributes.key?(:'unique_id')
         self.unique_id = attributes[:'unique_id']
+      end
+
+      if attributes.key?(:'backfill')
+        self.backfill = attributes[:'backfill']
+      else
+        self.backfill = false
       end
 
       if attributes.key?(:'metric')
@@ -156,6 +168,7 @@ module KlaviyoAPI
           value == o.value &&
           value_currency == o.value_currency &&
           unique_id == o.unique_id &&
+          backfill == o.backfill &&
           metric == o.metric &&
           profile == o.profile
     end
@@ -169,7 +182,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [properties, time, value, value_currency, unique_id, metric, profile].hash
+      [properties, time, value, value_currency, unique_id, backfill, metric, profile].hash
     end
 
     # Builds the object from hash

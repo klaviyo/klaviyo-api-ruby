@@ -74,7 +74,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'type' => :'String',
-        :'trigger_filter' => :'PriceDropConditionFilter',
+        :'trigger_filter' => :'PriceDropTriggerTriggerFilter',
         :'price_drop_amount_value' => :'NumericOperatorNumericFilterValue',
         :'price_drop_amount_unit' => :'String',
         :'audience' => :'Array<String>',
@@ -86,6 +86,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'trigger_filter',
       ])
     end
 
@@ -149,10 +150,6 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if @trigger_filter.nil?
-        invalid_properties.push('invalid value for "trigger_filter", trigger_filter cannot be nil.')
-      end
-
       if @price_drop_amount_value.nil?
         invalid_properties.push('invalid value for "price_drop_amount_value", price_drop_amount_value cannot be nil.')
       end
@@ -170,7 +167,6 @@ module KlaviyoAPI
       return false if @type.nil?
       type_validator = EnumAttributeValidator.new('String', ["price-drop"])
       return false unless type_validator.valid?(@type)
-      return false if @trigger_filter.nil?
       return false if @price_drop_amount_value.nil?
       price_drop_amount_unit_validator = EnumAttributeValidator.new('String', ["currency", "percent"])
       return false unless price_drop_amount_unit_validator.valid?(@price_drop_amount_unit)
