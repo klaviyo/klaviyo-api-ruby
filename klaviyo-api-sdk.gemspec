@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
   s.required_ruby_version = ">= 2.4"
 
-  s.add_runtime_dependency 'retriable', '~> 3.1'
+  s.add_runtime_dependency 'retriable', '>= 3.1', '< 6'
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
 
   s.files         = `find *`.split("\n").uniq.sort.select { |f| !f.empty? }
