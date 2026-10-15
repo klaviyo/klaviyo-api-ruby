@@ -16,6 +16,8 @@ module KlaviyoAPI
   class OptInCodeProperties
     attr_accessor :classname
 
+    attr_accessor :block_animation
+
     attr_accessor :label
 
     attr_accessor :show_label
@@ -56,6 +58,7 @@ module KlaviyoAPI
     def self.attribute_map
       {
         :'classname' => :'classname',
+        :'block_animation' => :'block_animation',
         :'label' => :'label',
         :'show_label' => :'show_label',
         :'placeholder' => :'placeholder',
@@ -75,6 +78,7 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'classname' => :'String',
+        :'block_animation' => :'Animation',
         :'label' => :'String',
         :'show_label' => :'Boolean',
         :'placeholder' => :'String',
@@ -111,6 +115,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'classname')
         self.classname = attributes[:'classname']
+      end
+
+      if attributes.key?(:'block_animation')
+        self.block_animation = attributes[:'block_animation']
       end
 
       if attributes.key?(:'label')
@@ -193,6 +201,7 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           classname == o.classname &&
+          block_animation == o.block_animation &&
           label == o.label &&
           show_label == o.show_label &&
           placeholder == o.placeholder &&
@@ -211,7 +220,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [classname, label, show_label, placeholder, error_messages, property_name, required, display_device].hash
+      [classname, block_animation, label, show_label, placeholder, error_messages, property_name, required, display_device].hash
     end
 
     # Builds the object from hash

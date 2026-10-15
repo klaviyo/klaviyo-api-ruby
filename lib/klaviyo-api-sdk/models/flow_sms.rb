@@ -22,7 +22,7 @@ module KlaviyoAPI
     # A dynamic image asset to include in the SMS message.
     attr_accessor :dynamic_image
 
-    # The RCS/SMS message hierarchy (fallback chain). Each item contains a message_format ('RCS' or 'SMS'), message body, and optional rich content.
+    # The message hierarchy (fallback chain): exactly one RCS entry followed by one SMS entry, in priority order. Rendering selects the first entry whose format the recipient supports.
     attr_accessor :message_hierarchy
 
     attr_accessor :shorten_links
@@ -89,7 +89,7 @@ module KlaviyoAPI
         :'body' => :'String',
         :'image_id' => :'String',
         :'dynamic_image' => :'String',
-        :'message_hierarchy' => :'Array<Object>',
+        :'message_hierarchy' => :'Array<FlowSmsMessageHierarchyInner>',
         :'shorten_links' => :'Boolean',
         :'include_contact_card' => :'Boolean',
         :'add_org_prefix' => :'Boolean',

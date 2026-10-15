@@ -18,6 +18,8 @@ module KlaviyoAPI
 
     attr_accessor :classname
 
+    attr_accessor :block_animation
+
     attr_accessor :content
 
     class EnumAttributeValidator
@@ -47,6 +49,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'display_device',
         :'classname' => :'classname',
+        :'block_animation' => :'block_animation',
         :'content' => :'content'
       }
     end
@@ -61,6 +64,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'Array<String>',
         :'classname' => :'String',
+        :'block_animation' => :'Animation',
         :'content' => :'String'
       }
     end
@@ -97,6 +101,10 @@ module KlaviyoAPI
         self.classname = attributes[:'classname']
       end
 
+      if attributes.key?(:'block_animation')
+        self.block_animation = attributes[:'block_animation']
+      end
+
       if attributes.key?(:'content')
         self.content = attributes[:'content']
       else
@@ -124,6 +132,7 @@ module KlaviyoAPI
       self.class == o.class &&
           display_device == o.display_device &&
           classname == o.classname &&
+          block_animation == o.block_animation &&
           content == o.content
     end
 
@@ -136,7 +145,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, classname, content].hash
+      [display_device, classname, block_animation, content].hash
     end
 
     # Builds the object from hash

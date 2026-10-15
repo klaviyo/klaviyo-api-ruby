@@ -23,12 +23,15 @@ module KlaviyoAPI
     # The monitor configuration for the coupon.
     attr_accessor :monitor_configuration
 
+    attr_accessor :assigner_configuration
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'external_id' => :'external_id',
         :'description' => :'description',
-        :'monitor_configuration' => :'monitor_configuration'
+        :'monitor_configuration' => :'monitor_configuration',
+        :'assigner_configuration' => :'assigner_configuration'
       }
     end
 
@@ -42,7 +45,8 @@ module KlaviyoAPI
       {
         :'external_id' => :'String',
         :'description' => :'String',
-        :'monitor_configuration' => :'Object'
+        :'monitor_configuration' => :'Object',
+        :'assigner_configuration' => :'CouponAssignerConfiguration'
       }
     end
 
@@ -50,7 +54,7 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'description',
-        :'monitor_configuration'
+        :'monitor_configuration',
       ])
     end
 
@@ -80,6 +84,10 @@ module KlaviyoAPI
       if attributes.key?(:'monitor_configuration')
         self.monitor_configuration = attributes[:'monitor_configuration']
       end
+
+      if attributes.key?(:'assigner_configuration')
+        self.assigner_configuration = attributes[:'assigner_configuration']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -107,7 +115,8 @@ module KlaviyoAPI
       self.class == o.class &&
           external_id == o.external_id &&
           description == o.description &&
-          monitor_configuration == o.monitor_configuration
+          monitor_configuration == o.monitor_configuration &&
+          assigner_configuration == o.assigner_configuration
     end
 
     # @see the `==` method
@@ -119,7 +128,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [external_id, description, monitor_configuration].hash
+      [external_id, description, monitor_configuration, assigner_configuration].hash
     end
 
     # Builds the object from hash

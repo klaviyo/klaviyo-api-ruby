@@ -16,7 +16,7 @@ require "klaviyo-api-sdk/version"
 
 Gem::Specification.new do |s|
   s.name        = "klaviyo-api-sdk"
-  s.version     = "18.0.0"
+  s.version     = "19.0.0"
   s.authors     = ['Klaviyo Team']
   s.email       = ['libraries@klaviyo.com']
   s.summary     = 'You heard us, a Ruby wrapper for the Klaviyo API'
@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
   s.required_ruby_version = ">= 2.4"
 
-  s.add_runtime_dependency 'retriable', '~> 3.1'
+  s.add_runtime_dependency 'retriable', '>= 3.1', '< 6'
   s.add_runtime_dependency 'typhoeus', '~> 1.0', '>= 1.0.1'
 
   s.files         = `find *`.split("\n").uniq.sort.select { |f| !f.empty? }

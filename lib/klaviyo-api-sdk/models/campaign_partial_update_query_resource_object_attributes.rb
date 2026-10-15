@@ -14,25 +14,12 @@ require 'time'
 
 module KlaviyoAPI
   class CampaignPartialUpdateQueryResourceObjectAttributes
-    # The campaign name
-    attr_accessor :name
-
-    attr_accessor :audiences
-
-    attr_accessor :send_options
-
-    attr_accessor :tracking_options
-
-    attr_accessor :send_strategy
+    attr_accessor :definition
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'audiences' => :'audiences',
-        :'send_options' => :'send_options',
-        :'tracking_options' => :'tracking_options',
-        :'send_strategy' => :'send_strategy'
+        :'definition' => :'definition'
       }
     end
 
@@ -44,21 +31,13 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'audiences' => :'AudiencesUpdate',
-        :'send_options' => :'CampaignCreateQueryResourceObjectAttributesSendOptions',
-        :'tracking_options' => :'CampaignCreateQueryResourceObjectAttributesTrackingOptions',
-        :'send_strategy' => :'CampaignPartialUpdateQueryResourceObjectAttributesSendStrategy'
+        :'definition' => :'CampaignDefinition'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'name',
-        :'send_options',
-        :'tracking_options',
-        :'send_strategy'
       ])
     end
 
@@ -77,24 +56,8 @@ module KlaviyoAPI
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.key?(:'audiences')
-        self.audiences = attributes[:'audiences']
-      end
-
-      if attributes.key?(:'send_options')
-        self.send_options = attributes[:'send_options']
-      end
-
-      if attributes.key?(:'tracking_options')
-        self.tracking_options = attributes[:'tracking_options']
-      end
-
-      if attributes.key?(:'send_strategy')
-        self.send_strategy = attributes[:'send_strategy']
+      if attributes.key?(:'definition')
+        self.definition = attributes[:'definition']
       end
     end
 
@@ -102,12 +65,17 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @definition.nil?
+        invalid_properties.push('invalid value for "definition", definition cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @definition.nil?
       true
     end
 
@@ -116,11 +84,7 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          audiences == o.audiences &&
-          send_options == o.send_options &&
-          tracking_options == o.tracking_options &&
-          send_strategy == o.send_strategy
+          definition == o.definition
     end
 
     # @see the `==` method
@@ -132,7 +96,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, audiences, send_options, tracking_options, send_strategy].hash
+      [definition].hash
     end
 
     # Builds the object from hash

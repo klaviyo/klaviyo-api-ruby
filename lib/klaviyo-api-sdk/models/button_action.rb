@@ -21,6 +21,7 @@ module KlaviyoAPI
           :'Close',
           :'GoToInbox',
           :'IafDeeplinkToScreen',
+          :'IafOpenUrl',
           :'NextStep',
           :'OpenForm',
           :'PromotionalSMSSubscription',

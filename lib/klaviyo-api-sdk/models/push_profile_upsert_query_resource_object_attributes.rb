@@ -46,8 +46,6 @@ module KlaviyoAPI
     # An object containing key/value pairs for any custom properties assigned to this profile
     attr_accessor :properties
 
-    attr_accessor :meta
-
     # Individual's email address
     attr_accessor :email
 
@@ -65,7 +63,6 @@ module KlaviyoAPI
         :'image' => :'image',
         :'location' => :'location',
         :'properties' => :'properties',
-        :'meta' => :'meta',
         :'email' => :'email'
       }
     end
@@ -89,7 +86,6 @@ module KlaviyoAPI
         :'image' => :'String',
         :'location' => :'ProfileLocation',
         :'properties' => :'Object',
-        :'meta' => :'ProfileMeta',
         :'email' => :'String'
       }
     end
@@ -170,10 +166,6 @@ module KlaviyoAPI
         self.properties = attributes[:'properties']
       end
 
-      if attributes.key?(:'meta')
-        self.meta = attributes[:'meta']
-      end
-
       if attributes.key?(:'email')
         self.email = attributes[:'email']
       end
@@ -208,7 +200,6 @@ module KlaviyoAPI
           image == o.image &&
           location == o.location &&
           properties == o.properties &&
-          meta == o.meta &&
           email == o.email
     end
 
@@ -221,7 +212,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [phone_number, external_id, _kx, first_name, last_name, organization, locale, title, image, location, properties, meta, email].hash
+      [phone_number, external_id, _kx, first_name, last_name, organization, locale, title, image, location, properties, email].hash
     end
 
     # Builds the object from hash

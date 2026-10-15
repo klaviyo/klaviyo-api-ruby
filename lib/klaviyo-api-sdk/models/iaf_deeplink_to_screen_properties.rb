@@ -16,10 +16,19 @@ module KlaviyoAPI
   class IafDeeplinkToScreenProperties
     attr_accessor :deep_link_url
 
+    attr_accessor :deep_link_url_ios
+
+    attr_accessor :deep_link_url_android
+
+    attr_accessor :use_separate_deep_link_urls
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'deep_link_url' => :'deep_link_url'
+        :'deep_link_url' => :'deep_link_url',
+        :'deep_link_url_ios' => :'deep_link_url_ios',
+        :'deep_link_url_android' => :'deep_link_url_android',
+        :'use_separate_deep_link_urls' => :'use_separate_deep_link_urls'
       }
     end
 
@@ -31,13 +40,17 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'deep_link_url' => :'String'
+        :'deep_link_url' => :'String',
+        :'deep_link_url_ios' => :'String',
+        :'deep_link_url_android' => :'String',
+        :'use_separate_deep_link_urls' => :'Boolean'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'use_separate_deep_link_urls'
       ])
     end
 
@@ -61,6 +74,22 @@ module KlaviyoAPI
       else
         self.deep_link_url = ''
       end
+
+      if attributes.key?(:'deep_link_url_ios')
+        self.deep_link_url_ios = attributes[:'deep_link_url_ios']
+      else
+        self.deep_link_url_ios = ''
+      end
+
+      if attributes.key?(:'deep_link_url_android')
+        self.deep_link_url_android = attributes[:'deep_link_url_android']
+      else
+        self.deep_link_url_android = ''
+      end
+
+      if attributes.key?(:'use_separate_deep_link_urls')
+        self.use_separate_deep_link_urls = attributes[:'use_separate_deep_link_urls']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -81,7 +110,10 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          deep_link_url == o.deep_link_url
+          deep_link_url == o.deep_link_url &&
+          deep_link_url_ios == o.deep_link_url_ios &&
+          deep_link_url_android == o.deep_link_url_android &&
+          use_separate_deep_link_urls == o.use_separate_deep_link_urls
     end
 
     # @see the `==` method
@@ -93,7 +125,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [deep_link_url].hash
+      [deep_link_url, deep_link_url_ios, deep_link_url_android, use_separate_deep_link_urls].hash
     end
 
     # Builds the object from hash

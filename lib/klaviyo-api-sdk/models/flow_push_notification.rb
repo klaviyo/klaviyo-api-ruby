@@ -133,7 +133,7 @@ module KlaviyoAPI
         :'conversion_metric_id' => :'String',
         :'smart_sending_enabled' => :'Boolean',
         :'additional_filters' => :'ConditionalBranchActionDataProfileFilter',
-        :'action_buttons' => :'Array<PushActionButton>',
+        :'action_buttons' => :'Array<PushActionButtonV2>',
         :'name' => :'String',
         :'id' => :'String'
       }

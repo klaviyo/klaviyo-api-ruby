@@ -29,6 +29,10 @@ module KlaviyoAPI
 
     attr_accessor :additional_filters
 
+    attr_accessor :automation_id
+
+    attr_accessor :expiry_hours
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -38,7 +42,9 @@ module KlaviyoAPI
         :'smart_sending_enabled' => :'smart_sending_enabled',
         :'transactional' => :'transactional',
         :'add_tracking_params' => :'add_tracking_params',
-        :'additional_filters' => :'additional_filters'
+        :'additional_filters' => :'additional_filters',
+        :'automation_id' => :'automation_id',
+        :'expiry_hours' => :'expiry_hours'
       }
     end
 
@@ -56,7 +62,9 @@ module KlaviyoAPI
         :'smart_sending_enabled' => :'Boolean',
         :'transactional' => :'Boolean',
         :'add_tracking_params' => :'Boolean',
-        :'additional_filters' => :'ConditionalBranchActionDataProfileFilter'
+        :'additional_filters' => :'ConditionalBranchActionDataProfileFilter',
+        :'automation_id' => :'String',
+        :'expiry_hours' => :'Integer'
       }
     end
 
@@ -66,7 +74,9 @@ module KlaviyoAPI
         :'id',
         :'name',
         :'vendor_id',
-        :'additional_filters'
+        :'additional_filters',
+        :'automation_id',
+        :'expiry_hours'
       ])
     end
 
@@ -118,6 +128,14 @@ module KlaviyoAPI
       if attributes.key?(:'additional_filters')
         self.additional_filters = attributes[:'additional_filters']
       end
+
+      if attributes.key?(:'automation_id')
+        self.automation_id = attributes[:'automation_id']
+      end
+
+      if attributes.key?(:'expiry_hours')
+        self.expiry_hours = attributes[:'expiry_hours']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -144,7 +162,9 @@ module KlaviyoAPI
           smart_sending_enabled == o.smart_sending_enabled &&
           transactional == o.transactional &&
           add_tracking_params == o.add_tracking_params &&
-          additional_filters == o.additional_filters
+          additional_filters == o.additional_filters &&
+          automation_id == o.automation_id &&
+          expiry_hours == o.expiry_hours
     end
 
     # @see the `==` method
@@ -156,7 +176,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, name, vendor_id, smart_sending_enabled, transactional, add_tracking_params, additional_filters].hash
+      [id, name, vendor_id, smart_sending_enabled, transactional, add_tracking_params, additional_filters, automation_id, expiry_hours].hash
     end
 
     # Builds the object from hash

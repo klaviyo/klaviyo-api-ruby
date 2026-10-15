@@ -18,11 +18,14 @@ module KlaviyoAPI
 
     attr_accessor :open_tracking
 
+    attr_accessor :click_tracking
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'marketing' => :'marketing',
-        :'open_tracking' => :'open_tracking'
+        :'open_tracking' => :'open_tracking',
+        :'click_tracking' => :'click_tracking'
       }
     end
 
@@ -35,7 +38,8 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'marketing' => :'UnsubscriptionParameters',
-        :'open_tracking' => :'OpenTrackingUnsubscriptionParameters'
+        :'open_tracking' => :'OpenTrackingUnsubscriptionParameters',
+        :'click_tracking' => :'ClickTrackingUnsubscriptionParameters'
       }
     end
 
@@ -67,6 +71,10 @@ module KlaviyoAPI
       if attributes.key?(:'open_tracking')
         self.open_tracking = attributes[:'open_tracking']
       end
+
+      if attributes.key?(:'click_tracking')
+        self.click_tracking = attributes[:'click_tracking']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -88,7 +96,8 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           marketing == o.marketing &&
-          open_tracking == o.open_tracking
+          open_tracking == o.open_tracking &&
+          click_tracking == o.click_tracking
     end
 
     # @see the `==` method
@@ -100,7 +109,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [marketing, open_tracking].hash
+      [marketing, open_tracking, click_tracking].hash
     end
 
     # Builds the object from hash

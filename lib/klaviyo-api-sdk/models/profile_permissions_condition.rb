@@ -127,7 +127,7 @@ module KlaviyoAPI
       return false unless type_validator.valid?(@type)
       return false if @permission.nil?
       return false if @channel.nil?
-      channel_validator = EnumAttributeValidator.new('String', ["whatsapp_marketing", "whatsapp_transactional"])
+      channel_validator = EnumAttributeValidator.new('String', ["email_click_tracking", "email_open_tracking", "whatsapp_marketing", "whatsapp_transactional"])
       return false unless channel_validator.valid?(@channel)
       true
     end
@@ -145,7 +145,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] channel Object to be assigned
     def channel=(channel)
-      validator = EnumAttributeValidator.new('String', ["whatsapp_marketing", "whatsapp_transactional"])
+      validator = EnumAttributeValidator.new('String', ["email_click_tracking", "email_open_tracking", "whatsapp_marketing", "whatsapp_transactional"])
       unless validator.valid?(channel)
         fail ArgumentError, "invalid value for \"channel\", must be one of #{validator.allowable_values}."
       end

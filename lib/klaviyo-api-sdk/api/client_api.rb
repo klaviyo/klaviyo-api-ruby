@@ -21,33 +21,29 @@ module KlaviyoAPI
     # Get Client IP Allowlist
     # Return the current integration-egress IP allow list.  This is a singleton resource addressed at the fixed id ``integration-egress``: call ``GET /client/ip-allowlists/integration-egress`` (not ``GET /client/ip-allowlists``). Any other id returns 404.<br><br>*Rate limits*:<br>Burst: `75/s`<br>Steady: `750/m`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_client_ip_allowlist.json)
     # @param id [String] 
-    # @param company_id [String] Your Public API Key / Site ID. See [this article](https://help.klaviyo.com/hc/en-us/articles/115005062267) for more details.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_ip_allowlist For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :company_id Your Public API Key / Site ID. See [this article](https://help.klaviyo.com/hc/en-us/articles/115005062267) for more details.
+    # @option opts [Array<String>] :fields_ip_allowlist For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
-    def get_client_ip_allowlist(id, company_id, opts = {})
-      data, _status_code, _headers = get_client_ip_allowlist_with_http_info(id, company_id, opts)
+    def get_client_ip_allowlist(id, opts = {})
+      data, _status_code, _headers = get_client_ip_allowlist_with_http_info(id, opts)
       data
     end
 
     # Get Client IP Allowlist
     # Return the current integration-egress IP allow list.  This is a singleton resource addressed at the fixed id &#x60;&#x60;integration-egress&#x60;&#x60;: call &#x60;&#x60;GET /client/ip-allowlists/integration-egress&#x60;&#x60; (not &#x60;&#x60;GET /client/ip-allowlists&#x60;&#x60;). Any other id returns 404.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;75/s&#x60;&lt;br&gt;Steady: &#x60;750/m&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_client_ip_allowlist.json)
     # @param id [String] 
-    # @param company_id [String] Your Public API Key / Site ID. See [this article](https://help.klaviyo.com/hc/en-us/articles/115005062267) for more details.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_ip_allowlist For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :company_id Your Public API Key / Site ID. See [this article](https://help.klaviyo.com/hc/en-us/articles/115005062267) for more details.
+    # @option opts [Array<String>] :fields_ip_allowlist For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_client_ip_allowlist_with_http_info(id, company_id, opts = {})
+    def get_client_ip_allowlist_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: ClientApi.get_client_ip_allowlist ...'
       end
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling ClientApi.get_client_ip_allowlist"
-      end
-      # verify the required parameter 'company_id' is set
-      if @api_client.config.client_side_validation && company_id.nil?
-        fail ArgumentError, "Missing the required parameter 'company_id' when calling ClientApi.get_client_ip_allowlist"
       end
       allowable_values = ["created", "id", "prefixes", "sync_token"]
       if @api_client.config.client_side_validation && opts[:'fields_ip_allowlist'] && !opts[:'fields_ip_allowlist'].all? { |item| allowable_values.include?(item) }
@@ -58,13 +54,13 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'company_id'] = company_id
+      query_params[:'company_id'] = opts[:'company_id'] if !opts[:'company_id'].nil?
       query_params[:'fields[ip-allowlist]'] = @api_client.build_collection_param(opts[:'fields_ip_allowlist'], :csv) if !opts[:'fields_ip_allowlist'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 

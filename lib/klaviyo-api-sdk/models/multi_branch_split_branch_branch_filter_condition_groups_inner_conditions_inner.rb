@@ -18,9 +18,12 @@ module KlaviyoAPI
       # List of class defined in oneOf (OpenAPI v3)
       def openapi_one_of
         [
+          :'CustomObjectPropertyCondition',
           :'CustomObjectTriggerCondition',
           :'FlowsProfileMetricCondition',
+          :'LowInventoryCondition',
           :'MetricPropertyCondition',
+          :'PriceDropCondition',
           :'ProfileHasCustomObjectCondition',
           :'ProfileHasGroupMembershipCondition',
           :'ProfileHasNotReceivedEmailMessageCondition',
@@ -28,6 +31,7 @@ module KlaviyoAPI
           :'ProfileHasNotReceivedSmsMessageCondition',
           :'ProfileMarketingConsentCondition',
           :'ProfileNoGroupMembershipCondition',
+          :'ProfileNotInFlowCondition',
           :'ProfilePermissionsCondition',
           :'ProfilePostalCodeDistanceCondition',
           :'ProfilePredictiveAnalyticsChannelAffinityPriorityCondition',

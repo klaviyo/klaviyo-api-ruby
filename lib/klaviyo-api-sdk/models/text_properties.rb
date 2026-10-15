@@ -18,6 +18,8 @@ module KlaviyoAPI
 
     attr_accessor :classname
 
+    attr_accessor :block_animation
+
     attr_accessor :property_name
 
     attr_accessor :label
@@ -57,6 +59,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'display_device',
         :'classname' => :'classname',
+        :'block_animation' => :'block_animation',
         :'property_name' => :'property_name',
         :'label' => :'label',
         :'show_label' => :'show_label',
@@ -76,6 +79,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'Array<String>',
         :'classname' => :'String',
+        :'block_animation' => :'Animation',
         :'property_name' => :'String',
         :'label' => :'String',
         :'show_label' => :'Boolean',
@@ -118,6 +122,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'classname')
         self.classname = attributes[:'classname']
+      end
+
+      if attributes.key?(:'block_animation')
+        self.block_animation = attributes[:'block_animation']
       end
 
       if attributes.key?(:'property_name')
@@ -174,6 +182,7 @@ module KlaviyoAPI
       self.class == o.class &&
           display_device == o.display_device &&
           classname == o.classname &&
+          block_animation == o.block_animation &&
           property_name == o.property_name &&
           label == o.label &&
           show_label == o.show_label &&
@@ -191,7 +200,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, classname, property_name, label, show_label, placeholder, required, error_messages].hash
+      [display_device, classname, block_animation, property_name, label, show_label, placeholder, required, error_messages].hash
     end
 
     # Builds the object from hash

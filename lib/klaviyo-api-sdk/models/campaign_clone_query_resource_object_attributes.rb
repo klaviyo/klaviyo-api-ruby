@@ -14,13 +14,13 @@ require 'time'
 
 module KlaviyoAPI
   class CampaignCloneQueryResourceObjectAttributes
-    # The name for the new cloned campaign
-    attr_accessor :new_name
+    # Name for the cloned campaign. Defaults to 'Copy of {source name}'.
+    attr_accessor :name
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'new_name' => :'new_name'
+        :'name' => :'name'
       }
     end
 
@@ -32,14 +32,14 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'new_name' => :'String'
+        :'name' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'new_name'
+        :'name'
       ])
     end
 
@@ -58,8 +58,8 @@ module KlaviyoAPI
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'new_name')
-        self.new_name = attributes[:'new_name']
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
       end
     end
 
@@ -81,7 +81,7 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          new_name == o.new_name
+          name == o.name
     end
 
     # @see the `==` method
@@ -93,7 +93,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [new_name].hash
+      [name].hash
     end
 
     # Builds the object from hash

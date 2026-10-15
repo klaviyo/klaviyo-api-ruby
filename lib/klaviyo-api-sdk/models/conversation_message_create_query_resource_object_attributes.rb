@@ -16,10 +16,14 @@ module KlaviyoAPI
   class ConversationMessageCreateQueryResourceObjectAttributes
     attr_accessor :body
 
+    # An ordered RCS and SMS pair to send instead of a plain SMS: the RCS content first, then the SMS fallback delivered when RCS cannot be sent.
+    attr_accessor :message_hierarchy
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'body' => :'body'
+        :'body' => :'body',
+        :'message_hierarchy' => :'message_hierarchy'
       }
     end
 
@@ -31,13 +35,15 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'body' => :'String'
+        :'body' => :'String',
+        :'message_hierarchy' => :'Array<FlowSmsMessageHierarchyInner>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'message_hierarchy'
       ])
     end
 
@@ -58,6 +64,12 @@ module KlaviyoAPI
 
       if attributes.key?(:'body')
         self.body = attributes[:'body']
+      end
+
+      if attributes.key?(:'message_hierarchy')
+        if (value = attributes[:'message_hierarchy']).is_a?(Array)
+          self.message_hierarchy = value
+        end
       end
     end
 
@@ -84,7 +96,8 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          body == o.body
+          body == o.body &&
+          message_hierarchy == o.message_hierarchy
     end
 
     # @see the `==` method
@@ -96,7 +109,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [body].hash
+      [body, message_hierarchy].hash
     end
 
     # Builds the object from hash

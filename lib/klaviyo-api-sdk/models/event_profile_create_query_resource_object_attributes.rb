@@ -51,8 +51,6 @@ module KlaviyoAPI
     # An object containing key/value pairs for any custom properties assigned to this profile
     attr_accessor :properties
 
-    attr_accessor :meta
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -68,8 +66,7 @@ module KlaviyoAPI
         :'title' => :'title',
         :'image' => :'image',
         :'location' => :'location',
-        :'properties' => :'properties',
-        :'meta' => :'meta'
+        :'properties' => :'properties'
       }
     end
 
@@ -93,8 +90,7 @@ module KlaviyoAPI
         :'title' => :'String',
         :'image' => :'String',
         :'location' => :'ProfileLocation',
-        :'properties' => :'Object',
-        :'meta' => :'OnsiteProfileMeta'
+        :'properties' => :'Object'
       }
     end
 
@@ -112,7 +108,7 @@ module KlaviyoAPI
         :'locale',
         :'title',
         :'image',
-        :'properties',
+        :'properties'
       ])
     end
 
@@ -182,10 +178,6 @@ module KlaviyoAPI
       if attributes.key?(:'properties')
         self.properties = attributes[:'properties']
       end
-
-      if attributes.key?(:'meta')
-        self.meta = attributes[:'meta']
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -218,8 +210,7 @@ module KlaviyoAPI
           title == o.title &&
           image == o.image &&
           location == o.location &&
-          properties == o.properties &&
-          meta == o.meta
+          properties == o.properties
     end
 
     # @see the `==` method
@@ -231,7 +222,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [email, phone_number, external_id, anonymous_id, _kx, first_name, last_name, organization, locale, title, image, location, properties, meta].hash
+      [email, phone_number, external_id, anonymous_id, _kx, first_name, last_name, organization, locale, title, image, location, properties].hash
     end
 
     # Builds the object from hash

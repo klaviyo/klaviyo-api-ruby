@@ -115,7 +115,7 @@ module KlaviyoAPI
       type_validator = EnumAttributeValidator.new('String', ["dynamic"])
       return false unless type_validator.valid?(@type)
       return false if @value.nil?
-      value_validator = EnumAttributeValidator.new('String', ["campaign_id", "campaign_name", "campaign_name_id", "campaign_name_send_day", "email_subject", "group_id", "group_name", "group_name_id", "link_alt_text", "message_type", "profile_external_id", "profile_id"])
+      value_validator = EnumAttributeValidator.new('String', ["campaign_id", "campaign_name", "campaign_name_id", "campaign_name_send_day", "email_subject", "group_id", "group_name", "group_name_id", "link_alt_text", "message_type", "profile_external_id", "profile_id", "variation_name"])
       return false unless value_validator.valid?(@value)
       true
     end
@@ -133,7 +133,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] value Object to be assigned
     def value=(value)
-      validator = EnumAttributeValidator.new('String', ["campaign_id", "campaign_name", "campaign_name_id", "campaign_name_send_day", "email_subject", "group_id", "group_name", "group_name_id", "link_alt_text", "message_type", "profile_external_id", "profile_id"])
+      validator = EnumAttributeValidator.new('String', ["campaign_id", "campaign_name", "campaign_name_id", "campaign_name_send_day", "email_subject", "group_id", "group_name", "group_name_id", "link_alt_text", "message_type", "profile_external_id", "profile_id", "variation_name"])
       unless validator.valid?(value)
         fail ArgumentError, "invalid value for \"value\", must be one of #{validator.allowable_values}."
       end

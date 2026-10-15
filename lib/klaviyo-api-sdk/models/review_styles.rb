@@ -24,6 +24,8 @@ module KlaviyoAPI
 
     attr_accessor :reviewer_name_style
 
+    attr_accessor :verified_badge_style
+
     attr_accessor :block_background_color
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -34,6 +36,7 @@ module KlaviyoAPI
         :'rating_style' => :'rating_style',
         :'quote_style' => :'quote_style',
         :'reviewer_name_style' => :'reviewer_name_style',
+        :'verified_badge_style' => :'verified_badge_style',
         :'block_background_color' => :'block_background_color'
       }
     end
@@ -51,6 +54,7 @@ module KlaviyoAPI
         :'rating_style' => :'RatingStyle',
         :'quote_style' => :'QuoteStyle',
         :'reviewer_name_style' => :'ReviewerNameStyle',
+        :'verified_badge_style' => :'VerifiedBadgeStyle',
         :'block_background_color' => :'String'
       }
     end
@@ -97,6 +101,10 @@ module KlaviyoAPI
         self.reviewer_name_style = attributes[:'reviewer_name_style']
       end
 
+      if attributes.key?(:'verified_badge_style')
+        self.verified_badge_style = attributes[:'verified_badge_style']
+      end
+
       if attributes.key?(:'block_background_color')
         self.block_background_color = attributes[:'block_background_color']
       else
@@ -127,6 +135,7 @@ module KlaviyoAPI
           rating_style == o.rating_style &&
           quote_style == o.quote_style &&
           reviewer_name_style == o.reviewer_name_style &&
+          verified_badge_style == o.verified_badge_style &&
           block_background_color == o.block_background_color
     end
 
@@ -139,7 +148,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [padding, background_color, rating_style, quote_style, reviewer_name_style, block_background_color].hash
+      [padding, background_color, rating_style, quote_style, reviewer_name_style, verified_badge_style, block_background_color].hash
     end
 
     # Builds the object from hash

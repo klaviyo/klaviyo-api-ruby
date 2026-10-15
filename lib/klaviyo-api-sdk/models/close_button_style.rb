@@ -26,6 +26,31 @@ module KlaviyoAPI
 
     attr_accessor :margin
 
+    # Horizontal position of the close button.
+    attr_accessor :position
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -34,7 +59,8 @@ module KlaviyoAPI
         :'color' => :'color',
         :'stroke' => :'stroke',
         :'size' => :'size',
-        :'margin' => :'margin'
+        :'margin' => :'margin',
+        :'position' => :'position'
       }
     end
 
@@ -51,13 +77,15 @@ module KlaviyoAPI
         :'color' => :'String',
         :'stroke' => :'Float',
         :'size' => :'Integer',
-        :'margin' => :'Margin'
+        :'margin' => :'Margin',
+        :'position' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'position'
       ])
     end
 
@@ -109,6 +137,10 @@ module KlaviyoAPI
       if attributes.key?(:'margin')
         self.margin = attributes[:'margin']
       end
+
+      if attributes.key?(:'position')
+        self.position = attributes[:'position']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -121,7 +153,19 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      position_validator = EnumAttributeValidator.new('String', ["left", "right"])
+      return false unless position_validator.valid?(@position)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] position Object to be assigned
+    def position=(position)
+      validator = EnumAttributeValidator.new('String', ["left", "right"])
+      unless validator.valid?(position)
+        fail ArgumentError, "invalid value for \"position\", must be one of #{validator.allowable_values}."
+      end
+      @position = position
     end
 
     # Checks equality by comparing each attribute.
@@ -134,7 +178,8 @@ module KlaviyoAPI
           color == o.color &&
           stroke == o.stroke &&
           size == o.size &&
-          margin == o.margin
+          margin == o.margin &&
+          position == o.position
     end
 
     # @see the `==` method
@@ -146,7 +191,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [background_color, outline_color, color, stroke, size, margin].hash
+      [background_color, outline_color, color, stroke, size, margin, position].hash
     end
 
     # Builds the object from hash

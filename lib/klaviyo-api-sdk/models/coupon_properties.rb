@@ -18,6 +18,8 @@ module KlaviyoAPI
 
     attr_accessor :classname
 
+    attr_accessor :block_animation
+
     attr_accessor :coupon
 
     attr_accessor :success_message
@@ -49,6 +51,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'display_device',
         :'classname' => :'classname',
+        :'block_animation' => :'block_animation',
         :'coupon' => :'coupon',
         :'success_message' => :'success_message'
       }
@@ -64,6 +67,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'Array<String>',
         :'classname' => :'String',
+        :'block_animation' => :'Animation',
         :'coupon' => :'CouponPropertiesCoupon',
         :'success_message' => :'String'
       }
@@ -102,6 +106,10 @@ module KlaviyoAPI
         self.classname = attributes[:'classname']
       end
 
+      if attributes.key?(:'block_animation')
+        self.block_animation = attributes[:'block_animation']
+      end
+
       if attributes.key?(:'coupon')
         self.coupon = attributes[:'coupon']
       end
@@ -136,6 +144,7 @@ module KlaviyoAPI
       self.class == o.class &&
           display_device == o.display_device &&
           classname == o.classname &&
+          block_animation == o.block_animation &&
           coupon == o.coupon &&
           success_message == o.success_message
     end
@@ -149,7 +158,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, classname, coupon, success_message].hash
+      [display_device, classname, block_animation, coupon, success_message].hash
     end
 
     # Builds the object from hash

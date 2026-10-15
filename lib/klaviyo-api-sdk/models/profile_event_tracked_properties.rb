@@ -18,11 +18,14 @@ module KlaviyoAPI
 
     attr_accessor :property_filters
 
+    attr_accessor :delay_seconds
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'metric' => :'metric',
-        :'property_filters' => :'property_filters'
+        :'property_filters' => :'property_filters',
+        :'delay_seconds' => :'delay_seconds'
       }
     end
 
@@ -35,7 +38,8 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'metric' => :'String',
-        :'property_filters' => :'Array<PropertyFilter>'
+        :'property_filters' => :'Array<PropertyFilter>',
+        :'delay_seconds' => :'Integer'
       }
     end
 
@@ -43,7 +47,8 @@ module KlaviyoAPI
     def self.openapi_nullable
       Set.new([
         :'metric',
-        :'property_filters'
+        :'property_filters',
+        :'delay_seconds'
       ])
     end
 
@@ -73,6 +78,10 @@ module KlaviyoAPI
           self.property_filters = value
         end
       end
+
+      if attributes.key?(:'delay_seconds')
+        self.delay_seconds = attributes[:'delay_seconds']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -94,7 +103,8 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           metric == o.metric &&
-          property_filters == o.property_filters
+          property_filters == o.property_filters &&
+          delay_seconds == o.delay_seconds
     end
 
     # @see the `==` method
@@ -106,7 +116,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [metric, property_filters].hash
+      [metric, property_filters, delay_seconds].hash
     end
 
     # Builds the object from hash

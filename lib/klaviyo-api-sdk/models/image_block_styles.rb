@@ -36,6 +36,8 @@ module KlaviyoAPI
 
     attr_accessor :block_padding_top
 
+    attr_accessor :border_radius
+
     attr_accessor :full_width_mobile
 
     attr_accessor :height
@@ -89,6 +91,7 @@ module KlaviyoAPI
         :'block_padding_left' => :'block_padding_left',
         :'block_padding_right' => :'block_padding_right',
         :'block_padding_top' => :'block_padding_top',
+        :'border_radius' => :'border_radius',
         :'full_width_mobile' => :'full_width_mobile',
         :'height' => :'height',
         :'inner_padding_bottom' => :'inner_padding_bottom',
@@ -119,6 +122,7 @@ module KlaviyoAPI
         :'block_padding_left' => :'Integer',
         :'block_padding_right' => :'Integer',
         :'block_padding_top' => :'Integer',
+        :'border_radius' => :'Integer',
         :'full_width_mobile' => :'Boolean',
         :'height' => :'Integer',
         :'inner_padding_bottom' => :'Integer',
@@ -144,6 +148,7 @@ module KlaviyoAPI
         :'block_padding_left',
         :'block_padding_right',
         :'block_padding_top',
+        :'border_radius',
         :'full_width_mobile',
         :'height',
         :'inner_padding_bottom',
@@ -209,6 +214,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'block_padding_top')
         self.block_padding_top = attributes[:'block_padding_top']
+      end
+
+      if attributes.key?(:'border_radius')
+        self.border_radius = attributes[:'border_radius']
       end
 
       if attributes.key?(:'full_width_mobile')
@@ -300,6 +309,7 @@ module KlaviyoAPI
           block_padding_left == o.block_padding_left &&
           block_padding_right == o.block_padding_right &&
           block_padding_top == o.block_padding_top &&
+          border_radius == o.border_radius &&
           full_width_mobile == o.full_width_mobile &&
           height == o.height &&
           inner_padding_bottom == o.inner_padding_bottom &&
@@ -320,7 +330,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [align, background_color, block_background_color, block_border_color, block_border_style, block_border_width, block_padding_bottom, block_padding_left, block_padding_right, block_padding_top, full_width_mobile, height, inner_padding_bottom, inner_padding_left, inner_padding_right, inner_padding_top, max_width, mobile_stretch_content, width].hash
+      [align, background_color, block_background_color, block_border_color, block_border_style, block_border_width, block_padding_bottom, block_padding_left, block_padding_right, block_padding_top, border_radius, full_width_mobile, height, inner_padding_bottom, inner_padding_left, inner_padding_right, inner_padding_top, max_width, mobile_stretch_content, width].hash
     end
 
     # Builds the object from hash

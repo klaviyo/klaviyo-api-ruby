@@ -21,12 +21,15 @@ module KlaviyoAPI
 
     attr_accessor :attributes
 
+    attr_accessor :meta
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'type' => :'type',
         :'id' => :'id',
-        :'attributes' => :'attributes'
+        :'attributes' => :'attributes',
+        :'meta' => :'meta'
       }
     end
 
@@ -40,7 +43,8 @@ module KlaviyoAPI
       {
         :'type' => :'ProfileEnum',
         :'id' => :'String',
-        :'attributes' => :'EventProfileCreateQueryResourceObjectAttributes'
+        :'attributes' => :'EventProfileCreateQueryResourceObjectAttributes',
+        :'meta' => :'OnsiteProfileMeta'
       }
     end
 
@@ -77,6 +81,10 @@ module KlaviyoAPI
       if attributes.key?(:'attributes')
         self.attributes = attributes[:'attributes']
       end
+
+      if attributes.key?(:'meta')
+        self.meta = attributes[:'meta']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -109,7 +117,8 @@ module KlaviyoAPI
       self.class == o.class &&
           type == o.type &&
           id == o.id &&
-          attributes == o.attributes
+          attributes == o.attributes &&
+          meta == o.meta
     end
 
     # @see the `==` method
@@ -121,7 +130,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, id, attributes].hash
+      [type, id, attributes, meta].hash
     end
 
     # Builds the object from hash

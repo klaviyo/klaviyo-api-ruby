@@ -34,6 +34,7 @@ module KlaviyoAPI
           :'SendSmsAction',
           :'SendWebhookAction',
           :'SendWhatsAppAction',
+          :'SendWhatsAppWithACAction',
           :'TargetDateAction',
           :'TimeDelayAction',
           :'TriggerBranchAction',

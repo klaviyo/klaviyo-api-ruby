@@ -89,6 +89,10 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "attributes", attributes cannot be nil.')
       end
 
+      if @relationships.nil?
+        invalid_properties.push('invalid value for "relationships", relationships cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -97,6 +101,7 @@ module KlaviyoAPI
     def valid?
       return false if @type.nil?
       return false if @attributes.nil?
+      return false if @relationships.nil?
       true
     end
 
