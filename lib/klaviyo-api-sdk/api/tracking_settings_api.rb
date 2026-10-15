@@ -22,7 +22,7 @@ module KlaviyoAPI
     # Get the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_setting.json)
     # @param id [String] The id of the tracking setting (account ID).
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_tracking_setting(id, opts = {})
       data, _status_code, _headers = get_tracking_setting_with_http_info(id, opts)
@@ -33,7 +33,7 @@ module KlaviyoAPI
     # Get the UTM tracking setting with the given account ID.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_setting.json)
     # @param id [String] The id of the tracking setting (account ID).
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tracking_setting_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -57,7 +57,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -93,8 +93,8 @@ module KlaviyoAPI
     # Get Tracking Settings
     # Get all UTM tracking settings in an account. Returns an array with a single tracking setting.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `tracking-settings:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_settings.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 1. Min: 1. Max: 1. (default to 1)
     # @return [Hash<String, Object>]
     def get_tracking_settings(opts = {})
@@ -105,8 +105,8 @@ module KlaviyoAPI
     # Get Tracking Settings
     # Get all UTM tracking settings in an account. Returns an array with a single tracking setting.  More information about UTM tracking settings can be found [here](https://help.klaviyo.com/hc/en-us/articles/115005247808).&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;tracking-settings:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tracking_settings.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 1. Min: 1. Max: 1. (default to 1)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tracking_settings_with_http_info(opts = {})
@@ -137,7 +137,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -175,7 +175,7 @@ module KlaviyoAPI
     # @param id [String] The id of the tracking setting (account ID).
     # @param tracking_setting_partial_update_query [TrackingSettingPartialUpdateQuery] DTO for updating tracking settings
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_tracking_setting(id, tracking_setting_partial_update_query, opts = {})
       data, _status_code, _headers = update_tracking_setting_with_http_info(id, tracking_setting_partial_update_query, opts)
@@ -187,7 +187,7 @@ module KlaviyoAPI
     # @param id [String] The id of the tracking setting (account ID).
     # @param tracking_setting_partial_update_query [TrackingSettingPartialUpdateQuery] DTO for updating tracking settings
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tracking_setting For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_tracking_setting_with_http_info(id, tracking_setting_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -215,7 +215,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

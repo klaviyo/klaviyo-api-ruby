@@ -4,6 +4,50 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [19.0.0] - revision 2026-10-15
+### Added
+- Brands API
+  - Create, read, update and delete brand logos, colors, buttons and social groups, e.g. `KlaviyoAPI::Brands.create_brand_logo`, `KlaviyoAPI::Brands.get_brand_color`, `KlaviyoAPI::Brands.update_brand_button`, `KlaviyoAPI::Brands.delete_brand_social_group`.
+  - Read and update brand voice with `KlaviyoAPI::Brands.get_brand_voice` and `KlaviyoAPI::Brands.update_brand_voice`.
+  - Read and update brand email defaults with `KlaviyoAPI::Brands.get_brand_email_defaults`, `KlaviyoAPI::Brands.get_brand_email_default` and `KlaviyoAPI::Brands.update_brand_email_default`.
+  - Requires the `brands:read` and `brands:write` scopes.
+- Text Messaging API
+  - Create and retrieve senders with `KlaviyoAPI::TextMessaging.create_text_messaging_sender`, `KlaviyoAPI::TextMessaging.get_text_messaging_senders` and `KlaviyoAPI::TextMessaging.get_text_messaging_sender`.
+  - Track and resubmit sender registrations with `KlaviyoAPI::TextMessaging.get_text_messaging_sender_registration` and `KlaviyoAPI::TextMessaging.create_text_messaging_sender_registration`.
+  - Create and retrieve your account's text messaging configuration with `KlaviyoAPI::TextMessaging.create_text_messaging_configuration` and `KlaviyoAPI::TextMessaging.get_text_messaging_configuration`.
+  - Requires the `sender-config:read` and `sender-config:write` scopes.
+  - For more information, see our [Text Messaging API overview](https://developers.klaviyo.com/en/reference/text_messaging_api_overview).
+- Templates API
+  - New send test email endpoint `KlaviyoAPI::Templates.create_template_preview_send_job` sends a test email of a template to one or more recipients. Requires the `templates:write` scope.
+- Billing Usage API
+  - Read your account's current-period metered usage against plan caps with `KlaviyoAPI::BillingUsage.list_billing_usage` and `KlaviyoAPI::BillingUsage.get_billing_usage`. Requires the `usage:read` scope.
+- Translations API
+  - List, retrieve, create, update and delete translations with `KlaviyoAPI::Translations.get_translations`, `KlaviyoAPI::Translations.get_translation`, `KlaviyoAPI::Translations.create_translation`, `KlaviyoAPI::Translations.update_translation` and `KlaviyoAPI::Translations.delete_translation`.
+  - New relationship endpoints retrieve the campaign variation, flow message, email template or template universal content associated with a translation.
+- Forms API
+  - New update form endpoint `KlaviyoAPI::Forms.update_form`.
+  - New publish and unpublish endpoints `KlaviyoAPI::Forms.publish_form` and `KlaviyoAPI::Forms.unpublish_form`.
+- Flows API
+  - New create flow action endpoint `KlaviyoAPI::Flows.create_flow_action`. Place the new action after an existing action, before an existing action, or as the first action in a flow that has none. Requires the `flows:write` scope.
+- Universal Content API
+  - New clone endpoint `KlaviyoAPI::Templates.clone_universal_content`. Requires the `templates:write` scope.
+- Campaigns API
+  - The campaign audience, campaign variation and campaign scheduling endpoints are now generally available, including scheduling one message or all messages in a campaign.
+  - `KlaviyoAPI::Campaigns.create_campaign` now accepts a partial structure. Send a campaign with only some of its audiences, messages and variations and add the rest with the individual endpoints, or still send the full structure in one request.
+### Changed
+- **Breaking:** Campaigns API now uses the omnichannel model
+  - Affects `get_campaigns`, `get_campaign`, `create_campaign`, `update_campaign`, `create_campaign_clone`, and the campaign message endpoints including `get_campaign_message` and `update_campaign_message`. Request and response shapes have been replaced.
+  - A campaign is now a container with defaults for send timezone, send strategy and exit conditions. It has one or more audiences, and each audience has one or more messages.
+  - A campaign no longer has a channel, and `get_campaigns` no longer requires a channel filter.
+  - Each message belongs to one audience and sends on one channel. Each message has one variation, which holds the channel-specific content. A/B tests are not supported.
+  - The relationship from a campaign message to its campaign now returns the omnichannel campaign.
+  - If you used the omnichannel beta, request and response shapes are unchanged. The `include=campaign` parameter on the campaign message endpoints is fixed.
+  - For more information, see our [Campaigns API overview](https://developers.klaviyo.com/en/reference/campaigns_api_overview).
+- **Breaking:** Universal Content blocks and sections have a new `display_options` shape
+  - Universal content now supports all block types and sections, where only seven block types were supported before.
+  - If you read or write `display_options` through `get_all_universal_content`, `get_universal_content`, `create_universal_content`, `update_universal_content` or `delete_universal_content`, update your code.
+  - For more information, see our [Universal Content API overview](https://developers.klaviyo.com/en/reference/universal_content_api_overview).
+
 ## [18.0.0] - revision 2026-07-15
 ### Added
 - Custom Objects API

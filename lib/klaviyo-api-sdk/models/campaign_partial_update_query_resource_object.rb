@@ -16,7 +16,7 @@ module KlaviyoAPI
   class CampaignPartialUpdateQueryResourceObject
     attr_accessor :type
 
-    # The campaign ID to be retrieved
+    # The campaign ID to be updated
     attr_accessor :id
 
     attr_accessor :attributes

@@ -50,6 +50,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'content',
       ])
     end
 
@@ -89,10 +90,6 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @content.nil?
-        invalid_properties.push('invalid value for "content", content cannot be nil.')
-      end
-
       if @properties.nil?
         invalid_properties.push('invalid value for "properties", properties cannot be nil.')
       end
@@ -111,7 +108,6 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @content.nil?
       return false if @properties.nil?
       return false if @display_options.nil?
       return false if @styles.nil?

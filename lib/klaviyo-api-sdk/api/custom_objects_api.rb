@@ -53,7 +53,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -129,7 +129,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -174,7 +174,7 @@ module KlaviyoAPI
     # Create a new data source in an account<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source.json)
     # @param data_source_create_query [DataSourceCreateQuery] Create data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_data_source(data_source_create_query, opts = {})
       data, _status_code, _headers = create_data_source_with_http_info(data_source_create_query, opts)
@@ -185,7 +185,7 @@ module KlaviyoAPI
     # Create a new data source in an account&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_data_source.json)
     # @param data_source_create_query [DataSourceCreateQuery] Create data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_data_source_with_http_info(data_source_create_query, opts = {})
       if @api_client.config.debugging
@@ -209,7 +209,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -282,7 +282,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -327,7 +327,7 @@ module KlaviyoAPI
     # Create an object schema.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema.json)
     # @param object_schema_create_query [ObjectSchemaCreateQuery] Create an object schema
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_object_schema(object_schema_create_query, opts = {})
       data, _status_code, _headers = create_object_schema_with_http_info(object_schema_create_query, opts)
@@ -338,7 +338,7 @@ module KlaviyoAPI
     # Create an object schema.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_schema.json)
     # @param object_schema_create_query [ObjectSchemaCreateQuery] Create an object schema
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_object_schema_with_http_info(object_schema_create_query, opts = {})
       if @api_client.config.debugging
@@ -362,7 +362,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -444,7 +444,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -492,7 +492,7 @@ module KlaviyoAPI
     # Create an object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_type.json)
     # @param object_type_create_query [ObjectTypeCreateQuery] Create an object type
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_object_type(object_type_create_query, opts = {})
       data, _status_code, _headers = create_object_type_with_http_info(object_type_create_query, opts)
@@ -503,7 +503,7 @@ module KlaviyoAPI
     # Create an object type.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_object_type.json)
     # @param object_type_create_query [ObjectTypeCreateQuery] Create an object type
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_object_type_with_http_info(object_type_create_query, opts = {})
       if @api_client.config.debugging
@@ -527,7 +527,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -609,7 +609,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -685,7 +685,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -762,7 +762,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -838,7 +838,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -915,7 +915,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -963,7 +963,7 @@ module KlaviyoAPI
     # Get current schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_current_schema_for_object_type(id, opts = {})
       data, _status_code, _headers = get_current_schema_for_object_type_with_http_info(id, opts)
@@ -977,7 +977,7 @@ module KlaviyoAPI
     # Get current schema for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_current_schema_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_current_schema_for_object_type_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1001,7 +1001,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1072,7 +1072,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1112,7 +1112,7 @@ module KlaviyoAPI
     # Retrieve a data source in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_source.json)
     # @param id [String] The ID of the data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_data_source(id, opts = {})
       data, _status_code, _headers = get_data_source_with_http_info(id, opts)
@@ -1123,7 +1123,7 @@ module KlaviyoAPI
     # Retrieve a data source in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_source.json)
     # @param id [String] The ID of the data source
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_data_source_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1147,7 +1147,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1183,8 +1183,9 @@ module KlaviyoAPI
     # Get Data Sources
     # Get all data sources in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_sources.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60; (string)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_data_sources(opts = {})
@@ -1195,8 +1196,9 @@ module KlaviyoAPI
     # Get Data Sources
     # Get all data sources in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_data_sources.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_data_source For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60; (string)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_data_sources_with_http_info(opts = {})
@@ -1221,13 +1223,14 @@ module KlaviyoAPI
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'fields[data-source]'] = @api_client.build_collection_param(opts[:'fields_data_source'], :csv) if !opts[:'fields_data_source'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
       query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1264,7 +1267,7 @@ module KlaviyoAPI
     # Get draft schema for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_draft_schema_for_object_type(id, opts = {})
       data, _status_code, _headers = get_draft_schema_for_object_type_with_http_info(id, opts)
@@ -1278,7 +1281,7 @@ module KlaviyoAPI
     # Get draft schema for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_draft_schema_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_draft_schema_for_object_type_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1302,7 +1305,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1373,7 +1376,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1413,8 +1416,8 @@ module KlaviyoAPI
     # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_log_ids_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;error&#39;&#x60;, &#x60;&#39;warning&#39;&#x60;, &#x60;&#39;info&#39;&#x60;)&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;validation_error&#39;&#x60;)&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_ingestion_log_ids_for_object_type(id, opts = {})
       data, _status_code, _headers = get_ingestion_log_ids_for_object_type_with_http_info(id, opts)
@@ -1428,8 +1431,8 @@ module KlaviyoAPI
     # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_log_ids_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;error&#39;&#x60;, &#x60;&#39;warning&#39;&#x60;, &#x60;&#39;info&#39;&#x60;)&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;validation_error&#39;&#x60;)&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_ingestion_log_ids_for_object_type_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1450,7 +1453,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1490,12 +1493,12 @@ module KlaviyoAPI
     # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.<br><br>*Rate limits*:<br>Burst: `1/s`<br>Steady: `15/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_logs_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_ingestion_log For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_object_ingestion_log For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;error&#39;&#x60;, &#x60;&#39;warning&#39;&#x60;, &#x60;&#39;info&#39;&#x60;)&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;validation_error&#39;&#x60;)&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_ingestion_logs_for_object_type(id, opts = {})
       data, _status_code, _headers = get_ingestion_logs_for_object_type_with_http_info(id, opts)
@@ -1509,12 +1512,12 @@ module KlaviyoAPI
     # Get the ingestion logs for a given object type.  Only ingestion failures are logged — the absence of a log entry for a record does not mean the record was ingested successfully.  Logs are retained for 14 days; time filters outside that window return an empty page. Results are returned newest first with a fixed page size of 50.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;1/s&#x60;&lt;br&gt;Steady: &#x60;15/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_ingestion_logs_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_ingestion_log For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_object_ingestion_log For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;record_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;error&#39;&#x60;, &#x60;&#39;warning&#39;&#x60;, &#x60;&#39;info&#39;&#x60;)&lt;br&gt;&#x60;event_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;validation_error&#39;&#x60;)&lt;br&gt;&#x60;timestamp&#x60;: &#x60;greater-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_ingestion_logs_for_object_type_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1555,7 +1558,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1595,7 +1598,7 @@ module KlaviyoAPI
     # Get the object record with the given compound ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_record.json)
     # @param id [String] The compound ID of the object record, formatted as object_type_id:::object_record_id
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_object_record(id, opts = {})
       data, _status_code, _headers = get_object_record_with_http_info(id, opts)
@@ -1606,7 +1609,7 @@ module KlaviyoAPI
     # Get the object record with the given compound ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_record.json)
     # @param id [String] The compound ID of the object record, formatted as object_type_id:::object_record_id
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_object_record_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1630,7 +1633,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1667,10 +1670,10 @@ module KlaviyoAPI
     # Get the object schema with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema.json)
     # @param id [String] The ULID ID of the object schema.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_object_schema(id, opts = {})
       data, _status_code, _headers = get_object_schema_with_http_info(id, opts)
@@ -1681,10 +1684,10 @@ module KlaviyoAPI
     # Get the object schema with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_schema.json)
     # @param id [String] The ULID ID of the object schema.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_object_schema_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1694,11 +1697,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CustomObjectsApi.get_object_schema"
       end
-      allowable_values = ["description", "id", "meta", "meta.description", "meta.name", "meta.relationship_id", "properties", "published_at", "required", "status", "title", "visibility"]
+      allowable_values = ["description", "id", "properties", "published_at", "required", "status", "title", "visibility"]
       if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
       end
-      allowable_values = ["id", "meta", "meta.description", "meta.name", "meta.relationship_id"]
+      allowable_values = ["id"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_object_schema'] && !opts[:'fields_profile_object_schema'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_object_schema\", must include one of #{allowable_values}"
       end
@@ -1723,7 +1726,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1794,7 +1797,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1837,10 +1840,10 @@ module KlaviyoAPI
     # Get the object type with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_object_type(id, opts = {})
       data, _status_code, _headers = get_object_type_with_http_info(id, opts)
@@ -1851,10 +1854,10 @@ module KlaviyoAPI
     # Get the object type with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_profile_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_profile_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_object_type_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1868,11 +1871,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_object_schema'] && !opts[:'fields_object_schema'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_object_schema\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created_at", "description", "id", "meta", "meta.description", "meta.name", "meta.relationship_id", "namespace", "status", "title", "updated_at"]
+      allowable_values = ["created_at", "description", "id", "namespace", "status", "title", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_object_type'] && !opts[:'fields_object_type'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_object_type\", must include one of #{allowable_values}"
       end
-      allowable_values = ["id", "meta", "meta.description", "meta.name", "meta.relationship_id"]
+      allowable_values = ["id"]
       if @api_client.config.client_side_validation && opts[:'fields_profile_object_type'] && !opts[:'fields_profile_object_type'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_profile_object_type\", must include one of #{allowable_values}"
       end
@@ -1893,7 +1896,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1964,7 +1967,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2006,10 +2009,10 @@ module KlaviyoAPI
     # Get Object Types
     # Get all object types in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_types.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60; (string)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_object_types(opts = {})
       data, _status_code, _headers = get_object_types_with_http_info(opts)
@@ -2019,10 +2022,10 @@ module KlaviyoAPI
     # Get Object Types
     # Get all object types in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_object_types.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60;
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_type For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;namespace&#x60;: &#x60;equals&#x60; (string)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_object_types_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -2053,7 +2056,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2124,7 +2127,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2201,7 +2204,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2244,7 +2247,7 @@ module KlaviyoAPI
     # Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_record_ids_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_record_ids_for_object_type(id, opts = {})
@@ -2259,7 +2262,7 @@ module KlaviyoAPI
     # Get all object records for a given object type.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_record_ids_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_record_ids_for_object_type_with_http_info(id, opts = {})
@@ -2289,7 +2292,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2329,8 +2332,8 @@ module KlaviyoAPI
     # Get all object records for a given object type.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_records_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Hash<String, Object>]
     def get_records_for_object_type(id, opts = {})
@@ -2345,8 +2348,8 @@ module KlaviyoAPI
     # Get all object records for a given object type.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_records_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_object_record For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_records_for_object_type_with_http_info(id, opts = {})
@@ -2381,7 +2384,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2452,7 +2455,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2492,7 +2495,7 @@ module KlaviyoAPI
     # Get all schema versions for an object type<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_versions_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_schema_versions_for_object_type(id, opts = {})
       data, _status_code, _headers = get_schema_versions_for_object_type_with_http_info(id, opts)
@@ -2506,7 +2509,7 @@ module KlaviyoAPI
     # Get all schema versions for an object type&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_schema_versions_for_object_type.json)
     # @param id [String] The ULID ID of the object type.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_schema_versions_for_object_type_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -2530,7 +2533,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2570,7 +2573,7 @@ module KlaviyoAPI
     # Get the source mapping with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping.json)
     # @param id [String] The ID of the source mapping
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_source_mapping(id, opts = {})
       data, _status_code, _headers = get_source_mapping_with_http_info(id, opts)
@@ -2581,7 +2584,7 @@ module KlaviyoAPI
     # Get the source mapping with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping.json)
     # @param id [String] The ID of the source mapping
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_source_mapping_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -2605,7 +2608,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2642,7 +2645,7 @@ module KlaviyoAPI
     # Get source mapping for an object schema<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `custom-objects:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_for_object_schema.json)
     # @param id [String] The ULID ID of the object schema.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_source_mapping_for_object_schema(id, opts = {})
       data, _status_code, _headers = get_source_mapping_for_object_schema_with_http_info(id, opts)
@@ -2656,7 +2659,7 @@ module KlaviyoAPI
     # Get source mapping for an object schema&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;custom-objects:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_source_mapping_for_object_schema.json)
     # @param id [String] The ULID ID of the object schema.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_source_mapping_for_object_schema_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -2680,7 +2683,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2751,7 +2754,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -2792,7 +2795,7 @@ module KlaviyoAPI
     # @param id [String] The ULID ID of the object schema.
     # @param object_schema_partial_update_query [ObjectSchemaPartialUpdateQuery] Update a object schema by ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_object_schema(id, object_schema_partial_update_query, opts = {})
       data, _status_code, _headers = update_object_schema_with_http_info(id, object_schema_partial_update_query, opts)
@@ -2804,7 +2807,7 @@ module KlaviyoAPI
     # @param id [String] The ULID ID of the object schema.
     # @param object_schema_partial_update_query [ObjectSchemaPartialUpdateQuery] Update a object schema by ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_object_schema For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_object_schema_with_http_info(id, object_schema_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -2832,7 +2835,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -2914,7 +2917,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -3002,7 +3005,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -3051,7 +3054,7 @@ module KlaviyoAPI
     # @param id [String] The ULID ID of the source mapping
     # @param source_mapping_partial_update_query [SourceMappingPartialUpdateQuery] Update a source mapping by ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_source_mapping(id, source_mapping_partial_update_query, opts = {})
       data, _status_code, _headers = update_source_mapping_with_http_info(id, source_mapping_partial_update_query, opts)
@@ -3063,7 +3066,7 @@ module KlaviyoAPI
     # @param id [String] The ULID ID of the source mapping
     # @param source_mapping_partial_update_query [SourceMappingPartialUpdateQuery] Update a source mapping by ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_source_mapping For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_source_mapping_with_http_info(id, source_mapping_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -3091,7 +3094,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

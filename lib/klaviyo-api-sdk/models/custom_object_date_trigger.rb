@@ -26,6 +26,8 @@ module KlaviyoAPI
 
     attr_accessor :object_type_relationship_id
 
+    attr_accessor :trigger_filter
+
     # See FlowDateTrigger.UNIT_CHOICES in app and CountdownUnit in fender.
     attr_accessor :timedelta_unit_before_date
 
@@ -71,6 +73,7 @@ module KlaviyoAPI
         :'custom_object_property_id' => :'custom_object_property_id',
         :'object_type_id' => :'object_type_id',
         :'object_type_relationship_id' => :'object_type_relationship_id',
+        :'trigger_filter' => :'trigger_filter',
         :'timedelta_unit_before_date' => :'timedelta_unit_before_date',
         :'timedelta_value_before_date' => :'timedelta_value_before_date',
         :'recurrence_frequency' => :'recurrence_frequency',
@@ -94,6 +97,7 @@ module KlaviyoAPI
         :'custom_object_property_id' => :'Integer',
         :'object_type_id' => :'String',
         :'object_type_relationship_id' => :'String',
+        :'trigger_filter' => :'CustomObjectDateTriggerTriggerFilter',
         :'timedelta_unit_before_date' => :'String',
         :'timedelta_value_before_date' => :'Integer',
         :'recurrence_frequency' => :'String',
@@ -106,6 +110,7 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'trigger_filter',
         :'trigger_days'
       ])
     end
@@ -147,6 +152,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'object_type_relationship_id')
         self.object_type_relationship_id = attributes[:'object_type_relationship_id']
+      end
+
+      if attributes.key?(:'trigger_filter')
+        self.trigger_filter = attributes[:'trigger_filter']
       end
 
       if attributes.key?(:'timedelta_unit_before_date')
@@ -306,6 +315,7 @@ module KlaviyoAPI
           custom_object_property_id == o.custom_object_property_id &&
           object_type_id == o.object_type_id &&
           object_type_relationship_id == o.object_type_relationship_id &&
+          trigger_filter == o.trigger_filter &&
           timedelta_unit_before_date == o.timedelta_unit_before_date &&
           timedelta_value_before_date == o.timedelta_value_before_date &&
           recurrence_frequency == o.recurrence_frequency &&
@@ -323,7 +333,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, date_field_type, custom_object_label, custom_object_property_id, object_type_id, object_type_relationship_id, timedelta_unit_before_date, timedelta_value_before_date, recurrence_frequency, timezone, trigger_time, trigger_days].hash
+      [type, date_field_type, custom_object_label, custom_object_property_id, object_type_id, object_type_relationship_id, trigger_filter, timedelta_unit_before_date, timedelta_value_before_date, recurrence_frequency, timezone, trigger_time, trigger_days].hash
     end
 
     # Builds the object from hash

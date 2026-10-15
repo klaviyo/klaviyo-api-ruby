@@ -42,7 +42,6 @@ module KlaviyoAPI
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'filter'
       ])
     end
 
@@ -78,6 +77,10 @@ module KlaviyoAPI
         invalid_properties.push('invalid value for "property", property cannot be nil.')
       end
 
+      if @filter.nil?
+        invalid_properties.push('invalid value for "filter", filter cannot be nil.')
+      end
+
       invalid_properties
     end
 
@@ -85,6 +88,7 @@ module KlaviyoAPI
     # @return true if the model is valid
     def valid?
       return false if @property.nil?
+      return false if @filter.nil?
       true
     end
 

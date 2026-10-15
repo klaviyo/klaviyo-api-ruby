@@ -20,6 +20,8 @@ module KlaviyoAPI
         [
           :'BooleanFilter',
           :'ExistenceOperatorExistenceFilter',
+          :'ListContainsOperatorListContainsFilter',
+          :'ListLengthFilter',
           :'NumericOperatorNumericFilter',
           :'NumericRangeFilter',
           :'RelativeAnniversaryDateFilter',

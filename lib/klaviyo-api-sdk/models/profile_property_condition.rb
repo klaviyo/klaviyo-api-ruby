@@ -16,6 +16,7 @@ module KlaviyoAPI
   class ProfilePropertyCondition
     attr_accessor :type
 
+    # The profile property to check. Use one of the well-known property names (e.g. `email`, `first_name`) or, for custom profile properties, the form `properties['property name']`.
     attr_accessor :property
 
     attr_accessor :filter

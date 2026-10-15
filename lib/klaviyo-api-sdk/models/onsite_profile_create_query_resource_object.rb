@@ -43,7 +43,7 @@ module KlaviyoAPI
       {
         :'type' => :'ProfileEnum',
         :'id' => :'String',
-        :'attributes' => :'OnsiteProfileCreateQueryResourceObjectAttributes',
+        :'attributes' => :'EventProfileCreateQueryResourceObjectAttributes',
         :'meta' => :'OnsiteProfileMeta'
       }
     end

@@ -14,28 +14,20 @@ require 'time'
 
 module KlaviyoAPI
   class CampaignCreateQueryResourceObjectAttributes
-    # The campaign name
-    attr_accessor :name
+    attr_accessor :definition
 
+    # Messages to create on this campaign. Each references an audience via audience_temporary_id.
+    attr_accessor :messages
+
+    # Audiences to create on this campaign. Each references a message via audience_temporary_id.
     attr_accessor :audiences
-
-    attr_accessor :send_strategy
-
-    attr_accessor :send_options
-
-    attr_accessor :tracking_options
-
-    attr_accessor :campaign_messages
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'name' => :'name',
-        :'audiences' => :'audiences',
-        :'send_strategy' => :'send_strategy',
-        :'send_options' => :'send_options',
-        :'tracking_options' => :'tracking_options',
-        :'campaign_messages' => :'campaign-messages'
+        :'definition' => :'definition',
+        :'messages' => :'messages',
+        :'audiences' => :'audiences'
       }
     end
 
@@ -47,21 +39,17 @@ module KlaviyoAPI
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'name' => :'String',
-        :'audiences' => :'Audiences',
-        :'send_strategy' => :'CampaignCreateQueryResourceObjectAttributesSendStrategy',
-        :'send_options' => :'CampaignCreateQueryResourceObjectAttributesSendOptions',
-        :'tracking_options' => :'CampaignCreateQueryResourceObjectAttributesTrackingOptions',
-        :'campaign_messages' => :'CampaignCreateQueryResourceObjectAttributesCampaignMessages'
+        :'definition' => :'CampaignDefinition',
+        :'messages' => :'Array<MessageInlineCreate>',
+        :'audiences' => :'Array<AudienceInlineCreate>'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'send_strategy',
-        :'send_options',
-        :'tracking_options',
+        :'messages',
+        :'audiences'
       ])
     end
 
@@ -80,28 +68,20 @@ module KlaviyoAPI
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'name')
-        self.name = attributes[:'name']
+      if attributes.key?(:'definition')
+        self.definition = attributes[:'definition']
+      end
+
+      if attributes.key?(:'messages')
+        if (value = attributes[:'messages']).is_a?(Array)
+          self.messages = value
+        end
       end
 
       if attributes.key?(:'audiences')
-        self.audiences = attributes[:'audiences']
-      end
-
-      if attributes.key?(:'send_strategy')
-        self.send_strategy = attributes[:'send_strategy']
-      end
-
-      if attributes.key?(:'send_options')
-        self.send_options = attributes[:'send_options']
-      end
-
-      if attributes.key?(:'tracking_options')
-        self.tracking_options = attributes[:'tracking_options']
-      end
-
-      if attributes.key?(:'campaign_messages')
-        self.campaign_messages = attributes[:'campaign_messages']
+        if (value = attributes[:'audiences']).is_a?(Array)
+          self.audiences = value
+        end
       end
     end
 
@@ -109,16 +89,8 @@ module KlaviyoAPI
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @name.nil?
-        invalid_properties.push('invalid value for "name", name cannot be nil.')
-      end
-
-      if @audiences.nil?
-        invalid_properties.push('invalid value for "audiences", audiences cannot be nil.')
-      end
-
-      if @campaign_messages.nil?
-        invalid_properties.push('invalid value for "campaign_messages", campaign_messages cannot be nil.')
+      if @definition.nil?
+        invalid_properties.push('invalid value for "definition", definition cannot be nil.')
       end
 
       invalid_properties
@@ -127,9 +99,7 @@ module KlaviyoAPI
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @name.nil?
-      return false if @audiences.nil?
-      return false if @campaign_messages.nil?
+      return false if @definition.nil?
       true
     end
 
@@ -138,12 +108,9 @@ module KlaviyoAPI
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          name == o.name &&
-          audiences == o.audiences &&
-          send_strategy == o.send_strategy &&
-          send_options == o.send_options &&
-          tracking_options == o.tracking_options &&
-          campaign_messages == o.campaign_messages
+          definition == o.definition &&
+          messages == o.messages &&
+          audiences == o.audiences
     end
 
     # @see the `==` method
@@ -155,7 +122,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [name, audiences, send_strategy, send_options, tracking_options, campaign_messages].hash
+      [definition, messages, audiences].hash
     end
 
     # Builds the object from hash

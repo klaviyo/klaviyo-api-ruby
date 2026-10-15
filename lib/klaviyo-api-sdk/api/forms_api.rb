@@ -22,7 +22,7 @@ module KlaviyoAPI
     # Create a new form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_form.json)
     # @param form_create_query [FormCreateQuery] Creates a Form from parameters
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_form(form_create_query, opts = {})
       data, _status_code, _headers = create_form_with_http_info(form_create_query, opts)
@@ -33,7 +33,7 @@ module KlaviyoAPI
     # Create a new form.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_form.json)
     # @param form_create_query [FormCreateQuery] Creates a Form from parameters
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_form_with_http_info(form_create_query, opts = {})
       if @api_client.config.debugging
@@ -57,7 +57,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -127,7 +127,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -164,7 +164,7 @@ module KlaviyoAPI
     # Get the form with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form.json)
     # @param id [String] The ID of the form
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_form(id, opts = {})
       data, _status_code, _headers = get_form_with_http_info(id, opts)
@@ -175,7 +175,7 @@ module KlaviyoAPI
     # Get the form with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form.json)
     # @param id [String] The ID of the form
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_form_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -199,7 +199,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -236,7 +236,7 @@ module KlaviyoAPI
     # Get the form associated with the given form version.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form_for_form_version.json)
     # @param id [String] The ID of the form version
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_form_for_form_version(id, opts = {})
       data, _status_code, _headers = get_form_for_form_version_with_http_info(id, opts)
@@ -250,7 +250,7 @@ module KlaviyoAPI
     # Get the form associated with the given form version.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form_for_form_version.json)
     # @param id [String] The ID of the form version
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_form_for_form_version_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -274,7 +274,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -345,7 +345,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -385,9 +385,9 @@ module KlaviyoAPI
     # Get the form version with the given ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form_version.json)
     # @param id [String] The ID of the form version
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_form_version(id, opts = {})
       data, _status_code, _headers = get_form_version_with_http_info(id, opts)
@@ -398,9 +398,9 @@ module KlaviyoAPI
     # Get the form version with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_form_version.json)
     # @param id [String] The ID of the form version
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_form_version_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -434,7 +434,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -470,11 +470,11 @@ module KlaviyoAPI
     # Get Forms
     # Get all forms in an account.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_forms.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60; (boolean)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (allowed values: &#x60;&#39;live&#39;&#x60;, &#x60;&#39;draft&#39;&#x60;)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_forms(opts = {})
       data, _status_code, _headers = get_forms_with_http_info(opts)
@@ -484,11 +484,11 @@ module KlaviyoAPI
     # Get Forms
     # Get all forms in an account.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_forms.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;name&#x60;: &#x60;any&#x60;, &#x60;contains&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;ab_test&#x60;: &#x60;equals&#x60; (boolean)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (allowed values: &#x60;&#39;live&#39;&#x60;, &#x60;&#39;draft&#39;&#x60;)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_forms_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -524,7 +524,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -561,10 +561,10 @@ module KlaviyoAPI
     # Get the IDs of the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_version_ids_for_form.json)
     # @param id [String] The ID of the form
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;popup&#39;&#x60;, &#x60;&#39;embed&#39;&#x60;, &#x60;&#39;full_page&#39;&#x60;, &#x60;&#39;flyout&#39;&#x60;, &#x60;&#39;banner&#39;&#x60;)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (allowed values: &#x60;&#39;live&#39;&#x60;, &#x60;&#39;draft&#39;&#x60;)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_version_ids_for_form(id, opts = {})
       data, _status_code, _headers = get_version_ids_for_form_with_http_info(id, opts)
@@ -581,10 +581,10 @@ module KlaviyoAPI
     # Get the IDs of the form versions for the given form.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_version_ids_for_form.json)
     # @param id [String] The ID of the form
     # @param [Hash] opts the optional parameters
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;popup&#39;&#x60;, &#x60;&#39;embed&#39;&#x60;, &#x60;&#39;full_page&#39;&#x60;, &#x60;&#39;flyout&#39;&#x60;, &#x60;&#39;banner&#39;&#x60;)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (allowed values: &#x60;&#39;live&#39;&#x60;, &#x60;&#39;draft&#39;&#x60;)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_version_ids_for_form_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -615,7 +615,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -658,11 +658,11 @@ module KlaviyoAPI
     # Get the form versions for the given form.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_versions_for_form.json)
     # @param id [String] The ID of the form
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;popup&#39;&#x60;, &#x60;&#39;embed&#39;&#x60;, &#x60;&#39;full_page&#39;&#x60;, &#x60;&#39;flyout&#39;&#x60;, &#x60;&#39;banner&#39;&#x60;)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (allowed values: &#x60;&#39;live&#39;&#x60;, &#x60;&#39;draft&#39;&#x60;)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
     # @return [Hash<String, Object>]
     def get_versions_for_form(id, opts = {})
       data, _status_code, _headers = get_versions_for_form_with_http_info(id, opts)
@@ -679,11 +679,11 @@ module KlaviyoAPI
     # Get the form versions for the given form.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_versions_for_form.json)
     # @param id [String] The ID of the form
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_form_version For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;form_type&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (allowed values: &#x60;&#39;popup&#39;&#x60;, &#x60;&#39;embed&#39;&#x60;, &#x60;&#39;full_page&#39;&#x60;, &#x60;&#39;flyout&#39;&#x60;, &#x60;&#39;banner&#39;&#x60;)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (allowed values: &#x60;&#39;live&#39;&#x60;, &#x60;&#39;draft&#39;&#x60;)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_versions_for_form_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -719,7 +719,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -757,5 +757,254 @@ module KlaviyoAPI
 
     # alias of `get_versions_for_form_with_http_info`
     alias get_form_versions_with_http_info get_versions_for_form_with_http_info
+
+    # Publish Form
+    # Publish the draft version of a form.  The publish completes synchronously; the returned job resource cannot be retrieved afterwards. Forms with a draft A/B test are not supported and must be published from the form editor.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/publish_form.json)
+    # @param form_publish_job_create_query [FormPublishJobCreateQuery] Publish the draft version of a form.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_form_publish_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def publish_form(form_publish_job_create_query, opts = {})
+      data, _status_code, _headers = publish_form_with_http_info(form_publish_job_create_query, opts)
+      data
+    end
+
+    # alias of `publish_form`
+    alias create_form_publish_job publish_form
+
+    # Publish Form
+    # Publish the draft version of a form.  The publish completes synchronously; the returned job resource cannot be retrieved afterwards. Forms with a draft A/B test are not supported and must be published from the form editor.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/publish_form.json)
+    # @param form_publish_job_create_query [FormPublishJobCreateQuery] Publish the draft version of a form.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_form_publish_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def publish_form_with_http_info(form_publish_job_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: FormsApi.publish_form ...'
+      end
+      # verify the required parameter 'form_publish_job_create_query' is set
+      if @api_client.config.client_side_validation && form_publish_job_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'form_publish_job_create_query' when calling FormsApi.publish_form"
+      end
+      allowable_values = ["created_at", "id", "status"]
+      if @api_client.config.client_side_validation && opts[:'fields_form_publish_job'] && !opts[:'fields_form_publish_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_form_publish_job\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/form-publish-jobs'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[form-publish-job]'] = @api_client.build_collection_param(opts[:'fields_form_publish_job'], :csv) if !opts[:'fields_form_publish_job'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(form_publish_job_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"FormsApi.publish_form",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormsApi#publish_form\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `publish_form_with_http_info`
+    alias create_form_publish_job_with_http_info publish_form_with_http_info
+
+    # Unpublish Form
+    # Unpublish the live version of a form.  The unpublish completes synchronously; the returned job resource cannot be retrieved afterwards. Forms with a live A/B test are not supported and must be unpublished from the form editor.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/unpublish_form.json)
+    # @param form_unpublish_job_create_query [FormUnpublishJobCreateQuery] Unpublish the live version of a form.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_form_unpublish_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def unpublish_form(form_unpublish_job_create_query, opts = {})
+      data, _status_code, _headers = unpublish_form_with_http_info(form_unpublish_job_create_query, opts)
+      data
+    end
+
+    # alias of `unpublish_form`
+    alias create_form_unpublish_job unpublish_form
+
+    # Unpublish Form
+    # Unpublish the live version of a form.  The unpublish completes synchronously; the returned job resource cannot be retrieved afterwards. Forms with a live A/B test are not supported and must be unpublished from the form editor.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/unpublish_form.json)
+    # @param form_unpublish_job_create_query [FormUnpublishJobCreateQuery] Unpublish the live version of a form.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_form_unpublish_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def unpublish_form_with_http_info(form_unpublish_job_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: FormsApi.unpublish_form ...'
+      end
+      # verify the required parameter 'form_unpublish_job_create_query' is set
+      if @api_client.config.client_side_validation && form_unpublish_job_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'form_unpublish_job_create_query' when calling FormsApi.unpublish_form"
+      end
+      allowable_values = ["created_at", "id", "status"]
+      if @api_client.config.client_side_validation && opts[:'fields_form_unpublish_job'] && !opts[:'fields_form_unpublish_job'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_form_unpublish_job\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/form-unpublish-jobs'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[form-unpublish-job]'] = @api_client.build_collection_param(opts[:'fields_form_unpublish_job'], :csv) if !opts[:'fields_form_unpublish_job'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(form_unpublish_job_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"FormsApi.unpublish_form",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormsApi#unpublish_form\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `unpublish_form_with_http_info`
+    alias create_form_unpublish_job_with_http_info unpublish_form_with_http_info
+
+    # Update Form
+    # Update a form.  Only submitted attributes change, and `definition` replaces the stored definition. Live versions and form lifecycle fields cannot be edited.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `forms:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_form.json)
+    # @param id [String] The ID of the form.
+    # @param form_partial_update_query [FormPartialUpdateQuery] Update a form. Omitted attributes keep their current values.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def update_form(id, form_partial_update_query, opts = {})
+      data, _status_code, _headers = update_form_with_http_info(id, form_partial_update_query, opts)
+      data
+    end
+
+    # Update Form
+    # Update a form.  Only submitted attributes change, and &#x60;definition&#x60; replaces the stored definition. Live versions and form lifecycle fields cannot be edited.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;forms:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_form.json)
+    # @param id [String] The ID of the form.
+    # @param form_partial_update_query [FormPartialUpdateQuery] Update a form. Omitted attributes keep their current values.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_form For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def update_form_with_http_info(id, form_partial_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: FormsApi.update_form ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling FormsApi.update_form"
+      end
+      # verify the required parameter 'form_partial_update_query' is set
+      if @api_client.config.client_side_validation && form_partial_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'form_partial_update_query' when calling FormsApi.update_form"
+      end
+      allowable_values = ["ab_test", "created_at", "definition", "definition.versions", "id", "name", "status", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_form'] && !opts[:'fields_form'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_form\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/forms/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[form]'] = @api_client.build_collection_param(opts[:'fields_form'], :csv) if !opts[:'fields_form'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(form_partial_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"FormsApi.update_form",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: FormsApi#update_form\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
   end
 end

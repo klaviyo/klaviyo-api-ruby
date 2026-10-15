@@ -18,11 +18,16 @@ module KlaviyoAPI
 
     attr_accessor :classname
 
+    attr_accessor :block_animation
+
     # Options for displaying a timer.
     attr_accessor :clock_face
 
     # Options for timer completion animations.
     attr_accessor :animation
+
+    # Label lengths for countdown timer units.
+    attr_accessor :label_format
 
     attr_accessor :configuration
 
@@ -53,8 +58,10 @@ module KlaviyoAPI
       {
         :'display_device' => :'display_device',
         :'classname' => :'classname',
+        :'block_animation' => :'block_animation',
         :'clock_face' => :'clock_face',
         :'animation' => :'animation',
+        :'label_format' => :'label_format',
         :'configuration' => :'configuration'
       }
     end
@@ -69,8 +76,10 @@ module KlaviyoAPI
       {
         :'display_device' => :'Array<String>',
         :'classname' => :'String',
+        :'block_animation' => :'Animation',
         :'clock_face' => :'String',
         :'animation' => :'String',
+        :'label_format' => :'String',
         :'configuration' => :'CountdownTimerPropertiesConfiguration'
       }
     end
@@ -80,6 +89,7 @@ module KlaviyoAPI
       Set.new([
         :'classname',
         :'animation',
+        :'label_format',
       ])
     end
 
@@ -108,6 +118,10 @@ module KlaviyoAPI
         self.classname = attributes[:'classname']
       end
 
+      if attributes.key?(:'block_animation')
+        self.block_animation = attributes[:'block_animation']
+      end
+
       if attributes.key?(:'clock_face')
         self.clock_face = attributes[:'clock_face']
       else
@@ -118,6 +132,10 @@ module KlaviyoAPI
         self.animation = attributes[:'animation']
       else
         self.animation = 'heartbeat'
+      end
+
+      if attributes.key?(:'label_format')
+        self.label_format = attributes[:'label_format']
       end
 
       if attributes.key?(:'configuration')
@@ -143,6 +161,8 @@ module KlaviyoAPI
       return false unless clock_face_validator.valid?(@clock_face)
       animation_validator = EnumAttributeValidator.new('String', ["flash", "heartbeat", "pulse"])
       return false unless animation_validator.valid?(@animation)
+      label_format_validator = EnumAttributeValidator.new('String', ["double_char", "full", "shortened", "single_char"])
+      return false unless label_format_validator.valid?(@label_format)
       return false if @configuration.nil?
       true
     end
@@ -167,6 +187,16 @@ module KlaviyoAPI
       @animation = animation
     end
 
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] label_format Object to be assigned
+    def label_format=(label_format)
+      validator = EnumAttributeValidator.new('String', ["double_char", "full", "shortened", "single_char"])
+      unless validator.valid?(label_format)
+        fail ArgumentError, "invalid value for \"label_format\", must be one of #{validator.allowable_values}."
+      end
+      @label_format = label_format
+    end
+
     # Checks equality by comparing each attribute.
     # @param [Object] Object to be compared
     def ==(o)
@@ -174,8 +204,10 @@ module KlaviyoAPI
       self.class == o.class &&
           display_device == o.display_device &&
           classname == o.classname &&
+          block_animation == o.block_animation &&
           clock_face == o.clock_face &&
           animation == o.animation &&
+          label_format == o.label_format &&
           configuration == o.configuration
     end
 
@@ -188,7 +220,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, classname, clock_face, animation, configuration].hash
+      [display_device, classname, block_animation, clock_face, animation, label_format, configuration].hash
     end
 
     # Builds the object from hash

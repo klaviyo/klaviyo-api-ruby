@@ -18,6 +18,8 @@ module KlaviyoAPI
 
     attr_accessor :classname
 
+    attr_accessor :block_animation
+
     # Timeframes for the signup counter lookback.
     attr_accessor :timeframe
 
@@ -52,6 +54,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'display_device',
         :'classname' => :'classname',
+        :'block_animation' => :'block_animation',
         :'timeframe' => :'timeframe',
         :'min_submits' => :'min_submits',
         :'content' => :'content'
@@ -68,6 +71,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'Array<String>',
         :'classname' => :'String',
+        :'block_animation' => :'Animation',
         :'timeframe' => :'String',
         :'min_submits' => :'Integer',
         :'content' => :'String'
@@ -104,6 +108,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'classname')
         self.classname = attributes[:'classname']
+      end
+
+      if attributes.key?(:'block_animation')
+        self.block_animation = attributes[:'block_animation']
       end
 
       if attributes.key?(:'timeframe')
@@ -166,6 +174,7 @@ module KlaviyoAPI
       self.class == o.class &&
           display_device == o.display_device &&
           classname == o.classname &&
+          block_animation == o.block_animation &&
           timeframe == o.timeframe &&
           min_submits == o.min_submits &&
           content == o.content
@@ -180,7 +189,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, classname, timeframe, min_submits, content].hash
+      [display_device, classname, block_animation, timeframe, min_submits, content].hash
     end
 
     # Builds the object from hash

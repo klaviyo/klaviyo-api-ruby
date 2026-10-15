@@ -21,6 +21,8 @@ module KlaviyoAPI
     # Valid button block widths.
     attr_accessor :width
 
+    attr_accessor :inner_padding
+
     attr_accessor :height
 
     # Horizontal alignment enumeration.
@@ -66,6 +68,7 @@ module KlaviyoAPI
         :'padding' => :'padding',
         :'background_color' => :'background_color',
         :'width' => :'width',
+        :'inner_padding' => :'inner_padding',
         :'height' => :'height',
         :'alignment' => :'alignment',
         :'hover_background_color' => :'hover_background_color',
@@ -88,6 +91,7 @@ module KlaviyoAPI
         :'padding' => :'Padding',
         :'background_color' => :'String',
         :'width' => :'String',
+        :'inner_padding' => :'Padding',
         :'height' => :'ButtonStylesHeight',
         :'alignment' => :'String',
         :'hover_background_color' => :'String',
@@ -136,6 +140,10 @@ module KlaviyoAPI
         self.width = attributes[:'width']
       else
         self.width = 'fill'
+      end
+
+      if attributes.key?(:'inner_padding')
+        self.inner_padding = attributes[:'inner_padding']
       end
 
       if attributes.key?(:'height')
@@ -218,6 +226,7 @@ module KlaviyoAPI
           padding == o.padding &&
           background_color == o.background_color &&
           width == o.width &&
+          inner_padding == o.inner_padding &&
           height == o.height &&
           alignment == o.alignment &&
           hover_background_color == o.hover_background_color &&
@@ -237,7 +246,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [padding, background_color, width, height, alignment, hover_background_color, hover_text_color, border_styles, text_styles, color, drop_shadow].hash
+      [padding, background_color, width, inner_padding, height, alignment, hover_background_color, hover_text_color, border_styles, text_styles, color, drop_shadow].hash
     end
 
     # Builds the object from hash

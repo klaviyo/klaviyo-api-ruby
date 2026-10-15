@@ -18,6 +18,8 @@ module KlaviyoAPI
 
     attr_accessor :background_color
 
+    attr_accessor :input_styles
+
     # Arrangement enumeration.
     attr_accessor :arrangement
 
@@ -51,6 +53,7 @@ module KlaviyoAPI
       {
         :'padding' => :'padding',
         :'background_color' => :'background_color',
+        :'input_styles' => :'input_styles',
         :'arrangement' => :'arrangement',
         :'alignment' => :'alignment'
       }
@@ -66,6 +69,7 @@ module KlaviyoAPI
       {
         :'padding' => :'Padding',
         :'background_color' => :'String',
+        :'input_styles' => :'InputStyleOverrides',
         :'arrangement' => :'String',
         :'alignment' => :'String'
       }
@@ -99,6 +103,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'background_color')
         self.background_color = attributes[:'background_color']
+      end
+
+      if attributes.key?(:'input_styles')
+        self.input_styles = attributes[:'input_styles']
       end
 
       if attributes.key?(:'arrangement')
@@ -158,6 +166,7 @@ module KlaviyoAPI
       self.class == o.class &&
           padding == o.padding &&
           background_color == o.background_color &&
+          input_styles == o.input_styles &&
           arrangement == o.arrangement &&
           alignment == o.alignment
     end
@@ -171,7 +180,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [padding, background_color, arrangement, alignment].hash
+      [padding, background_color, input_styles, arrangement, alignment].hash
     end
 
     # Builds the object from hash

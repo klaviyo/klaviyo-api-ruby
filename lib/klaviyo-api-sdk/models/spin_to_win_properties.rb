@@ -18,6 +18,8 @@ module KlaviyoAPI
 
     attr_accessor :classname
 
+    attr_accessor :block_animation
+
     attr_accessor :duplicate_slices
 
     attr_accessor :slices
@@ -49,6 +51,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'display_device',
         :'classname' => :'classname',
+        :'block_animation' => :'block_animation',
         :'duplicate_slices' => :'duplicate_slices',
         :'slices' => :'slices'
       }
@@ -64,6 +67,7 @@ module KlaviyoAPI
       {
         :'display_device' => :'Array<String>',
         :'classname' => :'String',
+        :'block_animation' => :'Animation',
         :'duplicate_slices' => :'Boolean',
         :'slices' => :'Array<SpinToWinSliceConfig>'
       }
@@ -99,6 +103,10 @@ module KlaviyoAPI
 
       if attributes.key?(:'classname')
         self.classname = attributes[:'classname']
+      end
+
+      if attributes.key?(:'block_animation')
+        self.block_animation = attributes[:'block_animation']
       end
 
       if attributes.key?(:'duplicate_slices')
@@ -139,6 +147,7 @@ module KlaviyoAPI
       self.class == o.class &&
           display_device == o.display_device &&
           classname == o.classname &&
+          block_animation == o.block_animation &&
           duplicate_slices == o.duplicate_slices &&
           slices == o.slices
     end
@@ -152,7 +161,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [display_device, classname, duplicate_slices, slices].hash
+      [display_device, classname, block_animation, duplicate_slices, slices].hash
     end
 
     # Builds the object from hash

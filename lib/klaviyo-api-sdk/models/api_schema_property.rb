@@ -139,7 +139,7 @@ module KlaviyoAPI
       return false if @id.nil?
       return false if @name.nil?
       return false if @type.nil?
-      type_validator = EnumAttributeValidator.new('String', ["boolean", "float", "int", "string", "timestamp"])
+      type_validator = EnumAttributeValidator.new('String', ["boolean", "float", "int", "list_str", "string", "timestamp"])
       return false unless type_validator.valid?(@type)
       true
     end
@@ -147,7 +147,7 @@ module KlaviyoAPI
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["boolean", "float", "int", "string", "timestamp"])
+      validator = EnumAttributeValidator.new('String', ["boolean", "float", "int", "list_str", "string", "timestamp"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end

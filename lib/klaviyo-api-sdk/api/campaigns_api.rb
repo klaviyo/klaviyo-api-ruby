@@ -22,7 +22,7 @@ module KlaviyoAPI
     # Creates a non-reusable version of the template and assigns it to the message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/assign_template_to_campaign_message.json)
     # @param campaign_message_assign_template_query [CampaignMessageAssignTemplateQuery] Takes a reusable template, clones it, and assigns the non-reusable clone to the message.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def assign_template_to_campaign_message(campaign_message_assign_template_query, opts = {})
       data, _status_code, _headers = assign_template_to_campaign_message_with_http_info(campaign_message_assign_template_query, opts)
@@ -36,7 +36,7 @@ module KlaviyoAPI
     # Creates a non-reusable version of the template and assigns it to the message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/assign_template_to_campaign_message.json)
     # @param campaign_message_assign_template_query [CampaignMessageAssignTemplateQuery] Takes a reusable template, clones it, and assigns the non-reusable clone to the message.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def assign_template_to_campaign_message_with_http_info(campaign_message_assign_template_query, opts = {})
       if @api_client.config.debugging
@@ -60,7 +60,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -142,7 +142,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -183,11 +183,260 @@ module KlaviyoAPI
     # alias of `cancel_campaign_send_with_http_info`
     alias update_campaign_send_job_with_http_info cancel_campaign_send_with_http_info
 
-    # Create Campaign
-    # Creates a campaign given a set of parameters, then returns it.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign.json)
-    # @param campaign_create_query [CampaignCreateQuery] Creates a campaign from parameters
+    # Clone Campaign
+    # Clones an existing campaign, returning a new campaign based on the original with a new ID and name.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_campaign.json)
+    # @param campaign_clone_query [CampaignCloneQuery] Clone a campaign by id.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def clone_campaign(campaign_clone_query, opts = {})
+      data, _status_code, _headers = clone_campaign_with_http_info(campaign_clone_query, opts)
+      data
+    end
+
+    # alias of `clone_campaign`
+    alias create_campaign_clone clone_campaign
+
+    # Clone Campaign
+    # Clones an existing campaign, returning a new campaign based on the original with a new ID and name.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_campaign.json)
+    # @param campaign_clone_query [CampaignCloneQuery] Clone a campaign by id.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def clone_campaign_with_http_info(campaign_clone_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.clone_campaign ...'
+      end
+      # verify the required parameter 'campaign_clone_query' is set
+      if @api_client.config.client_side_validation && campaign_clone_query.nil?
+        fail ArgumentError, "Missing the required parameter 'campaign_clone_query' when calling CampaignsApi.clone_campaign"
+      end
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-clone'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(campaign_clone_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.clone_campaign",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#clone_campaign\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `clone_campaign_with_http_info`
+    alias create_campaign_clone_with_http_info clone_campaign_with_http_info
+
+    # Clone Campaign Audience
+    # Clone an existing campaign audience to a target campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_campaign_audience.json)
+    # @param audience_clone_query [AudienceCloneQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def clone_campaign_audience(audience_clone_query, opts = {})
+      data, _status_code, _headers = clone_campaign_audience_with_http_info(audience_clone_query, opts)
+      data
+    end
+
+    # alias of `clone_campaign_audience`
+    alias create_campaign_audience_clone clone_campaign_audience
+
+    # Clone Campaign Audience
+    # Clone an existing campaign audience to a target campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_campaign_audience.json)
+    # @param audience_clone_query [AudienceCloneQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def clone_campaign_audience_with_http_info(audience_clone_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.clone_campaign_audience ...'
+      end
+      # verify the required parameter 'audience_clone_query' is set
+      if @api_client.config.client_side_validation && audience_clone_query.nil?
+        fail ArgumentError, "Missing the required parameter 'audience_clone_query' when calling CampaignsApi.clone_campaign_audience"
+      end
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audience-clone'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(audience_clone_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.clone_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#clone_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `clone_campaign_audience_with_http_info`
+    alias create_campaign_audience_clone_with_http_info clone_campaign_audience_with_http_info
+
+    # Clone Campaign Message
+    # Clone an existing campaign message to a target audience.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_campaign_message.json)
+    # @param message_clone_query [MessageCloneQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def clone_campaign_message(message_clone_query, opts = {})
+      data, _status_code, _headers = clone_campaign_message_with_http_info(message_clone_query, opts)
+      data
+    end
+
+    # alias of `clone_campaign_message`
+    alias create_campaign_message_clone clone_campaign_message
+
+    # Clone Campaign Message
+    # Clone an existing campaign message to a target audience.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/clone_campaign_message.json)
+    # @param message_clone_query [MessageCloneQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def clone_campaign_message_with_http_info(message_clone_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.clone_campaign_message ...'
+      end
+      # verify the required parameter 'message_clone_query' is set
+      if @api_client.config.client_side_validation && message_clone_query.nil?
+        fail ArgumentError, "Missing the required parameter 'message_clone_query' when calling CampaignsApi.clone_campaign_message"
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-message-clone'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(message_clone_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.clone_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#clone_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `clone_campaign_message_with_http_info`
+    alias create_campaign_message_clone_with_http_info clone_campaign_message_with_http_info
+
+    # Create Campaign
+    # Create a campaign with inline audiences, messages, and variations.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign.json)
+    # @param campaign_create_query [CampaignCreateQuery] Create an omnicampaign with inline audiences, messages, and variations.
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def create_campaign(campaign_create_query, opts = {})
       data, _status_code, _headers = create_campaign_with_http_info(campaign_create_query, opts)
@@ -195,10 +444,10 @@ module KlaviyoAPI
     end
 
     # Create Campaign
-    # Creates a campaign given a set of parameters, then returns it.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign.json)
-    # @param campaign_create_query [CampaignCreateQuery] Creates a campaign from parameters
+    # Create a campaign with inline audiences, messages, and variations.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign.json)
+    # @param campaign_create_query [CampaignCreateQuery] Create an omnicampaign with inline audiences, messages, and variations.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def create_campaign_with_http_info(campaign_create_query, opts = {})
       if @api_client.config.debugging
@@ -208,7 +457,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && campaign_create_query.nil?
         fail ArgumentError, "Missing the required parameter 'campaign_create_query' when calling CampaignsApi.create_campaign"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
       end
@@ -222,7 +471,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -260,49 +509,46 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Create Campaign Clone
-    # Clones an existing campaign, returning a new campaign based on the original with a new ID and name.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_clone.json)
-    # @param campaign_clone_query [CampaignCloneQuery] Clones a campaign from an existing campaign
+    # Create Campaign Audience
+    # Create a campaign audience.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_audience.json)
+    # @param audience_create_query [AudienceCreateQuery] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
-    def create_campaign_clone(campaign_clone_query, opts = {})
-      data, _status_code, _headers = create_campaign_clone_with_http_info(campaign_clone_query, opts)
+    def create_campaign_audience(audience_create_query, opts = {})
+      data, _status_code, _headers = create_campaign_audience_with_http_info(audience_create_query, opts)
       data
     end
 
-    # alias of `create_campaign_clone`
-    alias clone_campaign create_campaign_clone
-
-    # Create Campaign Clone
-    # Clones an existing campaign, returning a new campaign based on the original with a new ID and name.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_clone.json)
-    # @param campaign_clone_query [CampaignCloneQuery] Clones a campaign from an existing campaign
+    # Create Campaign Audience
+    # Create a campaign audience.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_audience.json)
+    # @param audience_create_query [AudienceCreateQuery] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def create_campaign_clone_with_http_info(campaign_clone_query, opts = {})
+    def create_campaign_audience_with_http_info(audience_create_query, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: CampaignsApi.create_campaign_clone ...'
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.create_campaign_audience ...'
       end
-      # verify the required parameter 'campaign_clone_query' is set
-      if @api_client.config.client_side_validation && campaign_clone_query.nil?
-        fail ArgumentError, "Missing the required parameter 'campaign_clone_query' when calling CampaignsApi.create_campaign_clone"
+      # verify the required parameter 'audience_create_query' is set
+      if @api_client.config.client_side_validation && audience_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'audience_create_query' when calling CampaignsApi.create_campaign_audience"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
-      if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
       end
       # resource path
-      local_var_path = '/api/campaign-clone'
+      local_var_path = '/api/campaign-audiences'
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -315,7 +561,7 @@ module KlaviyoAPI
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(campaign_clone_query)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(audience_create_query)
 
       # return_type
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
@@ -324,7 +570,7 @@ module KlaviyoAPI
       auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
 
       new_options = opts.merge(
-        :operation => :"CampaignsApi.create_campaign_clone",
+        :operation => :"CampaignsApi.create_campaign_audience",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -335,13 +581,164 @@ module KlaviyoAPI
 
       data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: CampaignsApi#create_campaign_clone\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: CampaignsApi#create_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
 
-    # alias of `create_campaign_clone_with_http_info`
-    alias clone_campaign_with_http_info create_campaign_clone_with_http_info
+    # Create Campaign Message
+    # Create a campaign message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_message.json)
+    # @param message_create_query [MessageCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def create_campaign_message(message_create_query, opts = {})
+      data, _status_code, _headers = create_campaign_message_with_http_info(message_create_query, opts)
+      data
+    end
+
+    # Create Campaign Message
+    # Create a campaign message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_message.json)
+    # @param message_create_query [MessageCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def create_campaign_message_with_http_info(message_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.create_campaign_message ...'
+      end
+      # verify the required parameter 'message_create_query' is set
+      if @api_client.config.client_side_validation && message_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'message_create_query' when calling CampaignsApi.create_campaign_message"
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(message_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.create_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#create_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Create Campaign Variation
+    # Create a campaign variation.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_variation.json)
+    # @param variation_create_query [VariationCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def create_campaign_variation(variation_create_query, opts = {})
+      data, _status_code, _headers = create_campaign_variation_with_http_info(variation_create_query, opts)
+      data
+    end
+
+    # Create Campaign Variation
+    # Create a campaign variation.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/create_campaign_variation.json)
+    # @param variation_create_query [VariationCreateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def create_campaign_variation_with_http_info(variation_create_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.create_campaign_variation ...'
+      end
+      # verify the required parameter 'variation_create_query' is set
+      if @api_client.config.client_side_validation && variation_create_query.nil?
+        fail ArgumentError, "Missing the required parameter 'variation_create_query' when calling CampaignsApi.create_campaign_variation"
+      end
+      allowable_values = ["created", "definition", "definition.details", "definition.details.action_buttons", "definition.details.add_info_link", "definition.details.add_opt_out_language", "definition.details.add_org_prefix", "definition.details.android_deep_link", "definition.details.badge", "definition.details.badge_config", "definition.details.badge_value", "definition.details.bcc_email", "definition.details.body", "definition.details.cc_email", "definition.details.channel", "definition.details.content_available", "definition.details.cost", "definition.details.dynamic_media_template", "definition.details.from_email", "definition.details.from_label", "definition.details.include_contact_card", "definition.details.ios_deep_link", "definition.details.kv_pairs", "definition.details.message_hierarchy", "definition.details.mms_dynamic_image_template", "definition.details.mms_static_image_asset_id", "definition.details.mutable_content", "definition.details.open_action", "definition.details.preview_text", "definition.details.push_platform_target", "definition.details.push_type", "definition.details.reply_to_email", "definition.details.send_to_inbox", "definition.details.send_to_primary", "definition.details.shorten_links", "definition.details.sound", "definition.details.sound_file_name", "definition.details.static_asset_id", "definition.details.subject", "definition.details.template_id", "definition.details.text_message_type", "definition.details.title", "definition.details.video_asset_id", "definition.details.web_url", "definition.name", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_variation'] && !opts[:'fields_campaign_variation'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_variation\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-variation]'] = @api_client.build_collection_param(opts[:'fields_campaign_variation'], :csv) if !opts[:'fields_campaign_variation'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(variation_create_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.create_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#create_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
 
     # Delete Campaign
     # Delete a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_campaign.json)
@@ -375,7 +772,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -408,14 +805,430 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # Delete Campaign Audience
+    # Delete the campaign audience with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_campaign_audience(id, opts = {})
+      delete_campaign_audience_with_http_info(id, opts)
+      nil
+    end
+
+    # Delete Campaign Audience
+    # Delete the campaign audience with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_campaign_audience_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.delete_campaign_audience ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.delete_campaign_audience"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audiences/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.delete_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#delete_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete Campaign Message
+    # Delete a campaign message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_campaign_message(id, opts = {})
+      delete_campaign_message_with_http_info(id, opts)
+      nil
+    end
+
+    # Delete Campaign Message
+    # Delete a campaign message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_campaign_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.delete_campaign_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.delete_campaign_message"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.delete_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#delete_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Delete Campaign Variation
+    # Delete the campaign variation with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def delete_campaign_variation(id, opts = {})
+      delete_campaign_variation_with_http_info(id, opts)
+      nil
+    end
+
+    # Delete Campaign Variation
+    # Delete the campaign variation with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/delete_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def delete_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.delete_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.delete_campaign_variation"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.delete_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#delete_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Audience for Campaign Message
+    # Get the campaign audience for the given campaign message ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_audience_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_audience_for_campaign_message(id, opts = {})
+      data, _status_code, _headers = get_audience_for_campaign_message_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_audience_for_campaign_message`
+    alias get_campaign_message_audience get_audience_for_campaign_message
+
+    # Get Audience for Campaign Message
+    # Get the campaign audience for the given campaign message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_audience_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_audience_for_campaign_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_audience_for_campaign_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_audience_for_campaign_message"
+      end
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages/{id}/campaign-audience'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_audience_for_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_audience_for_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_audience_for_campaign_message_with_http_info`
+    alias get_campaign_message_audience_with_http_info get_audience_for_campaign_message_with_http_info
+
+    # Get Audience ID for Campaign Message
+    # Get the campaign audience [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign message ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_audience_id_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_audience_id_for_campaign_message(id, opts = {})
+      data, _status_code, _headers = get_audience_id_for_campaign_message_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_audience_id_for_campaign_message`
+    alias get_campaign_message_relationships_audience get_audience_id_for_campaign_message
+
+    # Get Audience ID for Campaign Message
+    # Get the campaign audience [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_audience_id_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_audience_id_for_campaign_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_audience_id_for_campaign_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_audience_id_for_campaign_message"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages/{id}/relationships/campaign-audience'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_audience_id_for_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_audience_id_for_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_audience_id_for_campaign_message_with_http_info`
+    alias get_campaign_message_relationships_audience_with_http_info get_audience_id_for_campaign_message_with_http_info
+
+    # Get Audience IDs for Campaign
+    # Get all campaign audience [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_audience_ids_for_campaign.json)
+    # @param id [String] The campaign ID
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_audience_ids_for_campaign(id, opts = {})
+      data, _status_code, _headers = get_audience_ids_for_campaign_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_audience_ids_for_campaign`
+    alias get_campaign_relationships_audiences get_audience_ids_for_campaign
+
+    # Get Audience IDs for Campaign
+    # Get all campaign audience [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_audience_ids_for_campaign.json)
+    # @param id [String] The campaign ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_audience_ids_for_campaign_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_audience_ids_for_campaign ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_audience_ids_for_campaign"
+      end
+      # resource path
+      local_var_path = '/api/campaigns/{id}/relationships/campaign-audiences'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_audience_ids_for_campaign",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_audience_ids_for_campaign\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_audience_ids_for_campaign_with_http_info`
+    alias get_campaign_relationships_audiences_with_http_info get_audience_ids_for_campaign_with_http_info
+
     # Get Campaign
-    # Returns a specific campaign based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign.json)
+    # Get a campaign by ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign.json)
     # @param id [String] The campaign ID to be retrieved
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_campaign(id, opts = {})
       data, _status_code, _headers = get_campaign_with_http_info(id, opts)
@@ -423,13 +1236,14 @@ module KlaviyoAPI
     end
 
     # Get Campaign
-    # Returns a specific campaign based on a required id.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign.json)
+    # Get a campaign by ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign.json)
     # @param id [String] The campaign ID to be retrieved
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_campaign_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -439,11 +1253,15 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign"
       end
-      allowable_values = ["created_at", "definition", "definition.channel", "definition.content", "definition.content.action_buttons", "definition.content.bcc_email", "definition.content.body", "definition.content.cc_email", "definition.content.dynamic_image", "definition.content.from_email", "definition.content.from_label", "definition.content.media_url", "definition.content.preview_text", "definition.content.reply_to_email", "definition.content.subject", "definition.content.title", "definition.kv_pairs", "definition.label", "definition.notification_type", "definition.options", "definition.options.badge", "definition.options.badge.badge_options", "definition.options.badge.badge_options.badge_config", "definition.options.badge.badge_options.set_from_property", "definition.options.badge.badge_options.value", "definition.options.badge.display", "definition.options.on_open", "definition.options.on_open.android_deep_link", "definition.options.on_open.ios_deep_link", "definition.options.on_open.type", "definition.options.on_open.web_url", "definition.options.play_sound", "definition.render_options", "definition.render_options.add_info_link", "definition.render_options.add_opt_out_language", "definition.render_options.add_org_prefix", "definition.render_options.shorten_links", "id", "send_times", "updated_at"]
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
       end
@@ -451,7 +1269,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
       end
-      allowable_values = ["campaign-messages", "tags"]
+      allowable_values = ["campaign-audiences", "campaign-messages", "tags"]
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
@@ -460,6 +1278,7 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
       query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
       query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
       query_params[:'fields[tag]'] = @api_client.build_collection_param(opts[:'fields_tag'], :csv) if !opts[:'fields_tag'].nil?
@@ -468,7 +1287,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -501,11 +1320,266 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Campaign for Campaign Message
-    # Return the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_for_campaign_message.json)
-    # @param id [String] 
+    # Get Campaign Audience
+    # Get the campaign audience with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_audience.json)
+    # @param id [String] The ID of the audience
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @return [Hash<String, Object>]
+    def get_campaign_audience(id, opts = {})
+      data, _status_code, _headers = get_campaign_audience_with_http_info(id, opts)
+      data
+    end
+
+    # Get Campaign Audience
+    # Get the campaign audience with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_campaign_audience_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_audience ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_audience"
+      end
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["campaign", "campaign-messages"]
+      if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audiences/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
+      query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+      query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
+      query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Campaign Audiences for Campaign
+    # Get all campaign audiences for the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_audiences_for_campaign.json)
+    # @param id [String] The campaign ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_campaign_audiences_for_campaign(id, opts = {})
+      data, _status_code, _headers = get_campaign_audiences_for_campaign_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_campaign_audiences_for_campaign`
+    alias get_audiences_for_campaign get_campaign_audiences_for_campaign
+
+    # alias of `get_campaign_audiences_for_campaign`
+    alias get_campaign_audiences get_campaign_audiences_for_campaign
+
+    # Get Campaign Audiences for Campaign
+    # Get all campaign audiences for the given campaign ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_audiences_for_campaign.json)
+    # @param id [String] The campaign ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_campaign_audiences_for_campaign_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_audiences_for_campaign ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_audiences_for_campaign"
+      end
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaigns/{id}/campaign-audiences'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_campaign_audiences_for_campaign",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_audiences_for_campaign\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_campaign_audiences_for_campaign_with_http_info`
+    alias get_audiences_for_campaign_with_http_info get_campaign_audiences_for_campaign_with_http_info
+
+    # alias of `get_campaign_audiences_for_campaign_with_http_info`
+    alias get_campaign_audiences_with_http_info get_campaign_audiences_for_campaign_with_http_info
+
+    # Get Campaign for Campaign Audience
+    # Get the campaign for the given campaign audience ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_campaign_for_campaign_audience(id, opts = {})
+      data, _status_code, _headers = get_campaign_for_campaign_audience_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_campaign_for_campaign_audience`
+    alias get_campaign_audience_campaign get_campaign_for_campaign_audience
+
+    # Get Campaign for Campaign Audience
+    # Get the campaign for the given campaign audience ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_campaign_for_campaign_audience_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_for_campaign_audience ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_for_campaign_audience"
+      end
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audiences/{id}/campaign'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_campaign_for_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_for_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_campaign_for_campaign_audience_with_http_info`
+    alias get_campaign_audience_campaign_with_http_info get_campaign_for_campaign_audience_with_http_info
+
+    # Get Campaign for Campaign Message
+    # Return the related omnicampaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_campaign_for_campaign_message(id, opts = {})
       data, _status_code, _headers = get_campaign_for_campaign_message_with_http_info(id, opts)
@@ -516,10 +1590,10 @@ module KlaviyoAPI
     alias get_campaign_message_campaign get_campaign_for_campaign_message
 
     # Get Campaign for Campaign Message
-    # Return the related campaign&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_for_campaign_message.json)
-    # @param id [String] 
+    # Return the related omnicampaign&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_for_campaign_message.json)
+    # @param id [String] The ID of the message
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_campaign_for_campaign_message_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -529,7 +1603,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_for_campaign_message"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
       end
@@ -543,7 +1617,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -579,9 +1653,80 @@ module KlaviyoAPI
     # alias of `get_campaign_for_campaign_message_with_http_info`
     alias get_campaign_message_campaign_with_http_info get_campaign_for_campaign_message_with_http_info
 
+    # Get Campaign ID for Campaign Audience
+    # Get the campaign [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign audience ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_id_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_campaign_id_for_campaign_audience(id, opts = {})
+      data, _status_code, _headers = get_campaign_id_for_campaign_audience_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_campaign_id_for_campaign_audience`
+    alias get_campaign_audience_relationships_campaign get_campaign_id_for_campaign_audience
+
+    # Get Campaign ID for Campaign Audience
+    # Get the campaign [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign audience ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_id_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_campaign_id_for_campaign_audience_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_id_for_campaign_audience ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_id_for_campaign_audience"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audiences/{id}/relationships/campaign'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_campaign_id_for_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_id_for_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_campaign_id_for_campaign_audience_with_http_info`
+    alias get_campaign_audience_relationships_campaign_with_http_info get_campaign_id_for_campaign_audience_with_http_info
+
     # Get Campaign ID for Campaign Message
-    # Returns the ID of the related campaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_id_for_campaign_message.json)
-    # @param id [String] 
+    # Returns the ID of the related omnicampaign<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_id_for_campaign_message.json)
+    # @param id [String] The ID of the message
     # @param [Hash] opts the optional parameters
     # @return [Hash<String, Object>]
     def get_campaign_id_for_campaign_message(id, opts = {})
@@ -593,8 +1738,8 @@ module KlaviyoAPI
     alias get_campaign_message_relationships_campaign get_campaign_id_for_campaign_message
 
     # Get Campaign ID for Campaign Message
-    # Returns the ID of the related campaign&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_id_for_campaign_message.json)
-    # @param id [String] 
+    # Returns the ID of the related omnicampaign&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_id_for_campaign_message.json)
+    # @param id [String] The ID of the message
     # @param [Hash] opts the optional parameters
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_campaign_id_for_campaign_message_with_http_info(id, opts = {})
@@ -614,7 +1759,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -651,14 +1796,13 @@ module KlaviyoAPI
     alias get_campaign_message_relationships_campaign_with_http_info get_campaign_id_for_campaign_message_with_http_info
 
     # Get Campaign Message
-    # Returns a specific message based on a required id.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_message.json)
-    # @param id [String] The message ID to be retrieved
+    # Get a campaign message by ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_message.json)
+    # @param id [String] The ID of the message
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
     def get_campaign_message(id, opts = {})
       data, _status_code, _headers = get_campaign_message_with_http_info(id, opts)
@@ -666,14 +1810,13 @@ module KlaviyoAPI
     end
 
     # Get Campaign Message
-    # Returns a specific message based on a required id.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_message.json)
-    # @param id [String] The message ID to be retrieved
+    # Get a campaign message by ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_message.json)
+    # @param id [String] The ID of the message
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_campaign_message_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -683,23 +1826,19 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_message"
       end
-      allowable_values = ["created_at", "definition", "definition.channel", "definition.content", "definition.content.action_buttons", "definition.content.bcc_email", "definition.content.body", "definition.content.cc_email", "definition.content.dynamic_image", "definition.content.from_email", "definition.content.from_label", "definition.content.media_url", "definition.content.preview_text", "definition.content.reply_to_email", "definition.content.subject", "definition.content.title", "definition.kv_pairs", "definition.label", "definition.notification_type", "definition.options", "definition.options.badge", "definition.options.badge.badge_options", "definition.options.badge.badge_options.badge_config", "definition.options.badge.badge_options.set_from_property", "definition.options.badge.badge_options.value", "definition.options.badge.display", "definition.options.on_open", "definition.options.on_open.android_deep_link", "definition.options.on_open.ios_deep_link", "definition.options.on_open.type", "definition.options.on_open.web_url", "definition.options.play_sound", "definition.render_options", "definition.render_options.add_info_link", "definition.render_options.add_opt_out_language", "definition.render_options.add_org_prefix", "definition.render_options.shorten_links", "id", "send_times", "updated_at"]
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
+      allowable_values = ["created", "definition", "definition.details", "definition.details.action_buttons", "definition.details.add_info_link", "definition.details.add_opt_out_language", "definition.details.add_org_prefix", "definition.details.android_deep_link", "definition.details.badge", "definition.details.badge_config", "definition.details.badge_value", "definition.details.bcc_email", "definition.details.body", "definition.details.cc_email", "definition.details.channel", "definition.details.content_available", "definition.details.cost", "definition.details.dynamic_media_template", "definition.details.from_email", "definition.details.from_label", "definition.details.include_contact_card", "definition.details.ios_deep_link", "definition.details.kv_pairs", "definition.details.message_hierarchy", "definition.details.mms_dynamic_image_template", "definition.details.mms_static_image_asset_id", "definition.details.mutable_content", "definition.details.open_action", "definition.details.preview_text", "definition.details.push_platform_target", "definition.details.push_type", "definition.details.reply_to_email", "definition.details.send_to_inbox", "definition.details.send_to_primary", "definition.details.shorten_links", "definition.details.sound", "definition.details.sound_file_name", "definition.details.static_asset_id", "definition.details.subject", "definition.details.template_id", "definition.details.text_message_type", "definition.details.title", "definition.details.video_asset_id", "definition.details.web_url", "definition.name", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_variation'] && !opts[:'fields_campaign_variation'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_variation\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
       end
-      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
-      if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
-      end
-      allowable_values = ["amp", "created", "editor_type", "html", "id", "name", "text", "updated"]
-      if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
-      end
-      allowable_values = ["campaign", "image", "template"]
+      allowable_values = ["campaign", "campaign-variations"]
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
@@ -709,15 +1848,14 @@ module KlaviyoAPI
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+      query_params[:'fields[campaign-variation]'] = @api_client.build_collection_param(opts[:'fields_campaign_variation'], :csv) if !opts[:'fields_campaign_variation'].nil?
       query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
-      query_params[:'fields[image]'] = @api_client.build_collection_param(opts[:'fields_image'], :csv) if !opts[:'fields_image'].nil?
-      query_params[:'fields[template]'] = @api_client.build_collection_param(opts[:'fields_template'], :csv) if !opts[:'fields_template'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -750,11 +1888,202 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
+    # Get Campaign Messages
+    # Returns campaign messages based on filters.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_messages.json)
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;campaign_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
+    # @return [Hash<String, Object>]
+    def get_campaign_messages(opts = {})
+      data, _status_code, _headers = get_campaign_messages_with_http_info(opts)
+      data
+    end
+
+    # Get Campaign Messages
+    # Returns campaign messages based on filters.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_messages.json)
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;, &#x60;equals&#x60; (string)&lt;br&gt;&#x60;campaign_id&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60; (string)&lt;br&gt;&#x60;status&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;created&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;updated&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 20. Min: 1. Max: 100. (default to 20)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_campaign_messages_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_messages ...'
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["campaign", "campaign-variations"]
+      if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
+      end
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] > 100
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CampaignsApi.get_campaign_messages, must be smaller than or equal to 100.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'page_size'].nil? && opts[:'page_size'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CampaignsApi.get_campaign_messages, must be greater than or equal to 1.'
+      end
+
+      allowable_values = ["created", "-created", "id", "-id", "name", "-name", "status", "-status", "updated", "-updated"]
+      if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
+        fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+      query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
+      query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+      query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
+      query_params[:'sort'] = opts[:'sort'] if !opts[:'sort'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_campaign_messages",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_messages\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Campaign Messages for Campaign Audience
+    # Get all campaign messages for the given campaign audience ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_messages_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
+    # @return [Hash<String, Object>]
+    def get_campaign_messages_for_campaign_audience(id, opts = {})
+      data, _status_code, _headers = get_campaign_messages_for_campaign_audience_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_campaign_messages_for_campaign_audience`
+    alias get_campaign_audience_messages get_campaign_messages_for_campaign_audience
+
+    # alias of `get_campaign_messages_for_campaign_audience`
+    alias get_messages_for_campaign_audience get_campaign_messages_for_campaign_audience
+
+    # Get Campaign Messages for Campaign Audience
+    # Get all campaign messages for the given campaign audience ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_messages_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_campaign_messages_for_campaign_audience_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_messages_for_campaign_audience ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_messages_for_campaign_audience"
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audiences/{id}/campaign-messages'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_campaign_messages_for_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_messages_for_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_campaign_messages_for_campaign_audience_with_http_info`
+    alias get_campaign_audience_messages_with_http_info get_campaign_messages_for_campaign_audience_with_http_info
+
+    # alias of `get_campaign_messages_for_campaign_audience_with_http_info`
+    alias get_messages_for_campaign_audience_with_http_info get_campaign_messages_for_campaign_audience_with_http_info
+
     # Get Campaign Recipient Estimation
     # Get the estimated recipient count for a campaign with the provided campaign ID. You can refresh this count by using the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_recipient_estimation.json)
     # @param id [String] The ID of the campaign for which to get the estimated number of recipients
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_recipient_estimation For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_recipient_estimation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_campaign_recipient_estimation(id, opts = {})
       data, _status_code, _headers = get_campaign_recipient_estimation_with_http_info(id, opts)
@@ -765,7 +2094,7 @@ module KlaviyoAPI
     # Get the estimated recipient count for a campaign with the provided campaign ID. You can refresh this count by using the &#x60;Create Campaign Recipient Estimation Job&#x60; endpoint.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_recipient_estimation.json)
     # @param id [String] The ID of the campaign for which to get the estimated number of recipients
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_recipient_estimation For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_recipient_estimation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_campaign_recipient_estimation_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -789,7 +2118,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -826,7 +2155,7 @@ module KlaviyoAPI
     # Retrieve the status of a recipient estimation job triggered with the `Create Campaign Recipient Estimation Job` endpoint.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_recipient_estimation_job.json)
     # @param id [String] The ID of the campaign to get recipient estimation status
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_campaign_recipient_estimation_job(id, opts = {})
       data, _status_code, _headers = get_campaign_recipient_estimation_job_with_http_info(id, opts)
@@ -837,7 +2166,7 @@ module KlaviyoAPI
     # Retrieve the status of a recipient estimation job triggered with the &#x60;Create Campaign Recipient Estimation Job&#x60; endpoint.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_recipient_estimation_job.json)
     # @param id [String] The ID of the campaign to get recipient estimation status
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_campaign_recipient_estimation_job_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -861,7 +2190,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -898,7 +2227,7 @@ module KlaviyoAPI
     # Get a campaign send job<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_send_job.json)
     # @param id [String] The ID of the campaign to send
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_campaign_send_job(id, opts = {})
       data, _status_code, _headers = get_campaign_send_job_with_http_info(id, opts)
@@ -909,7 +2238,7 @@ module KlaviyoAPI
     # Get a campaign send job&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_send_job.json)
     # @param id [String] The ID of the campaign to send
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_campaign_send_job_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -933,7 +2262,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -966,48 +2295,150 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Get Campaigns
-    # Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: `?filter=equals(messages.channel,'email')` to list email campaigns, or `?filter=equals(messages.channel,'sms')` to list SMS campaigns. `?filter=equals(messages.channel,'mobile_push')` to list mobile push campaigns.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaigns.json)
-    # @param filter [String] For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # Get Campaign Variation
+    # Get the campaign variation with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_variation.json)
+    # @param id [String] The ID of the variation
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
-    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_translation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
     # @return [Hash<String, Object>]
-    def get_campaigns(filter, opts = {})
-      data, _status_code, _headers = get_campaigns_with_http_info(filter, opts)
+    def get_campaign_variation(id, opts = {})
+      data, _status_code, _headers = get_campaign_variation_with_http_info(id, opts)
+      data
+    end
+
+    # Get Campaign Variation
+    # Get the campaign variation with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_translation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_campaign_variation"
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["created", "definition", "definition.details", "definition.details.action_buttons", "definition.details.add_info_link", "definition.details.add_opt_out_language", "definition.details.add_org_prefix", "definition.details.android_deep_link", "definition.details.badge", "definition.details.badge_config", "definition.details.badge_value", "definition.details.bcc_email", "definition.details.body", "definition.details.cc_email", "definition.details.channel", "definition.details.content_available", "definition.details.cost", "definition.details.dynamic_media_template", "definition.details.from_email", "definition.details.from_label", "definition.details.include_contact_card", "definition.details.ios_deep_link", "definition.details.kv_pairs", "definition.details.message_hierarchy", "definition.details.mms_dynamic_image_template", "definition.details.mms_static_image_asset_id", "definition.details.mutable_content", "definition.details.open_action", "definition.details.preview_text", "definition.details.push_platform_target", "definition.details.push_type", "definition.details.reply_to_email", "definition.details.send_to_inbox", "definition.details.send_to_primary", "definition.details.shorten_links", "definition.details.sound", "definition.details.sound_file_name", "definition.details.static_asset_id", "definition.details.subject", "definition.details.template_id", "definition.details.text_message_type", "definition.details.title", "definition.details.video_asset_id", "definition.details.web_url", "definition.name", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_variation'] && !opts[:'fields_campaign_variation'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_variation\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["channel", "created", "fallback_locale", "id", "metadata", "source_locale", "target_locales", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_translation'] && !opts[:'fields_translation'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_translation\", must include one of #{allowable_values}"
+      end
+      allowable_values = ["campaign-message", "image", "translation"]
+      if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+      query_params[:'fields[campaign-variation]'] = @api_client.build_collection_param(opts[:'fields_campaign_variation'], :csv) if !opts[:'fields_campaign_variation'].nil?
+      query_params[:'fields[image]'] = @api_client.build_collection_param(opts[:'fields_image'], :csv) if !opts[:'fields_image'].nil?
+      query_params[:'fields[translation]'] = @api_client.build_collection_param(opts[:'fields_translation'], :csv) if !opts[:'fields_translation'].nil?
+      query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Get Campaigns
+    # Get all campaigns, with optional filtering.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaigns.json)
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60; (string)&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60; (string)&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60; (boolean)&lt;br&gt;&#x60;builder&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
+    # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
+    # @return [Hash<String, Object>]
+    def get_campaigns(opts = {})
+      data, _status_code, _headers = get_campaigns_with_http_info(opts)
       data
     end
 
     # Get Campaigns
-    # Returns some or all campaigns based on filters.  A channel filter is required to list campaigns. Please provide either: &#x60;?filter&#x3D;equals(messages.channel,&#39;email&#39;)&#x60; to list email campaigns, or &#x60;?filter&#x3D;equals(messages.channel,&#39;sms&#39;)&#x60; to list SMS campaigns. &#x60;?filter&#x3D;equals(messages.channel,&#39;mobile_push&#39;)&#x60; to list mobile push campaigns.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaigns.json)
-    # @param filter [String] For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60;&lt;br&gt;&#x60;messages.channel&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60;&lt;br&gt;&#x60;status&#x60;: &#x60;any&#x60;, &#x60;equals&#x60;&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60;&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;scheduled_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60;
+    # Get all campaigns, with optional filtering.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_campaigns.json)
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
-    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#pagination
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [String] :filter For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#filtering&lt;br&gt;Allowed field(s)/operator(s):&lt;br&gt;&#x60;id&#x60;: &#x60;any&#x60; (string)&lt;br&gt;&#x60;name&#x60;: &#x60;contains&#x60; (string)&lt;br&gt;&#x60;archived&#x60;: &#x60;equals&#x60; (boolean)&lt;br&gt;&#x60;builder&#x60;: &#x60;equals&#x60; (string)&lt;br&gt;&#x60;created_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)&lt;br&gt;&#x60;updated_at&#x60;: &#x60;greater-or-equal&#x60;, &#x60;greater-than&#x60;, &#x60;less-or-equal&#x60;, &#x60;less-than&#x60; (date-time)
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @option opts [Integer] :page_size Default: 100. Min: 1. Max: 100. (default to 100)
-    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sorting
+    # @option opts [String] :sort For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sorting
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def get_campaigns_with_http_info(filter, opts = {})
+    def get_campaigns_with_http_info(opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CampaignsApi.get_campaigns ...'
       end
-      # verify the required parameter 'filter' is set
-      if @api_client.config.client_side_validation && filter.nil?
-        fail ArgumentError, "Missing the required parameter 'filter' when calling CampaignsApi.get_campaigns"
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
       end
-      allowable_values = ["created_at", "definition", "definition.channel", "definition.content", "definition.content.action_buttons", "definition.content.bcc_email", "definition.content.body", "definition.content.cc_email", "definition.content.dynamic_image", "definition.content.from_email", "definition.content.from_label", "definition.content.media_url", "definition.content.preview_text", "definition.content.reply_to_email", "definition.content.subject", "definition.content.title", "definition.kv_pairs", "definition.label", "definition.notification_type", "definition.options", "definition.options.badge", "definition.options.badge.badge_options", "definition.options.badge.badge_options.badge_config", "definition.options.badge.badge_options.set_from_property", "definition.options.badge.badge_options.value", "definition.options.badge.display", "definition.options.on_open", "definition.options.on_open.android_deep_link", "definition.options.on_open.ios_deep_link", "definition.options.on_open.type", "definition.options.on_open.web_url", "definition.options.play_sound", "definition.render_options", "definition.render_options.add_info_link", "definition.render_options.add_opt_out_language", "definition.render_options.add_org_prefix", "definition.render_options.shorten_links", "id", "send_times", "updated_at"]
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
       end
@@ -1015,7 +2446,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
       end
-      allowable_values = ["campaign-messages", "tags"]
+      allowable_values = ["campaign-audiences", "campaign-messages", "tags"]
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
@@ -1027,7 +2458,7 @@ module KlaviyoAPI
         fail ArgumentError, 'invalid value for "opts[:"page_size"]" when calling CampaignsApi.get_campaigns, must be greater than or equal to 1.'
       end
 
-      allowable_values = ["created_at", "-created_at", "id", "-id", "name", "-name", "scheduled_at", "-scheduled_at", "updated_at", "-updated_at"]
+      allowable_values = ["created_at", "-created_at", "id", "-id", "name", "-name", "updated_at", "-updated_at"]
       if @api_client.config.client_side_validation && opts[:'sort'] && !allowable_values.include?(opts[:'sort'])
         fail ArgumentError, "invalid value for \"sort\", must be one of #{allowable_values}"
       end
@@ -1036,10 +2467,11 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
-      query_params[:'filter'] = filter
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
       query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
       query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
       query_params[:'fields[tag]'] = @api_client.build_collection_param(opts[:'fields_tag'], :csv) if !opts[:'fields_tag'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
       query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
       query_params[:'page[size]'] = opts[:'page_size'] if !opts[:'page_size'].nil?
@@ -1048,7 +2480,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1085,7 +2517,7 @@ module KlaviyoAPI
     # Return the related image for a given campaign message<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `images:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image_for_campaign_message.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_image_for_campaign_message(id, opts = {})
       data, _status_code, _headers = get_image_for_campaign_message_with_http_info(id, opts)
@@ -1099,7 +2531,7 @@ module KlaviyoAPI
     # Return the related image for a given campaign message&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;images:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image_for_campaign_message.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_image_for_campaign_message_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1123,7 +2555,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1158,6 +2590,84 @@ module KlaviyoAPI
 
     # alias of `get_image_for_campaign_message_with_http_info`
     alias get_campaign_message_image_with_http_info get_image_for_campaign_message_with_http_info
+
+    # Get Image for Campaign Variation
+    # Get the image for the given campaign variation ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_image_for_campaign_variation(id, opts = {})
+      data, _status_code, _headers = get_image_for_campaign_variation_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_image_for_campaign_variation`
+    alias get_campaign_variation_image get_image_for_campaign_variation
+
+    # Get Image for Campaign Variation
+    # Get the image for the given campaign variation ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_image_for_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_image_for_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_image_for_campaign_variation"
+      end
+      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
+      if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}/image'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[image]'] = @api_client.build_collection_param(opts[:'fields_image'], :csv) if !opts[:'fields_image'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_image_for_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_image_for_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_image_for_campaign_variation_with_http_info`
+    alias get_campaign_variation_image_with_http_info get_image_for_campaign_variation_with_http_info
 
     # Get Image ID for Campaign Message
     # Returns the ID of the related image<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `images:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image_id_for_campaign_message.json)
@@ -1194,7 +2704,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1230,10 +2740,231 @@ module KlaviyoAPI
     # alias of `get_image_id_for_campaign_message_with_http_info`
     alias get_campaign_message_relationships_image_with_http_info get_image_id_for_campaign_message_with_http_info
 
-    # Get Message IDs for Campaign
-    # Returns the IDs of all messages associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_ids_for_campaign.json)
-    # @param id [String] 
+    # Get Image ID for Campaign Variation
+    # Get the image [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign variation ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image_id_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
     # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_image_id_for_campaign_variation(id, opts = {})
+      data, _status_code, _headers = get_image_id_for_campaign_variation_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_image_id_for_campaign_variation`
+    alias get_campaign_variation_relationships_image get_image_id_for_campaign_variation
+
+    # Get Image ID for Campaign Variation
+    # Get the image [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign variation ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_image_id_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_image_id_for_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_image_id_for_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_image_id_for_campaign_variation"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}/relationships/image'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_image_id_for_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_image_id_for_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_image_id_for_campaign_variation_with_http_info`
+    alias get_campaign_variation_relationships_image_with_http_info get_image_id_for_campaign_variation_with_http_info
+
+    # Get Message for Campaign Variation
+    # Get the campaign message for the given campaign variation ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_message_for_campaign_variation(id, opts = {})
+      data, _status_code, _headers = get_message_for_campaign_variation_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_message_for_campaign_variation`
+    alias get_campaign_variation_message get_message_for_campaign_variation
+
+    # Get Message for Campaign Variation
+    # Get the campaign message for the given campaign variation ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_message_for_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_message_for_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_message_for_campaign_variation"
+      end
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}/campaign-message'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_message_for_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_message_for_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_message_for_campaign_variation_with_http_info`
+    alias get_campaign_variation_message_with_http_info get_message_for_campaign_variation_with_http_info
+
+    # Get Message ID for Campaign Variation
+    # Get the campaign message [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign variation ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_id_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_message_id_for_campaign_variation(id, opts = {})
+      data, _status_code, _headers = get_message_id_for_campaign_variation_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_message_id_for_campaign_variation`
+    alias get_campaign_variation_relationships_message get_message_id_for_campaign_variation
+
+    # Get Message ID for Campaign Variation
+    # Get the campaign message [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign variation ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_id_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_message_id_for_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_message_id_for_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_message_id_for_campaign_variation"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}/relationships/campaign-message'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_message_id_for_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_message_id_for_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_message_id_for_campaign_variation_with_http_info`
+    alias get_campaign_variation_relationships_message_with_http_info get_message_id_for_campaign_variation_with_http_info
+
+    # Get Message IDs for Campaign
+    # Get all campaign message [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_ids_for_campaign.json)
+    # @param id [String] The campaign ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_message_ids_for_campaign(id, opts = {})
       data, _status_code, _headers = get_message_ids_for_campaign_with_http_info(id, opts)
@@ -1247,9 +2978,10 @@ module KlaviyoAPI
     alias get_campaign_relationships_messages get_message_ids_for_campaign
 
     # Get Message IDs for Campaign
-    # Returns the IDs of all messages associated with the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_ids_for_campaign.json)
-    # @param id [String] 
+    # Get all campaign message [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_ids_for_campaign.json)
+    # @param id [String] The campaign ID
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_message_ids_for_campaign_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1264,11 +2996,12 @@ module KlaviyoAPI
 
       # query parameters
       query_params = opts[:query_params] || {}
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1307,15 +3040,88 @@ module KlaviyoAPI
     # alias of `get_message_ids_for_campaign_with_http_info`
     alias get_campaign_relationships_messages_with_http_info get_message_ids_for_campaign_with_http_info
 
-    # Get Messages for Campaign
-    # Return all messages that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_messages_for_campaign.json)
-    # @param id [String] 
+    # Get Message IDs for Campaign Audience
+    # Get all campaign messages [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign audience ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_ids_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
+    # @return [Hash<String, Object>]
+    def get_message_ids_for_campaign_audience(id, opts = {})
+      data, _status_code, _headers = get_message_ids_for_campaign_audience_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_message_ids_for_campaign_audience`
+    alias get_campaign_audience_relationships_messages get_message_ids_for_campaign_audience
+
+    # Get Message IDs for Campaign Audience
+    # Get all campaign messages [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign audience ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_message_ids_for_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_message_ids_for_campaign_audience_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_message_ids_for_campaign_audience ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_message_ids_for_campaign_audience"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audiences/{id}/relationships/campaign-messages'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_message_ids_for_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_message_ids_for_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_message_ids_for_campaign_audience_with_http_info`
+    alias get_campaign_audience_relationships_messages_with_http_info get_message_ids_for_campaign_audience_with_http_info
+
+    # Get Messages for Campaign
+    # Get all messages for the given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_messages_for_campaign.json)
+    # @param id [String] The campaign ID
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Hash<String, Object>]
     def get_messages_for_campaign(id, opts = {})
       data, _status_code, _headers = get_messages_for_campaign_with_http_info(id, opts)
@@ -1325,18 +3131,14 @@ module KlaviyoAPI
     # alias of `get_messages_for_campaign`
     alias get_campaign_campaign_messages get_messages_for_campaign
 
-    # alias of `get_messages_for_campaign`
-    alias get_campaign_messages get_messages_for_campaign
-
     # Get Messages for Campaign
-    # Return all messages that belong to the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_messages_for_campaign.json)
-    # @param id [String] 
+    # Get all messages for the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_messages_for_campaign.json)
+    # @param id [String] The campaign ID
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_image For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
-    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#relationships
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :include For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#relationships
+    # @option opts [String] :page_cursor For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#pagination
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_messages_for_campaign_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1346,23 +3148,15 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_messages_for_campaign"
       end
-      allowable_values = ["created_at", "definition", "definition.channel", "definition.content", "definition.content.action_buttons", "definition.content.bcc_email", "definition.content.body", "definition.content.cc_email", "definition.content.dynamic_image", "definition.content.from_email", "definition.content.from_label", "definition.content.media_url", "definition.content.preview_text", "definition.content.reply_to_email", "definition.content.subject", "definition.content.title", "definition.kv_pairs", "definition.label", "definition.notification_type", "definition.options", "definition.options.badge", "definition.options.badge.badge_options", "definition.options.badge.badge_options.badge_config", "definition.options.badge.badge_options.set_from_property", "definition.options.badge.badge_options.value", "definition.options.badge.display", "definition.options.on_open", "definition.options.on_open.android_deep_link", "definition.options.on_open.ios_deep_link", "definition.options.on_open.type", "definition.options.on_open.web_url", "definition.options.play_sound", "definition.render_options", "definition.render_options.add_info_link", "definition.render_options.add_opt_out_language", "definition.render_options.add_org_prefix", "definition.render_options.shorten_links", "id", "send_times", "updated_at"]
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
       end
-      allowable_values = ["format", "hidden", "id", "image_url", "name", "size", "updated_at"]
-      if @api_client.config.client_side_validation && opts[:'fields_image'] && !opts[:'fields_image'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_image\", must include one of #{allowable_values}"
-      end
-      allowable_values = ["amp", "created", "editor_type", "html", "id", "name", "text", "updated"]
-      if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
-        fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
-      end
-      allowable_values = ["campaign", "image", "template"]
+      allowable_values = ["campaign"]
       if @api_client.config.client_side_validation && opts[:'include'] && !opts[:'include'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"include\", must include one of #{allowable_values}"
       end
@@ -1373,14 +3167,13 @@ module KlaviyoAPI
       query_params = opts[:query_params] || {}
       query_params[:'fields[campaign-message]'] = @api_client.build_collection_param(opts[:'fields_campaign_message'], :csv) if !opts[:'fields_campaign_message'].nil?
       query_params[:'fields[campaign]'] = @api_client.build_collection_param(opts[:'fields_campaign'], :csv) if !opts[:'fields_campaign'].nil?
-      query_params[:'fields[image]'] = @api_client.build_collection_param(opts[:'fields_image'], :csv) if !opts[:'fields_image'].nil?
-      query_params[:'fields[template]'] = @api_client.build_collection_param(opts[:'fields_template'], :csv) if !opts[:'fields_template'].nil?
       query_params[:'include'] = @api_client.build_collection_param(opts[:'include'], :csv) if !opts[:'include'].nil?
+      query_params[:'page[cursor]'] = opts[:'page_cursor'] if !opts[:'page_cursor'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1415,9 +3208,6 @@ module KlaviyoAPI
 
     # alias of `get_messages_for_campaign_with_http_info`
     alias get_campaign_campaign_messages_with_http_info get_messages_for_campaign_with_http_info
-
-    # alias of `get_messages_for_campaign_with_http_info`
-    alias get_campaign_messages_with_http_info get_messages_for_campaign_with_http_info
 
     # Get Tag IDs for Campaign
     # Returns the IDs of all tags associated with the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_ids_for_campaign.json)
@@ -1454,7 +3244,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1490,11 +3280,82 @@ module KlaviyoAPI
     # alias of `get_tag_ids_for_campaign_with_http_info`
     alias get_campaign_relationships_tags_with_http_info get_tag_ids_for_campaign_with_http_info
 
+    # Get Tag IDs for Campaign Message
+    # Get all tag [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_ids_for_campaign_message.json)
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_tag_ids_for_campaign_message(id, opts = {})
+      data, _status_code, _headers = get_tag_ids_for_campaign_message_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_tag_ids_for_campaign_message`
+    alias get_campaign_message_relationships_tags get_tag_ids_for_campaign_message
+
+    # Get Tag IDs for Campaign Message
+    # Get all tag [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tag_ids_for_campaign_message.json)
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_tag_ids_for_campaign_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_tag_ids_for_campaign_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_tag_ids_for_campaign_message"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages/{id}/relationships/tags'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_tag_ids_for_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_tag_ids_for_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_tag_ids_for_campaign_message_with_http_info`
+    alias get_campaign_message_relationships_tags_with_http_info get_tag_ids_for_campaign_message_with_http_info
+
     # Get Tags for Campaign
     # Return all tags that belong to the given campaign.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags_for_campaign.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_tags_for_campaign(id, opts = {})
       data, _status_code, _headers = get_tags_for_campaign_with_http_info(id, opts)
@@ -1508,7 +3369,7 @@ module KlaviyoAPI
     # Return all tags that belong to the given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags_for_campaign.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_tags_for_campaign_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1532,7 +3393,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1568,11 +3429,89 @@ module KlaviyoAPI
     # alias of `get_tags_for_campaign_with_http_info`
     alias get_campaign_tags_with_http_info get_tags_for_campaign_with_http_info
 
+    # Get Tags for Campaign Message
+    # Get all tags for the given campaign message ID.<br><br>*Rate limits*:<br>Burst: `3/s`<br>Steady: `60/m`  **Scopes:** `campaigns:read` `tags:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags_for_campaign_message.json)
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_tags_for_campaign_message(id, opts = {})
+      data, _status_code, _headers = get_tags_for_campaign_message_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_tags_for_campaign_message`
+    alias get_campaign_message_tags get_tags_for_campaign_message
+
+    # Get Tags for Campaign Message
+    # Get all tags for the given campaign message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;3/s&#x60;&lt;br&gt;Steady: &#x60;60/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;tags:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_tags_for_campaign_message.json)
+    # @param id [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_tag For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_tags_for_campaign_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_tags_for_campaign_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_tags_for_campaign_message"
+      end
+      allowable_values = ["id", "name"]
+      if @api_client.config.client_side_validation && opts[:'fields_tag'] && !opts[:'fields_tag'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_tag\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages/{id}/tags'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[tag]'] = @api_client.build_collection_param(opts[:'fields_tag'], :csv) if !opts[:'fields_tag'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_tags_for_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_tags_for_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_tags_for_campaign_message_with_http_info`
+    alias get_campaign_message_tags_with_http_info get_tags_for_campaign_message_with_http_info
+
     # Get Template for Campaign Message
     # Return the related template<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read` `templates:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_template_for_campaign_message.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def get_template_for_campaign_message(id, opts = {})
       data, _status_code, _headers = get_template_for_campaign_message_with_http_info(id, opts)
@@ -1586,7 +3525,7 @@ module KlaviyoAPI
     # Return the related template&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60; &#x60;templates:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_template_for_campaign_message.json)
     # @param id [String] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_template For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def get_template_for_campaign_message_with_http_info(id, opts = {})
       if @api_client.config.debugging
@@ -1596,7 +3535,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_template_for_campaign_message"
       end
-      allowable_values = ["amp", "created", "editor_type", "html", "id", "name", "text", "updated"]
+      allowable_values = ["amp", "created", "editor_type", "html", "id", "name", "screenshot_url", "text", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_template'] && !opts[:'fields_template'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_template\", must include one of #{allowable_values}"
       end
@@ -1610,7 +3549,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1681,7 +3620,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
 
@@ -1717,11 +3656,309 @@ module KlaviyoAPI
     # alias of `get_template_id_for_campaign_message_with_http_info`
     alias get_campaign_message_relationships_template_with_http_info get_template_id_for_campaign_message_with_http_info
 
+    # Get Translation for Campaign Variation
+    # Get the translation for the given campaign variation ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_translation_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_translation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_translation_for_campaign_variation(id, opts = {})
+      data, _status_code, _headers = get_translation_for_campaign_variation_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_translation_for_campaign_variation`
+    alias get_campaign_variation_translation get_translation_for_campaign_variation
+
+    # Get Translation for Campaign Variation
+    # Get the translation for the given campaign variation ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_translation_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_translation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_translation_for_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_translation_for_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_translation_for_campaign_variation"
+      end
+      allowable_values = ["channel", "created", "fallback_locale", "id", "metadata", "source_locale", "target_locales", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_translation'] && !opts[:'fields_translation'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_translation\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}/translation'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[translation]'] = @api_client.build_collection_param(opts[:'fields_translation'], :csv) if !opts[:'fields_translation'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_translation_for_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_translation_for_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_translation_for_campaign_variation_with_http_info`
+    alias get_campaign_variation_translation_with_http_info get_translation_for_campaign_variation_with_http_info
+
+    # Get Translation ID for Campaign Variation
+    # Get the translation [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign variation ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_translation_id_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_translation_id_for_campaign_variation(id, opts = {})
+      data, _status_code, _headers = get_translation_id_for_campaign_variation_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_translation_id_for_campaign_variation`
+    alias get_campaign_variation_relationships_translation get_translation_id_for_campaign_variation
+
+    # Get Translation ID for Campaign Variation
+    # Get the translation [relationship](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign variation ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_translation_id_for_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_translation_id_for_campaign_variation_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_translation_id_for_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_translation_id_for_campaign_variation"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}/relationships/translation'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_translation_id_for_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_translation_id_for_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_translation_id_for_campaign_variation_with_http_info`
+    alias get_campaign_variation_relationships_translation_with_http_info get_translation_id_for_campaign_variation_with_http_info
+
+    # Get Variation IDs for Campaign Message
+    # Get all campaign variation [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign message ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variation_ids_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @return [Hash<String, Object>]
+    def get_variation_ids_for_campaign_message(id, opts = {})
+      data, _status_code, _headers = get_variation_ids_for_campaign_message_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_variation_ids_for_campaign_message`
+    alias get_campaign_message_relationships_variations get_variation_ids_for_campaign_message
+
+    # Get Variation IDs for Campaign Message
+    # Get all campaign variation [relationships](https://developers.klaviyo.com/en/reference/api_overview#relationships) for the given campaign message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variation_ids_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_variation_ids_for_campaign_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_variation_ids_for_campaign_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_variation_ids_for_campaign_message"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages/{id}/relationships/campaign-variations'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_variation_ids_for_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_variation_ids_for_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_variation_ids_for_campaign_message_with_http_info`
+    alias get_campaign_message_relationships_variations_with_http_info get_variation_ids_for_campaign_message_with_http_info
+
+    # Get Variations for Campaign Message
+    # Get all campaign variations for the given campaign message ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:read`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variations_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def get_variations_for_campaign_message(id, opts = {})
+      data, _status_code, _headers = get_variations_for_campaign_message_with_http_info(id, opts)
+      data
+    end
+
+    # alias of `get_variations_for_campaign_message`
+    alias get_campaign_message_variations get_variations_for_campaign_message
+
+    # Get Variations for Campaign Message
+    # Get all campaign variations for the given campaign message ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:read&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/get_variations_for_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def get_variations_for_campaign_message_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.get_variations_for_campaign_message ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.get_variations_for_campaign_message"
+      end
+      allowable_values = ["created", "definition", "definition.details", "definition.details.action_buttons", "definition.details.add_info_link", "definition.details.add_opt_out_language", "definition.details.add_org_prefix", "definition.details.android_deep_link", "definition.details.badge", "definition.details.badge_config", "definition.details.badge_value", "definition.details.bcc_email", "definition.details.body", "definition.details.cc_email", "definition.details.channel", "definition.details.content_available", "definition.details.cost", "definition.details.dynamic_media_template", "definition.details.from_email", "definition.details.from_label", "definition.details.include_contact_card", "definition.details.ios_deep_link", "definition.details.kv_pairs", "definition.details.message_hierarchy", "definition.details.mms_dynamic_image_template", "definition.details.mms_static_image_asset_id", "definition.details.mutable_content", "definition.details.open_action", "definition.details.preview_text", "definition.details.push_platform_target", "definition.details.push_type", "definition.details.reply_to_email", "definition.details.send_to_inbox", "definition.details.send_to_primary", "definition.details.shorten_links", "definition.details.sound", "definition.details.sound_file_name", "definition.details.static_asset_id", "definition.details.subject", "definition.details.template_id", "definition.details.text_message_type", "definition.details.title", "definition.details.video_asset_id", "definition.details.web_url", "definition.name", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_variation'] && !opts[:'fields_campaign_variation'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_variation\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-messages/{id}/campaign-variations'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-variation]'] = @api_client.build_collection_param(opts[:'fields_campaign_variation'], :csv) if !opts[:'fields_campaign_variation'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.get_variations_for_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#get_variations_for_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `get_variations_for_campaign_message_with_http_info`
+    alias get_campaign_message_variations_with_http_info get_variations_for_campaign_message_with_http_info
+
     # Refresh Campaign Recipient Estimation
     # Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the `Get Campaign Recipient Estimation Job` endpoint to retrieve the status of this estimation job. Use the `Get Campaign Recipient Estimation` endpoint to retrieve the estimated recipient count for a given campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/refresh_campaign_recipient_estimation.json)
     # @param campaign_recipient_estimation_job_create_query [CampaignRecipientEstimationJobCreateQuery] Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the &#x60;Get Campaign Recipient Estimation Job&#x60; endpoint to retrieve the status of this estimation job. Use the &#x60;Get Campaign Recipient Estimation&#x60; endpoint to retrieve the estimated recipient count for a given campaign.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def refresh_campaign_recipient_estimation(campaign_recipient_estimation_job_create_query, opts = {})
       data, _status_code, _headers = refresh_campaign_recipient_estimation_with_http_info(campaign_recipient_estimation_job_create_query, opts)
@@ -1735,7 +3972,7 @@ module KlaviyoAPI
     # Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the &#x60;Get Campaign Recipient Estimation Job&#x60; endpoint to retrieve the status of this estimation job. Use the &#x60;Get Campaign Recipient Estimation&#x60; endpoint to retrieve the estimated recipient count for a given campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/refresh_campaign_recipient_estimation.json)
     # @param campaign_recipient_estimation_job_create_query [CampaignRecipientEstimationJobCreateQuery] Trigger an asynchronous job to update the estimated number of recipients for the given campaign ID. Use the &#x60;Get Campaign Recipient Estimation Job&#x60; endpoint to retrieve the status of this estimation job. Use the &#x60;Get Campaign Recipient Estimation&#x60; endpoint to retrieve the estimated recipient count for a given campaign.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_recipient_estimation_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def refresh_campaign_recipient_estimation_with_http_info(campaign_recipient_estimation_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -1759,7 +3996,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1800,11 +4037,177 @@ module KlaviyoAPI
     # alias of `refresh_campaign_recipient_estimation_with_http_info`
     alias create_campaign_recipient_estimation_job_with_http_info refresh_campaign_recipient_estimation_with_http_info
 
+    # Schedule Campaign
+    # Schedule all messages in a campaign.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/schedule_campaign.json)
+    # @param campaign_schedule_query [CampaignScheduleQuery] Submit a campaign scheduling job
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_schedule For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def schedule_campaign(campaign_schedule_query, opts = {})
+      data, _status_code, _headers = schedule_campaign_with_http_info(campaign_schedule_query, opts)
+      data
+    end
+
+    # alias of `schedule_campaign`
+    alias create_campaign_schedule schedule_campaign
+
+    # Schedule Campaign
+    # Schedule all messages in a campaign.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/schedule_campaign.json)
+    # @param campaign_schedule_query [CampaignScheduleQuery] Submit a campaign scheduling job
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_schedule For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def schedule_campaign_with_http_info(campaign_schedule_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.schedule_campaign ...'
+      end
+      # verify the required parameter 'campaign_schedule_query' is set
+      if @api_client.config.client_side_validation && campaign_schedule_query.nil?
+        fail ArgumentError, "Missing the required parameter 'campaign_schedule_query' when calling CampaignsApi.schedule_campaign"
+      end
+      allowable_values = ["id", "messages"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_schedule'] && !opts[:'fields_campaign_schedule'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_schedule\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-schedule'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-schedule]'] = @api_client.build_collection_param(opts[:'fields_campaign_schedule'], :csv) if !opts[:'fields_campaign_schedule'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(campaign_schedule_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.schedule_campaign",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#schedule_campaign\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `schedule_campaign_with_http_info`
+    alias create_campaign_schedule_with_http_info schedule_campaign_with_http_info
+
+    # Schedule Campaign Message
+    # Schedule a single campaign message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/schedule_campaign_message.json)
+    # @param campaign_message_schedule_query [CampaignMessageScheduleQuery] Submit a campaign messages scheduling job
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message_schedule For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def schedule_campaign_message(campaign_message_schedule_query, opts = {})
+      data, _status_code, _headers = schedule_campaign_message_with_http_info(campaign_message_schedule_query, opts)
+      data
+    end
+
+    # alias of `schedule_campaign_message`
+    alias create_campaign_message_schedule schedule_campaign_message
+
+    # Schedule Campaign Message
+    # Schedule a single campaign message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/schedule_campaign_message.json)
+    # @param campaign_message_schedule_query [CampaignMessageScheduleQuery] Submit a campaign messages scheduling job
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message_schedule For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def schedule_campaign_message_with_http_info(campaign_message_schedule_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.schedule_campaign_message ...'
+      end
+      # verify the required parameter 'campaign_message_schedule_query' is set
+      if @api_client.config.client_side_validation && campaign_message_schedule_query.nil?
+        fail ArgumentError, "Missing the required parameter 'campaign_message_schedule_query' when calling CampaignsApi.schedule_campaign_message"
+      end
+      allowable_values = ["id", "send_date", "send_time", "strategy", "throttle_unit", "throttling_percentage"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_message_schedule'] && !opts[:'fields_campaign_message_schedule'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_message_schedule\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-message-schedule'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-message-schedule]'] = @api_client.build_collection_param(opts[:'fields_campaign_message_schedule'], :csv) if !opts[:'fields_campaign_message_schedule'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(campaign_message_schedule_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.schedule_campaign_message",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#schedule_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # alias of `schedule_campaign_message_with_http_info`
+    alias create_campaign_message_schedule_with_http_info schedule_campaign_message_with_http_info
+
     # Send Campaign
     # Trigger a campaign to send asynchronously<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/send_campaign.json)
     # @param campaign_send_job_create_query [CampaignSendJobCreateQuery] Trigger the campaign to send asynchronously
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def send_campaign(campaign_send_job_create_query, opts = {})
       data, _status_code, _headers = send_campaign_with_http_info(campaign_send_job_create_query, opts)
@@ -1818,7 +4221,7 @@ module KlaviyoAPI
     # Trigger a campaign to send asynchronously&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/send_campaign.json)
     # @param campaign_send_job_create_query [CampaignSendJobCreateQuery] Trigger the campaign to send asynchronously
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_send_job For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def send_campaign_with_http_info(campaign_send_job_create_query, opts = {})
       if @api_client.config.debugging
@@ -1842,7 +4245,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1885,10 +4288,10 @@ module KlaviyoAPI
 
     # Update Campaign
     # Update a campaign with the given campaign ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign.json)
-    # @param id [String] The campaign ID to be retrieved
-    # @param campaign_partial_update_query [CampaignPartialUpdateQuery] Update a campaign and return it
+    # @param id [String] The campaign ID to be updated
+    # @param campaign_partial_update_query [CampaignPartialUpdateQuery] Update an omnicampaign.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
     def update_campaign(id, campaign_partial_update_query, opts = {})
       data, _status_code, _headers = update_campaign_with_http_info(id, campaign_partial_update_query, opts)
@@ -1897,10 +4300,10 @@ module KlaviyoAPI
 
     # Update Campaign
     # Update a campaign with the given campaign ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign.json)
-    # @param id [String] The campaign ID to be retrieved
-    # @param campaign_partial_update_query [CampaignPartialUpdateQuery] Update a campaign and return it
+    # @param id [String] The campaign ID to be updated
+    # @param campaign_partial_update_query [CampaignPartialUpdateQuery] Update an omnicampaign.
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
     def update_campaign_with_http_info(id, campaign_partial_update_query, opts = {})
       if @api_client.config.debugging
@@ -1914,7 +4317,7 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && campaign_partial_update_query.nil?
         fail ArgumentError, "Missing the required parameter 'campaign_partial_update_query' when calling CampaignsApi.update_campaign"
       end
-      allowable_values = ["archived", "audiences", "audiences.excluded", "audiences.included", "created_at", "id", "name", "scheduled_at", "send_options", "send_options.use_smart_sending", "send_strategy", "send_strategy.date", "send_strategy.datetime", "send_strategy.method", "send_strategy.options", "send_strategy.options.is_local", "send_strategy.options.send_past_recipients_immediately", "send_strategy.throttle_percentage", "send_time", "status", "tracking_options", "tracking_options.add_tracking_params", "tracking_options.custom_tracking_params", "tracking_options.is_tracking_clicks", "tracking_options.is_tracking_opens", "updated_at"]
+      allowable_values = ["created_at", "definition", "definition.archived", "definition.builder", "definition.color", "definition.description", "definition.name", "definition.send_settings", "definition.send_settings.exit_condition_conversion_metric_id", "definition.send_settings.exit_condition_enabled", "definition.send_settings.send_passed_rltz_immediately", "definition.send_settings.send_strategy", "definition.send_settings.send_timezone", "id", "updated_at"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign'] && !opts[:'fields_campaign'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign\", must include one of #{allowable_values}"
       end
@@ -1928,7 +4331,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -1966,26 +4369,109 @@ module KlaviyoAPI
       return data, status_code, headers
     end
 
-    # Update Campaign Message
-    # Update a campaign message<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_message.json)
-    # @param id [String] The message ID to be retrieved
-    # @param campaign_message_partial_update_query [CampaignMessagePartialUpdateQuery] Update a message and return it
+    # Update Campaign Audience
+    # Update the campaign audience with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param audience_update_query [AudienceUpdateQuery] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Hash<String, Object>]
-    def update_campaign_message(id, campaign_message_partial_update_query, opts = {})
-      data, _status_code, _headers = update_campaign_message_with_http_info(id, campaign_message_partial_update_query, opts)
+    def update_campaign_audience(id, audience_update_query, opts = {})
+      data, _status_code, _headers = update_campaign_audience_with_http_info(id, audience_update_query, opts)
+      data
+    end
+
+    # Update Campaign Audience
+    # Update the campaign audience with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_audience.json)
+    # @param id [String] The ID of the audience
+    # @param audience_update_query [AudienceUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_audience For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def update_campaign_audience_with_http_info(id, audience_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.update_campaign_audience ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.update_campaign_audience"
+      end
+      # verify the required parameter 'audience_update_query' is set
+      if @api_client.config.client_side_validation && audience_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'audience_update_query' when calling CampaignsApi.update_campaign_audience"
+      end
+      allowable_values = ["created", "definition", "definition.excluded", "definition.included", "definition.name", "definition.priority", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_audience'] && !opts[:'fields_campaign_audience'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_audience\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-audiences/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-audience]'] = @api_client.build_collection_param(opts[:'fields_campaign_audience'], :csv) if !opts[:'fields_campaign_audience'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(audience_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.update_campaign_audience",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#update_campaign_audience\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update Campaign Message
+    # Update a campaign message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param message_partial_update_query [MessagePartialUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def update_campaign_message(id, message_partial_update_query, opts = {})
+      data, _status_code, _headers = update_campaign_message_with_http_info(id, message_partial_update_query, opts)
       data
     end
 
     # Update Campaign Message
-    # Update a campaign message&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_message.json)
-    # @param id [String] The message ID to be retrieved
-    # @param campaign_message_partial_update_query [CampaignMessagePartialUpdateQuery] Update a message and return it
+    # Update a campaign message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_message.json)
+    # @param id [String] The ID of the message
+    # @param message_partial_update_query [MessagePartialUpdateQuery] 
     # @param [Hash] opts the optional parameters
-    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-07-15/reference/api-overview#sparse-fieldsets
+    # @option opts [Array<String>] :fields_campaign_message For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
     # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
-    def update_campaign_message_with_http_info(id, campaign_message_partial_update_query, opts = {})
+    def update_campaign_message_with_http_info(id, message_partial_update_query, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: CampaignsApi.update_campaign_message ...'
       end
@@ -1993,11 +4479,11 @@ module KlaviyoAPI
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.update_campaign_message"
       end
-      # verify the required parameter 'campaign_message_partial_update_query' is set
-      if @api_client.config.client_side_validation && campaign_message_partial_update_query.nil?
-        fail ArgumentError, "Missing the required parameter 'campaign_message_partial_update_query' when calling CampaignsApi.update_campaign_message"
+      # verify the required parameter 'message_partial_update_query' is set
+      if @api_client.config.client_side_validation && message_partial_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'message_partial_update_query' when calling CampaignsApi.update_campaign_message"
       end
-      allowable_values = ["created_at", "definition", "definition.channel", "definition.content", "definition.content.action_buttons", "definition.content.bcc_email", "definition.content.body", "definition.content.cc_email", "definition.content.dynamic_image", "definition.content.from_email", "definition.content.from_label", "definition.content.media_url", "definition.content.preview_text", "definition.content.reply_to_email", "definition.content.subject", "definition.content.title", "definition.kv_pairs", "definition.label", "definition.notification_type", "definition.options", "definition.options.badge", "definition.options.badge.badge_options", "definition.options.badge.badge_options.badge_config", "definition.options.badge.badge_options.set_from_property", "definition.options.badge.badge_options.value", "definition.options.badge.display", "definition.options.on_open", "definition.options.on_open.android_deep_link", "definition.options.on_open.ios_deep_link", "definition.options.on_open.type", "definition.options.on_open.web_url", "definition.options.play_sound", "definition.render_options", "definition.render_options.add_info_link", "definition.render_options.add_opt_out_language", "definition.render_options.add_org_prefix", "definition.render_options.shorten_links", "id", "send_times", "updated_at"]
+      allowable_values = ["created", "definition", "definition.ab_test", "definition.ab_test.winner_metric", "definition.ab_test.winner_percentage", "definition.ab_test.winner_wait_hours", "definition.name", "definition.send_options", "definition.send_options.is_ignoring_unsubscribes", "definition.send_options.recipient_percentage", "definition.send_options.send_strategy", "definition.send_options.send_time", "definition.send_options.send_times", "definition.send_options.throttle_unit", "definition.send_options.throttling_type", "definition.status", "definition.tracking_options", "definition.tracking_options.is_add_utm", "definition.tracking_options.is_tracking_clicks", "definition.tracking_options.is_tracking_opens", "id", "updated"]
       if @api_client.config.client_side_validation && opts[:'fields_campaign_message'] && !opts[:'fields_campaign_message'].all? { |item| allowable_values.include?(item) }
         fail ArgumentError, "invalid value for \"fields_campaign_message\", must include one of #{allowable_values}"
       end
@@ -2011,7 +4497,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'
@@ -2024,7 +4510,7 @@ module KlaviyoAPI
       form_params = opts[:form_params] || {}
 
       # http body (model)
-      post_body = opts[:debug_body] || @api_client.object_to_http_body(campaign_message_partial_update_query)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(message_partial_update_query)
 
       # return_type
       return_type = opts[:debug_return_type] || 'Hash<String, Object>'
@@ -2045,6 +4531,165 @@ module KlaviyoAPI
       data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: CampaignsApi#update_campaign_message\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update Campaign Message Schedule
+    # Cancel or revert a scheduled campaign message.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_message_schedule.json)
+    # @param id [String] 
+    # @param campaign_message_schedule_update_query [CampaignMessageScheduleUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [nil]
+    def update_campaign_message_schedule(id, campaign_message_schedule_update_query, opts = {})
+      update_campaign_message_schedule_with_http_info(id, campaign_message_schedule_update_query, opts)
+      nil
+    end
+
+    # Update Campaign Message Schedule
+    # Cancel or revert a scheduled campaign message.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_message_schedule.json)
+    # @param id [String] 
+    # @param campaign_message_schedule_update_query [CampaignMessageScheduleUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(nil, Integer, Hash)>] nil, response status code and response headers
+    def update_campaign_message_schedule_with_http_info(id, campaign_message_schedule_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.update_campaign_message_schedule ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.update_campaign_message_schedule"
+      end
+      # verify the required parameter 'campaign_message_schedule_update_query' is set
+      if @api_client.config.client_side_validation && campaign_message_schedule_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'campaign_message_schedule_update_query' when calling CampaignsApi.update_campaign_message_schedule"
+      end
+      # resource path
+      local_var_path = '/api/campaign-message-schedule/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(campaign_message_schedule_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type]
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.update_campaign_message_schedule",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#update_campaign_message_schedule\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Update Campaign Variation
+    # Update the campaign variation with the given ID.<br><br>*Rate limits*:<br>Burst: `10/s`<br>Steady: `150/m`  **Scopes:** `campaigns:write`  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param variation_partial_update_query [VariationPartialUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Hash<String, Object>]
+    def update_campaign_variation(id, variation_partial_update_query, opts = {})
+      data, _status_code, _headers = update_campaign_variation_with_http_info(id, variation_partial_update_query, opts)
+      data
+    end
+
+    # Update Campaign Variation
+    # Update the campaign variation with the given ID.&lt;br&gt;&lt;br&gt;*Rate limits*:&lt;br&gt;Burst: &#x60;10/s&#x60;&lt;br&gt;Steady: &#x60;150/m&#x60;  **Scopes:** &#x60;campaigns:write&#x60;  [OpenAPI Spec](https://raw.githubusercontent.com/klaviyo/openapi/main/openapi/stable/apis/update_campaign_variation.json)
+    # @param id [String] The ID of the variation
+    # @param variation_partial_update_query [VariationPartialUpdateQuery] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<String>] :fields_campaign_variation For more information please visit https://developers.klaviyo.com/en/v2026-10-15/reference/api-overview#sparse-fieldsets
+    # @return [Array<(Hash<String, Object>, Integer, Hash)>] Hash<String, Object> data, response status code and response headers
+    def update_campaign_variation_with_http_info(id, variation_partial_update_query, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: CampaignsApi.update_campaign_variation ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling CampaignsApi.update_campaign_variation"
+      end
+      # verify the required parameter 'variation_partial_update_query' is set
+      if @api_client.config.client_side_validation && variation_partial_update_query.nil?
+        fail ArgumentError, "Missing the required parameter 'variation_partial_update_query' when calling CampaignsApi.update_campaign_variation"
+      end
+      allowable_values = ["created", "definition", "definition.details", "definition.details.action_buttons", "definition.details.add_info_link", "definition.details.add_opt_out_language", "definition.details.add_org_prefix", "definition.details.android_deep_link", "definition.details.badge", "definition.details.badge_config", "definition.details.badge_value", "definition.details.bcc_email", "definition.details.body", "definition.details.cc_email", "definition.details.channel", "definition.details.content_available", "definition.details.cost", "definition.details.dynamic_media_template", "definition.details.from_email", "definition.details.from_label", "definition.details.include_contact_card", "definition.details.ios_deep_link", "definition.details.kv_pairs", "definition.details.message_hierarchy", "definition.details.mms_dynamic_image_template", "definition.details.mms_static_image_asset_id", "definition.details.mutable_content", "definition.details.open_action", "definition.details.preview_text", "definition.details.push_platform_target", "definition.details.push_type", "definition.details.reply_to_email", "definition.details.send_to_inbox", "definition.details.send_to_primary", "definition.details.shorten_links", "definition.details.sound", "definition.details.sound_file_name", "definition.details.static_asset_id", "definition.details.subject", "definition.details.template_id", "definition.details.text_message_type", "definition.details.title", "definition.details.video_asset_id", "definition.details.web_url", "definition.name", "id", "updated"]
+      if @api_client.config.client_side_validation && opts[:'fields_campaign_variation'] && !opts[:'fields_campaign_variation'].all? { |item| allowable_values.include?(item) }
+        fail ArgumentError, "invalid value for \"fields_campaign_variation\", must include one of #{allowable_values}"
+      end
+      # resource path
+      local_var_path = '/api/campaign-variations/{id}'.sub('{' + 'id' + '}', CGI.escape(id.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'fields[campaign-variation]'] = @api_client.build_collection_param(opts[:'fields_campaign_variation'], :csv) if !opts[:'fields_campaign_variation'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # klaviyo api revision
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/vnd.api+json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(variation_partial_update_query)
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['Klaviyo-API-Key', 'OAuth']
+
+      new_options = opts.merge(
+        :operation => :"CampaignsApi.update_campaign_variation",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: CampaignsApi#update_campaign_variation\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -2090,7 +4735,7 @@ module KlaviyoAPI
       # header parameters
       header_params = opts[:header_params] || {}
       # klaviyo api revision
-      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-07-15"
+      header_params['revision'] =  ENV['KLAVIYO_API_REVISION'] || ENV['API_REVISION'] || "2026-10-15"
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/vnd.api+json'])
       # HTTP header 'Content-Type'

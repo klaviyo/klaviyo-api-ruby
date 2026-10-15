@@ -18,11 +18,14 @@ module KlaviyoAPI
 
     attr_accessor :background_color
 
+    attr_accessor :input_styles
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'padding' => :'padding',
-        :'background_color' => :'background_color'
+        :'background_color' => :'background_color',
+        :'input_styles' => :'input_styles'
       }
     end
 
@@ -35,14 +38,15 @@ module KlaviyoAPI
     def self.openapi_types
       {
         :'padding' => :'Padding',
-        :'background_color' => :'String'
+        :'background_color' => :'String',
+        :'input_styles' => :'InputStyleOverrides'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'background_color'
+        :'background_color',
       ])
     end
 
@@ -68,6 +72,10 @@ module KlaviyoAPI
       if attributes.key?(:'background_color')
         self.background_color = attributes[:'background_color']
       end
+
+      if attributes.key?(:'input_styles')
+        self.input_styles = attributes[:'input_styles']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -89,7 +97,8 @@ module KlaviyoAPI
       return true if self.equal?(o)
       self.class == o.class &&
           padding == o.padding &&
-          background_color == o.background_color
+          background_color == o.background_color &&
+          input_styles == o.input_styles
     end
 
     # @see the `==` method
@@ -101,7 +110,7 @@ module KlaviyoAPI
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [padding, background_color].hash
+      [padding, background_color, input_styles].hash
     end
 
     # Builds the object from hash
